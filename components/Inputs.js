@@ -2,19 +2,21 @@ import React, { Component } from "react";
 import { View, TextInput, StyleSheet, Image, Button, Alert, ScrollView } from 'react-native';
 import Submit from "./SubmitBtn";
 export default class Inputs extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-        
-  //         serial: "Serial Number",
-  //         manufacturer: "",
-  //         purity: "",
-  //         weight: "",
-  //         AGID: "",
-  //         RFID: ""  
-  //       }
-  //   };
+  constructor(props){
+    super(props);
+    
+    this.state = {
+      
+      serial: "",
+      manufacturer: "",
+      purity: "",
+      weight: "",
+      AGID: "",
+      RFID: ""  
+    }
+  };
   
+
    
 
  render(){
@@ -24,7 +26,7 @@ export default class Inputs extends Component {
         <TextInput
             style={styles.input}
             onChangeText={(serial) => this.setState({serial})}
-            value={this.state.serial}
+            placeholder="Serial Number"
           />
           <TextInput
             style={styles.input}

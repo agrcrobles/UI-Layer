@@ -6,28 +6,29 @@ import welcome from "./assets/welcome.png";
 import Vault from "./components/Vault";
 import Splash from "./components/SplashPanel";
 import Inputs from "./components/Inputs";
+import Confirm from "./components/Confirm";
 
 // import NavButtons from "./components/Header_LogoButtons";
 
 export default class App extends React.Component {
   constructor(props){
     super(props);
-  
     this.state = {
-       
-      serial: "serial",
-      manufacturer: "",
-      purity: "",
+      
+      serial: "",
+      manufacturer: "hello",
+      purity: "tester",
       weight: "",
       AGID: "",
       RFID: ""  
     }
-};
+  };
+  
   render() {
 
     return (
-
-        <Inputs />
+        <Confirm state={this.state}/>
+        // <Inputs />
         // <View style={styles.page}>
     
         //   <MenuHeader />
