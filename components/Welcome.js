@@ -4,6 +4,7 @@ import Title from "./MenuInputTitle";
 import welcome from "../assets/welcome.png";
 import vendor from "../assets/vendorLabel.png";
 import vault from "../assets/vaultLabel.png";
+import { StackNavigator, } from "react-navigation";
 //touchablestyles
 export default class Welcome extends Component {
   _onPressButton(){

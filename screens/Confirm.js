@@ -11,6 +11,7 @@ export default class Confirm extends Component  {
     super(props);
   }
   componentDidMount(){
+    console.log(this.props.values)
 
   }
    _onPressBack(){
@@ -23,7 +24,14 @@ export default class Confirm extends Component  {
    }
   
   render(){
+    // debugger;
     console.log(this.props.navigation.state.params);
+
+    let amt = this.props.navigation.state.params;
+    console.log(amt.values.serial, "values serial");
+    let serial = amt.values.serial;
+    console.log(serial, "serial")
+    
     return(
 
       <View style={styles.container}>
@@ -32,18 +40,18 @@ export default class Confirm extends Component  {
         <Text style={styles.confirm}>CONFIRM</Text>
 
        <ScrollView contentContainerStyle={styles.view}> 
-          <Text style={styles.input}>Serial Number: </Text> 
-            <Text style={styles.value}>{this.props.values.serial}</Text>
+          <Text style={styles.input}>Serial Number:</Text> 
+            <Text style={styles.value} value={serial}>{serial}</Text>
           <Text style={styles.input}>Manufacturer:</Text>
-            <Text style={styles.value}>{this.props.values.manufacturer}</Text>
+            <Text style={styles.value}>{amt.values.manufacturer}</Text>
           <Text style={styles.input}>Purity:</Text>
-            <Text style={styles.value}>{this.props.values.purity}</Text>
+            <Text style={styles.value}>{amt.values.purity}</Text>
           <Text style={styles.input}>Weight:</Text>
-            <Text style={styles.value}>{this.props.values.weight}</Text>
+            <Text style={styles.value}>{amt.values.weight}</Text>
           <Text style={styles.input}>AGID:</Text>
-            <Text style={styles.value}> {this.props.values.AGID}</Text>
+            <Text style={styles.value}> {amt.values.AGID}</Text>
           <Text style={styles.input}>RFID:</Text>
-            <Text style={styles.value}> {this.props.values.RFID}</Text>
+            <Text style={styles.value}> {amt.values.RFID}</Text>
        </ScrollView>
         
       <View style={styles.navbtns}>  
@@ -73,6 +81,7 @@ const styles = StyleSheet.create({
     
     // paddingTop: 30,
     width: "100%",
+    height: "100%",
     backgroundColor: 'purple',
     // backgroundColor: '#fff',
     alignItems: 'center',
@@ -91,7 +100,8 @@ const styles = StyleSheet.create({
     borderWidth: 1
   },
   view: {
-      width:"100%",
+    flex: 1,
+      width:"80%",
       height: 400,
       alignItems: "center",
       backgroundColor: "blue",
@@ -120,7 +130,7 @@ const styles = StyleSheet.create({
     height: 60,
     justifyContent: "space-between",
     backgroundColor: "grey",    
-    
+    marginTop: 1,
     paddingRight:15,
     paddingLeft: 15
   }

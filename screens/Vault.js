@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TextInput } from 'react-native';
 import Title from "../components/MenuInputTitle";
 import Inputs from "../components/Inputs"
 import WelcomeHeader from "../components/WelcomeHeader";
 import MenuLogo from "../components/MenuLogo";
 import Submit from "../components/SubmitBtn";
 import vault from "../assets/vaultLabel.png";
+//  import { StackNavigator, } from 'react-navigation';
 
 export default class VaultPanel extends Component {
   constructor(props){
     super(props);
     
     this.state = {
-      values: {
+      
         serial: "",
         manufacturer: "",
         purity: "",
@@ -21,9 +22,10 @@ export default class VaultPanel extends Component {
         RFID: ""  
       }
     } 
-  };
+  
 
   render(){
+    const { navigate } = this.props.navigation;
     return(
       <View style={styles.container}>
         <WelcomeHeader />
@@ -35,10 +37,12 @@ export default class VaultPanel extends Component {
                   onChangeText={(serial) => this.setState({serial})}
                   placeholder="Serial Number"
                 />
+                
                 <TextInput
                   style={styles.input}
                   onChangeText={(purity) => this.setState({purity})}
                   placeholder="Purity"
+                
                 />
                 <TextInput
                   style={styles.input}
@@ -66,7 +70,9 @@ export default class VaultPanel extends Component {
         
         
         
-        <Submit onPress={() => navigate('Confirm', {values: this.state.values})} />
+        <Submit onPress={() => {
+          console.log(this.state);
+          navigate('Confirm', {values: this.state})}} />
         
       
       </View>
@@ -83,5 +89,17 @@ const styles = StyleSheet.create({
     // backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  input: {
+    width: 200, 
+    height: 50,
+    textAlign: "center",
+    backgroundColor: "#132c4a", 
+    margin: .5,
+    fontSize: 20.2,
+    fontWeight: "600",
+    borderColor: "#142535",
+    color: "white",
+    borderWidth: 1
   }
 });
