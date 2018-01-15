@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight, Alert} from 'react-native';
-import Title from "./MenuInputTitle";
-import WelcomeHeader from "./WelcomeHeader";
-import Submit from "./SubmitBtn";
+import Title from "../components/MenuInputTitle";
+import WelcomeHeader from "../components/WelcomeHeader";
+import Submit from "../components/SubmitBtn";
 import vault from "../assets/vaultLabel.png";
-import SubOrBack from "./BackOrSubmitButtons";
+import SubOrBack from "../components/BackOrSubmitButtons";
 
 export default class Confirm extends Component  {
   constructor(props) {

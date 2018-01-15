@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
-import WelcomeHeader from "./WelcomeHeader";
-import Welcome from "./Welcome";
+import WelcomeHeader from "../components/WelcomeHeader";
+import Welcome from "../components/Welcome";
 
 
 export default class SplashPanel extends Component {

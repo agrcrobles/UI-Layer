@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
-import Title from "./MenuInputTitle";
-import Inputs from "./Inputs"
-import WelcomeHeader from "./WelcomeHeader";
-import MenuLogo from "./MenuLogo";
-import Submit from "./SubmitBtn";
+import Title from "../components/MenuInputTitle";
+import Inputs from "../components/Inputs"
+import WelcomeHeader from "../components/WelcomeHeader";
+import MenuLogo from "../components/MenuLogo";
+import Submit from "../components/SubmitBtn";
 import vault from "../assets/vaultLabel.png";
 
 export default class VaultPanel extends Component {
