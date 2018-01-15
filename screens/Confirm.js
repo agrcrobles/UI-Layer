@@ -43,8 +43,8 @@ export default class Confirm extends Component  {
         <Title image={vault} />
         <Text style={styles.confirm}>CONFIRM</Text>
 
-      <ScrollView style={styles.view}>
-          <Text style={styles.input}>Serial Number:</Text> 
+      <ScrollView contentContainerStyle={styles.view}>
+          <Text style={styles.input}>Serial Number: {amt.values.serial}</Text> 
             <Text style={styles.value} value={serial}>{serial}</Text>
           <Text style={styles.input}>Manufacturer:</Text>
             <Text style={styles.value}>{amt.values.manufacturer}</Text>
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     
     // paddingTop: 30,
     width: "100%",
-    height: 800,
+    height: 400,
     backgroundColor: 'purple',
     // backgroundColor: '#fff',
     alignItems: 'center',
@@ -99,11 +99,11 @@ const styles = StyleSheet.create({
   },
   view: {
     flex: 1,
-      width:"80%",
+      // width:"80%",
       height: 400,
       alignItems: "center",
       backgroundColor: "blue",
-      justifyContent: "space-between",
+      justifyContent: "space-around",
       marginBottom: 1
     },
   confirm: {
