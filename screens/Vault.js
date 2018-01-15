@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // paddingTop: 30,
     // width: "100%",
-    backgroundColor: 'purple',
+    backgroundColor: '#021227',
     // backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     width: "80%",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: 'yellow',
+    backgroundColor: '#021227',
   },
    
    

@@ -19,7 +19,7 @@ var styles = StyleSheet.create({
     resizeMode: 'contain',
     width: 200,
     height: 120,
-    backgroundColor: "blue",
+    backgroundColor: "#021227",
 
     padding: 0,
     

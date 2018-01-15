@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   menu: {
     height: "40%",
     justifyContent: "space-around",
-    backgroundColor: '#2cb6ed',
+    backgroundColor: '#021227',
     // margin: .5,
   
     },

@@ -23,7 +23,7 @@ var styles = StyleSheet.create({
     width: "100%",
     justifyContent: "space-around",
     alignItems: "center",   
-    backgroundColor: "green"
+    backgroundColor: "#021227"
 
   }
   // ,

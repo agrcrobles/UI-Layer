@@ -29,7 +29,7 @@ var styles = StyleSheet.create({
     height: 140,
     width: "60%",
     // #021227
-    backgroundColor: '#e04759',
+    backgroundColor: '#021227',
     // margin: .5
        
   }

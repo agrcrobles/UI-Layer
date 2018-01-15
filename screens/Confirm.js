@@ -26,23 +26,26 @@ export default class Confirm extends Component  {
    
    _onPressSubmit(amt){
      console.log(amt);
+     let apiKey = "QlVVIx2G-nNZWvj15egTZdSI71YWk-do";
     
-
-     fetch('mongodb://agld:herculese@ds257627.mlab.com:57627/hercgold', {
+     
+    //  ''
+     fetch("mongodb://agld:herculese@ds257627.mlab.com:57627/hercgold", {
        method: 'POST',
        headers: {
          Accept: 'application/json',
          'Content-Type': 'application/json',
         },
-        body: {
-          serialNum : amt.serial,
-          manufacturer: amt.manufacturer,
-          weight : amt.weight,
-          RFID: amt.RFID,
-          AGID: amt.AGID
-          
-        }
-      }).then(function(res){console.log(res)})
+        body:JSON.stringify({
+            serialNum : amt.serial,
+            manufacturer: amt.manufacturer,
+            weight : amt.weight,
+            RFID: amt.RFID,
+            AGID: amt.AGID
+        })
+      }).then(function(res){console.log(res)}).catch(function(error) {
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+        });
       
     }
     
