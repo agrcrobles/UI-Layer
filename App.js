@@ -3,11 +3,13 @@ import { StackNavigator } from 'react-navigation';
 import Vault from "./screens/Vault";
 import Splash from "./screens/SplashPanel";
 import Confirm from "./screens/Confirm";
+import ThankYou from "./screens/ThankYou";
 
 const HercDemo = StackNavigator({
   Splash: { screen: Splash },
   Vault: { screen: Vault },
   Confirm: { screen: Confirm },
+  ThankYou: { screen: ThankYou}
  
   }
 )

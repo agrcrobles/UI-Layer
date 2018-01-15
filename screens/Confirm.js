@@ -78,7 +78,7 @@ export default class Confirm extends Component  {
       
       <TouchableHighlight onPress={() => {
         this._onPressSubmit(amt)
-        navigate('Vault')}}
+        navigate('ThankYou', {values:amt})}}
         >
         <Image
           style={{width: 200, height: 70, resizeMode: "cover"}}
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     // paddingTop: 30,
     width: "100%",
     height: 400,
-    backgroundColor: 'purple',
+    backgroundColor: '#021227',
     // backgroundColor: '#fff',
     alignItems: 'center',
     // justifyContent: 'center',
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
       // width:"80%",
       height: 400,
       alignItems: "center",
-      backgroundColor: "blue",
+      backgroundColor: "#021227",
       justifyContent: "space-around",
       marginBottom: 1
     },
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 60,
     justifyContent: "space-between",
-    backgroundColor: "grey",    
+    backgroundColor: "#021227",    
     marginTop: 1,
     paddingRight:15,
     paddingLeft: 15

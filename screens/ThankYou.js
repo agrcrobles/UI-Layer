@@ -3,36 +3,58 @@ import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert } 
 import WelcomeHeader from "../components/WelcomeHeader";
 import Welcome from "../components/Welcome";
 import Title from "../components/MenuInputTitle";
-import vault from "../assets/vaultLabel,png";
+import vault from "../assets/vaultLabel.png";
 import { StackNavigator } from 'react-navigation';
 
-export default function ThankYou(props){
-  return(
-    <View style={styles.container} >
-
+export default class ThankYou extends Component {
+  static navigationOptions = {
+    header: null
+  
+  }
+  render(){
+    return(
+      <View style={styles.container}>
       <WelcomeHeader />
       <Title image={vault} />
+
+      <Text style={styles.input}>
+      Thank You For Your Submission
       
-
-    </View>
+      </Text>
+      </View>
+    )
+  } 
+    }
   
-  )
-}
-
-const styles = StyleSheet.create({
+    
+ 
+ const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 30,
+    // paddingTop: 30,
     // width: "100%",
     backgroundColor: '#021227',
     // backgroundColor: '#fff',
     alignItems: 'center',
-    // justifyContent: 'space-around',
+    justifyContent: 'center',
   },
   menu: {
-    height: 300,
-    justifyContent: "space-around",
+    height: 600,
+    width: "80%",
+    justifyContent: "space-between",
+    alignItems: "center",
     backgroundColor: '#021227',
-    // margin: .5,
-  
-    },
+  },
+  input: {
+    width: 200, 
+    height: 50,
+    textAlign: "center",
+    backgroundColor: "#132c4a", 
+    margin: .5,
+    fontSize: 20.2,
+    fontWeight: "600",
+    borderColor: "#142535",
+    color: "white",
+    borderWidth: 1
+  }
+});
