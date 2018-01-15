@@ -17,9 +17,9 @@ var styles = StyleSheet.create({
   button: {
   
     // remove width and height to override fixed static size
-    // height: 70,
+    height: 60,
     width: 200,
-     resizeMode: 'contain'
+     resizeMode: 'cover'
 
   }
   // ,

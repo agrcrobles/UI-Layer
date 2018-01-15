@@ -6,9 +6,13 @@ import WelcomeHeader from "../components/WelcomeHeader";
 import MenuLogo from "../components/MenuLogo";
 import Submit from "../components/SubmitBtn";
 import vault from "../assets/vaultLabel.png";
-//  import { StackNavigator, } from 'react-navigation';
+ import { StackNavigator, } from 'react-navigation';
 
 export default class VaultPanel extends Component {
+  static navigationOptions = {
+    header: null
+  
+  }
   constructor(props){
     super(props);
     
@@ -64,15 +68,16 @@ export default class VaultPanel extends Component {
                   onChangeText={(RFID) => this.setState({RFID})}
                   placeholder="RFID"
                 />
+              
+              <Submit onPress={() => {
+                console.log(this.state);
+                navigate('Confirm', {values: this.state})}} 
+                />
 
               
             </View>       
         
         
-        
-        <Submit onPress={() => {
-          console.log(this.state);
-          navigate('Confirm', {values: this.state})}} />
         
       
       </View>
@@ -84,12 +89,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // paddingTop: 30,
-    width: "100%",
+    // width: "100%",
     backgroundColor: 'purple',
     // backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  menu: {
+    height: 600,
+    width: "80%",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: 'yellow',
+  },
+   
+   
+  
   input: {
     width: 200, 
     height: 50,

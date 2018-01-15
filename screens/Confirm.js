@@ -7,9 +7,13 @@ import vault from "../assets/vaultLabel.png";
 import SubOrBack from "../components/BackOrSubmitButtons";
 
 export default class Confirm extends Component  {
+  static navigationOptions = {
+    header: null
+  }
   constructor(props) {
     super(props);
   }
+  
   componentDidMount(){
     console.log(this.props.values)
 
@@ -33,13 +37,13 @@ export default class Confirm extends Component  {
     console.log(serial, "serial")
     
     return(
-
+     
       <View style={styles.container}>
         <WelcomeHeader />
         <Title image={vault} />
         <Text style={styles.confirm}>CONFIRM</Text>
 
-       <ScrollView contentContainerStyle={styles.view}> 
+      <ScrollView style={styles.view}>
           <Text style={styles.input}>Serial Number:</Text> 
             <Text style={styles.value} value={serial}>{serial}</Text>
           <Text style={styles.input}>Manufacturer:</Text>
@@ -54,22 +58,16 @@ export default class Confirm extends Component  {
             <Text style={styles.value}> {amt.values.RFID}</Text>
        </ScrollView>
         
-      <View style={styles.navbtns}>  
-       <TouchableHighlight onPress={this._onPressBack}>
-        <Image
-          style={{width: 50, height: 50}}
-          source={require('../assets/icon_backarrow.png')}
-        />
-      </TouchableHighlight>
-     
+      
       <TouchableHighlight onPress={this._onPressSubmit}>
         <Image
-          style={{width: 120, height: 70, resizeMode: "cover"}}
+          style={{width: 200, height: 70, resizeMode: "cover"}}
           source={require('../assets/submitButton.png')}
-        />
+          />
       </TouchableHighlight>
-      </View>
-      </View>  
+    
+        
+       </View>
        
     )
   }
@@ -81,7 +79,7 @@ const styles = StyleSheet.create({
     
     // paddingTop: 30,
     width: "100%",
-    height: "100%",
+    height: 800,
     backgroundColor: 'purple',
     // backgroundColor: '#fff',
     alignItems: 'center',
@@ -112,7 +110,6 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: "red",
   },
-
   value: {
     color: "white",
     fontSize: 25,
@@ -133,6 +130,11 @@ const styles = StyleSheet.create({
     marginTop: 1,
     paddingRight:15,
     paddingLeft: 15
+  },
+  list: {
+    height: 600,
+    width: "80%",
+    justifyContent: "space-around"
   }
 
 });

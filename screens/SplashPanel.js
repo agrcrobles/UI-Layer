@@ -8,10 +8,10 @@ import welcome from "../assets/welcome.png";
 
 
 export default class SplashPanel extends Component {
-  // static navigationOptions = {
-  //   title: "Splash",
+  static navigationOptions = {
+    header: null,
   
-  // }
+  }
   render(){
     const { navigate } = this.props.navigation;
     return(
@@ -40,10 +40,6 @@ export default class SplashPanel extends Component {
     ) 
   };
 }
-      
-     
-   
-
 
 const styles = StyleSheet.create({
   container: {
@@ -53,10 +49,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#021227',
     // backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
   menu: {
-    height: "40%",
+    height: 400,
     justifyContent: "space-around",
     backgroundColor: '#2cb6ed',
     // margin: .5,

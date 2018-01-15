@@ -4,13 +4,16 @@ import Vault from "./screens/Vault";
 import Splash from "./screens/SplashPanel";
 import Confirm from "./screens/Confirm";
 
-HercDemo = StackNavigator({
+const HercDemo = StackNavigator({
   Splash: { screen: Splash },
   Vault: { screen: Vault },
-  Confirm: { screen: Confirm }
-})
+  Confirm: { screen: Confirm },
+ 
+  }
+)
 
 export default class App extends Component {
+  static navigationOptions = { header: null }
     render() {
       return <HercDemo />
     }
