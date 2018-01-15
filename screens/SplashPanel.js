@@ -43,13 +43,13 @@ export default class SplashPanel extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    // paddingTop: 30,
+    // flex: 1,
+    paddingTop: 30,
     // width: "100%",
     backgroundColor: '#021227',
     // backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    // justifyContent: 'space-around',
   },
   menu: {
     height: 400,

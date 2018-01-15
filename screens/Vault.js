@@ -44,14 +44,15 @@ export default class VaultPanel extends Component {
                 
                 <TextInput
                   style={styles.input}
+                  onChangeText={(manufacturer) => this.setState({manufacturer})}
+                  placeholder="Manufacturer"
+                />
+                
+                <TextInput
+                  style={styles.input}
                   onChangeText={(purity) => this.setState({purity})}
                   placeholder="Purity"
                 
-                />
-                <TextInput
-                  style={styles.input}
-                  onChangeText={(manufacturer) => this.setState({manufacturer})}
-                  placeholder="Manufacturer"
                 />
                 <TextInput
                   style={styles.input}

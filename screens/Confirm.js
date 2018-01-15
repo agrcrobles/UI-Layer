@@ -12,10 +12,12 @@ export default class Confirm extends Component  {
   }
   constructor(props) {
     super(props);
+    // let amt = this.props.navigation.state.params;
+    console.log(amt);
   }
   
   componentDidMount(){
-    console.log(this.props.values)
+    
 
   }
    _onPressBack(){
@@ -23,17 +25,33 @@ export default class Confirm extends Component  {
    }
    
    _onPressSubmit(){
-    Alert.alert("you touched Submit")
+     const amounts = this.props.navigation.state.params;
+     fetch('mongodb://agld:herculese@ds257627.mlab.com:57627/hercgold', {
+       method: 'POST',
+       headers: {
+         Accept: 'application/json',
+         'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          serialNum : amt.values.serial,
+          manufacturer: amt.values.manufacturer,
+          weight : amt.values.weight,
+          RFID: amt.values.RFID,
+          AGID: amt.values.AGID
+          
+        }).then(function(res){console.log(res)})
+      })
+      
+    }
+    
+    render(){
+      let amt = this.props.navigation.state.params.values;
+      console.log(amt);
+      // debugger;
+    // console.log(this.props.navigation.state.params);
 
-   }
-  
-  render(){
-    // debugger;
-    console.log(this.props.navigation.state.params);
-
-    let amt = this.props.navigation.state.params;
-    console.log(amt.values.serial, "values serial");
-    let serial = amt.values.serial;
+    console.log(amt.serial, "values serial");
+    let serial = amt.serial;
     console.log(serial, "serial")
     
     return(
@@ -44,18 +62,18 @@ export default class Confirm extends Component  {
         <Text style={styles.confirm}>CONFIRM</Text>
 
       <ScrollView contentContainerStyle={styles.view}>
-          <Text style={styles.input}>Serial Number: {amt.values.serial}</Text> 
+          <Text style={styles.input}>Serial Number: {amt.serial}{serial}</Text> 
             <Text style={styles.value} value={serial}>{serial}</Text>
-          <Text style={styles.input}>Manufacturer:</Text>
-            <Text style={styles.value}>{amt.values.manufacturer}</Text>
+          <Text style={styles.input}>Manufacturer:{amt.manufacturer}</Text>
+            <Text style={styles.value}>{amt.weight}</Text>
           <Text style={styles.input}>Purity:</Text>
-            <Text style={styles.value}>{amt.values.purity}</Text>
+            <Text style={styles.value}>{amt.purity}</Text>
           <Text style={styles.input}>Weight:</Text>
-            <Text style={styles.value}>{amt.values.weight}</Text>
+            <Text style={styles.value}>{amt.weight}</Text>
           <Text style={styles.input}>AGID:</Text>
-            <Text style={styles.value}> {amt.values.AGID}</Text>
+            <Text style={styles.value}> {amt.AGID}</Text>
           <Text style={styles.input}>RFID:</Text>
-            <Text style={styles.value}> {amt.values.RFID}</Text>
+            <Text style={styles.value}> {amt.RFID}</Text>
        </ScrollView>
         
       
