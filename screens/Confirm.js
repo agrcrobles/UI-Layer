@@ -12,8 +12,8 @@ export default class Confirm extends Component  {
   }
   constructor(props) {
     super(props);
-    // let amt = this.props.navigation.state.params;
-    console.log(amt);
+   
+   
   }
   
   componentDidMount(){
@@ -24,35 +24,32 @@ export default class Confirm extends Component  {
      Alert.alert("you touched BAck")
    }
    
-   _onPressSubmit(){
-     const amounts = this.props.navigation.state.params;
+   _onPressSubmit(amt){
+     console.log(amt);
+    
+
      fetch('mongodb://agld:herculese@ds257627.mlab.com:57627/hercgold', {
        method: 'POST',
        headers: {
          Accept: 'application/json',
          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          serialNum : amt.values.serial,
-          manufacturer: amt.values.manufacturer,
-          weight : amt.values.weight,
-          RFID: amt.values.RFID,
-          AGID: amt.values.AGID
+        body: {
+          serialNum : amt.serial,
+          manufacturer: amt.manufacturer,
+          weight : amt.weight,
+          RFID: amt.RFID,
+          AGID: amt.AGID
           
-        }).then(function(res){console.log(res)})
-      })
+        }
+      }).then(function(res){console.log(res)})
       
     }
     
     render(){
-      let amt = this.props.navigation.state.params.values;
+      const { navigate } = this.props.navigation;
+      const amt = this.props.navigation.state.params.values;
       console.log(amt);
-      // debugger;
-    // console.log(this.props.navigation.state.params);
-
-    console.log(amt.serial, "values serial");
-    let serial = amt.serial;
-    console.log(serial, "serial")
     
     return(
      
@@ -62,9 +59,9 @@ export default class Confirm extends Component  {
         <Text style={styles.confirm}>CONFIRM</Text>
 
       <ScrollView contentContainerStyle={styles.view}>
-          <Text style={styles.input}>Serial Number: {amt.serial}{serial}</Text> 
-            <Text style={styles.value} value={serial}>{serial}</Text>
-          <Text style={styles.input}>Manufacturer:{amt.manufacturer}</Text>
+          <Text style={styles.input}>Serial Number:</Text> 
+            <Text style={styles.value}>{amt.serial}</Text>
+          <Text style={styles.input}>Manufacturer:</Text>
             <Text style={styles.value}>{amt.weight}</Text>
           <Text style={styles.input}>Purity:</Text>
             <Text style={styles.value}>{amt.purity}</Text>
@@ -77,7 +74,10 @@ export default class Confirm extends Component  {
        </ScrollView>
         
       
-      <TouchableHighlight onPress={this._onPressSubmit}>
+      <TouchableHighlight onPress={() => {
+        this._onPressSubmit(amt)
+        navigate('Vault')}}
+        >
         <Image
           style={{width: 200, height: 70, resizeMode: "cover"}}
           source={require('../assets/submitButton.png')}
