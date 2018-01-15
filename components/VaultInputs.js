@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import Header from "./Header_LogoButtons.js";
+import WelcomeHeader from "./WelcomeHeader";
 import MenuInputTitle from "./MenuInputTitle";
 import vault from "./images/vaultLabel.png";
 import VendInp from "./VendorVaultInputs";
@@ -9,7 +9,7 @@ export default function VaultInputs(){
   return( 
     <div className="page">
       
-       <Header />
+       <WelcomeHeader />
        <div className="menu">
         <MenuInputTitle image={vault} />
         <VendInp />

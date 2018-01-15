@@ -13,7 +13,7 @@ export default class Welcome extends Component {
     return(
       <View style={styles.menu}> 
         <Title image={welcome} />
-         <TouchableHighlight  onPress={this._onPressButton}>
+         <TouchableHighlight  onPress={() => navigate('Vault')}>
            <Image
               style={styles.button}
               source={require('../assets/vaultLabel.png')}

@@ -23,9 +23,9 @@ var styles = StyleSheet.create({
     
   },
   hercLogo: {
-    justifyContent: "center",
+    // justifyContent: "center",
     alignItems: "center",
-    height: 200,
+    height: 180,
     width: "80%",
     // #021227
     backgroundColor: '#e04759',

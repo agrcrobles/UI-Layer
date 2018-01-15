@@ -7,7 +7,7 @@ _onPress(){
 }
   render(){
     return (
-      <TouchableHighlight style={{height:50, width:200}} onPress={this._onPress}>
+      <TouchableHighlight style={{height:50, width:200}} onPress={this.props.onPress}>
         <Image style={styles.button} source={require('../assets/submitButton.png')} />
       </TouchableHighlight>
     )

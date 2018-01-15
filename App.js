@@ -1,33 +1,48 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
-import WelcomeHeader from "./components/WelcomeHeader";
-import Welcome from "./components/Welcome";
-import welcome from "./assets/welcome.png";
-import Vault from "./components/Vault";
-import Splash from "./components/SplashPanel";
-import Inputs from "./components/Inputs";
-import Confirm from "./components/Confirm";
+import { StackNavigator } from 'react-navigation';
+import Vault from "./screens/Vault";
+import Splash from "./screens/SplashPanel";
+import Confirm from "./screens/Confirm";
 
-// import NavButtons from "./components/Header_LogoButtons";
+HercDemo = StackNavigator({
+  Splash: { screen: Splash },
+  Vault: { screen: Vault },
+  Confirm: { screen: Confirm }
+})
 
-export default class App extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      
-      serial: "",
-      manufacturer: "hello",
-      purity: "tester",
-      weight: "",
-      AGID: "",
-      RFID: ""  
+export default class App extends Component {
+    render() {
+      return <HercDemo />
     }
-  };
+  }
   
-  render() {
 
-    return (
-        <Confirm state={this.state}/>
+
+
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
+  //     values: {
+  //           serial: "kix",
+  //           manufacturer: "hello",
+  //           purity: "changed",
+  //           weight: "5pound",
+  //           AGID: "changedagain",
+  //           RFID: "9999"  
+  //         }
+  //       }
+  //     }     
+  // render() {
+   
+  //   return (
+  //     <ScrollView contentContainerStyle={styles.container}>
+  //       <Splash />
+  //       <Vault />
+  //       <Confirm values={this.state.values} />
+    
+
+  //     </ScrollView>
+        // <Confirm state={this.state}/>
         // <Inputs />
         // <View style={styles.page}>
     
@@ -41,46 +56,44 @@ export default class App extends React.Component {
         //     </ScrollView>          
    
         // </View>
-     );
-  }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  page: {
-    flex: 1,
-    paddingTop: 30,
-    justifyContent: 'center', 
-    alignItems:'center',
-    alignContent: 'center',
-    // maxWidth: 1024,
-    // minWidth: 235, 
-    width: "100%",
+// const styles = StyleSheet.create({
+//   container: {
+//     width: "100%",
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     height: 800
+//   },
+//   page: {
+//     flex: 1,
+//     paddingTop: 30,
+//     justifyContent: 'center', 
+//     alignItems:'center',
+//     alignContent: 'center',
+//     // maxWidth: 1024,
+//     // minWidth: 235, 
+//     width: "100%",
     
-    backgroundColor: '#021227',
+//     backgroundColor: '#021227',
     
-  },
-  menu: {
-    margin: .5,
-    height: 500,
-    width: "90%",
-    justifyContent: "space-around",
-    alignItems: "center",
-    backgroundColor: 'blue',
-  },
+//   },
+//   menu: {
+//     margin: .5,
+//     height: 500,
+//     width: "90%",
+//     justifyContent: "space-around",
+//     alignItems: "center",
+//     backgroundColor: 'blue',
+//   },
 
-  menuLabel: {
-    alignSelf: 'center',
-    height: 50,
-    width: 200,
+//   menuLabel: {
+//     alignSelf: 'center',
+//     height: 50,
+//     width: 200,
     
-  }
-  });
+//   }
+//   });
   // header: {
   //   flex: 1,
   //   position: "absolute",
