@@ -23,11 +23,11 @@ export default class App extends Component {
     }
   }
   
-// TO-DO 1.  Change Vendor Supplier label -> Origin
-// 2. Change Vault  label-> Destination 
+// TO-DO ------1.  Change Vendor Supplier label -> Origin
+// 2. ----------Change Vault  label-> Destination 
 // 3.  Make the HERC logo go to the now Origin / Destination (home) page
-// 4. Make the now Origin page have the same functionality as the demo'd Destination page
-// 5. Change the "Submit" button to "Next" under the manual inputs.
+// 4. ------Make the now Origin page have the same functionality as the demo'd Destination page
+// 5. ------Change the "Submit" button to "Next" under the manual inputs.
 // 6. Add Skip button on the bottom to go directly to Image / File Uploader if User wants just this functionality
 // 7.  Add Image Uploader and File Finder on the panel that is linked to the Next and Skip buttons. 
 // 8. String the db to the panels for testing of uploading of files / images

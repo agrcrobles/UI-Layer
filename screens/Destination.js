@@ -10,8 +10,8 @@ import destination from "../assets/destinationLabel.png";
 
 
  //  For the HERC database input, the fields that I believe we will need for the Bunker Office input are:
-// •    Bar ID (a code system I’ll be using with bar number and date - eg: 0001–1-11-18)
-// •    Vault Location ID (a placement within the vault system I’ll be using - eg: 1B1, which is Row 1, back wall, spot 1 from left)
+// • text-validators   Bar ID (a code system I’ll be using with bar number and date - eg: 0001–1-11-18)
+// • text-validators   Vault Location ID (a placement within the vault system I’ll be using - eg: 1B1, which is Row 1, back wall, spot 1 from left)
 // •    Bar Serial #
 // •    Mint (eg: Royal Canadian Mint)
 // •    Weight
@@ -61,7 +61,7 @@ export default class Destination extends Component {
         <Title image={destination} />
       
           <ScrollView contentContainerStyle={styles.menu}> 
-              
+          <View style={styles.content}>
             <View style={styles.field}>
              <Text style={styles.label}>Bar Serial</Text> 
               <TextInput
@@ -142,7 +142,7 @@ export default class Destination extends Component {
                 placeholder="Supplier"
               />
             </View>
-              
+           </View>   
           </ScrollView>       
               
               <Next onPress={() => {
@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
     // backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
   menu: {
     height: 500,
@@ -173,9 +174,14 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5
   },
+  content: {
+    flex: 1,
+    padding: 2,
+    justifyContent: "space-around"
+  },
   label: {
     color: "green",
-    width: 100,
+    width: 120,
     fontSize: 20.2,
     fontWeight: "600"
 
@@ -183,26 +189,26 @@ const styles = StyleSheet.create({
   field: {
     height: 60,
     flexDirection: "row",
-    justifyContent: "space-around",
-    width: 300,
+    justifyContent: "space-between",
+    width: "100%",
     backgroundColor: "yellow",
-    marginTop: 5,
-    marginBottom: 5,
-    alignItems: "center"
-
+    // marginTop: 5,
+    // marginBottom: 5,
+    alignItems: "center",
+    paddingLeft: 5
   },
 
   input: {
     width: 150, 
-    height: 50,
+    height: 40,
     textAlign: "center",
     backgroundColor: "#132c4a", 
-    margin: .5,
+    // margin: .5,
     fontSize: 20.2,
     fontWeight: "600",
     borderColor: "#142535",
     color: "white",
     borderWidth: 1,
-    paddingLeft: 1
+    // paddingLeft: 1
   }
 });

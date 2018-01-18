@@ -17,17 +17,18 @@ var styles = StyleSheet.create({
   container: {
   
     // remove width and height to override fixed static size
-    width: 240,
+    height: 200,
+    width: 300,
     resizeMode: 'contain',
-    height: 170
+    
     
   },
   hercLogo: {
     // justifyContent: "center",
     
     alignItems: "center",
-    height: 140,
-    width: "60%",
+    height: 200,
+    width: 300,
     // #021227
     backgroundColor: '#021227',
     // margin: .5
