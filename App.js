@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import { StackNavigator } from 'react-navigation';
-import Vault from "./screens/Vault";
+import Origin from "./screens/Origin";
+import Destination from "./screens/Destination";
 import Splash from "./screens/SplashPanel";
 import Confirm from "./screens/Confirm";
 import ThankYou from "./screens/ThankYou";
 
 const HercDemo = StackNavigator({
   Splash: { screen: Splash },
-  Vault: { screen: Vault },
+  Origin: { screen: Origin},
+  Destination: { screen: Destination },
   Confirm: { screen: Confirm },
   ThankYou: { screen: ThankYou}
  
@@ -21,7 +23,15 @@ export default class App extends Component {
     }
   }
   
-
+// TO-DO 1.  Change Vendor Supplier label -> Origin
+// 2. Change Vault  label-> Destination 
+// 3.  Make the HERC logo go to the now Origin / Destination (home) page
+// 4. Make the now Origin page have the same functionality as the demo'd Destination page
+// 5. Change the "Submit" button to "Next" under the manual inputs.
+// 6. Add Skip button on the bottom to go directly to Image / File Uploader if User wants just this functionality
+// 7.  Add Image Uploader and File Finder on the panel that is linked to the Next and Skip buttons. 
+// 8. String the db to the panels for testing of uploading of files / images
+// 9. Push to Expo by 1/22
 
 
   // constructor(props){

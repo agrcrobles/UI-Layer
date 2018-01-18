@@ -12,15 +12,22 @@ export default class ThankYou extends Component {
   
   }
   render(){
+  console.log(this.props.navigation.state.params);
+  const submitted = this.props.navigation.state.params;
+  
     return(
       <View style={styles.container}>
       <WelcomeHeader />
       <Title image={vault} />
 
       <Text style={styles.input}>
-      Thank You For Your Submission
-      
-      </Text>
+      Thank You For Your Submission</Text>
+      <Text style={styles.input}>Serial Number: {submitted.values.serial}</Text>
+      <Text style={styles.input}>Manufacturer: {submitted.values.manufacturer}</Text>
+      <Text style={styles.input}>Purity: {submitted.values.purity}</Text>
+      <Text style={styles.input}>Weight: {submitted.values.weight}</Text>
+      <Text style={styles.input}>RFID: {submitted.values.RFID}</Text>
+      <Text style={styles.input}>AGID: {submitted.values.AGID}</Text>
       </View>
     )
   } 
@@ -36,7 +43,7 @@ export default class ThankYou extends Component {
     backgroundColor: '#021227',
     // backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
   },
   menu: {
     height: 600,
@@ -46,7 +53,7 @@ export default class ThankYou extends Component {
     backgroundColor: '#021227',
   },
   input: {
-    width: 200, 
+    width: 400, 
     height: 50,
     textAlign: "center",
     backgroundColor: "#132c4a", 

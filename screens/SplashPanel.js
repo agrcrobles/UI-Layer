@@ -21,17 +21,17 @@ export default class SplashPanel extends Component {
         <Title image={welcome} />
       
         <View style={styles.menu}> 
-          <TouchableHighlight  onPress={() => navigate('Vault')}>
+          <TouchableHighlight  onPress={() => navigate('Destination')}>
             <Image
                 style={styles.button}
-                source={require('../assets/vaultLabel.png')}
+                source={require('../assets/destinationLabel.png')}
               />
           </TouchableHighlight>
 
-          <TouchableHighlight  onPress={() => Alert.alert("Please press 'Vault")}>
+          <TouchableHighlight  onPress={() => navigate('Origin')}>
             <Image
               style={styles.button}
-              source={require('../assets/vendorLabel.png')}
+              source={require('../assets/originLabel.png')}
             />
           </TouchableHighlight> 
         </View>

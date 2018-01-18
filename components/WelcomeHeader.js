@@ -17,9 +17,9 @@ var styles = StyleSheet.create({
   container: {
   
     // remove width and height to override fixed static size
-    width: 200,
+    width: 240,
     resizeMode: 'contain',
-    height: 140
+    height: 170
     
   },
   hercLogo: {
