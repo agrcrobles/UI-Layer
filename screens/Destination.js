@@ -60,8 +60,17 @@ export default class Destination extends Component {
         <WelcomeHeader />
         <Title image={destination} />
       
-          <ScrollView contentContainerStyle={styles.menu}> 
+        <ScrollView contentContainerStyle={styles.menu}> 
           <View style={styles.content}>
+        
+            <View style={styles.field}>
+             <Text style={styles.label}>Bar ID</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={(barId) => this.setState({barId})}
+                placeholder="Bar ID"
+              />
+
             <View style={styles.field}>
              <Text style={styles.label}>Bar Serial</Text> 
               <TextInput
@@ -70,23 +79,7 @@ export default class Destination extends Component {
                 placeholder="Bar Serial"
               />
              </View>  
-
-            <View style={styles.field}>
-             <Text style={styles.label}>Bar ID</Text>
-              <TextInput
-                style={styles.input}
-                onChangeText={(barId) => this.setState({barId})}
-                placeholder="Bar ID"
-              />
             </View>  
-            <View style={styles.field}>
-             <Text style={styles.label}>Mint</Text>  
-              <TextInput
-                style={styles.input}
-                onChangeText={(mint) => this.setState({mint})}
-                placeholder="Mint"
-              />
-            </View>
 
             <View style={styles.field}>
              <Text style={styles.label}>Vault Location</Text> 
@@ -131,6 +124,15 @@ export default class Destination extends Component {
                 style={styles.input}
                 onChangeText={(dateProc) => this.setState({dateProc})}
                 placeholder="Date Processed"
+              />
+            </View>
+            
+            <View style={styles.field}>
+             <Text style={styles.label}>Mint</Text>  
+              <TextInput
+                style={styles.input}
+                onChangeText={(mint) => this.setState({mint})}
+                placeholder="Mint"
               />
             </View>
 

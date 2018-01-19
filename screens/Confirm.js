@@ -5,48 +5,65 @@ import WelcomeHeader from "../components/WelcomeHeader";
 import Submit from "../components/SubmitBtn";
 import vault from "../assets/vaultLabel.png";
 import SubOrBack from "../components/BackOrSubmitButtons";
+// import * as firebase from 'firebase';
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBuIRbXEwy6g7R0q7wrJZbI4SzEi18olpM",
+//   authDomain: "hercdemo.firebaseapp.com",
+//   databaseURL: "https://hercdemo.firebaseio.com",
+//   projectId: "hercdemo",
+//   storageBucket: "hercdemo.appspot.com",
+//   messagingSenderId: "916880091986"
+// };
+// firebase.initializeApp(firebaseConfig);
+
+// var database = firebase.database();
+
 
 export default class Confirm extends Component  {
   static navigationOptions = {
     header: null
   }
+  
   constructor(props) {
     super(props);
-   
-   
+     
   }
   
   componentDidMount(){
-    
-
+  
+  
   }
-   _onPressBack(){
+ 
+  _onPressBack(){
      Alert.alert("you touched BAck")
    }
    
    _onPressSubmit(amt){
+
      console.log(amt);
-     let apiKey = "QlVVIx2G-nNZWvj15egTZdSI71YWk-do";
-    //  "mongodb://agld:herculese@ds257627.mlab.com:57627/hercgold"
+   }
+    //  let apiKey = "QlVVIx2G-nNZWvj15egTZdSI71YWk-do";
+    // //  "mongodb://agld:herculese@ds257627.mlab.com:57627/hercgold"
      
 
-    fetch("https://api.mlab.com/api/1/databases/hercgold/collections/gold?apiKey=QlVVIx2G-nNZWvj15egTZdSI71YWk-do", {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-       },
-       body:JSON.stringify({
-           serialNum : amt.serial,
-           manufacturer: amt.manufacturer,
-           weight : amt.weight,
-           RFID: amt.RFID,
-           AGID: amt.AGID
-       })
-     }).then(function(res){console.log(res)}).catch(function(error) {
-       console.log('There has been a problem with your fetch operation: ' + error.message);
-       });
-    }
+    // fetch("https://api.mlab.com/api/1/databases/hercgold/collections/gold?apiKey=QlVVIx2G-nNZWvj15egTZdSI71YWk-do", {
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //    },
+    //    body:JSON.stringify({
+    //        serialNum : amt.serial,
+    //        manufacturer: amt.manufacturer,
+    //        weight : amt.weight,
+    //        RFID: amt.RFID,
+    //        AGID: amt.AGID
+    //    })
+    //  }).then(function(res){console.log(res)}).catch(function(error) {
+    //    console.log('There has been a problem with your fetch operation: ' + error.message);
+    //    });
+    // }
     
     render(){
       const { navigate } = this.props.navigation;
@@ -63,7 +80,7 @@ export default class Confirm extends Component  {
       <ScrollView contentContainerStyle={styles.view}>
           <Text style={styles.input}>Serial Number:</Text> 
             <Text style={styles.value}>{amt.serial}</Text>
-          <Text style={styles.input}>Manufacturer:</Text>
+          {/* <Text style={styles.input}>Manufacturer:</Text>
             <Text style={styles.value}>{amt.weight}</Text>
           <Text style={styles.input}>Purity:</Text>
             <Text style={styles.value}>{amt.purity}</Text>
@@ -72,7 +89,7 @@ export default class Confirm extends Component  {
           <Text style={styles.input}>AGID:</Text>
             <Text style={styles.value}> {amt.AGID}</Text>
           <Text style={styles.input}>RFID:</Text>
-            <Text style={styles.value}> {amt.RFID}</Text>
+            <Text style={styles.value}> {amt.RFID}</Text> */}
        </ScrollView>
         
       

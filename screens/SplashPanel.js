@@ -34,6 +34,14 @@ export default class SplashPanel extends Component {
               source={require('../assets/originLabel.png')}
             />
           </TouchableHighlight> 
+
+          <TouchableHighlight  onPress={() => navigate('FileUp')}>
+            <Image
+              style={styles.button}
+              source={require('../assets/skipButton.png')}
+            />
+          </TouchableHighlight> 
+
         </View>
       </View>
            
