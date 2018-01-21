@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, } from 'react-native';
 
 export default class WelcomeHeader extends React.Component {
   render() {

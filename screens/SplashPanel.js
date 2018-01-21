@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert } from 'react-native';
 import WelcomeHeader from "../components/WelcomeHeader";
-import Welcome from "../components/Welcome";
+// import Welcome from "../components/Welcome";
 import { StackNavigator } from 'react-navigation';
 import Title from "../components/MenuInputTitle";
 import welcome from "../assets/welcome.png";

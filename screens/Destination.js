@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import Title from "../components/MenuInputTitle";
 import Inputs from "../components/Inputs"
-import WelcomeHeader from "../components/WelcomeHeader";
+// import WelcomeHeader from "../components/WelcomeHeader";
+import TouchableHeader from "../components/TouchableHeader";
 import MenuLogo from "../components/MenuLogo";
 import Next from "../components/NextBtn";
 import destination from "../assets/destinationLabel.png";
- import { StackNavigator, } from 'react-navigation';
+import { StackNavigator, } from 'react-navigation';
 
 
  //  For the HERC database input, the fields that I believe we will need for the Bunker Office input are:
@@ -42,13 +43,13 @@ export default class Destination extends Component {
       
         barId: "",
         barSerial: "",
-        vaultLoc: "",
-        weight: "",
-        purity: "",
-        dateRec: "",
-        dateProc: "",
-        mint: "",
-        supplier: ""  
+        // vaultLoc: "",
+        // weight: "",
+        // purity: "",
+        // dateRec: "",
+        // dateProc: "",
+        // mint: "",
+        // supplier: ""  
       }
     } 
   
@@ -57,7 +58,9 @@ export default class Destination extends Component {
     const { navigate } = this.props.navigation;
     return(
       <View style={styles.container}>
-        <WelcomeHeader />
+        
+          <TouchableHeader onPress={() => navigate('Splash')} />
+        
         <Title image={destination} />
       
         <ScrollView contentContainerStyle={styles.menu}> 
@@ -70,6 +73,7 @@ export default class Destination extends Component {
                 onChangeText={(barId) => this.setState({barId})}
                 placeholder="Bar ID"
               />
+             </View>  
 
             <View style={styles.field}>
              <Text style={styles.label}>Bar Serial</Text> 
@@ -78,7 +82,6 @@ export default class Destination extends Component {
                 onChangeText={(barSerial) => this.setState({barSerial})}
                 placeholder="Bar Serial"
               />
-             </View>  
             </View>  
 
             <View style={styles.field}>

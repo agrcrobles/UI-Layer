@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TextInput } from 'react-native';
 import Title from "../components/MenuInputTitle";
 import Inputs from "../components/Inputs"
-import WelcomeHeader from "../components/WelcomeHeader";
+import TouchableHeader from "../components/TouchableHeader";
 import MenuLogo from "../components/MenuLogo";
 import Next from "../components/NextBtn";
 import origin from "../assets/originLabel.png";
@@ -31,7 +31,7 @@ import origin from "../assets/originLabel.png";
     const { navigate } = this.props.navigation;
     return(
       <View style={styles.container}>
-        <WelcomeHeader />
+         <TouchableHeader onPress={() => navigate('Splash')} />
         <Title image={origin} />
       
           <ScrollView contentContainerStyle={styles.menu}> 

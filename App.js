@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StackNavigator } from 'react-navigation';
-import * as firebase from 'firebase';
+// import * as firebase from 'firebase';
 import Splash from "./screens/SplashPanel";
 import Origin from "./screens/Origin";
 import Destination from "./screens/Destination";
@@ -8,17 +8,17 @@ import FileUp from "./screens/FileUp";
 import Confirm from "./screens/Confirm";
 import ThankYou from "./screens/ThankYou";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBuIRbXEwy6g7R0q7wrJZbI4SzEi18olpM",
-  authDomain: "hercdemo.firebaseapp.com",
-  databaseURL: "https://hercdemo.firebaseio.com",
-  projectId: "hercdemo",
-  storageBucket: "hercdemo.appspot.com",
-  messagingSenderId: "916880091986"
-};
-firebase.initializeApp(firebaseConfig);
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBuIRbXEwy6g7R0q7wrJZbI4SzEi18olpM",
+//   authDomain: "hercdemo.firebaseapp.com",
+//   databaseURL: "https://hercdemo.firebaseio.com",
+//   projectId: "hercdemo",
+//   storageBucket: "hercdemo.appspot.com",
+//   messagingSenderId: "916880091986"
+// };
+// firebase.initializeApp(firebaseConfig);
 
-var database = firebase.database();
+// var database = firebase.database();
 
 const HercDemo = StackNavigator({
   Splash: { screen: Splash },

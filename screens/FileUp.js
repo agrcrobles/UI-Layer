@@ -1,13 +1,47 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert } from 'react-native';
-import WelcomeHeader from "../components/WelcomeHeader";
-import Welcome from "../components/Welcome";
+import TouchableHeader from "../components/TouchableHeader";
+// import Welcome from "../components/Welcome";
 import { StackNavigator } from 'react-navigation';
 import Title from "../components/MenuInputTitle";
 import pictures from "../assets/picturesLabel.png";
 import csv from "../assets/csvLabel.png";
 import Submit from "../components/SubmitBtn";
+import ImagePicker from "../components/ImagePicker";
 
+export default class FileUp extends Component {
+  static navigationOptions = {header: null };
+    constructor(props){
+      super(props);
+    }
+  
+  _onPress(){
+    Alert.alert("YOUtouchedit");
+  };
+
+  render() {
+    const { navigate } = this.props.navigation;
+    return(
+      <View style={styles.container}>
+        <TouchableHeader onPress={() => navigate('Splash')}/>
+        <Title image={pictures} />
+        <ScrollView contentContainerStyle={styles.menu}>
+          <View style={styles.imageContainer} >
+            <ImagePicker />
+          </View>
+          {/* <View style={styles.imageContainer} >
+            <ImagePicker />
+          </View>
+          <View style={styles.imageContainer} >
+            <ImagePicker />
+          </View> */}
+
+        </ScrollView>
+       
+      </View>
+    )
+  }
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -20,18 +54,18 @@ const styles = StyleSheet.create({
     
   },
   menu: {
-    height: "30%",
+    height: "60%",
     width: "90%",
-    // justifyContent: "center",
+    // justifyContent: "space-around",
     alignItems: "center",
-    backgroundColor: 'blue',
-    paddingTop: 5,
-    paddingBottom: 5
+    backgroundColor: 'blue'
+    // paddingTop: 5,
+    // paddingBottom: 5
   },
-  content: {
+  imageContainer: {
     flex: 1,
     padding: 2,
-    justifyContent: "space-around"
+    justifyContent: "center"
   },
   label: {
     color: "green",
@@ -66,30 +100,3 @@ const styles = StyleSheet.create({
     // paddingLeft: 1
   }
 });
-
-export default class FileUp extends Component {
-  static navigationOptions = {header: null };
-  _onPress(){
-    Alert.alert("YOUtouchedit");
-  };
-
-  render() {
-    const { navigate } = this.props.navigation;
-    return(
-      <View style={styles.container}>
-        <WelcomeHeader />
-        <View style={styles.menu}>
-          <Title image={pictures} />
-          <Text style={styles.input}>Spacer for ImagePicker</Text>
-          <Text style={styles.input}>Spacer for ImagePicker</Text>
-          <Text style={styles.input}>Spacer for ImagePicker</Text>
-        </View>
-        <View style={styles.menu}>
-          <Title image={csv} />
-          <Text style={styles.input}>Spacer for ImagePicker</Text>
-        </View>
-      <Submit onPress={() => this._onPress} />
-      </View>
-    )
-  }
-}

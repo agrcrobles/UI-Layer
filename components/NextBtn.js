@@ -2,9 +2,9 @@ import React, {Component} from "react";
 import { View, Text, StyleSheet, Image, TouchableHighlight, Alert } from 'react-native';
 
 export default class NextBtn extends Component {
-_onPress(){
-  Alert.alert("YOUtouchedit");
-}
+// _onPress(){
+//   Alert.alert("YOUtouchedit");
+// }
   render(){
     return (
       <TouchableHighlight style={{height:80, width:200}} onPress={this.props.onPress}>

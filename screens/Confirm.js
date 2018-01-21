@@ -5,28 +5,27 @@ import WelcomeHeader from "../components/WelcomeHeader";
 import Submit from "../components/SubmitBtn";
 import vault from "../assets/vaultLabel.png";
 import SubOrBack from "../components/BackOrSubmitButtons";
-// import * as firebase from 'firebase';
+import * as firebase from 'firebase';
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBuIRbXEwy6g7R0q7wrJZbI4SzEi18olpM",
-//   authDomain: "hercdemo.firebaseapp.com",
-//   databaseURL: "https://hercdemo.firebaseio.com",
-//   projectId: "hercdemo",
-//   storageBucket: "hercdemo.appspot.com",
-//   messagingSenderId: "916880091986"
-// };
-// firebase.initializeApp(firebaseConfig);
-
-// var database = firebase.database();
-
+const firebaseConfig = {
+  apiKey: "AIzaSyB4c-dlOic0fYfcCUwNbfDtwxj-QDcujOA",
+    authDomain: "hercone-8025f.firebaseapp.com",
+    databaseURL: "https://hercone-8025f.firebaseio.com",
+    projectId: "hercone-8025f",
+    storageBucket: "",
+    messagingSenderId: "329151475948"
+};
+firebase.initializeApp(firebaseConfig);
 
 export default class Confirm extends Component  {
+  
   static navigationOptions = {
     header: null
   }
   
   constructor(props) {
     super(props);
+    
      
   }
   
@@ -35,13 +34,25 @@ export default class Confirm extends Component  {
   
   }
  
-  _onPressBack(){
-     Alert.alert("you touched BAck")
-   }
+  // _onPressBack(){
+  //    Alert.alert("you touched BAck")
+  //  }
    
    _onPressSubmit(amt){
 
-     console.log(amt);
+      console.log(amt);
+      let id = amt.barId;
+      let serial = amt.barSerial;
+      var database = firebase.database();
+      var barRef = database.ref().child('object');
+       barRef.on('value', snap => console.log(snap.val()));
+
+    barRef.set({
+      barSerial: serial
+    });
+    
+    barRef.on('value', snap => console.log(snap.val()));
+
    }
     //  let apiKey = "QlVVIx2G-nNZWvj15egTZdSI71YWk-do";
     // //  "mongodb://agld:herculese@ds257627.mlab.com:57627/hercgold"
@@ -66,20 +77,39 @@ export default class Confirm extends Component  {
     // }
     
     render(){
+      // debugger;
       const { navigate } = this.props.navigation;
       const amt = this.props.navigation.state.params.values;
       console.log(amt);
-    
+      
+     
+      //   return 
+      //   <View key={key}>
+      //     <Text style={styles.input}>{key}:</Text>
+      //       <Text style={styles.value}> {value} </Text>
+          
+      //    </View>
+      //})
     return(
      
       <View style={styles.container}>
         <WelcomeHeader />
         <Title image={vault} />
         <Text style={styles.confirm}>CONFIRM</Text>
+        <View>
+        {Object.keys(amt).map((keyName, keyIndex) => {
+          return(
+          <View key={keyIndex}>
+            <Text style={styles.input}>{keyName}</Text>
+            <Text style={styles.value}>{amt[keyName]}</Text>
+          </View>
+          )
+        })}
 
-      <ScrollView contentContainerStyle={styles.view}>
-          <Text style={styles.input}>Serial Number:</Text> 
-            <Text style={styles.value}>{amt.serial}</Text>
+        </View>
+      {/* <ScrollView contentContainerStyle={styles.view}>
+          <Text style={styles.input}>Bar ID:</Text> 
+            <Text style={styles.value}>{amt.barId}</Text> */}
           {/* <Text style={styles.input}>Manufacturer:</Text>
             <Text style={styles.value}>{amt.weight}</Text>
           <Text style={styles.input}>Purity:</Text>
@@ -90,7 +120,7 @@ export default class Confirm extends Component  {
             <Text style={styles.value}> {amt.AGID}</Text>
           <Text style={styles.input}>RFID:</Text>
             <Text style={styles.value}> {amt.RFID}</Text> */}
-       </ScrollView>
+       {/* </ScrollView> */}
         
       
       <TouchableHighlight onPress={() => {
