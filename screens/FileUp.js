@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert, Button } from 'react-native';
 import TouchableHeader from "../components/TouchableHeader";
 // import Welcome from "../components/Welcome";
 import { StackNavigator } from 'react-navigation';
@@ -7,16 +7,28 @@ import Title from "../components/MenuInputTitle";
 import pictures from "../assets/picturesLabel.png";
 import csv from "../assets/csvLabel.png";
 import Submit from "../components/SubmitBtn";
-import ImagePicker from "../components/ImagePicker";
+import { ImagePicker } from 'expo';
+import Imagepicker from  "../components/ImagePicker";
 
 export default class FileUp extends Component {
   static navigationOptions = {header: null };
-    constructor(props){
-      super(props);
-    }
+    state = {
+        image: null,
+      };
+    
   
-  _onPress(){
-    Alert.alert("YOUtouchedit");
+ 
+  _pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: false,
+      aspect: [4, 3],
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      this.setState({ image: result.uri });
+    }
   };
 
   render() {
@@ -25,10 +37,20 @@ export default class FileUp extends Component {
       <View style={styles.container}>
         <TouchableHeader onPress={() => navigate('Splash')}/>
         <Title image={pictures} />
-        <ScrollView contentContainerStyle={styles.menu}>
-          <View style={styles.imageContainer} >
-            <ImagePicker />
-          </View>
+        <Imagepicker />
+        {/* <ScrollView contentContainerStyle={styles.imagePick}>
+        */}
+
+          {/* <View style={styles.imageContainer}>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Button
+              title="Pick an image from camera roll"
+              onPress={this._pickImage}
+              />
+          {image &&
+              <Image source={{ uri: image }} style={{ width: 75, height: 75 }} />}
+            </View>
+          </View> */}
           {/* <View style={styles.imageContainer} >
             <ImagePicker />
           </View>
@@ -36,7 +58,7 @@ export default class FileUp extends Component {
             <ImagePicker />
           </View> */}
 
-        </ScrollView>
+        {/* </ScrollView> */}
        
       </View>
     )
@@ -53,9 +75,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     
   },
-  menu: {
+  imagePick: {
     height: "60%",
-    width: "90%",
+    width: "95%",
     // justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: 'blue'
@@ -63,7 +85,7 @@ const styles = StyleSheet.create({
     // paddingBottom: 5
   },
   imageContainer: {
-    flex: 1,
+   height: "20%" ,
     padding: 2,
     justifyContent: "center"
   },

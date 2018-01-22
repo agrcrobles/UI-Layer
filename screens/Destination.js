@@ -33,23 +33,18 @@ export default class Destination extends Component {
   }
   constructor(props){
     super(props);
-    // serial
-    // manufacturer: "",
-    //     purity: "",
-    //     weight: "",
-    //     AGID: "",
-    //     RFID: ""  
+   
     this.state = {
       
-        barId: "",
-        barSerial: "",
-        // vaultLoc: "",
-        // weight: "",
-        // purity: "",
-        // dateRec: "",
-        // dateProc: "",
-        // mint: "",
-        // supplier: ""  
+        Bar_Id: "",
+        Bar_Serial: "",
+        Vault_Location: "",
+        Weight: "",
+        Purity: "",
+        Date_Received: "",
+        Date_Processed: "",
+        Mint: "",
+        Supplier: ""  
       }
     } 
   
@@ -64,13 +59,13 @@ export default class Destination extends Component {
         <Title image={destination} />
       
         <ScrollView contentContainerStyle={styles.menu}> 
-          <View style={styles.content}>
+          <View style={styles.scrollContent}>
         
             <View style={styles.field}>
              <Text style={styles.label}>Bar ID</Text>
               <TextInput
                 style={styles.input}
-                onChangeText={(barId) => this.setState({barId})}
+                onChangeText={(Bar_Id) => this.setState({Bar_Id})}
                 placeholder="Bar ID"
               />
              </View>  
@@ -79,7 +74,7 @@ export default class Destination extends Component {
              <Text style={styles.label}>Bar Serial</Text> 
               <TextInput
                 style={styles.input}
-                onChangeText={(barSerial) => this.setState({barSerial})}
+                onChangeText={(Bar_Serial) => this.setState({Bar_Serial})}
                 placeholder="Bar Serial"
               />
             </View>  
@@ -88,7 +83,7 @@ export default class Destination extends Component {
              <Text style={styles.label}>Vault Location</Text> 
               <TextInput
                 style={styles.input}
-                onChangeText={(vaultLoc) => this.setState({vaultLoc})}
+                onChangeText={(Vault_Location) => this.setState({Vault_Location})}
                 placeholder="Vault Location"
               />
             </View>
@@ -97,7 +92,7 @@ export default class Destination extends Component {
              <Text style={styles.label}>Weight</Text> 
               <TextInput
                 style={styles.input}
-                onChangeText={(weight) => this.setState({weight})}
+                onChangeText={(Weight) => this.setState({Weight})}
                 placeholder="Weight"
               />
             </View>
@@ -106,7 +101,7 @@ export default class Destination extends Component {
              <Text style={styles.label}>Purity</Text> 
               <TextInput
                 style={styles.input}
-                onChangeText={(purity) => this.setState({purity})}
+                onChangeText={(Purity) => this.setState({Purity})}
                 placeholder="Purity"
 
               />
@@ -116,7 +111,7 @@ export default class Destination extends Component {
              <Text style={styles.label}>Date Received</Text> 
               <TextInput
                 style={styles.input}
-                onChangeText={(dateRec) => this.setState({dateRec})}
+                onChangeText={(Date_Received) => this.setState({Date_Received})}
                 placeholder="Date Recieved"
                 />
             </View>
@@ -125,7 +120,7 @@ export default class Destination extends Component {
              <Text style={styles.label}>Date Processed</Text> 
               <TextInput
                 style={styles.input}
-                onChangeText={(dateProc) => this.setState({dateProc})}
+                onChangeText={(Date_Processed) => this.setState({Date_Processed})}
                 placeholder="Date Processed"
               />
             </View>
@@ -134,7 +129,7 @@ export default class Destination extends Component {
              <Text style={styles.label}>Mint</Text>  
               <TextInput
                 style={styles.input}
-                onChangeText={(mint) => this.setState({mint})}
+                onChangeText={(Mint) => this.setState({Mint})}
                 placeholder="Mint"
               />
             </View>
@@ -143,7 +138,7 @@ export default class Destination extends Component {
              <Text style={styles.label}>Supplier</Text>     
               <TextInput
                 style={styles.input}
-                onChangeText={(supplier) => this.setState({supplier})}
+                onChangeText={(Supplier) => this.setState({Supplier})}
                 placeholder="Supplier"
               />
             </View>
@@ -152,7 +147,7 @@ export default class Destination extends Component {
               
               <Next onPress={() => {
                 console.log(this.state);
-                navigate('Confirm', {values: this.state})}} 
+                navigate('Confirm', {amt: this.state, image: destination})}} 
                 />
       </View>
     )
@@ -162,10 +157,7 @@ export default class Destination extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingTop: 30,
-    // width: "100%",
     backgroundColor: '#021227',
-    // backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     
@@ -179,7 +171,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5
   },
-  content: {
+  scrollContent: {
     flex: 1,
     padding: 2,
     justifyContent: "space-around"
