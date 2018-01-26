@@ -9,16 +9,15 @@ import Confirm from "./screens/Confirm";
 import ThankYou from "./screens/ThankYou";
 
 // const firebaseConfig = {
-//   apiKey: "AIzaSyBuIRbXEwy6g7R0q7wrJZbI4SzEi18olpM",
-//   authDomain: "hercdemo.firebaseapp.com",
-//   databaseURL: "https://hercdemo.firebaseio.com",
-//   projectId: "hercdemo",
-//   storageBucket: "hercdemo.appspot.com",
-//   messagingSenderId: "916880091986"
+//   apiKey: "AIzaSyB4c-dlOic0fYfcCUwNbfDtwxj-QDcujOA",
+//     authDomain: "hercone-8025f.firebaseapp.com",
+//     databaseURL: "https://hercone-8025f.firebaseio.com",
+//     projectId: "hercone-8025f",
+//     storageBucket: "hercone-8025f.appspot.com",
+//     messagingSenderId: "329151475948"
 // };
-// firebase.initializeApp(firebaseConfig);
 
-// var database = firebase.database();
+// firebase.initializeApp(firebaseConfig);
 
 const HercDemo = StackNavigator({
   Splash: { screen: Splash },
