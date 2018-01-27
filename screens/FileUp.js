@@ -7,25 +7,29 @@ import Title from "../components/MenuInputTitle";
 import pictures from "../assets/picturesLabel.png";
 import csv from "../assets/csvLabel.png";
 import Submit from "../components/SubmitBtn";
-import { ImagePicker } from 'expo';
+import { DocumentPicker, ImagePicker } from 'expo';
+
 // import Imagepicker from  "../components/ImagePicker";
-import * as firebase from 'firebase';
+// import * as firebase from 'firebase';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyB4c-dlOic0fYfcCUwNbfDtwxj-QDcujOA",
-    authDomain: "hercone-8025f.firebaseapp.com",
-    databaseURL: "https://hercone-8025f.firebaseio.com",
-    projectId: "hercone-8025f",
-    storageBucket: "hercone-8025f.appspot.com",
-    messagingSenderId: "329151475948"
-};
+// const firebaseConfig = {
+//   apiKey: "AIzaSyB4c-dlOic0fYfcCUwNbfDtwxj-QDcujOA",
+//     authDomain: "hercone-8025f.firebaseapp.com",
+//     databaseURL: "https://hercone-8025f.firebaseio.com",
+//     projectId: "hercone-8025f",
+//     storageBucket: "hercone-8025f.appspot.com",
+//     messagingSenderId: "329151475948"
+// };
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 
 export default class FileUp extends Component {
   static navigationOptions = {header: null };
     state = {
         image: null,
+        img64: null,
+        docUri: null,
+        docName: null,
       };
     
   
@@ -40,36 +44,40 @@ export default class FileUp extends Component {
     console.log(result);
 
     if (!result.cancelled) {
-      this.setState({ image: result.base64 });
+      this.setState({ 
+        image: result.uri,
+        img64: result.base64
+      });
     }
   };
-// Base64 formatted string
-// var message = '5b6p5Y+344GX44G+44GX44Gf77yB44GK44KB44Gn44Go44GG77yB';
-// ref.putString(message, 'base64').then(function(snapshot) {
-//   console.log('Uploaded a base64 string!');
-// });
+
+  _pickDocument = async () => {
+   
+	    let docResult = await DocumentPicker.getDocumentAsync({
+       //MIME type 
+      });
+		  alert(docResult.uri);
+      console.log(docResult, "docPickResult");
+	
+
+    console.log(docResult.name, "docResultName");
+
+    if (!docResult.cancelled) {
+      this.setState({ 
+        docUri: docResult.uri,
+        docName: docResult.name
+       });
+    }
+  };
+
   _submitImg = () => {
-    let image = this.state.image;
-    let picStorage = firebase.storage().ref('barPhotos/');
-    picStorage.putString(image,'base64').then((snapshot) => {
-      console.log(snapshot, "uploaded base64");
-    });
+    // let image = this.state.image;
+    // let picStorage = firebase.storage().ref('barPhotos/');
+    // picStorage.putString(image,'base64').then((snapshot) => {
+    //   console.log(snapshot, "uploaded base64");
+    // });
     
-  //  console.log(task);
-  //  task.on('state_changed',
-    
-  //   function progress(snapshot) {
-  //     var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //     console.log(percentage);
-  //   },
-    
-  //   function error(err) {
-  //     console.log(err +' Error')
-  //   },
-  
-  //   function complete() {
-  //     console.log("completed");
-  //   })
+ 
   }
 
   render() {
@@ -81,27 +89,29 @@ export default class FileUp extends Component {
         <Title image={pictures} />
         {/* <Imagepicker /> */}
         
-        <ScrollView contentContainerStyle={styles.imagePick}>
+        {/* <ScrollView contentContainerStyle={styles.imagePick}> */}
        
 
-          <View style={styles.imageContainer}>
-          <View style={{ height:100, width: 100, alignItems: 'center', justifyContent: 'center' }}>
-            <Button
-              title="Pickimage"
-              onPress={this._pickImage}
-              />
-          {image &&
-              <Image source={{ uri: image }} style={{ width: 75, height: 75 }} />}
-            </View>
-          </View>
-          {/* <View style={styles.imageContainer} >
-            <ImagePicker />
-          </View>
-          <View style={styles.imageContainer} >
-            <ImagePicker />
-          </View> */}
-
-        </ScrollView>
+          {/* <View style={styles.imageContainer}> */}
+            <View style={{ height:100, width: 100, alignItems: 'center', justifyContent: 'center' }}>
+              <Button
+                title="Pickimage"
+                onPress={this._pickImage}
+                />
+              {image &&
+                <Image source={{ uri: image }} style={{ width: 75, height: 75 }} />}
+              </View>
+            {/* </View> */}
+          
+          <Button
+            title="Select Document"
+            onPress={this._pickDocument}
+            style={styles.label}
+            />
+            <Text style={styles.label}>
+            {this.state.docName}
+            </Text>
+        {/* </ScrollView> */}
        <Submit onPress={this._submitImg} />
       </View>
     )
@@ -119,24 +129,26 @@ const styles = StyleSheet.create({
     
   },
   imagePick: {
-    height: "50%",
-    width: "95%",
-    // justifyContent: "space-around",
+    height: 500,
+    width: 300,
+    justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: 'blue'
     // paddingTop: 5,
     // paddingBottom: 5
   },
   imageContainer: {
-   height: "20%" ,
-    padding: 2,
+   height: 150,
+    padding: 1,
     justifyContent: "center"
   },
+  
   label: {
     color: "green",
     width: 120,
     fontSize: 20.2,
-    fontWeight: "600"
+    fontWeight: "600",
+    margin: 1
 
   },
   field: {
