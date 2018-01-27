@@ -5,7 +5,6 @@ import Welcome from "../components/Welcome";
 import Title from "../components/MenuInputTitle";
 import destination from "../assets/destinationLabel.png";
 import { StackNavigator } from 'react-navigation';
-import * as firebase from 'firebase';
 
 export default class ThankYou extends Component {
   constructor(props) {
@@ -19,15 +18,7 @@ export default class ThankYou extends Component {
   componentDidMount(){
     const id = this.props.navigation.state.params.id;
   
-    var newEntry = firebase.database().ref(id);
-    console.log(
-      newEntry.once('value')
-      .then(function(snapshot) {
-        var key = snapshot.key;
-        var childkey = snapshot.child(id).key
-      }) 
-      ,"database?");
-
+   
   }
   
   render(){

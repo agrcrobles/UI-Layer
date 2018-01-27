@@ -8,35 +8,33 @@ import pictures from "../assets/picturesLabel.png";
 import csv from "../assets/csvLabel.png";
 import Submit from "../components/SubmitBtn";
 import { DocumentPicker, ImagePicker } from 'expo';
+import aws from 'aws-sdk/dist/aws-sdk-react-native';
+// import multer from 'multer';
+// import multerS3 from 'multer-s3';
 
-// import Imagepicker from  "../components/ImagePicker";
-// import * as firebase from 'firebase';
+// import app from 'express';
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyB4c-dlOic0fYfcCUwNbfDtwxj-QDcujOA",
-//     authDomain: "hercone-8025f.firebaseapp.com",
-//     databaseURL: "https://hercone-8025f.firebaseio.com",
-//     projectId: "hercone-8025f",
-//     storageBucket: "hercone-8025f.appspot.com",
-//     messagingSenderId: "329151475948"
-// };
-
-// firebase.initializeApp(firebaseConfig);
+const s3 = new aws.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: "us-east-1",
+});
 
 export default class FileUp extends Component {
   static navigationOptions = {header: null };
     state = {
-        image: null,
-        img64: null,
-        docUri: null,
-        docName: null,
+        image: null
+        // imageName: null,
+        // docUri: null,
+        // docName: null,
       };
     
   
  
   _pickImage = async () => {
+    console.log("picking")
     let result = await ImagePicker.launchImageLibraryAsync({
-      base64: true
+      // base64: true
       // allowsEditing: false,
       // aspect: [4, 3],
     });
@@ -45,44 +43,64 @@ export default class FileUp extends Component {
 
     if (!result.cancelled) {
       this.setState({ 
-        image: result.uri,
-        img64: result.base64
+        
+          image: result.uri,        
+       
       });
     }
   };
 
-  _pickDocument = async () => {
+  // _pickDocument = async () => {
    
-	    let docResult = await DocumentPicker.getDocumentAsync({
-       //MIME type 
-      });
-		  alert(docResult.uri);
-      console.log(docResult, "docPickResult");
+	//     let docResult = await DocumentPicker.getDocumentAsync({
+  //      //MIME type 
+  //     });
+	// 	  alert(docResult.uri);
+  //     console.log(docResult, "docPickResult");
 	
 
-    console.log(docResult.name, "docResultName");
+  //   console.log(docResult.name, "docResultName");
 
-    if (!docResult.cancelled) {
-      this.setState({ 
-        docUri: docResult.uri,
-        docName: docResult.name
-       });
-    }
-  };
+  //   if (!docResult.cancelled) {
+  //     this.setState({ 
+  //       docUri: docResult.uri,
+  //       docName: docResult.name
+  //      });
+  //   }
+  // };
 
-  _submitImg = () => {
-    // let image = this.state.image;
-    // let picStorage = firebase.storage().ref('barPhotos/');
-    // picStorage.putString(image,'base64').then((snapshot) => {
-    //   console.log(snapshot, "uploaded base64");
-    // });
+  _submitImg = async imgResult => {
+   
+      const file = this.state.imageUri;
+      console.log(file);
+      const fileName = this.state.imageName;
+      console.log(fileName);
+      if (!file.length) {
+        return alert('Please choose a file to upload first.');
+      }
+      var albumPhotosKey = encodeURIComponent(fileName) + '//';
     
+      var photoKey = albumPhotosKey + fileName;
+      s3.upload({
+        Key: photoKey,
+        Body: file,
+        ACL: 'public-read'
+      }, function(err, data) {
+        if (err) {
+          return alert('There was an error uploading your photo: ', err.message);
+        }
+        console.log(data)
+        alert('Successfully uploaded photo.');
+        
+      });
+    }
+   
  
-  }
+  
 
   render() {
     const { navigate } = this.props.navigation;
-    let { image } = this.state;
+    let { image } = this.state; 
         return(
       <View style={styles.container}>
         <TouchableHeader onPress={() => navigate('Splash')}/>
@@ -96,23 +114,23 @@ export default class FileUp extends Component {
             <View style={{ height:100, width: 100, alignItems: 'center', justifyContent: 'center' }}>
               <Button
                 title="Pickimage"
-                onPress={this._pickImage}
+                onPress={() => {this._pickImage}}
                 />
-              {image &&
-                <Image source={{ uri: image }} style={{ width: 75, height: 75 }} />}
+              
+                <Image source={{ uri: image }} style={{ width: 75, height: 75 }} />
               </View>
             {/* </View> */}
           
-          <Button
+          {/* <Button
             title="Select Document"
             onPress={this._pickDocument}
             style={styles.label}
             />
             <Text style={styles.label}>
             {this.state.docName}
-            </Text>
+            </Text> */}
         {/* </ScrollView> */}
-       <Submit onPress={this._submitImg} />
+       <Submit onPress={() => {this._submitImg(this.state.image)}} />
       </View>
     )
   }

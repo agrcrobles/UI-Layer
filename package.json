@@ -2,9 +2,12 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "dependencies": {
-    "@firebase/app-types": "0.1.0",
     "expo": "^24.0.0",
-    "firebase": "^4.9.0",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "multer": "^1.2.0",
+    "multer-s3": "^2.5.0",
+    "aws-sdk": "^2.188.0",
     "react": "16.0.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-24.0.0.tar.gz",
     "react-navigation": "^1.0.0-beta.26"
