@@ -6,17 +6,17 @@ import Submit from "../components/SubmitBtn";
 import destination from "../assets/destinationLabel.png";
 import { StackNavigator } from 'react-navigation';
 
-import * as firebase from 'firebase';
+// import * as firebase from 'firebase';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyB4c-dlOic0fYfcCUwNbfDtwxj-QDcujOA",
-    authDomain: "hercone-8025f.firebaseapp.com",
-    databaseURL: "https://hercone-8025f.firebaseio.com",
-    projectId: "hercone-8025f",
-    storageBucket: "",
-    messagingSenderId: "329151475948"
-};
-firebase.initializeApp(firebaseConfig);
+// const firebaseConfig = {
+//   apiKey: "AIzaSyB4c-dlOic0fYfcCUwNbfDtwxj-QDcujOA",
+//     authDomain: "hercone-8025f.firebaseapp.com",
+//     databaseURL: "https://hercone-8025f.firebaseio.com",
+//     projectId: "hercone-8025f",
+//     storageBucket: "",
+//     messagingSenderId: "329151475948"
+// };
+// firebase.initializeApp(firebaseConfig);
 
 export default class Confirm extends Component  {
   
@@ -67,22 +67,25 @@ export default class Confirm extends Component  {
     render(){
       // debugger;
       const { navigate } = this.props.navigation;
-      let serial = this.props.navigation.state.params.amt.Bar_Serial;
+      const serial = this.props.navigation.state.params.amt.Bar_Serial;
       const id = this.props.navigation.state.params.amt.Bar_Id;
       // let serial = amt.Bar_Serial;
       // const image = this.props.navigation.state.params.image;
       var database = firebase.database();
       var barRef = database.ref('bars').child(id);
       // let id = amt.Bar_Id;
-    return(
+    console.log(serial, id, "params")
+      return(
      
       <View style={styles.container}>
         <WelcomeHeader />
         <Title image={destination} />
         <Text style={styles.confirm}>CONFIRM</Text>
                
-        <Text style={styles.input}>Bar ID: {id}</Text>
-        <Text style={styles.value}>Bar Serial {serial}</Text>
+        <Text style={styles.input}>Bar ID:</Text>
+        <Text style={styles.value}>{id}</Text>
+        <Text style={styles.input}>Bar Serial:</Text>
+        <Text style={styles.value}>{serial}</Text>
 
         {/* <ScrollView contentContainerStyle={styles.menu}>
           <View style={styles.content}>

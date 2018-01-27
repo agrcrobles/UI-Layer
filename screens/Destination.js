@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     width: "90%",
     // justifyContent: "center",
     alignItems: "center",
-    backgroundColor: 'blue',
+    backgroundColor: 'transparent',
     paddingTop: 5,
     paddingBottom: 5
   },
@@ -177,29 +177,30 @@ const styles = StyleSheet.create({
     justifyContent: "space-around"
   },
   label: {
-    color: "green",
+    color: "white",
     width: 120,
     fontSize: 20.2,
-    fontWeight: "600"
+    fontWeight: "600",
+    textAlign: "center"
 
   },
   field: {
     height: 60,
     flexDirection: "row",
     justifyContent: "space-between",
-    width: "100%",
-    backgroundColor: "yellow",
+    width: "80%",
+    backgroundColor: 'transparent',
     // marginTop: 5,
     // marginBottom: 5,
-    alignItems: "center",
-    paddingLeft: 5
+    alignItems: "center"
+    // paddingLeft: 5
   },
 
   input: {
     width: 150, 
     height: 40,
     textAlign: "center",
-    backgroundColor: "#132c4a", 
+    backgroundColor: 'transparent', 
     // margin: .5,
     fontSize: 20.2,
     fontWeight: "600",

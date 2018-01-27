@@ -19,7 +19,7 @@ export default class ThankYou extends Component {
   componentDidMount(){
     const id = this.props.navigation.state.params.id;
   
-    var newEntry = firebase.database().ref(id);
+    var newEntry = firebase.database().ref('bars');
     console.log(
       newEntry.once('value')
       .then(function(snapshot) {
@@ -105,13 +105,27 @@ export default class ThankYou extends Component {
     borderWidth: 1
   },
   view: {
-    width:"80%",
+    width: 200,
     height: 60,
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: "#021227",
+      margin: .5
       // marginBottom: 1
     },
+    input: {
+      width: 170, 
+      height: 30,
+      textAlign: "center",
+      backgroundColor: "#132c4a", 
+      margin: .5,
+      fontSize: 25,
+      fontWeight: "600",
+      borderColor: "#142535",
+      color: "yellow",
+      borderWidth: 1
+    },
+   
     value: {
     
       color: "white",
