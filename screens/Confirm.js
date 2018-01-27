@@ -13,7 +13,7 @@ import { StackNavigator } from 'react-navigation';
 //     authDomain: "hercone-8025f.firebaseapp.com",
 //     databaseURL: "https://hercone-8025f.firebaseio.com",
 //     projectId: "hercone-8025f",
-//     storageBucket: "",
+//     storageBucket: "hercone-8025f.appspot.com",
 //     messagingSenderId: "329151475948"
 // };
 // firebase.initializeApp(firebaseConfig);
