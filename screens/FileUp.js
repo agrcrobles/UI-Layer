@@ -13,17 +13,22 @@ import aws from 'aws-sdk/dist/aws-sdk-react-native';
 // import multerS3 from 'multer-s3';
 
 // import app from 'express';
-
+// AWS.config.loadFromPath('./config.json');
 const s3 = new aws.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  accessKeyId: "AKIAIQRQGF2JSUNIW73Q",
+  secretAccessKey: "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",
+  
   region: "us-east-1",
 });
 
 export default class FileUp extends Component {
   static navigationOptions = {header: null };
     state = {
-        image: null
+        image: null,
+        document:{
+          name: null,
+          uri: null
+        }
         // imageName: null,
         // docUri: null,
         // docName: null,
@@ -51,28 +56,30 @@ export default class FileUp extends Component {
     }
   };
 
-  // _pickDocument = async () => {
+  _pickDocument = async () => {
    
-	//     let docResult = await DocumentPicker.getDocumentAsync({
-  //      //MIME type 
-  //     });
-	// 	  alert(docResult.uri);
-  //     console.log(docResult, "docPickResult");
+	    let docResult = await DocumentPicker.getDocumentAsync({
+       //MIME type 
+      });
+		  alert(docResult.uri);
+      console.log(docResult, "docPickResult");
 	
 
-  //   console.log(docResult.name, "docResultName");
+    console.log(docResult.name, "docResultName");
 
-  //   if (!docResult.cancelled) {
-  //     this.setState({ 
-  //       docUri: docResult.uri,
-  //       docName: docResult.name
-  //      });
-  //   }
-  // };
+    if (!docResult.cancelled) {
+      this.setState({ 
+        document: {
+        name: docResult.name,
+        uri: docResult.uri
+        }
+       });
+    }
+  };
 
-  _submitImg = async imgResult => {
+  _submitDoc = async docResult => {
    
-      const file = this.state;
+      const file = docResult.uri;
       console.log(file);
       // const fileName = this.state.imageName;
       // console.log(fileName);
@@ -85,7 +92,8 @@ export default class FileUp extends Component {
       s3.upload({
         Key: photoKey,
         Body: file,
-        ACL: 'public-read'
+        ACL: 'public-read',
+        Bucket: 'herc.one'
       }, function(err, data) {
         if (err) {
           return alert('There was an error uploading your photo: ', err.message);
@@ -122,19 +130,19 @@ export default class FileUp extends Component {
               </View>
             {/* </View> */}
           
-          {/* <Button
+          <Button
             title="Select Document"
             onPress={this._pickDocument}
             style={styles.label}
             />
             <Text style={styles.label}>
-            {this.state.docName}
-            </Text> */}
+            {this.state.document.name}
+            </Text>
         {/* </ScrollView> */}
-       <Submit onPress={() => {this._submitImg(this.state.image)}} />
+       <Submit onPress={() => {this._submitDoc(this.state.document)}} />
       </View>
     )
-  }
+  }_submitDoc
 }
 const styles = StyleSheet.create({
   container: {
