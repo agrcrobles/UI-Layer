@@ -2,14 +2,11 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "dependencies": {
-    "expo": "^24.0.0",
-    "dotenv": "^2.0.0",
-    "express": "^4.14.0",
-    "multer": "^1.2.0",
-    "multer-s3": "^2.5.0",
     "aws-sdk": "^2.188.0",
+    "expo": "^24.0.0",
     "react": "16.0.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-24.0.0.tar.gz",
+    "react-native-aws3": "0.0.8",
     "react-navigation": "^1.0.0-beta.26"
   }
 }

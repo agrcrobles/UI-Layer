@@ -9,16 +9,20 @@ import csv from "../assets/csvLabel.png";
 import Submit from "../components/SubmitBtn";
 import { DocumentPicker, ImagePicker } from 'expo';
 import aws from 'aws-sdk/dist/aws-sdk-react-native';
+
+// if (process.env.NODE_ENV !== 'production') {
+//   require('dotenv').config();
+// }
 // import multer from 'multer';
 // import multerS3 from 'multer-s3';
 
 // import app from 'express';
-// AWS.config.loadFromPath('./config.json');
+//  aws.config.loadFromPath('./config.json');
 const s3 = new aws.S3({
-  accessKeyId: "AKIAIQRQGF2JSUNIW73Q",
-  secretAccessKey: "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",
-  
+  accessKeyId: "",
+  secretAccessKey: "",
   region: "us-east-1",
+  
 });
 
 export default class FileUp extends Component {
@@ -88,21 +92,16 @@ export default class FileUp extends Component {
       }
       // var albumPhotosKey = encodeURIComponent(fileName) + '//';
     
-      var photoKey = 'tester';
-      s3.upload({
-        Key: photoKey,
-        Body: file,
-        ACL: 'public-read',
-        Bucket: 'herc.one'
-      }, function(err, data) {
+      var params = {Bucket:'herctest', Key:'tester', Body:file};
+      s3.upload(params), function(err, data) {
         if (err) {
           return alert('There was an error uploading your photo: ', err.message);
         }
         console.log(data)
         alert('Successfully uploaded photo.');
         
-      });
-    }
+      };
+    };
    
  
   
