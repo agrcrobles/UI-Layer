@@ -32,7 +32,7 @@ export default class FileUp extends Component {
   
  
   _pickImage = async () => {
-    console.log("picking")
+    console.log("picking Image")
     let result = await ImagePicker.launchImageLibraryAsync({
       // base64: true
       // allowsEditing: false,
@@ -44,7 +44,8 @@ export default class FileUp extends Component {
     if (!result.cancelled) {
       this.setState({ 
         
-          image: result.uri,        
+          image: result.uri  
+         
        
       });
     }
@@ -71,16 +72,16 @@ export default class FileUp extends Component {
 
   _submitImg = async imgResult => {
    
-      const file = this.state.imageUri;
+      const file = this.state;
       console.log(file);
-      const fileName = this.state.imageName;
-      console.log(fileName);
+      // const fileName = this.state.imageName;
+      // console.log(fileName);
       if (!file.length) {
         return alert('Please choose a file to upload first.');
       }
-      var albumPhotosKey = encodeURIComponent(fileName) + '//';
+      // var albumPhotosKey = encodeURIComponent(fileName) + '//';
     
-      var photoKey = albumPhotosKey + fileName;
+      var photoKey = 'tester';
       s3.upload({
         Key: photoKey,
         Body: file,
@@ -114,7 +115,7 @@ export default class FileUp extends Component {
             <View style={{ height:100, width: 100, alignItems: 'center', justifyContent: 'center' }}>
               <Button
                 title="Pickimage"
-                onPress={() => {this._pickImage}}
+                onPress={this._pickImage}
                 />
               
                 <Image source={{ uri: image }} style={{ width: 75, height: 75 }} />
