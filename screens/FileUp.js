@@ -1,29 +1,34 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert, Button } from 'react-native';
-import TouchableHeader from "../components/TouchableHeader";
-// import Welcome from "../components/Welcome";
+import TouchableHeader from '../components/TouchableHeader';
+// import Welcome from '../components/Welcome';
 import { StackNavigator } from 'react-navigation';
-import Title from "../components/MenuInputTitle";
-import pictures from "../assets/picturesLabel.png";
-import csv from "../assets/csvLabel.png";
-import Submit from "../components/SubmitBtn";
+import Title from '../components/MenuInputTitle';
+import pictures from '../assets/picturesLabel.png';
+import csv from '../assets/csvLabel.png';
+import Submit from '../components/SubmitBtn';
 import { DocumentPicker, ImagePicker } from 'expo';
-import aws from 'aws-sdk/dist/aws-sdk-react-native';
+import Amplify, { Storage } from 'aws-amplify-react-native';
+import aws_exports from '../aws-exports.js';
+console.log(aws_exports);
+Amplify.configure(aws_exports);
+Storage.configure({
+    bucket: 'hercone-deployments-mobilehub-153994528', 
+    region: 'us-east-1'
+  });
 
-// if (process.env.NODE_ENV !== 'production') {
-//   require('dotenv').config();
-// }
-// import multer from 'multer';
-// import multerS3 from 'multer-s3';
+ // Bucket:'hercone-deployments-mobilehub-153994528', 
+ 
 
 // import app from 'express';
 //  aws.config.loadFromPath('./config.json');
-const s3 = new aws.S3({
-  accessKeyId: "",
-  secretAccessKey: "",
-  region: "us-east-1",
+// const s3 = new aws.S3({
+//   accessKeyId: "AKIAIDJMR6OPPAQVYNGA",
+//   secretAccessKey: "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",
+//   region: "us-east-1",
+//   logger: console,
   
-});
+// });
 
 export default class FileUp extends Component {
   static navigationOptions = {header: null };
@@ -90,17 +95,21 @@ export default class FileUp extends Component {
       if (!file.length) {
         return alert('Please choose a file to upload first.');
       }
+     
       // var albumPhotosKey = encodeURIComponent(fileName) + '//';
-    
-      var params = {Bucket:'herctest', Key:'tester', Body:file};
-      s3.upload(params), function(err, data) {
-        if (err) {
-          return alert('There was an error uploading your photo: ', err.message);
-        }
-        console.log(data)
-        alert('Successfully uploaded photo.');
+      //  const params = {Bucket:'hercone-deployments-mobilehub-153994528', Key:'tester', Body:file};
+        Storage.put(file, 'test')
+        .then (result => console.log(result, "it worked?"))
+        .catch(err => console.log(err));
+      // var params = {Bucket:'herctest', Key:'tester', Body:file};
+      // s3.upload(params), function(err, data) {
+      //   if (err) {
+      //     return alert('There was an error uploading your photo: ', err.message);
+      //   }
+      //   console.log(data)
+      //   alert('Successfully uploaded photo.');
         
-      };
+      // };
     };
    
  

@@ -2,11 +2,10 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "dependencies": {
-    "aws-sdk": "^2.188.0",
+   "aws-amplify-react-native": "^0.1.24",
     "expo": "^24.0.0",
     "react": "16.0.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-24.0.0.tar.gz",
-    "react-native-aws3": "0.0.8",
     "react-navigation": "^1.0.0-beta.26"
   }
 }
