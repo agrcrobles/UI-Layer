@@ -84,15 +84,15 @@ export default class ThankYou extends Component {
     backgroundColor: '#021227',
   },
   input: {
-    width: 400, 
-    height: 50,
+    width: 170, 
+    height: 30,
     textAlign: "center",
     backgroundColor: "#132c4a", 
     margin: .5,
-    fontSize: 20.2,
+    fontSize: 25,
     fontWeight: "600",
     borderColor: "#142535",
-    color: "white",
+    color: "yellow",
     borderWidth: 1
   },
   view: {

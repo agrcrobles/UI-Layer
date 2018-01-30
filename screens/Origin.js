@@ -133,59 +133,56 @@ import origin from "../assets/originLabel.png";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 30,
-    // width: "100%",
     backgroundColor: '#021227',
-    // backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
   menu: {
     height: 500,
-    width: 350,
-    justifyContent: "center",
+    width: "90%",
+    // justifyContent: "center",
     alignItems: "center",
-    backgroundColor: 'blue',
+    backgroundColor: '#021227',
     paddingTop: 5,
     paddingBottom: 5
   },
-  content: {
+  scrollContent: {
     flex: 1,
     padding: 2,
     justifyContent: "space-around"
   },
-
   label: {
-    color: "green",
-    width: 125,
+    color: "white",
+    width: 120,
     fontSize: 20.2,
-    fontWeight: "600"
-   
+    fontWeight: "600",
+    paddingLeft: 5
 
   },
   field: {
     height: 60,
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     width: "100%",
-    backgroundColor: "yellow",
-    marginTop: 5,
-    marginBottom: 5,
-    alignItems: "center"
-
+    backgroundColor: "#021227",
+    // marginTop: 5,
+    // marginBottom: 5,
+    alignItems: "center",
+    paddingLeft: 5
   },
 
   input: {
     width: 150, 
-    height: 50,
+    height: 40,
     textAlign: "center",
     backgroundColor: "#132c4a", 
-    margin: .5,
+    // margin: .5,
     fontSize: 20.2,
     fontWeight: "600",
     borderColor: "#142535",
     color: "white",
     borderWidth: 1,
-    paddingLeft: 1
+    // paddingLeft: 1
   }
 });

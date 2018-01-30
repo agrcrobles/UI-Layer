@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     width: "90%",
     // justifyContent: "center",
     alignItems: "center",
-    backgroundColor: 'blue',
+    backgroundColor: '#021227',
     paddingTop: 5,
     paddingBottom: 5
   },
@@ -177,10 +177,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-around"
   },
   label: {
-    color: "green",
+    color: "white",
     width: 120,
     fontSize: 20.2,
-    fontWeight: "600"
+    fontWeight: "600",
+    paddingLeft: 5
 
   },
   field: {
@@ -188,7 +189,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
-    backgroundColor: "yellow",
+    backgroundColor: "#021227",
     // marginTop: 5,
     // marginBottom: 5,
     alignItems: "center",

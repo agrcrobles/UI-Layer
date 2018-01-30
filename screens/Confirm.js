@@ -60,8 +60,8 @@ export default class Confirm extends Component  {
       const id = this.props.navigation.state.params.amt.Bar_Id;
       // let serial = amt.Bar_Serial;
       // const image = this.props.navigation.state.params.image;
-      var database = firebase.database();
-      var barRef = database.ref('bars').child(id);
+      // var database = firebase.database();
+      // var barRef = database.ref('bars').child(id);
       // let id = amt.Bar_Id;
     return(
      
@@ -87,11 +87,6 @@ export default class Confirm extends Component  {
         </ScrollView> */}
 
       <TouchableHighlight onPress={() => {
-        barRef.set({
-          Bar_Serial: serial,
-          image: destination
-
-        })
         navigate('ThankYou', amt={Bar_Id: id, Bar_Serial: serial})
         }}
         >
