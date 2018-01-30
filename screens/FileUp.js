@@ -87,10 +87,11 @@ export default class FileUp extends Component {
   };
 
   _submitFile = async docResult => {
+    const { navigate } = this.props.navigation;
     let image, docUri, docName;
       if(this.state.image){
         image = this.state.image;
-        Storage.put(file, 'test')
+        Storage.put('test', image)
         .then (result => console.log(result, "it worked?"))
         .catch(err => console.log(err));
 
@@ -98,7 +99,7 @@ export default class FileUp extends Component {
       if(this.state.document) {
         docName = this.state.document.name;
         docUri = this.state.document.uri;
-        Storage.put(docUri, docName)
+        Storage.put(docName, docUri)
         .then (result => console.log(result, "it worked?"))
         .catch(err => console.log(err));
       }
@@ -132,7 +133,7 @@ export default class FileUp extends Component {
   
 
   render() {
-    const { navigate } = this.props.navigation;
+    
     let { image } = this.state; 
         return(
       <View style={styles.container}>
