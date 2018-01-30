@@ -123,7 +123,7 @@ import origin from "../assets/originLabel.png";
               
               <Next onPress={() => {
                 console.log(this.state);
-                navigate('Confirm', {values: this.state})}} 
+                navigate('Confirm', {amt: this.state, image: origin})}} 
                 />
       </View>
     )
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     width: 150, 
     height: 40,
     textAlign: "center",
-    backgroundColor: "#132c4a", 
+    backgroundColor: '#021227', 
     // margin: .5,
     fontSize: 20.2,
     fontWeight: "600",

@@ -86,22 +86,38 @@ export default class FileUp extends Component {
     }
   };
 
-  _submitDoc = async docResult => {
-   
-      const file = docResult.uri;
-      console.log(file);
-      // const fileName = this.state.imageName;
-      // console.log(fileName);
-      if (!file.length) {
-        return alert('Please choose a file to upload first.');
-      }
-     
-      // var albumPhotosKey = encodeURIComponent(fileName) + '//';
-      //  const params = {Bucket:'hercone-deployments-mobilehub-153994528', Key:'tester', Body:file};
+  _submitFile = async docResult => {
+    let image, docUri, docName;
+      if(this.state.image){
+        image = this.state.image;
         Storage.put(file, 'test')
         .then (result => console.log(result, "it worked?"))
         .catch(err => console.log(err));
-      // var params = {Bucket:'herctest', Key:'tester', Body:file};
+
+        }
+      if(this.state.document) {
+        docName = this.state.document.name;
+        docUri = this.state.document.uri;
+        Storage.put(docUri, docName)
+        .then (result => console.log(result, "it worked?"))
+        .catch(err => console.log(err));
+      }
+      navigate('ThankYou', amt={image: image, docName: docName})
+    
+      // const file = docResult.uri;
+      // console.log(file);
+      // // const fileName = this.state.imageName;
+      // // console.log(fileName);
+      // if (!file.length) {
+      //   return alert('Please choose a file to upload first.');
+      // }
+     
+      // var albumPhotosKey = encodeURIComponent(fileName) + '//';
+      //  const params = {Bucket:'hercone-deployments-mobilehub-153994528', Key:'tester', Body:file};
+      //   Storage.put(file, 'test')
+      //   .then (result => console.log(result, "it worked?"))
+      //   .catch(err => console.log(err));
+      // // var params = {Bucket:'herctest', Key:'tester', Body:file};
       // s3.upload(params), function(err, data) {
       //   if (err) {
       //     return alert('There was an error uploading your photo: ', err.message);
@@ -128,7 +144,7 @@ export default class FileUp extends Component {
        
 
           {/* <View style={styles.imageContainer}> */}
-            <View style={{ height:100, width: 100, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ height:100, width: 100, alignItems: 'center', justifyContent: 'space-around' }}>
               <Button
                 title="Pickimage"
                 onPress={this._pickImage}
@@ -147,7 +163,7 @@ export default class FileUp extends Component {
             {this.state.document.name}
             </Text>
         {/* </ScrollView> */}
-       <Submit onPress={() => {this._submitDoc(this.state.document)}} />
+       <Submit onPress={() => {this._submitFile(this.state.document)}} />
       </View>
     )
   }_submitDoc
