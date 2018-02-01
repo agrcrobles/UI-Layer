@@ -5,7 +5,22 @@ import WelcomeHeader from "../components/WelcomeHeader";
 import Submit from "../components/SubmitBtn";
 import destination from "../assets/destinationLabel.png";
 import { StackNavigator } from 'react-navigation';
-
+import Amplify, { API } from 'aws-amplify-react-native';
+import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
+Amplify.configure({
+  Auth: {
+    'aws_cognito_identity_pool_id': 'us-east-1:f0e40134-54a1-47b0-b297-d895a1e5a4ca', //REQUIRED - Amazon Cognito Identity Pool ID
+    'aws_cognito_region': 'us-east-1', // REQUIRED - Amazon Cognito Region
+   },
+  API: {
+    endpoints: [
+      {
+        name: "barInf",
+        endpoint: "https://0jl8r6ytha.execute-api.us-east-1.amazonaws.com/MobileHub_Deployments"
+      }
+    ]
+  }
+});
 
 export default class Confirm extends Component  {
   
@@ -16,8 +31,8 @@ export default class Confirm extends Component  {
   constructor(props) {
     super(props);
     
-     
   }
+  
   
   componentDidMount(){
   
@@ -28,41 +43,38 @@ export default class Confirm extends Component  {
   //    Alert.alert("you touched BAck")
   //  }
    
-  //  _onPressSubmit(amt){
-  //   const { navigate } = this.props.navigation;
-  //     console.log(amt);
-  //     let id = amt.Bar_Id;
-  //     let serial = amt.Bar_Serial;
-  //     var database = firebase.database();
-  //     var barRef = database.ref().child(id);
-          
-  //     barRef.set({
-  //       Bar_Serial: serial
-        // Weight: amt.Weight
-        // Vault_Location: amt.Vault_Location,
-        // Purity: amt.Purity,
-        // Date_Received: amt.Date_Received,        
-        // Date_Processed: amt.Date_Processed,
-        // Mint: amt.Mint,
-        // Supplier: amt.Supplier,  
-      
-     // });
+   _onPressSubmit(amt){
+    const { navigate } = this.props.navigation;
+      console.log(amt);
+     let myApi = 'barInf';
+     let path = '/bars/' + amt.Bar_Id;
+     let myInit = {body: {barSerial: amt.Bar_Serial}};
 
-      // navigate('ThankYou', amt={Bar_Id: amt.Bar_Id, Bar_Serial: amt.Bar_Serial});
-               
+     API.post(myApi, path, myInit).then(response => {
+       console.log(response);
+     })
+     .then(err => {
+       if(err){
+         console.log(err, "whoops");
+       };
+      }
+     );     
+     
+      
+     
+
+      navigate('ThankYou', amt={amt});
+   }          
      
    
     
     render(){
       // debugger;
-      const { navigate } = this.props.navigation;
-      let serial = this.props.navigation.state.params.amt.Bar_Serial;
-      const id = this.props.navigation.state.params.amt.Bar_Id;
-      // let serial = amt.Bar_Serial;
-      // const image = this.props.navigation.state.params.image;
-      // var database = firebase.database();
-      // var barRef = database.ref('bars').child(id);
-      // let id = amt.Bar_Id;
+      // const { navigate } = this.props.navigation;
+      let values = this.props.navigation.state.params.amt;
+      let serial = values.Bar_Serial;
+      const id = values.Bar_Id;
+     
     return(
      
       <View style={styles.container}>
@@ -71,7 +83,7 @@ export default class Confirm extends Component  {
         <Text style={styles.confirm}>CONFIRM</Text>
                
         <Text style={styles.input}>Bar ID: {id}</Text>
-        <Text style={styles.value}>Bar Serial {serial}</Text>
+        <Text style={styles.input}>Bar Serial {serial}</Text>
 
         {/* <ScrollView contentContainerStyle={styles.menu}>
           <View style={styles.content}>
@@ -86,9 +98,7 @@ export default class Confirm extends Component  {
           </View>
         </ScrollView> */}
 
-      <TouchableHighlight onPress={() => {
-        navigate('ThankYou', amt={Bar_Id: id, Bar_Serial: serial})
-        }}
+      <TouchableHighlight onPress={() => this._onPressSubmit(values)}
         >
         <Image
           style={{width: 200, height: 70, resizeMode: "cover"}}

@@ -9,7 +9,7 @@ import csv from '../assets/csvLabel.png';
 import Submit from '../components/SubmitBtn';
 import { DocumentPicker, ImagePicker } from 'expo';
 import Amplify, { Storage } from 'aws-amplify-react-native';
-import aws_exports from '../aws-exports.js';
+import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
 console.log(aws_exports);
 Amplify.configure(aws_exports);
 Storage.configure({
@@ -17,18 +17,7 @@ Storage.configure({
     region: 'us-east-1'
   });
 
- // Bucket:'hercone-deployments-mobilehub-153994528', 
- 
 
-// import app from 'express';
-//  aws.config.loadFromPath('./config.json');
-// const s3 = new aws.S3({
-//   accessKeyId: "AKIAIDJMR6OPPAQVYNGA",
-//   secretAccessKey: "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",
-//   region: "us-east-1",
-//   logger: console,
-  
-// });
 
 export default class FileUp extends Component {
   static navigationOptions = {header: null };
@@ -87,15 +76,17 @@ export default class FileUp extends Component {
   };
 
   _submitFile = async docResult => {
+    const { navigate } = this.props.navigation;
     let image, docUri, docName;
-      if(this.state.image){
-        image = this.state.image;
-        Storage.put(file, 'test')
-        .then (result => console.log(result, "it worked?"))
-        .catch(err => console.log(err));
-
-        }
-      if(this.state.document) {
+    if(this.state.image){
+      image = this.state.image;
+      const params = {Bucket:'hercone-deployments-mobilehub-153994528', Key:'tester', Body:image};
+      Storage.put(params)
+      .then (result => console.log(result, "it worked?"))
+      .catch(err => console.log(err));
+      
+    }
+    if(this.state.document) {
         docName = this.state.document.name;
         docUri = this.state.document.uri;
         Storage.put(docUri, docName)
@@ -132,7 +123,7 @@ export default class FileUp extends Component {
   
 
   render() {
-    const { navigate } = this.props.navigation;
+    
     let { image } = this.state; 
         return(
       <View style={styles.container}>
