@@ -78,6 +78,7 @@ export default class FileUp extends Component {
   _submitFile = async docResult => {
     const { navigate } = this.props.navigation;
     let image, docUri, docName;
+<<<<<<< HEAD
     if(this.state.image){
       image = this.state.image;
       const params = {Bucket:'hercone-deployments-mobilehub-153994528', Key:'tester', Body:image};
@@ -87,9 +88,19 @@ export default class FileUp extends Component {
       
     }
     if(this.state.document) {
+=======
+      if(this.state.image){
+        image = this.state.image;
+        Storage.put('test', image)
+        .then (result => console.log(result, "it worked?"))
+        .catch(err => console.log(err));
+
+        }
+      if(this.state.document) {
+>>>>>>> 7467b5187fb0d70bb18d7c2f9f74289b6a20d974
         docName = this.state.document.name;
         docUri = this.state.document.uri;
-        Storage.put(docUri, docName)
+        Storage.put(docName, docUri)
         .then (result => console.log(result, "it worked?"))
         .catch(err => console.log(err));
       }
