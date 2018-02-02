@@ -54,13 +54,6 @@ amazon-cognito-identity-js@1.29.0:
     aws-sdk "^2.6.0"
     js-cookie "^2.1.4"
 
-amazon-cognito-identity-js@^1.25.0:
-  version "1.31.0"
-  resolved "https://registry.yarnpkg.com/amazon-cognito-identity-js/-/amazon-cognito-identity-js-1.31.0.tgz#1dcd0f26ce9404c198a35468e8bb00410503021d"
-  dependencies:
-    aws-sdk "2.177.0"
-    js-cookie "^2.1.4"
-
 ansi-escapes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-3.0.0.tgz#ec3e8b4e9f8064fc02c3ac9b65f1c275bda8ef92"
@@ -187,16 +180,17 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
-aws-amplify-react-native@^0.1.24:
-  version "0.1.24"
-  resolved "https://registry.yarnpkg.com/aws-amplify-react-native/-/aws-amplify-react-native-0.1.24.tgz#785d306032b7eb62a55e052927e2f3667f87b0fc"
+aws-amplify-react-native@^0.2.0:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/aws-amplify-react-native/-/aws-amplify-react-native-0.2.1.tgz#b5cc6659e941d292b450c29f65dd2bd2adfd494b"
   dependencies:
-    amazon-cognito-identity-js "^1.25.0"
+    amazon-cognito-identity-js "1.29.0"
+    aws-amplify "^0.2.x"
     aws-sdk "2.177.0"
     axios "^0.17.1"
     babel-preset-es2015 "^6.24.1"
 
-aws-amplify@^0.2.2:
+aws-amplify@^0.2.2, aws-amplify@^0.2.x:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/aws-amplify/-/aws-amplify-0.2.2.tgz#d7c62acdeb345016f5985ee24e7a75bd7f80cf6a"
   dependencies:
