@@ -8,14 +8,21 @@ import pictures from '../assets/picturesLabel.png';
 import csv from '../assets/csvLabel.png';
 import Submit from '../components/SubmitBtn';
 import { DocumentPicker, ImagePicker } from 'expo';
-import Amplify, { Storage } from 'aws-amplify-react-native';
+import Amplify, { Storage } from 'aws-amplify';
 import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
 console.log(aws_exports);
-Amplify.configure(aws_exports);
-Storage.configure({
-    bucket: 'hercone-deployments-mobilehub-153994528', 
-    region: 'us-east-1'
+Amplify.configure({
+    Auth: {
+    identityPoolId: 'us-east-1:f0e40134-54a1-47b0-b297-d895a1e5a4ca', //REQUIRED - Amazon Cognito Identity Pool ID
+    region: 'us-east-1', // REQUIRED - Amazon Cognito Region
+   
+  },
+  Storage: {
+    bucket: 'hercone-deployments-mobilehub-1541391316', //REQUIRED -  Amazon S3 bucket
+    region: 'us-east-1', //OPTIONAL -  Amazon service region
+  }
   });
+
 
 
 
@@ -45,6 +52,7 @@ export default class FileUp extends Component {
     console.log(result);
 
     if (!result.cancelled) {
+      console.log(result);
       this.setState({ 
         
           image: result.uri  
@@ -78,17 +86,6 @@ export default class FileUp extends Component {
   _submitFile = async docResult => {
     const { navigate } = this.props.navigation;
     let image, docUri, docName;
-<<<<<<< HEAD
-    if(this.state.image){
-      image = this.state.image;
-      const params = {Bucket:'hercone-deployments-mobilehub-153994528', Key:'tester', Body:image};
-      Storage.put(params)
-      .then (result => console.log(result, "it worked?"))
-      .catch(err => console.log(err));
-      
-    }
-    if(this.state.document) {
-=======
       if(this.state.image){
         image = this.state.image;
         Storage.put('test', image)
@@ -97,7 +94,6 @@ export default class FileUp extends Component {
 
         }
       if(this.state.document) {
->>>>>>> 7467b5187fb0d70bb18d7c2f9f74289b6a20d974
         docName = this.state.document.name;
         docUri = this.state.document.uri;
         Storage.put(docName, docUri)

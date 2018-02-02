@@ -37,14 +37,16 @@ export default class ThankYou extends Component {
 
       <ScrollView contentContainerStyle={styles.menu}>
       <View style={styles.content}>
-        {Object.keys(amt).map((keyName, keyIndex) => {
+
+      <Text>{console.log(amt)}</Text>
+        {/* {Object.keys(amt).map((keyName, keyIndex) => {
           return(
           <View key={keyIndex} style={styles.view}>
             <Text style={styles.input}>{keyName}</Text>
             <Text style={styles.value}> {amt[keyName]}</Text>
           </View>
           )
-        })}
+        })} */}
       </View>
     </ScrollView>
       {/* <ScrollView contentContainerStyle={styles.menu}>

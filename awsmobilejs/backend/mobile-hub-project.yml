@@ -19,34 +19,15 @@ features:
             runtime: nodejs6.10
             timeout: '3'
             version: zTPEXQ7Ou709syohsCPJXUOvNM21Fk0z
-          '/bars/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
-            description: 'Handler for calls to resource path : /bars/{proxy+}'
-            environment: {}
-            handler: index.handler
-            hashcode: HcnkEdtprArtVvsyEIpazYvngiV23yxuKxj3/NBpnV4=
-            memorySize: '128'
-            modified: '2018-01-31T23:46:29.195+0000'
-            name: barInf
-            runtime: nodejs6.10
-            timeout: '3'
-            version: jRZrG.K9vHea1.sY.3TqZBD.Pbl2eNgH
+          '/bars/{proxy+}': !com.amazonaws.mobilehub.v0.Function {}
   database: !com.amazonaws.mobilehub.v0.Database 
     components:
       database-nosql: !com.amazonaws.mobilehub.v0.NoSQLDatabase 
         tables:
           - !com.amazonaws.mobilehub.v0.NoSQLTable 
             attributes:
-              agid: N
               barID: N
               barSerial: N
-              dateProc: S
-              dateRec: S
-              manufacturer: S
-              mint: S
-              purity: N
-              rfid: N
-              supplier: S
-              weight: N
             hashKeyName: barID
             hashKeyType: N
             rangeKeyName: ''

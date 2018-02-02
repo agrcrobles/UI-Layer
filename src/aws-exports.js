@@ -12,7 +12,7 @@ const awsmobile = {
     'aws_cognito_region': 'us-east-1',
     'aws_dynamodb': 'enable',
     'aws_dynamodb_all_tables_region': 'us-east-1',
-    'aws_dynamodb_table_schemas': [{"tableName":"hercone-mobilehub-1541391316-bars","attributes":[{"name":"barID","type":"N"},{"name":"agid","type":"N"},{"name":"barSerial","type":"N"},{"name":"dateProc","type":"S"},{"name":"dateRec","type":"S"},{"name":"manufacturer","type":"S"},{"name":"mint","type":"S"},{"name":"purity","type":"N"},{"name":"rfid","type":"N"},{"name":"supplier","type":"S"},{"name":"weight","type":"N"}],"indexes":[],"region":"us-east-1","hashKey":"barID"}],
+    'aws_dynamodb_table_schemas': [{"tableName":"hercone-mobilehub-1541391316-bars","attributes":[{"name":"barID","type":"N"},{"name":"barSerial","type":"N"}],"indexes":[],"region":"us-east-1","hashKey":"barID"}],
     'aws_project_id': '3051244e-ef38-465c-a047-363061d038ae',
     'aws_project_name': 'hercone',
     'aws_project_region': 'us-east-1',
