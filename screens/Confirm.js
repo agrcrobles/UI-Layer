@@ -6,8 +6,8 @@ import Submit from "../components/SubmitBtn";
 import destination from "../assets/destinationLabel.png";
 import { StackNavigator } from 'react-navigation';
 import Amplify, { API } from 'aws-amplify';
-import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
-Amplify.configure(aws_exports);
+// import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
+// Amplify.configure(aws_exports);
   // Auth: {
   //   'aws_cognito_identity_pool_id': 'us-east-1:f0e40134-54a1-47b0-b297-d895a1e5a4ca', //REQUIRED - Amazon Cognito Identity Pool ID
   //   'aws_cognito_region': 'us-east-1', // REQUIRED - Amazon Cognito Region

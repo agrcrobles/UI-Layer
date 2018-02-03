@@ -7,8 +7,8 @@ export default class MenuHeader extends Component {
   render() {
     return (
       <View style={styles.header}>
-        <NavButtons />
-        <MenuLogo />
+      
+      
       </View>
        
         );

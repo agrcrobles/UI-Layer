@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert } from 'react-native';
-import WelcomeHeader from "../components/WelcomeHeader";
-// import Welcome from "../components/Welcome";
+// import WelcomeHeader from "../components/WelcomeHeader";
+import menuOpts from "../components/buttons/menuOptions.png";
 import { StackNavigator } from 'react-navigation';
 import Title from "../components/MenuInputTitle";
-import welcome from "../assets/welcome.png";
+import MenuHeader from "../components/MenuHeader";
+import home from "../components/buttons/homeBtn.png";
 
 
-export default class Welcome extends Component {
+export default class MenuOptions extends Component {
   static navigationOptions = {
     header: null,
   
@@ -16,15 +17,17 @@ export default class Welcome extends Component {
     const { navigate } = this.props.navigation;
     return(
       <View style={styles.container}>
-        <WelcomeHeader />
+        <MenuHeader />
+        <Title image={menuOpts} />
+          
           <View style={styles.menu}>
         
-            <TextInput style={styles.input}>PIN</TextInput>
+           
         
-            <TouchableHighlight style={styles.welcomeBtn} onPress={() => navigate('Destination')}>
+            <TouchableHighlight style={styles.button} onPress={() => navigate('Destination')}>
               <Image
                   style={styles.button}
-                  source={welcome}
+                  source={home}
                 />
             </TouchableHighlight>
           </View>
@@ -70,7 +73,8 @@ const styles = StyleSheet.create({
     },
     button: {
       width: 250, 
-      height: 50
+      height: 50,
+      resizeMode: 'cover'
     },
     input: {
       width: 150, 

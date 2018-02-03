@@ -9,8 +9,8 @@ import csv from '../assets/csvLabel.png';
 import Submit from '../components/SubmitBtn';
 import { DocumentPicker, ImagePicker } from 'expo';
 import Amplify, { Storage } from 'aws-amplify';
-import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
-console.log(aws_exports);
+// import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
+// console.log(aws_exports);
 Amplify.configure({
     Auth: {
     identityPoolId: 'us-east-1:f0e40134-54a1-47b0-b297-d895a1e5a4ca', //REQUIRED - Amazon Cognito Identity Pool ID
