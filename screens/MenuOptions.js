@@ -4,8 +4,18 @@ import { StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert } f
 import menuOpts from "../components/buttons/menuOptions.png";
 import { StackNavigator } from 'react-navigation';
 import Title from "../components/MenuInputTitle";
-import MenuHeader from "../components/MenuHeader";
+import logo from "../assets/hercLogoBreak.png";
+import menuOptions from "../components/buttons/menuOptions.png";
 import home from "../components/buttons/homeBtn.png";
+import lore from "../components/buttons/loreBtn.png";
+import hiprBtn from "../components/buttons/hiprBtn.png";
+import igvc from "../components/buttons/igvc.png";
+import verifyBtn from "../components/buttons/verifyBtn.png";
+import digiView from "../components/buttons/digitalViewBtn.png";
+import blockScan from "../components/buttons/blockScannerBtn.png";
+import settings from "../components/buttons/settingsBtn.png";
+import wallet from "../components/buttons/walletBtn.png";
+
 
 
 export default class MenuOptions extends Component {
@@ -17,33 +27,79 @@ export default class MenuOptions extends Component {
     const { navigate } = this.props.navigation;
     return(
       <View style={styles.container}>
-        <MenuHeader />
+      <Image source={logo} style={styles.menuLogo}/>
         <Title image={menuOpts} />
           
           <View style={styles.menu}>
         
            
         
-            <TouchableHighlight style={styles.button} onPress={() => navigate('Destination')}>
-              <Image
-                  style={styles.button}
+            <TouchableHighlight onPress={() => navigate('Destination')}>
+              <Image style={styles.button}
+                  
                   source={home}
                 />
             </TouchableHighlight>
-          </View>
-          {/* <TouchableHighlight  onPress={() => navigate('Origin')}>
+          
+          <TouchableHighlight  onPress={() => navigate('Origin')}>
             <Image
               style={styles.button}
-              source={require('../assets/originLabel.png')}
+              source={lore}
             />
           </TouchableHighlight> 
 
           <TouchableHighlight  onPress={() => navigate('FileUp')}>
             <Image
               style={styles.button}
-              source={require('../assets/skipButton.png')}
+              source={hiprBtn}
             />
-          </TouchableHighlight>  */}
+          </TouchableHighlight> 
+          
+          <TouchableHighlight  onPress={() => navigate('Legend')}>
+            <Image
+              style={styles.button}
+              source={igvc}
+            />
+          </TouchableHighlight> 
+          
+          <TouchableHighlight  onPress={() => navigate('FileUp')}>
+            <Image
+              style={styles.button}
+              source={verifyBtn}
+            />
+          </TouchableHighlight> 
+          
+          <TouchableHighlight  onPress={() => navigate('FileUp')}>
+            <Image
+              style={styles.button}
+              source={digiView}
+            />
+          </TouchableHighlight> 
+          
+          <TouchableHighlight  onPress={() => navigate('FileUp')}>
+            <Image
+              style={styles.button}
+              source={blockScan}
+            />
+          </TouchableHighlight> 
+                  
+          <TouchableHighlight  onPress={() => navigate('FileUp')}>
+            <Image
+              style={styles.button}
+              source={settings}
+            />
+          </TouchableHighlight> 
+
+
+          <TouchableHighlight  onPress={() => navigate('FileUp')}>
+            <Image
+              style={styles.button}
+              source={wallet}
+            />
+          </TouchableHighlight> 
+         
+         
+          </View>
 
         </View>
       
@@ -63,7 +119,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'space-around',
   },
   menu: {
-    height: 400,
+    height: 450,
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: '#021227'
@@ -72,9 +128,15 @@ const styles = StyleSheet.create({
   
     },
     button: {
-      width: 250, 
-      height: 50,
-      resizeMode: 'cover'
+      width: 350, 
+      height: 40,
+      alignItems: 'center',
+      margin: 1
+      
+    },
+    btnImg: {
+        resizeMode: 'cover',
+
     },
     input: {
       width: 150, 
@@ -89,7 +151,15 @@ const styles = StyleSheet.create({
       borderWidth: 1,
       marginTop: 100
     },
-    welcomeBtn: {
-    //  marginTop: 10
-    }
+    menuLogo: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: 140,
+    width: 200,
+    resizeMode: "contain",
+    backgroundColor: '#021227',
+    // margin: .5
+       
+  }
+ 
   });

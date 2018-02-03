@@ -1,12 +1,15 @@
 import React, {Component} from "react";
 import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
 import backArrow from '../assets/icon_backarrow.png';
+import logout from '../assets/icon_logout.png';
+
 export default function NavButtons(props)   {
     
       return (
         <View style={styles.headerBtns}>
         
-        <Image
+        <Image style={styles.iconsArrow} source={backArrow} />
+        <Image style={styles.iconsLogout} source={logout} />
         </View>
          
           );
@@ -16,20 +19,25 @@ export default function NavButtons(props)   {
   var styles = StyleSheet.create({
     headerBtns: {
     
-      // remove width and height to override fixed static size
-      height: 175,
+     flex: 1,
+     flexDirection: 'row',
+      height: 150,
       width: "100%",
       justifyContent: "space-between",
     //   alignItems: "center",   
-      backgroundColor: "#021227"
+      backgroundColor: "#021227",
+      paddingLeft: 5,
+      paddingRight: 5,
+      paddingBottom: 0 
   
     },
     iconsArrow: {
-        width: 35,
-        height: 35
+        width: 25,
+        height: 25
+
     },
     iconsLogout: {
-        width: 45,
-        height: 25
+        width: 57,
+        height: 22
     }
-)}
+  })

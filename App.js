@@ -6,12 +6,13 @@ import Destination from "./screens/Destination";
 import FileUp from "./screens/FileUp";
 import Confirm from "./screens/Confirm";
 import ThankYou from "./screens/ThankYou";
-import MenuOptionns from "./screens/MenuOptions";
+import Legend from "./screens/Legend";
 import MenuOptions from './screens/MenuOptions';
 
 const HercDemo = StackNavigator({
   Welcome: { screen: Welcome },
   MenuOptions: {screen: MenuOptions},
+  Legend: {screen: Legend},
   Origin: { screen: Origin},
   Destination: { screen: Destination },
   FileUp: { screen: FileUp },

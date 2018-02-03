@@ -21,7 +21,7 @@ export default class Welcome extends Component {
         
             <TextInput style={styles.input}>PIN</TextInput>
         
-            <TouchableHighlight style={styles.welcomeBtn} onPress={() => navigate('Destination')}>
+            <TouchableHighlight style={styles.welcomeBtn} onPress={() => navigate('MenuOptions')}>
               <Image
                   style={styles.button}
                   source={welcome}
