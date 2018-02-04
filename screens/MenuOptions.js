@@ -34,19 +34,26 @@ export default class MenuOptions extends Component {
         
            
         
-            <TouchableHighlight onPress={() => navigate('Destination')}>
+            <TouchableHighlight onPress={() => navigate('Welcome')}>
               <Image style={styles.button}
                   
                   source={home}
                 />
             </TouchableHighlight>
+
+            <TouchableHighlight  onPress={() => navigate('FileUp')}>
+            <Image
+              style={styles.button}
+              source={wallet}
+            />
+          </TouchableHighlight> 
           
-          <TouchableHighlight  onPress={() => navigate('Origin')}>
+          {/* <TouchableHighlight  onPress={() => navigate('Origin')}>
             <Image
               style={styles.button}
               source={lore}
             />
-          </TouchableHighlight> 
+          </TouchableHighlight>  */}
 
           <TouchableHighlight  onPress={() => navigate('FileUp')}>
             <Image
@@ -90,15 +97,6 @@ export default class MenuOptions extends Component {
             />
           </TouchableHighlight> 
 
-
-          <TouchableHighlight  onPress={() => navigate('FileUp')}>
-            <Image
-              style={styles.button}
-              source={wallet}
-            />
-          </TouchableHighlight> 
-         
-         
           </View>
 
         </View>
@@ -129,7 +127,7 @@ const styles = StyleSheet.create({
     },
     button: {
       width: 350, 
-      height: 40,
+      height: 50,
       alignItems: 'center',
       margin: 1
       

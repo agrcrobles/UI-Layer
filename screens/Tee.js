@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert } from 'react-native';
-import logo from "../assets/logo.png";
+import logo from "../assets/teeLabel.png";
+import miniHerc from "../assets/logo.png";
 import Title from "../components/MenuInputTitle";
 import personal from "../assets/personalLegend.png";
 
- export default class Legend extends Component {
+ export default class Tee extends Component {
      static navigationOptions = {
          header: null,
  
@@ -21,11 +22,11 @@ import personal from "../assets/personalLegend.png";
          
           <View style={styles.legendInput}>
             <Text style={styles.input}> 10,000 </Text>
-            <Image source={logo} style={styles.icon} />
+            <Image source={miniHerc} style={styles.icon} />
                       
          </View>
           <TouchableHighlight style={styles.bigButton}
-            onPress={()=> navigate('Tee')}
+            // onPress={()=> navigate('IEE')}
             >
           <Text style={{color: "white"}}>  Enter Trusted Execution Environment </Text>
 
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
       flex: 1,
       paddingTop: 30,
       // width: "100%",
-      backgroundColor: '#021227',
+      backgroundColor: '#02182d',
       // backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'space-between',
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     header: {
       height: "30%",
       width: 360,
-      backgroundColor: '#021227',
+      backgroundColor: '#02182d',
       alignSelf: 'center',
       alignItems: 'center',
       margin: 5
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
         height: 120,
         width: 200,
         resizeMode: "contain",
-        backgroundColor: '#021227',
+        backgroundColor: '#02182d',
       },
       label: {
         height: 50,

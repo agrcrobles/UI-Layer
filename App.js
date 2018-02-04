@@ -8,11 +8,13 @@ import Confirm from "./screens/Confirm";
 import ThankYou from "./screens/ThankYou";
 import Legend from "./screens/Legend";
 import MenuOptions from './screens/MenuOptions';
+import Tee from './screens/Tee';
 
 const HercDemo = StackNavigator({
   Welcome: { screen: Welcome },
   MenuOptions: {screen: MenuOptions},
   Legend: {screen: Legend},
+  Tee: {screen: Tee},
   Origin: { screen: Origin},
   Destination: { screen: Destination },
   FileUp: { screen: FileUp },

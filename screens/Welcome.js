@@ -8,10 +8,25 @@ import welcome from "../assets/welcome.png";
 
 
 export default class Welcome extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pin: ""
+    }
+  }
   static navigationOptions = {
     header: null,
   
   }
+
+  _onPress() {
+    console.log(this.state.pin,"pin")
+    if(this.state.pin !== "1234") {
+      Alert.alert("Please Enter Correct Pin")
+    }
+    navigate('MenuOptions');
+  }
+  
   render(){
     const { navigate } = this.props.navigation;
     return(
@@ -19,9 +34,9 @@ export default class Welcome extends Component {
         <WelcomeHeader />
           <View style={styles.menu}>
         
-            <TextInput style={styles.input}>PIN</TextInput>
+            <TextInput onChangeText={(pin) => this.setState({pin})} placeholder="PIN" underlineColorAndroid='transparent' style={styles.input}/>
         
-            <TouchableHighlight style={styles.welcomeBtn} onPress={() => navigate('MenuOptions')}>
+            <TouchableHighlight style={styles.welcomeBtn} onPress={() => this.state.pin !== '1234'? Alert.alert('Please Enter a Valid PIN'): navigate('MenuOptions')}>
               <Image
                   style={styles.button}
                   source={welcome}
