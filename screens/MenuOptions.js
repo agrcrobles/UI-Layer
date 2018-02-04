@@ -41,7 +41,7 @@ export default class MenuOptions extends Component {
                 />
             </TouchableHighlight>
 
-            <TouchableHighlight  onPress={() => navigate('FileUp')}>
+            <TouchableHighlight  onPress={() => Alert.alert('Uninstalled Component')}>
             <Image
               style={styles.button}
               source={wallet}
@@ -55,7 +55,7 @@ export default class MenuOptions extends Component {
             />
           </TouchableHighlight>  */}
 
-          <TouchableHighlight  onPress={() => navigate('FileUp')}>
+          <TouchableHighlight  onPress={() => navigate('Hipr')}>
             <Image
               style={styles.button}
               source={hiprBtn}
@@ -69,7 +69,7 @@ export default class MenuOptions extends Component {
             />
           </TouchableHighlight> 
           
-          <TouchableHighlight  onPress={() => navigate('FileUp')}>
+          <TouchableHighlight  onPress={() => navigate('Splash')}>
             <Image
               style={styles.button}
               source={verifyBtn}
@@ -83,14 +83,14 @@ export default class MenuOptions extends Component {
             />
           </TouchableHighlight> 
           
-          <TouchableHighlight  onPress={() => navigate('FileUp')}>
+          <TouchableHighlight  onPress={() => navigate('BlockScan')}>
             <Image
               style={styles.button}
               source={blockScan}
             />
           </TouchableHighlight> 
                   
-          <TouchableHighlight  onPress={() => navigate('FileUp')}>
+          <TouchableHighlight>
             <Image
               style={styles.button}
               source={settings}

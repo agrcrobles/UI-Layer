@@ -10,6 +10,10 @@ import Legend from "./screens/Legend";
 import MenuOptions from './screens/MenuOptions';
 import Tee from './screens/Tee';
 import Digi from './screens/DigiViewer';
+import Anthem from './screens/Anthem';
+import Hipr from './screens/Hipr';
+import Splash from './screens/SplashPanel';
+import BlockScan from './screens/BlockScan';
 
 const HercDemo = StackNavigator({
   Welcome: { screen: Welcome },
@@ -17,6 +21,10 @@ const HercDemo = StackNavigator({
   Legend: {screen: Legend},
   Tee: {screen: Tee},
   Digi: {screen: Digi},
+  Anthem: {screen: Anthem},
+  Hipr: {screen: Hipr},
+  BlockScan: {screen: BlockScan},
+  Splash: {screen: Splash},
   Origin: { screen: Origin},
   Destination: { screen: Destination },
   FileUp: { screen: FileUp },

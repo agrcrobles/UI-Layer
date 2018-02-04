@@ -19,13 +19,13 @@ export default class Welcome extends Component {
   
   }
 
-  // _onPress() {
-  //   console.log(this.state.pin,"pin")
-  //   if(this.state.pin !== "1234") {
-  //     Alert.alert("Please Enter Correct Pin")
-  //   }
-  //   navigate('MenuOptions');
-  // }this.state.pin !== '1234'? Alert.alert('Please Enter a Valid PIN'):
+  _onPress() {
+    console.log(this.state.pin,"pin")
+    if(this.state.pin !== "1234") {
+      Alert.alert("Please Enter Correct Pin")
+    }
+    navigate('MenuOptions');
+  }
   
   render(){
     const { navigate } = this.props.navigation;
@@ -36,7 +36,7 @@ export default class Welcome extends Component {
         
             <TextInput onChangeText={(pin) => this.setState({pin})} placeholder="PIN" underlineColorAndroid='transparent' style={styles.input}/>
         
-            <TouchableHighlight style={styles.welcomeBtn} onPress={() =>  navigate('MenuOptions')}>
+            <TouchableHighlight style={styles.welcomeBtn} onPress={() => this.state.pin !== '1234'? Alert.alert('Please Enter a Valid PIN'): navigate('MenuOptions')}>
               <Image
                   style={styles.button}
                   source={welcome}

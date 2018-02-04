@@ -41,22 +41,25 @@ export default class DigiViewer extends Component {
                 <Image source={hLogo} style={styles.icon}/> 
                 <Text style={styles.input}>10,000</Text>
             </View>
+
+     
+        </View>
+          <View style={styles.walletFee}>
+          
             <Text style={styles.hercLabel}>MY HERC</Text>
-            <View style={styles.walletBalance}>
+              <View style={styles.feeBalance}>
                 <Text style={styles.input}>1</Text>
                 <Image source={feeLabel} style={styles.feeLabel}/> 
+              </View>
+            <TouchableHighlight style={{marginTop: 15}} onPress={() => navigate('Anthem')}>
+              <Image source={viewBtn} style={styles.button}/>
+              </TouchableHighlight>
             </View>
-
-        </View>
-     
+          </View>
            
           
          
 
-        <TouchableHighlight>
-          <Image source={viewBtn} style={styles.button}/>
-          </TouchableHighlight>
-        </View>
 
 
          )};
@@ -71,7 +74,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#02182d',
       // backgroundColor: '#fff',
       alignItems: 'center',
-      justifyContent: 'space-between',
+      
     },
     header: {
       height: "27%",
@@ -137,7 +140,7 @@ const styles = StyleSheet.create({
     wallet: {
       padding: 3,
       backgroundColor: "#02182d",
-      height: 210,
+      height: 150,
       width: '80%',
       justifyContent: 'flex-start',
       alignItems: "center",
@@ -157,11 +160,30 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 60,
         resizeMode: 'cover',
-        
+       
         justifyContent:'center',
         alignItems: 'center',
         
     },
+    walletFee: {
+      width: '80%',
+      height: 200,
+      // justifyContent: 'center',
+      backgroundColor: '#06112e',
+      padding: 3,
+      alignItems: 'center',
+      margin: 7
+    },
+    feeBalance: {
+      width: '100%', 
+       flexDirection: 'row',
+       backgroundColor: '#14283f',
+       padding: 2,
+       justifyContent: 'space-between'
+       
+       // height: 
+
+   },
     hercLabel: {
       textAlign: 'left',
       alignSelf: 'flex-start',
@@ -173,6 +195,7 @@ const styles = StyleSheet.create({
     },
     button: {
       width: 250, 
-      height: 50
+      height: 50,
+      marginTop: 30
     },
     })
