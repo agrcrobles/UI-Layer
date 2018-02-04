@@ -9,12 +9,14 @@ import ThankYou from "./screens/ThankYou";
 import Legend from "./screens/Legend";
 import MenuOptions from './screens/MenuOptions';
 import Tee from './screens/Tee';
+import Digi from './screens/DigiViewer';
 
 const HercDemo = StackNavigator({
   Welcome: { screen: Welcome },
   MenuOptions: {screen: MenuOptions},
   Legend: {screen: Legend},
   Tee: {screen: Tee},
+  Digi: {screen: Digi},
   Origin: { screen: Origin},
   Destination: { screen: Destination },
   FileUp: { screen: FileUp },

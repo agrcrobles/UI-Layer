@@ -76,7 +76,7 @@ export default class MenuOptions extends Component {
             />
           </TouchableHighlight> 
           
-          <TouchableHighlight  onPress={() => navigate('FileUp')}>
+          <TouchableHighlight  onPress={() => navigate('Digi')}>
             <Image
               style={styles.button}
               source={digiView}
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     },
     button: {
       width: 350, 
-      height: 50,
+      height: 51,
       alignItems: 'center',
       margin: 1
       
