@@ -16,119 +16,126 @@ import origin from "../assets/originLabel.png";
   constructor(props){
     super(props);
     
-    this.state = {
-        barId: "",
-        barSerial: "",
-        manufacturer: "",
-        purity: "",
-        weight: "",
-        AGID: "",
-        RFID: ""  
-      }
+    // this.state = {
+    //   Bar_Id: "",
+    //   Bar_Serial: "",
+    //   Vault_Location: "",
+    //   Weight: "",
+    //   Purity: "",
+    //   Date_Received: "",
+    //   Date_Processed: "",
+    //   Mint: "",
+    //   Supplier: ""  
+    //   }
     } 
   
-  render(){
-    const { navigate } = this.props.navigation;
-    return(
-      <View style={styles.container}>
-         <TouchableHeader onPress={() => navigate('Splash')} />
-        <Title image={origin} />
-      
+    componentDidMount(){
+      this.setState({location: 'origin'})
+    }
+    render(){
+      const { navigate } = this.props.navigation;
+      return(
+        <View style={styles.container}>
+          
+            <TouchableHeader onPress={() => navigate('Splash')} />
+          
+          <Title image={origin} />
+        
           <ScrollView contentContainerStyle={styles.menu}> 
-            <View style={styles.content}>
+            <View style={styles.scrollContent}>
+          
               <View style={styles.field}>
-              <Text style={styles.label}>Bar ID</Text>
+               <Text style={styles.label}>Bar ID</Text>
                 <TextInput
                   style={styles.input}
-                  onChangeText={(barId) => this.setState({barId})}
+                  onChangeText={(Bar_Id) => this.setState({Bar_Id})}
                   placeholder="Bar ID"
                 />
-              </View>  
-                
+               </View>  
+  
               <View style={styles.field}>
-              <Text style={styles.label}>Bar Serial</Text> 
+               <Text style={styles.label}>Bar Serial</Text> 
                 <TextInput
                   style={styles.input}
-                  onChangeText={(barSerial) => this.setState({barSerial})}
+                  onChangeText={(Bar_Serial) => this.setState({Bar_Serial})}
                   placeholder="Bar Serial"
                 />
               </View>  
-
+  
               <View style={styles.field}>
-              <Text style={styles.label}>Manufacturer</Text>  
+               <Text style={styles.label}>Vault Location</Text> 
                 <TextInput
                   style={styles.input}
-                  onChangeText={(mint) => this.setState({manufacturer})}
-                  placeholder="Manufacturer"
+                  onChangeText={(Vault_Location) => this.setState({Vault_Location})}
+                  placeholder="Vault Location"
                 />
               </View>
-
-
+  
               <View style={styles.field}>
-              <Text style={styles.label}>Weight</Text> 
+               <Text style={styles.label}>Weight</Text> 
                 <TextInput
                   style={styles.input}
-                  onChangeText={(weight) => this.setState({weight})}
+                  onChangeText={(Weight) => this.setState({Weight})}
                   placeholder="Weight"
                 />
               </View>
-
+  
               <View style={styles.field}>
-              <Text style={styles.label}>Purity</Text> 
+               <Text style={styles.label}>Purity</Text> 
                 <TextInput
                   style={styles.input}
-                  onChangeText={(purity) => this.setState({purity})}
+                  onChangeText={(Purity) => this.setState({Purity})}
                   placeholder="Purity"
-
+  
                 />
               </View>
-
+  
               <View style={styles.field}>
-              <Text style={styles.label}>Date Received</Text> 
+               <Text style={styles.label}>Date Received</Text> 
                 <TextInput
                   style={styles.input}
-                  onChangeText={(dateRec) => this.setState({dateRec})}
+                  onChangeText={(Date_Received) => this.setState({Date_Received})}
                   placeholder="Date Recieved"
                   />
               </View>
-
+  
               <View style={styles.field}>
-              <Text style={styles.label}>Date Processed</Text> 
+               <Text style={styles.label}>Date Processed</Text> 
                 <TextInput
                   style={styles.input}
-                  onChangeText={(dateProc) => this.setState({dateProc})}
+                  onChangeText={(Date_Processed) => this.setState({Date_Processed})}
                   placeholder="Date Processed"
                 />
               </View>
-
-              <View style={styles.field}>
-              <Text style={styles.label}>AGID</Text> 
-                <TextInput
-                  style={styles.input}
-                  onChangeText={(AGID) => this.setState({AGID})}
-                  placeholder="AGID"
-                />
-              </View>
-
-              <View style={styles.field}>
-              <Text style={styles.label}>RFID</Text>     
-                <TextInput
-                  style={styles.input}
-                  onChangeText={(RFID) => this.setState({RFID})}
-                  placeholder="RFID"
-                />
-              </View>
-            </View>  
-          </ScrollView>       
               
-              <Next onPress={() => {
-                console.log(this.state);
-                navigate('Confirm', {amt: this.state, image: origin})}} 
+              <View style={styles.field}>
+               <Text style={styles.label}>Mint</Text>  
+                <TextInput
+                  style={styles.input}
+                  onChangeText={(Mint) => this.setState({Mint})}
+                  placeholder="Mint"
                 />
-      </View>
-    )
+              </View>
+  
+              <View style={styles.field}>
+               <Text style={styles.label}>Supplier</Text>     
+                <TextInput
+                  style={styles.input}
+                  onChangeText={(Supplier) => this.setState({Supplier})}
+                  placeholder="Supplier"
+                />
+              </View>
+             </View>   
+            </ScrollView>       
+                
+                <Next onPress={() => {
+                  console.log(this.state);
+                  navigate('Confirm', {values: this.state })}} 
+                  />
+        </View>
+      )
+    }
   }
-}
 // herc background color #021227
 const styles = StyleSheet.create({
   container: {
@@ -174,7 +181,7 @@ const styles = StyleSheet.create({
 
   input: {
     width: 150, 
-    height: 40,
+    height: 25,
     textAlign: "center",
     backgroundColor: '#021227', 
     // margin: .5,

@@ -34,20 +34,11 @@ export default class Destination extends Component {
   constructor(props){
     super(props);
    
-    this.state = {
-      
-        Bar_Id: "",
-        Bar_Serial: "",
-        Vault_Location: "",
-        Weight: "",
-        Purity: "",
-        Date_Received: "",
-        Date_Processed: "",
-        Mint: "",
-        Supplier: ""  
-      }
+   
     } 
-  
+  componentDidMount(){
+    this.setState({location: 'destination'});
+  }
 
   render(){
     const { navigate } = this.props.navigation;
@@ -147,7 +138,7 @@ export default class Destination extends Component {
               
               <Next onPress={() => {
                 console.log(this.state);
-                navigate('Confirm', {amt: this.state, image: destination})}} 
+                navigate('Confirm', {values: this.state})}} 
                 />
       </View>
     )

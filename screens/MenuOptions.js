@@ -23,8 +23,50 @@ export default class MenuOptions extends Component {
     header: null,
   
   }
+  constructor(props) {
+    super(props);
+    this.state = {
+      
+      Bar_Id: "",
+      Bar_Serial: "",
+      Vault_Location: "",
+      Weight: "",
+      Purity: "",
+      Date_Received: "",
+      Date_Processed: "",
+      Mint: "",
+      Supplier: "",
+      location: "",
+      location: ""
+    
+    }
+  }
+  returnData(id) {
+    this.setState({Bar_Id: id});
+    console.log(this.state)
+  }
+  componentDidMount(){
+
+  }
+  // componentDidMount() {
+  //   let values;
+    
+    
+  //      console.log(this.props);
+  //      if(this.props.navigation.state.params === 'undefined'){
+  //        console.log("nothing here");
+  //      }
+  //      else{
+  //        console.log(this.props.navigation.state.params, "params in options");
+  //         // values = this.props.navigation.state.params.values;
+  //      }
+    
+  // }
   render(){
     const { navigate } = this.props.navigation;
+    console.log(this.props,'this props options')
+    let values = this.props.navigation.state.params;
+    console.log(values, 'values')
     return(
       <View style={styles.container}>
       <Image source={logo} style={styles.menuLogo}/>
@@ -83,7 +125,7 @@ export default class MenuOptions extends Component {
             />
           </TouchableHighlight> 
           
-          <TouchableHighlight  onPress={() => navigate('BlockScan')}>
+          <TouchableHighlight  onPress={() => navigate('BlockScan', values={values})}>
             <Image
               style={styles.button}
               source={blockScan}

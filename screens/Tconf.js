@@ -10,43 +10,40 @@ import submit from "../assets/submitButton.png";
 // - Lock Decimals to "18"
 // - Lock Total Market Supply to "40,000" <- this number subject to change after
  
-export default class Tee extends Component {
-    static navigationOptions = {
-        header: null,
-
-      }
+export default class Tconf extends Component {
   
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-      symbol: "",
-      decimals: '18',
-      totMark: '40,000'
-      
-    }
-  }
+    static navigationOptions = {
+         header: null,
+ 
+        }
     render(){
-     
       const { navigate } = this.props.navigation;
+      let values = this.props.navigation.state.params.values;
+      console.log(this.props.navigation.state.params.values);
+      
       return(
           
         <View style={styles.container}>
           <View style={styles.header}>
-            <Image source={logo} style={styles.menuLogo}/>
-            <Image source={params} style={styles.label} image={personal} /> 
+            <TouchableHighlight onPress={() => navigate('MenuOptions')}>
+              <Image source={logo} style={styles.menuLogo}/>
+            </TouchableHighlight>
+            <Text style={styles.text}> Please Confirm Your IGVC Legend</Text>
           </View>
+         
          
           <View style={styles.legendInput}>
             <Text style={styles.inputLabel}> Name </Text>
-            <TextInput style={styles.input} 
-              onChangeText={(name) => this.setState({name})} />
+            <Text style={styles.input}>
+              {values.name}
+              </Text> 
          </View>
          
          <View style={styles.legendInput}>
             <Text style={styles.inputLabel}> Symbol </Text>
-            <TextInput style={styles.input}
-              onChangeText={(symbol) => this.setState({symbol})} />
+            <Text style={styles.input}>
+             {values.symbol}
+            </Text>
          </View>
          
          <View style={styles.legendInput}>
@@ -60,11 +57,11 @@ export default class Tee extends Component {
          </View>
            
           
-         
+         <Image style={styles.button} source={submit} />
 
-         <TouchableHighlight onPress={() => navigate('Tconf', {values: this.state})}>
+         {/* <TouchableHighlight onPress={() => console.log(this.state)}>
             <Image style={styles.button} source={submit} />
-         </TouchableHighlight>
+         </TouchableHighlight> */}
       </View>
 
 
@@ -104,6 +101,20 @@ const styles = StyleSheet.create({
         height: 50,
         width: '80%',
         resizeMode: 'contain'
+      },
+      text: {
+     
+        flex: .8, 
+        height: 30,
+        textAlign: "left",
+        backgroundColor: "#02182d", 
+        margin: .5,
+        fontSize: 23,
+        fontWeight: "400",
+        borderColor: "#142535",
+        color: "white",
+        borderWidth: 1
+      
       },
     legendInput: {
       // alignSelf: "center",

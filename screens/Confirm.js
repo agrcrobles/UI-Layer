@@ -37,42 +37,23 @@ export default class Confirm extends Component  {
   
   
   }
- 
-  // _onPressBack(){
-  //    Alert.alert("you touched BAck")
-  //  }
+
    
-   _onPressSubmit(amt){
-    const { navigate } = this.props.navigation;
-      console.log(amt);
-     let myApi = 'barInf';
-     let path = '/bars/' + amt.Bar_Id;
-     let myInit = {body: {barID: amt.Bar_Id, barSerial: amt.Bar_Serial}};
-
-     API.post(myApi, path, myInit).then(response => {
-       console.log(response);
-     })
-     .then(err => {
-       if(err){
-         console.log(err, "whoops");
-       };
-      }
-     );     
-     
-      
-     
-
-      navigate('ThankYou', amt={amt});
-   }          
+  //  _onPressSubmit(values){
+  //   const { navigate } = this.props.navigation;
+  //     console.log(values, 'val');
+  
+  //     navigate('ThankYou', {values:values});
+  //  }          
      
    
     
     render(){
       // debugger;
-      // const { navigate } = this.props.navigation;
-      let values = this.props.navigation.state.params.amt;
-      let serial = values.Bar_Serial;
-      const id = values.Bar_Id;
+    const { navigate } = this.props.navigation;
+      let values = this.props.navigation.state.params.values;
+     console.log(values, 'val')
+      // const id = values.Bar_Id;
      
     return(
      
@@ -81,23 +62,23 @@ export default class Confirm extends Component  {
         <Title image={destination} />
         <Text style={styles.confirm}>CONFIRM</Text>
                
-        <Text style={styles.input}>Bar ID: {id}</Text>
-        <Text style={styles.input}>Bar Serial {serial}</Text>
-
-        {/* <ScrollView contentContainerStyle={styles.menu}>
-          <View style={styles.content}>
-            {Object.keys(amt).map((keyName, keyIndex) => {
+        {/* <Text style={styles.input}>Bar ID: {id}</Text>
+        <Text style={styles.input}>Bar Serial {serial}</Text> */}
+         
+        <View style={styles.menu}>
+            {Object.keys(values).map((keyName, keyIndex) => {
               return(
-              <View key={keyIndex} style={styles.view}>
+              <View key={keyIndex} style={styles.field}>
                 <Text style={styles.input}>{keyName}</Text>
-                <Text style={styles.value}> {amt[keyName]}</Text>
+                <Text style={styles.value}> {values[keyName]}</Text>
               </View>
               )
             })}
           </View>
-        </ScrollView> */}
+        
+     
 
-      <TouchableHighlight onPress={() => this._onPressSubmit(values)}
+      <TouchableHighlight onPress={() => navigate('ThankYou', values={values})}
         >
         <Image
           style={{width: 200, height: 70, resizeMode: "cover"}}
@@ -120,13 +101,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   menu: {
-    height: 500,
-    width: "100%",
+    height: 300,
+    width: "90%",
     // justifyContent: "center",
     alignItems: "center",
-    backgroundColor: 'blue',
+    backgroundColor: '#021227',
     paddingTop: 5,
-    paddingBottom: 5,
+    paddingBottom: 5
   },
   scrollContent: {
     flex: 1,
@@ -142,18 +123,39 @@ const styles = StyleSheet.create({
       margin: .5
       // marginBottom: 1
     },
-  input: {
-    width: 170, 
-    height: 30,
-    textAlign: "center",
-    backgroundColor: "#132c4a", 
-    margin: .5,
-    fontSize: 25,
-    fontWeight: "600",
-    borderColor: "#142535",
-    color: "yellow",
-    borderWidth: 1
-  },
+    label: {
+      color: "white",
+      width: 120,
+      fontSize: 20.2,
+      fontWeight: "600",
+      paddingLeft: 5
+  
+    },
+    field: {
+      height: 60,
+      flexDirection: "row",
+      justifyContent: "space-between",
+      width: "80%",
+      backgroundColor: "#021227",
+      // marginTop: 5,
+      // marginBottom: 5,
+      alignItems: "center",
+      paddingLeft: 5
+    },
+  
+    input: {
+      width: 150, 
+      height: 25,
+      textAlign: "center",
+      backgroundColor: "#021227", 
+      // margin: .5,
+      fontSize: 20.2,
+      fontWeight: "600",
+      borderColor: "#021227",
+      color: "white",
+      borderWidth: 1,
+      // paddingLeft: 1
+    },
  
   confirm: {
     fontSize: 40,

@@ -8,6 +8,7 @@ import Submit from "../components/SubmitBtn";
 import hLogo from "../assets/hLogo.png";
 import feeLabel from "../assets/hercFeeLabel.png";
 import viewBtn from "../assets/veiwBtn.png";
+// import TouchableHeader from "../components/TouchableHeader";
 
 // - make the "personal wallet" filled with 10,000 Hercs
 // - make the menu drop down to another "My Hercs" wallet
@@ -27,7 +28,9 @@ export default class DigiViewer extends Component {
           
         <View style={styles.container}>
           <View style={styles.header}>
-            <Image source={logo} style={styles.menuLogo}/>
+           <TouchableHighlight onPress={() => navigate('MenuOptions')}>
+             <Image source={logo} style={styles.menuLogo}/>
+            </TouchableHighlight>  
             <Image source={label} style={styles.label} image={persWal} /> 
           </View>
         <Image source={stakeTxt} style={{height: 100, width: 320, resizeMode: 'contain'}}/>

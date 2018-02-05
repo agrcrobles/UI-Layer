@@ -14,12 +14,17 @@ import Anthem from './screens/Anthem';
 import Hipr from './screens/Hipr';
 import Splash from './screens/SplashPanel';
 import BlockScan from './screens/BlockScan';
+import Tconf from './screens/Tconf';
+import FileThanks from './screens/FileThanks';
+
+
 
 const HercDemo = StackNavigator({
   Welcome: { screen: Welcome },
   MenuOptions: {screen: MenuOptions},
   Legend: {screen: Legend},
   Tee: {screen: Tee},
+  Tconf : {screen: Tconf},
   Digi: {screen: Digi},
   Anthem: {screen: Anthem},
   Hipr: {screen: Hipr},
@@ -29,13 +34,29 @@ const HercDemo = StackNavigator({
   Destination: { screen: Destination },
   FileUp: { screen: FileUp },
   Confirm: { screen: Confirm },
-  ThankYou: { screen: ThankYou}
+  ThankYou: { screen: ThankYou},
+  FileThanks: { screen: FileThanks}
  
   }
 )
 
 export default class App extends Component {
   static navigationOptions = { header: null }
+  constructor(props) {
+    super(props);
+    this.state = {
+      
+      Bar_Id: "",
+      Bar_Serial: "",
+      Vault_Location: "",
+      Weight: "",
+      Purity: "",
+      Date_Received: "",
+      Date_Processed: "",
+      Mint: "",
+      Supplier: ""  
+    }
+  }
     render() {
       return <HercDemo />
     }

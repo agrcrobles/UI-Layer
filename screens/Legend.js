@@ -9,6 +9,7 @@ import personal from "../assets/personalLegend.png";
          header: null,
  
         }
+      
     render(){
       const { navigate } = this.props.navigation;
       return(
@@ -22,8 +23,8 @@ import personal from "../assets/personalLegend.png";
           <View style={styles.legendInput}>
             <Text style={styles.input}> 10,000 </Text>
             <Image source={logo} style={styles.icon} />
-                      
-         </View>
+          </View>
+
           <TouchableHighlight style={styles.bigButton}
             onPress={()=> navigate('Tee')}
             >

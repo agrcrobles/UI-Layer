@@ -11,17 +11,17 @@ import { DocumentPicker, ImagePicker } from 'expo';
 import Amplify, { Storage } from 'aws-amplify';
 // import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
 // console.log(aws_exports);
-Amplify.configure({
-    Auth: {
-    identityPoolId: 'us-east-1:f0e40134-54a1-47b0-b297-d895a1e5a4ca', //REQUIRED - Amazon Cognito Identity Pool ID
-    region: 'us-east-1', // REQUIRED - Amazon Cognito Region
+// Amplify.configure({
+//     Auth: {
+//     identityPoolId: 'us-east-1:f0e40134-54a1-47b0-b297-d895a1e5a4ca', //REQUIRED - Amazon Cognito Identity Pool ID
+//     region: 'us-east-1', // REQUIRED - Amazon Cognito Region
    
-  },
-  Storage: {
-    bucket: 'hercone-deployments-mobilehub-1541391316', //REQUIRED -  Amazon S3 bucket
-    region: 'us-east-1', //OPTIONAL -  Amazon service region
-  }
-  });
+//   },
+//   Storage: {
+//     bucket: 'hercone-deployments-mobilehub-1541391316', //REQUIRED -  Amazon S3 bucket
+//     region: 'us-east-1', //OPTIONAL -  Amazon service region
+//   }
+//   });
 
 
 
@@ -83,55 +83,21 @@ export default class FileUp extends Component {
     }
   };
 
-  _submitFile = async docResult => {
-    const { navigate } = this.props.navigation;
-    let image, docUri, docName;
-      if(this.state.image){
-        image = this.state.image;
-        Storage.put('test', image)
-        .then (result => console.log(result, "it worked?"))
-        .catch(err => console.log(err));
+  // _submitFile = async docResult => {
 
-        }
-      if(this.state.document) {
-        docName = this.state.document.name;
-        docUri = this.state.document.uri;
-        Storage.put(docName, docUri)
-        .then (result => console.log(result, "it worked?"))
-        .catch(err => console.log(err));
-      }
-      navigate('ThankYou', amt={image: image, docName: docName})
+  //     const { navigate } = this.props.navigation;
+  //     navigate('ThankYou', values={image: image, docName: docName})
     
-      // const file = docResult.uri;
-      // console.log(file);
-      // // const fileName = this.state.imageName;
-      // // console.log(fileName);
-      // if (!file.length) {
-      //   return alert('Please choose a file to upload first.');
-      // }
      
-      // var albumPhotosKey = encodeURIComponent(fileName) + '//';
-      //  const params = {Bucket:'hercone-deployments-mobilehub-153994528', Key:'tester', Body:file};
-      //   Storage.put(file, 'test')
-      //   .then (result => console.log(result, "it worked?"))
-      //   .catch(err => console.log(err));
-      // // var params = {Bucket:'herctest', Key:'tester', Body:file};
-      // s3.upload(params), function(err, data) {
-      //   if (err) {
-      //     return alert('There was an error uploading your photo: ', err.message);
-      //   }
-      //   console.log(data)
-      //   alert('Successfully uploaded photo.');
-        
-      // };
-    };
+  //   };
    
  
   
 
   render() {
-    
-    let { image } = this.state; 
+    const { navigate } = this.props.navigation;
+    let { image } = this.state;
+    let file = this.state.document.uri || this.state.image; 
         return(
       <View style={styles.container}>
         <TouchableHeader onPress={() => navigate('Splash')}/>
@@ -161,7 +127,7 @@ export default class FileUp extends Component {
             {this.state.document.name}
             </Text>
         {/* </ScrollView> */}
-       <Submit onPress={() => {this._submitFile(this.state.document)}} />
+       <Submit onPress={() => navigate('FileThanks') }/>
       </View>
     )
   }_submitDoc
