@@ -9,7 +9,6 @@ import Next from "../components/NextBtn";
 import destination from "../assets/destinationLabel.png";
 import { StackNavigator, } from 'react-navigation';
 
-
  //  For the HERC database input, the fields that I believe we will need for the Bunker Office input are:
 // • text-validators   Bar ID (a code system I’ll be using with bar number and date - eg: 0001–1-11-18)
 // • text-validators   Vault Location ID (a placement within the vault system I’ll be using - eg: 1B1, which is Row 1, back wall, spot 1 from left)
