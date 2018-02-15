@@ -24,23 +24,25 @@ export default class Welcome extends Component {
   }
 
   _onPress(pin){
-    console.log(pin)
-    let apiName = 'barInf';
-    let path = 'bars';
-    let myInit = {
-      headers: {
-        bar_Id: pin,
-        bar_Id: {
-          bar_Serial: '5432'
-        }
-      }
-    }
-    API.post(apiName, path, myInit).then(response => {
-      console.log(response);
-    })
+    
+     console.log(pin)
+     
+  //   let apiName = 'barInf';
+  //   let path = 'bars';
+  //   let myInit = {
+  //     headers: {
+  //       bar_Id: pin,
+  //       bar_Id: {
+  //         bar_Serial: '5432'
+  //       }
+  //     }
+  //   }
+  //   API.post(apiName, path, myInit).then(response => {
+  //     console.log(response);
+  //   })
 
+  // }
   }
-  
   render(){
     const { navigate } = this.props.navigation;
     return(
@@ -50,7 +52,7 @@ export default class Welcome extends Component {
         
             <TextInput onChangeText={(pin) => this.setState({pin})} placeholder="PIN" underlineColorAndroid='transparent' style={styles.input}/>
         
-            <TouchableHighlight style={styles.welcomeBtn} onPress={() => this._onPress(this.state.pin)}>
+            <TouchableHighlight style={styles.welcomeBtn} onPress={() => navigate('MenuOptions')}>
               <Image
                   style={styles.button}
                   source={welcome}

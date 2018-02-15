@@ -7,7 +7,6 @@ import Title from "../components/MenuInputTitle";
 import logo from "../assets/hercLogoBreak.png";
 import menuOptions from "../components/buttons/menuOptions.png";
 import home from "../components/buttons/homeBtn.png";
-import lore from "../components/buttons/loreBtn.png";
 import hiprBtn from "../components/buttons/hiprBtn.png";
 import igvc from "../components/buttons/igvc.png";
 import verifyBtn from "../components/buttons/verifyBtn.png";
@@ -36,8 +35,8 @@ export default class MenuOptions extends Component {
       Date_Processed: "",
       Mint: "",
       Supplier: "",
-      location: "",
       location: ""
+      
     
     }
   }
@@ -76,12 +75,12 @@ export default class MenuOptions extends Component {
         
            
         
-            <TouchableHighlight onPress={() => navigate('Welcome')}>
+            {/* <TouchableHighlight onPress={() => navigate('Welcome')}>
               <Image style={styles.button}
                   
                   source={home}
                 />
-            </TouchableHighlight>
+            </TouchableHighlight> */}
 
             <TouchableHighlight  onPress={() => Alert.alert('Uninstalled Component')}>
             <Image
@@ -159,7 +158,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'space-around',
   },
   menu: {
-    height: 450,
+    height: 400,
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: '#021227'
