@@ -4,18 +4,9 @@ import WelcomeHeader from "../components/WelcomeHeader";
 // import Welcome from "../components/Welcome";
 import { StackNavigator } from 'react-navigation';
 import Title from "../components/MenuInputTitle";
-import welcome from "../assets/welcome.png";
-import * as firebase from 'firebase';
+import vendorSupply from "../assets/vendorAndSupplier.png";
+import pictures from "../assets/picturesLabel.png";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyB4c-dlOic0fYfcCUwNbfDtwxj-QDcujOA",
-    authDomain: "hercone-8025f.firebaseapp.com",
-    databaseURL: "https://hercone-8025f.firebaseio.com",
-    projectId: "hercone-8025f",
-    storageBucket: "",
-    messagingSenderId: "329151475948"
-};
-firebase.initializeApp(firebaseConfig);
 
 export default class SplashPanel extends Component {
   static navigationOptions = {
@@ -24,7 +15,6 @@ export default class SplashPanel extends Component {
   }
   render(){
 
-    var query = firebase.database().ref('/bars');
      
     console.log(
        query.once('value').then((snapshot) => {

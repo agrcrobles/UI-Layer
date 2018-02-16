@@ -19,15 +19,7 @@ export default class ThankYou extends Component {
   componentDidMount(){
     const id = this.props.navigation.state.params.id;
   
-    var newEntry = firebase.database().ref('bars');
-    console.log(
-      newEntry.once('value')
-      .then(function(snapshot) {
-        var key = snapshot.key;
-        var childkey = snapshot.child(id).key
-      }) 
-      ,"database?");
-
+  
   }
   
   render(){
@@ -75,71 +67,4 @@ export default class ThankYou extends Component {
   
     
  
- const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // paddingTop: 30,
-    // width: "100%",
-    backgroundColor: '#021227',
-    // backgroundColor: '#fff',
-    alignItems: 'center',
-    // justifyContent: 'center',
-  },
-  menu: {
-    height: 600,
-    width: "80%",
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: '#021227',
-  },
-  input: {
-    width: 400, 
-    height: 50,
-    textAlign: "center",
-    backgroundColor: "#132c4a", 
-    margin: .5,
-    fontSize: 20.2,
-    fontWeight: "600",
-    borderColor: "#142535",
-    color: "white",
-    borderWidth: 1
-  },
-  view: {
-    width: 200,
-    height: 60,
-      alignItems: "center",
-      justifyContent: "center",
-      backgroundColor: "#021227",
-      margin: .5
-      // marginBottom: 1
-    },
-    input: {
-      width: 170, 
-      height: 30,
-      textAlign: "center",
-      backgroundColor: "#132c4a", 
-      margin: .5,
-      fontSize: 25,
-      fontWeight: "600",
-      borderColor: "#142535",
-      color: "yellow",
-      borderWidth: 1
-    },
-   
-    value: {
-    
-      color: "white",
-      fontSize: 20,
-      fontWeight: "200",
-      textAlign: "center",
-      justifyContent: "center",
-      height: 25,
-      width: 100
-      
-    },
-    content: {
-      width:"100%",
-      padding: 2,
-      justifyContent: "space-around"
-    }
-});
+ 
