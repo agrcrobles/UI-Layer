@@ -17,8 +17,6 @@ export default class ThankYou extends Component {
   }
   
   componentDidMount(){
-   
-  
 
   }
   
@@ -57,9 +55,7 @@ export default class ThankYou extends Component {
     )
   } 
     }
-  
-    
- 
+
 
     const styles = StyleSheet.create({
       container: {
@@ -158,3 +154,4 @@ export default class ThankYou extends Component {
      
     
     });
+

@@ -171,17 +171,16 @@ const styles = StyleSheet.create({
     color: "white",
     width: 120,
     fontSize: 20.2,
+    paddingLeft: 5,
     fontWeight: "600",
-
     paddingLeft: 5
-
-
   },
   field: {
     height: 60,
     flexDirection: "row",
     justifyContent: "space-between",
     width: "80%",
+
 
     backgroundColor: "#021227",
 
