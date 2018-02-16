@@ -9,7 +9,6 @@ import Next from "../components/NextBtn";
 import destination from "../assets/destinationLabel.png";
 import { StackNavigator, } from 'react-navigation';
 
-
  //  For the HERC database input, the fields that I believe we will need for the Bunker Office input are:
 // • text-validators   Bar ID (a code system I’ll be using with bar number and date - eg: 0001–1-11-18)
 // • text-validators   Vault Location ID (a placement within the vault system I’ll be using - eg: 1B1, which is Row 1, back wall, spot 1 from left)
@@ -34,20 +33,11 @@ export default class Destination extends Component {
   constructor(props){
     super(props);
    
-    this.state = {
-      
-        Bar_Id: "",
-        Bar_Serial: "",
-        Vault_Location: "",
-        Weight: "",
-        Purity: "",
-        Date_Received: "",
-        Date_Processed: "",
-        Mint: "",
-        Supplier: ""  
-      }
+   
     } 
-  
+  componentDidMount(){
+    this.setState({location: 'destination'});
+  }
 
   render(){
     const { navigate } = this.props.navigation;
@@ -147,7 +137,7 @@ export default class Destination extends Component {
               
               <Next onPress={() => {
                 console.log(this.state);
-                navigate('Confirm', {amt: this.state, image: destination})}} 
+                navigate('Confirm', {values: this.state})}} 
                 />
       </View>
     )
@@ -167,6 +157,7 @@ const styles = StyleSheet.create({
     width: "90%",
     // justifyContent: "center",
     alignItems: "center",
+
     backgroundColor: '#021227',
     paddingTop: 5,
     paddingBottom: 5
@@ -182,15 +173,17 @@ const styles = StyleSheet.create({
     fontSize: 20.2,
     paddingLeft: 5,
     fontWeight: "600",
-    
-
+    paddingLeft: 5
   },
   field: {
     height: 60,
     flexDirection: "row",
     justifyContent: "space-between",
     width: "80%",
-    backgroundColor: '#021227',
+
+
+    backgroundColor: "#021227",
+
     // marginTop: 5,
     // marginBottom: 5,
     alignItems: "center"

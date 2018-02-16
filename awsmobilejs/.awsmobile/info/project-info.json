@@ -1,0 +1,22 @@
+{
+	"ProjectName": "hercone",
+	"ProjectPath": "D:\\Herc Stuff\\Herc\\hercone",
+	"SourceDir": "src",
+	"DistributionDir": "build",
+	"BuildCommand": "npm.cmd run-script build",
+	"StartCommand": "npm.cmd run-script start",
+	"InitializationTime": "2018-01-31-14-01-35",
+	"LastConfigurationTime": "2018-01-31-14-04-55",
+	"LastNPMInstallTime": "",
+	"FrontendLastBuildTime": "",
+	"LastPublishTime": "",
+	"BackendFormat": "yml",
+	"BackendLastBuildTime": "2018-01-31-15-59-04",
+	"BackendLastUpdateTime": "2018-01-31-16-00-07",
+	"BackendLastUpdateSuccessful": true,
+	"BackendProjectID": "3051244e-ef38-465c-a047-363061d038ae",
+	"BackendProjectName": "hercone",
+	"BackendProjectConsoleUrl": "https://console.aws.amazon.com/mobilehub/home#/3051244e-ef38-465c-a047-363061d038ae/build",
+	"BackendProjectCreationTime": "2018-01-31T20:05:04.223Z",
+	"BackendProjectLastUpdatedTime": "2018-02-01T21:05:28.461Z"
+}

@@ -1,42 +1,50 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert, Button } from 'react-native';
-import TouchableHeader from "../components/TouchableHeader";
-// import Welcome from "../components/Welcome";
+import TouchableHeader from '../components/TouchableHeader';
+// import Welcome from '../components/Welcome';
 import { StackNavigator } from 'react-navigation';
-import Title from "../components/MenuInputTitle";
-import pictures from "../assets/picturesLabel.png";
-import csv from "../assets/csvLabel.png";
-import Submit from "../components/SubmitBtn";
+import Title from '../components/MenuInputTitle';
+import pictures from '../assets/picturesLabel.png';
+import csv from '../assets/csvLabel.png';
+import Submit from '../components/SubmitBtn';
 import { DocumentPicker, ImagePicker } from 'expo';
+import Amplify, { Storage } from 'aws-amplify';
+// import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
+// console.log(aws_exports);
+// Amplify.configure({
+//     Auth: {
+//     identityPoolId: 'us-east-1:f0e40134-54a1-47b0-b297-d895a1e5a4ca', //REQUIRED - Amazon Cognito Identity Pool ID
+//     region: 'us-east-1', // REQUIRED - Amazon Cognito Region
+   
+//   },
+//   Storage: {
+//     bucket: 'hercone-deployments-mobilehub-1541391316', //REQUIRED -  Amazon S3 bucket
+//     region: 'us-east-1', //OPTIONAL -  Amazon service region
+//   }
+//   });
 
-// import Imagepicker from  "../components/ImagePicker";
-// import * as firebase from 'firebase';
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyB4c-dlOic0fYfcCUwNbfDtwxj-QDcujOA",
-//     authDomain: "hercone-8025f.firebaseapp.com",
-//     databaseURL: "https://hercone-8025f.firebaseio.com",
-//     projectId: "hercone-8025f",
-//     storageBucket: "hercone-8025f.appspot.com",
-//     messagingSenderId: "329151475948"
-// };
 
-// firebase.initializeApp(firebaseConfig);
 
 export default class FileUp extends Component {
   static navigationOptions = {header: null };
     state = {
         image: null,
-        img64: null,
-        docUri: null,
-        docName: null,
+        document:{
+          name: null,
+          uri: null
+        }
+        // imageName: null,
+        // docUri: null,
+        // docName: null,
       };
     
   
  
   _pickImage = async () => {
+    console.log("picking Image")
     let result = await ImagePicker.launchImageLibraryAsync({
-      base64: true
+      // base64: true
       // allowsEditing: false,
       // aspect: [4, 3],
     });
@@ -44,9 +52,12 @@ export default class FileUp extends Component {
     console.log(result);
 
     if (!result.cancelled) {
+      console.log(result);
       this.setState({ 
-        image: result.uri,
-        img64: result.base64
+        
+          image: result.uri  
+         
+       
       });
     }
   };
@@ -64,25 +75,29 @@ export default class FileUp extends Component {
 
     if (!docResult.cancelled) {
       this.setState({ 
-        docUri: docResult.uri,
-        docName: docResult.name
+        document: {
+        name: docResult.name,
+        uri: docResult.uri
+        }
        });
     }
   };
 
-  _submitImg = () => {
-    // let image = this.state.image;
-    // let picStorage = firebase.storage().ref('barPhotos/');
-    // picStorage.putString(image,'base64').then((snapshot) => {
-    //   console.log(snapshot, "uploaded base64");
-    // });
+  // _submitFile = async docResult => {
+
+  //     const { navigate } = this.props.navigation;
+  //     navigate('ThankYou', values={image: image, docName: docName})
     
+     
+  //   };
+   
  
-  }
+  
 
   render() {
     const { navigate } = this.props.navigation;
     let { image } = this.state;
+    let file = this.state.document.uri || this.state.image; 
         return(
       <View style={styles.container}>
         <TouchableHeader onPress={() => navigate('Splash')}/>
@@ -93,13 +108,13 @@ export default class FileUp extends Component {
        
 
           {/* <View style={styles.imageContainer}> */}
-            <View style={{ height:100, width: 100, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ height:100, width: 100, alignItems: 'center', justifyContent: 'space-around' }}>
               <Button
                 title="Pickimage"
                 onPress={this._pickImage}
                 />
-              {image &&
-                <Image source={{ uri: image }} style={{ width: 75, height: 75 }} />}
+              
+                <Image source={{ uri: image }} style={{ width: 75, height: 75 }} />
               </View>
             {/* </View> */}
           
@@ -109,13 +124,13 @@ export default class FileUp extends Component {
             style={styles.label}
             />
             <Text style={styles.label}>
-            {this.state.docName}
+            {this.state.document.name}
             </Text>
         {/* </ScrollView> */}
-       <Submit onPress={this._submitImg} />
+       <Submit onPress={() => navigate('FileThanks') }/>
       </View>
     )
-  }
+  }_submitDoc
 }
 const styles = StyleSheet.create({
   container: {

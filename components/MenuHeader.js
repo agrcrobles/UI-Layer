@@ -1,25 +1,27 @@
 import React, {Component} from "react";
 import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
-import NavButtons from "./Header_LogoButtons";
+import NavButtons from "./NavButtons";
 import MenuLogo from "./MenuLogo";
 
-export default class MenuHeader extends Component {
-  render() {
+export default function MenuHeader(props) {
+  
     return (
       <View style={styles.header}>
-        <NavButtons />
-        <MenuLogo />
+      
+      <NavButtons />
+      <MenuLogo />
+      
       </View>
        
         );
-  }
+  
 }
 
 var styles = StyleSheet.create({
   header: {
   
     // remove width and height to override fixed static size
-    height: 175,
+    height: 140,
     width: "100%",
     justifyContent: "space-around",
     alignItems: "center",   
