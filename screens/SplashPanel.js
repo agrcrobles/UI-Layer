@@ -4,18 +4,12 @@ import WelcomeHeader from "../components/WelcomeHeader";
 // import Welcome from "../components/Welcome";
 import { StackNavigator } from 'react-navigation';
 import Title from "../components/MenuInputTitle";
-import welcome from "../assets/welcome.png";
-import * as firebase from 'firebase';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyB4c-dlOic0fYfcCUwNbfDtwxj-QDcujOA",
-    authDomain: "hercone-8025f.firebaseapp.com",
-    databaseURL: "https://hercone-8025f.firebaseio.com",
-    projectId: "hercone-8025f",
-    storageBucket: "",
-    messagingSenderId: "329151475948"
-};
-firebase.initializeApp(firebaseConfig);
+
+import vendorSupply from "../assets/vendorAndSupplier.png";
+import pictures from "../assets/picturesLabel.png";
+
+
 
 export default class SplashPanel extends Component {
   static navigationOptions = {
@@ -24,7 +18,6 @@ export default class SplashPanel extends Component {
   }
   render(){
 
-    var query = firebase.database().ref('/bars');
      
     console.log(
        query.once('value').then((snapshot) => {
@@ -37,11 +30,12 @@ export default class SplashPanel extends Component {
   
 
     const { navigate } = this.props.navigation;
+    console.log(this.props, "this.props")
     return(
       <View style={styles.container}>
         <WelcomeHeader />
         
-        <Title image={welcome} />
+        <Title image={vendorSupply} />
       
         <View style={styles.menu}> 
           <TouchableHighlight  onPress={() => navigate('Destination')}>
@@ -61,7 +55,7 @@ export default class SplashPanel extends Component {
           <TouchableHighlight  onPress={() => navigate('FileUp')}>
             <Image
               style={styles.button}
-              source={require('../assets/skipButton.png')}
+              source={pictures}
             />
           </TouchableHighlight> 
 

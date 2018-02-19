@@ -25,7 +25,7 @@ var styles = StyleSheet.create({
   },
   hercLogo: {
     // justifyContent: "center",
-    
+    // position: "absolute",
     alignItems: "center",
     height: 200,
     width: 300,

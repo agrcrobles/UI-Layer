@@ -6,17 +6,22 @@ import Submit from "../components/SubmitBtn";
 import destination from "../assets/destinationLabel.png";
 import { StackNavigator } from 'react-navigation';
 
-// import * as firebase from 'firebase';
+import Amplify, { API } from 'aws-amplify';
+// import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
+// Amplify.configure(aws_exports);
+  // Auth: {
+  //   'aws_cognito_identity_pool_id': 'us-east-1:f0e40134-54a1-47b0-b297-d895a1e5a4ca', //REQUIRED - Amazon Cognito Identity Pool ID
+  //   'aws_cognito_region': 'us-east-1', // REQUIRED - Amazon Cognito Region
+  //  },
+  // API: {
+  //   endpoints: [
+  //     {
+  //       name: "barInf",
+  //       endpoint: "https://0jl8r6ytha.execute-api.us-east-1.amazonaws.com/MobileHub_Deployments"
+  //     }
+  //   ]
+  // }
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyB4c-dlOic0fYfcCUwNbfDtwxj-QDcujOA",
-//     authDomain: "hercone-8025f.firebaseapp.com",
-//     databaseURL: "https://hercone-8025f.firebaseio.com",
-//     projectId: "hercone-8025f",
-//     storageBucket: "hercone-8025f.appspot.com",
-//     messagingSenderId: "329151475948"
-// };
-// firebase.initializeApp(firebaseConfig);
 
 export default class Confirm extends Component  {
   
@@ -27,87 +32,60 @@ export default class Confirm extends Component  {
   constructor(props) {
     super(props);
     
-     
   }
+  
   
   componentDidMount(){
   
   
   }
- 
-  // _onPressBack(){
-  //    Alert.alert("you touched BAck")
-  //  }
-   
-  //  _onPressSubmit(amt){
-  //   const { navigate } = this.props.navigation;
-  //     console.log(amt);
-  //     let id = amt.Bar_Id;
-  //     let serial = amt.Bar_Serial;
-  //     var database = firebase.database();
-  //     var barRef = database.ref().child(id);
-          
-  //     barRef.set({
-  //       Bar_Serial: serial
-        // Weight: amt.Weight
-        // Vault_Location: amt.Vault_Location,
-        // Purity: amt.Purity,
-        // Date_Received: amt.Date_Received,        
-        // Date_Processed: amt.Date_Processed,
-        // Mint: amt.Mint,
-        // Supplier: amt.Supplier,  
-      
-     // });
 
-      // navigate('ThankYou', amt={Bar_Id: amt.Bar_Id, Bar_Serial: amt.Bar_Serial});
-               
+   
+  //  _onPressSubmit(values){
+  //   const { navigate } = this.props.navigation;
+  //     console.log(values, 'val');
+  
+  //     navigate('ThankYou', {values:values});
+  //  }          
      
    
     
     render(){
       // debugger;
-      const { navigate } = this.props.navigation;
-      const serial = this.props.navigation.state.params.amt.Bar_Serial;
-      const id = this.props.navigation.state.params.amt.Bar_Id;
-      // let serial = amt.Bar_Serial;
-      // const image = this.props.navigation.state.params.image;
-      var database = firebase.database();
-      var barRef = database.ref('bars').child(id);
-      // let id = amt.Bar_Id;
-    console.log(serial, id, "params")
-      return(
+
+    const { navigate } = this.props.navigation;
+      let values = this.props.navigation.state.params.values;
+     console.log(values, 'val')
+      // const id = values.Bar_Id;
      
+    return(
+
       <View style={styles.container}>
         <WelcomeHeader />
         <Title image={destination} />
         <Text style={styles.confirm}>CONFIRM</Text>
                
-        <Text style={styles.input}>Bar ID:</Text>
-        <Text style={styles.value}>{id}</Text>
-        <Text style={styles.input}>Bar Serial:</Text>
-        <Text style={styles.value}>{serial}</Text>
 
-        {/* <ScrollView contentContainerStyle={styles.menu}>
+        {/* <Text style={styles.input}>Bar ID: {id}</Text>
+        <Text style={styles.input}>Bar Serial {serial}</Text> */}
+         
+        <View style={styles.menu}>
+          
           <View style={styles.content}>
             {Object.keys(amt).map((keyName, keyIndex) => {
+
               return(
-              <View key={keyIndex} style={styles.view}>
+              <View key={keyIndex} style={styles.field}>
                 <Text style={styles.input}>{keyName}</Text>
-                <Text style={styles.value}> {amt[keyName]}</Text>
+                <Text style={styles.value}> {values[keyName]}</Text>
               </View>
               )
             })}
           </View>
-        </ScrollView> */}
+        
+     
 
-      <TouchableHighlight onPress={() => {
-        barRef.set({
-          Bar_Serial: serial,
-          image: destination
-
-        })
-        navigate('ThankYou', amt={Bar_Id: id, Bar_Serial: serial})
-        }}
+      <TouchableHighlight onPress={() => navigate('ThankYou', values={values})}
         >
         <Image
           style={{width: 200, height: 70, resizeMode: "cover"}}
@@ -130,13 +108,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   menu: {
-    height: 500,
-    width: "100%",
+    height: 300,
+    width: "90%",
     // justifyContent: "center",
     alignItems: "center",
-    backgroundColor: 'blue',
+    backgroundColor: '#021227',
     paddingTop: 5,
-    paddingBottom: 5,
+    paddingBottom: 5
   },
   scrollContent: {
     flex: 1,
@@ -152,18 +130,39 @@ const styles = StyleSheet.create({
       margin: .5
       // marginBottom: 1
     },
-  input: {
-    width: 170, 
-    height: 30,
-    textAlign: "center",
-    backgroundColor: "#132c4a", 
-    margin: .5,
-    fontSize: 25,
-    fontWeight: "600",
-    borderColor: "#142535",
-    color: "yellow",
-    borderWidth: 1
-  },
+    label: {
+      color: "white",
+      width: 120,
+      fontSize: 20.2,
+      fontWeight: "600",
+      paddingLeft: 5
+  
+    },
+    field: {
+      height: 60,
+      flexDirection: "row",
+      justifyContent: "space-between",
+      width: "80%",
+      backgroundColor: "#021227",
+      // marginTop: 5,
+      // marginBottom: 5,
+      alignItems: "center",
+      paddingLeft: 5
+    },
+  
+    input: {
+      width: 150, 
+      height: 25,
+      textAlign: "center",
+      backgroundColor: "#021227", 
+      // margin: .5,
+      fontSize: 20.2,
+      fontWeight: "600",
+      borderColor: "#021227",
+      color: "white",
+      borderWidth: 1,
+      // paddingLeft: 1
+    },
  
   confirm: {
     fontSize: 40,
