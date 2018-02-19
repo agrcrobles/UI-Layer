@@ -19,14 +19,14 @@ export default class SplashPanel extends Component {
   render(){
 
      
-    console.log(
-       query.once('value').then((snapshot) => {
-         snapshot.forEach((bar) => {
-           bar.getKey();
-           bar.val();
-          });
-       })
-    )
+    // console.log(
+    //    query.once('value').then((snapshot) => {
+    //      snapshot.forEach((bar) => {
+    //        bar.getKey();
+    //        bar.val();
+    //       });
+    //    })
+    // )
   
 
     const { navigate } = this.props.navigation;

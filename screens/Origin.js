@@ -130,7 +130,7 @@ import origin from "../assets/originLabel.png";
                 
                 <Next onPress={() => {
                   console.log(this.state);
-                  navigate('Confirm', {values: this.state })}} 
+                  navigate('Confirm', {values: this.state, image: 'origin' })}} 
                   />
         </View>
       )

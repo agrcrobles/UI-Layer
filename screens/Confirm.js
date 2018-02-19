@@ -36,7 +36,7 @@ export default class Confirm extends Component  {
   
   
   componentDidMount(){
-    let image = this.props.navigation.state.params.image === 'destination' ? destination : origin;
+    
     
   
   
@@ -54,8 +54,8 @@ export default class Confirm extends Component  {
     
     render(){
       // debugger;
-
-    const { navigate } = this.props.navigation;
+      const { navigate } = this.props.navigation;
+      let image = this.props.navigation.state.params.image === 'destination' ? destination : origin;
       let values = this.props.navigation.state.params.values;
      console.log(values, 'val')
       // const id = values.Bar_Id;
@@ -74,7 +74,7 @@ export default class Confirm extends Component  {
         <View style={styles.menu}>
           
           <View style={styles.content}>
-            {Object.keys(amt).map((keyName, keyIndex) => {
+            {Object.keys(values).map((keyName, keyIndex) => {
 
               return(
               <View key={keyIndex} style={styles.field}>
@@ -96,6 +96,7 @@ export default class Confirm extends Component  {
       </TouchableHighlight>
     
         
+       </View>
        </View>
        
     )
