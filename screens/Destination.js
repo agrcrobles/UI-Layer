@@ -44,7 +44,7 @@ export default class Destination extends Component {
     return(
       <View style={styles.container}>
         
-          <TouchableHeader onPress={() => navigate('Splash')} />
+          <TouchableHeader onPress={() => navigate('MenuOptions')} />
         
         <Title image={destination} />
       
@@ -137,7 +137,7 @@ export default class Destination extends Component {
               
               <Next onPress={() => {
                 console.log(this.state);
-                navigate('Confirm', {values: this.state})}} 
+                navigate('Confirm', {image: 'destination', values: this.state})}} 
                 />
       </View>
     )
