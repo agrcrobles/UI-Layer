@@ -4,9 +4,9 @@ import Title from "../components/MenuInputTitle";
 import WelcomeHeader from "../components/WelcomeHeader";
 import Submit from "../components/SubmitBtn";
 import destination from "../assets/destinationLabel.png";
+import origin from "../assets/originLabel.png";
 import { StackNavigator } from 'react-navigation';
-
-import Amplify, { API } from 'aws-amplify';
+// import Amplify, { API } from 'aws-amplify';
 // import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
 // Amplify.configure(aws_exports);
   // Auth: {
@@ -36,6 +36,8 @@ export default class Confirm extends Component  {
   
   
   componentDidMount(){
+    let image = this.props.navigation.state.params.image === 'destination' ? destination : origin;
+    
   
   
   }
@@ -62,7 +64,7 @@ export default class Confirm extends Component  {
 
       <View style={styles.container}>
         <WelcomeHeader />
-        <Title image={destination} />
+        <Title image={image} />
         <Text style={styles.confirm}>CONFIRM</Text>
                
 
