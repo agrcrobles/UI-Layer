@@ -4,8 +4,11 @@ import WelcomeHeader from "../components/WelcomeHeader";
 // import Welcome from "../components/Welcome";
 import { StackNavigator } from 'react-navigation';
 import Title from "../components/MenuInputTitle";
+
+
 import vendorSupply from "../assets/vendorAndSupplier.png";
 import pictures from "../assets/picturesLabel.png";
+
 
 
 export default class SplashPanel extends Component {
@@ -14,6 +17,18 @@ export default class SplashPanel extends Component {
   
   }
   render(){
+
+     
+    console.log(
+       query.once('value').then((snapshot) => {
+         snapshot.forEach((bar) => {
+           bar.getKey();
+           bar.val();
+          });
+       })
+    )
+  
+
     const { navigate } = this.props.navigation;
     console.log(this.props, "this.props")
     return(

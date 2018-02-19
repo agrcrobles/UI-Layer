@@ -22,6 +22,7 @@ import { StackNavigator } from 'react-navigation';
   //   ]
   // }
 
+
 export default class Confirm extends Component  {
   
   static navigationOptions = {
@@ -53,23 +54,28 @@ export default class Confirm extends Component  {
     
     render(){
       // debugger;
+
     const { navigate } = this.props.navigation;
       let values = this.props.navigation.state.params.values;
      console.log(values, 'val')
       // const id = values.Bar_Id;
      
     return(
-     
+
       <View style={styles.container}>
         <WelcomeHeader />
         <Title image={image} />
         <Text style={styles.confirm}>CONFIRM</Text>
                
+
         {/* <Text style={styles.input}>Bar ID: {id}</Text>
         <Text style={styles.input}>Bar Serial {serial}</Text> */}
          
         <View style={styles.menu}>
-            {Object.keys(values).map((keyName, keyIndex) => {
+          
+          <View style={styles.content}>
+            {Object.keys(amt).map((keyName, keyIndex) => {
+
               return(
               <View key={keyIndex} style={styles.field}>
                 <Text style={styles.input}>{keyName}</Text>

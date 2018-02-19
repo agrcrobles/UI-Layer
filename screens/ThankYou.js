@@ -17,9 +17,7 @@ export default class ThankYou extends Component {
   }
   
   componentDidMount(){
-   
-  
-   
+
   }
   
   render(){
@@ -57,9 +55,8 @@ export default class ThankYou extends Component {
     )
   } 
     }
-  
-    
- 
+
+
     const styles = StyleSheet.create({
       container: {
         flex: 1,
@@ -96,6 +93,7 @@ export default class ThankYou extends Component {
           fontSize: 20.2,
           fontWeight: "600",
           paddingLeft: 5
+
       
         },
         field: {
@@ -156,3 +154,4 @@ export default class ThankYou extends Component {
      
     
     });
+
