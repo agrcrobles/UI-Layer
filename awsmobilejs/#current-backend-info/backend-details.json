@@ -1,0 +1,278 @@
+{
+	"name": "hercone",
+	"projectId": "3051244e-ef38-465c-a047-363061d038ae",
+	"region": "us-east-1",
+	"state": "NORMAL",
+	"createdDate": "2018-01-31T20:05:04.223Z",
+	"lastUpdatedDate": "2018-02-01T21:05:28.461Z",
+	"consoleUrl": "https://console.aws.amazon.com/mobilehub/home#/3051244e-ef38-465c-a047-363061d038ae/build",
+	"resources": [
+		{
+			"type": "AWS::S3::Bucket",
+			"name": "hercone-userfiles-mobilehub-1541391316",
+			"arn": null,
+			"feature": "user-data",
+			"attributes": {
+				"lastUpdateRequestID": "12f49965-06e4-11e8-a76b-01149d295c0e",
+				"region": "us-east-1"
+			}
+		},
+		{
+			"type": "AWS::IAM::Policy",
+			"name": "hercone_userfiles_MOBILEHUB_1541391316",
+			"arn": null,
+			"feature": "user-data",
+			"attributes": {
+				"authType": "unauthenticated",
+				"lastUpdateRequestID": "a0d4af09-0793-11e8-9c26-6f407b6138d2",
+				"role": "hercone_unauth_MOBILEHUB_1541391316"
+			}
+		},
+		{
+			"type": "AWS::IAM::Policy",
+			"name": "hercone_nosqldatabase_MOBILEHUB_1541391316",
+			"arn": null,
+			"feature": "database",
+			"attributes": {
+				"authType": "unauthenticated",
+				"lastUpdateRequestID": "a0d4af09-0793-11e8-9c26-6f407b6138d2",
+				"role": "hercone_unauth_MOBILEHUB_1541391316"
+			}
+		},
+		{
+			"type": "AWS::DynamoDB::Table",
+			"name": "hercone-mobilehub-1541391316-bars",
+			"arn": "arn:aws:dynamodb:us-east-1:525603262884:table/hercone-mobilehub-1541391316-bars",
+			"feature": "database",
+			"attributes": {
+				"lastUpdateRequestID": "2b44f35a-06e0-11e8-a76b-01149d295c0e"
+			}
+		},
+		{
+			"type": "AWS::Cognito::IdentityPool",
+			"name": "hercone_MOBILEHUB_1541391316",
+			"arn": "us-east-1:f0e40134-54a1-47b0-b297-d895a1e5a4ca",
+			"feature": "user-signin",
+			"attributes": {
+				"lastUpdateRequestID": "06bcf9dc-06c2-11e8-b89b-0915ff573fb6",
+				"poolid": "us-east-1:f0e40134-54a1-47b0-b297-d895a1e5a4ca",
+				"roleARNs": "arn:aws:iam::525603262884:role/hercone_unauth_MOBILEHUB_1541391316"
+			}
+		},
+		{
+			"type": "AWS::IAM::Role",
+			"name": "hercone_unauth_MOBILEHUB_1541391316",
+			"arn": "arn:aws:iam::525603262884:role/hercone_unauth_MOBILEHUB_1541391316",
+			"feature": "user-signin",
+			"attributes": {
+				"authType": "unauthenticated",
+				"lastUpdateRequestID": "06bcf9dc-06c2-11e8-b89b-0915ff573fb6"
+			}
+		},
+		{
+			"type": "AWS::IAM::Policy",
+			"name": "hercone_userprofiles_MOBILEHUB_1541391316",
+			"arn": null,
+			"feature": "user-data",
+			"attributes": {
+				"authType": "unauthenticated",
+				"lastUpdateRequestID": "12f49965-06e4-11e8-a76b-01149d295c0e",
+				"role": "hercone_unauth_MOBILEHUB_1541391316"
+			}
+		},
+		{
+			"type": "AWS::S3::File",
+			"name": "barInf/api/barInf.json",
+			"arn": null,
+			"feature": "cloud-api",
+			"attributes": {
+				"eTag": "b6f827a40948f05e6345e3076b7a4187",
+				"lastUpdateRequestID": "a0d4af09-0793-11e8-9c26-6f407b6138d2",
+				"versionID": "au96TEZfurjVH_CxOJg9Fm8cdwRTdsm0"
+			}
+		},
+		{
+			"type": "AWS::S3::File",
+			"name": "barInf/lambda/barInf.zip",
+			"arn": null,
+			"feature": "cloud-api",
+			"attributes": {
+				"eTag": "f2a9164e018c2579953063633f98559a",
+				"lastUpdateRequestID": "ec810760-06e0-11e8-8a02-778b302b2695",
+				"versionID": "jRZrG.K9vHea1.sY.3TqZBD.Pbl2eNgH"
+			}
+		},
+		{
+			"type": "AWS::Lambda::Permission",
+			"name": "MOBILEHUB-1541391316-Development-CloudLogic-barInfbarInfpermissionmobilehub1541391316-1IVWZ2HC7BUL6",
+			"arn": null,
+			"feature": "cloud-api",
+			"attributes": {
+				"cfLogicalID": "barInfbarInfpermissionmobilehub1541391316",
+				"cfPhysicalID": "MOBILEHUB-1541391316-Development-CloudLogic-barInfbarInfpermissionmobilehub1541391316-1IVWZ2HC7BUL6",
+				"lastUpdateTimestamp": "1517429558540",
+				"reason": "none",
+				"region": "us-east-1",
+				"status": "CREATE_COMPLETE"
+			}
+		},
+		{
+			"type": "AWS::IAM::Role",
+			"name": "MOBILEHUB-1541391316-Developme-lambdaexecutionrole-1QLHLTZR73G3T",
+			"arn": null,
+			"feature": "cloud-api",
+			"attributes": {
+				"cfLogicalID": "lambdaexecutionrole",
+				"cfPhysicalID": "MOBILEHUB-1541391316-Developme-lambdaexecutionrole-1QLHLTZR73G3T",
+				"deeplinkURL": "https://console.aws.amazon.com/iam/home?region=us-east-1#roles/MOBILEHUB-1541391316-Developme-lambdaexecutionrole-1QLHLTZR73G3T",
+				"lastUpdateTimestamp": "1517429521391",
+				"reason": "none",
+				"region": "us-east-1",
+				"status": "CREATE_COMPLETE"
+			}
+		},
+		{
+			"type": "AWS::CloudFormation::Stack",
+			"name": "arn:aws:cloudformation:us-east-1:525603262884:stack/MOBILEHUB-1541391316-Development-CloudLogic-1M90Y05JIGOEW/efd07bc0-06c2-11e8-b6cd-50fae98974fd",
+			"arn": null,
+			"feature": "cloud-api",
+			"attributes": {
+				"cfLogicalID": "CloudLogic",
+				"cfPhysicalID": "arn:aws:cloudformation:us-east-1:525603262884:stack/MOBILEHUB-1541391316-Development-CloudLogic-1M90Y05JIGOEW/efd07bc0-06c2-11e8-b6cd-50fae98974fd",
+				"deeplinkURL": "https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stack/detail?stackId=arn:aws:cloudformation:us-east-1:525603262884:stack/MOBILEHUB-1541391316-Development-CloudLogic-1M90Y05JIGOEW/efd07bc0-06c2-11e8-b6cd-50fae98974fd",
+				"lastUpdateTimestamp": "1517442417999",
+				"reason": "none",
+				"region": "us-east-1",
+				"status": "UPDATE_COMPLETE"
+			}
+		},
+		{
+			"type": "AWS::Lambda::Function",
+			"name": "barInf-barInf-mobilehub-1541391316",
+			"arn": null,
+			"feature": "cloud-api",
+			"attributes": {
+				"cfLogicalID": "barInfbarInfmobilehub1541391316",
+				"cfPhysicalID": "barInf-barInf-mobilehub-1541391316",
+				"configApiName": "barInf",
+				"configHandlerName": "barInf",
+				"deeplinkURL": "https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/barInf-barInf-mobilehub-1541391316",
+				"lastUpdateTimestamp": "1517442389997",
+				"reason": "none",
+				"region": "us-east-1",
+				"status": "UPDATE_COMPLETE"
+			}
+		},
+		{
+			"type": "AWS::IAM::Policy",
+			"name": "MOBIL-lamb-178A05KNIPJ6Z",
+			"arn": null,
+			"feature": "cloud-api",
+			"attributes": {
+				"cfLogicalID": "lambdaexecutionpolicy",
+				"cfPhysicalID": "MOBIL-lamb-178A05KNIPJ6Z",
+				"lastUpdateTimestamp": "1517429530865",
+				"reason": "none",
+				"region": "us-east-1",
+				"status": "CREATE_COMPLETE"
+			}
+		},
+		{
+			"type": "AWS::ApiGateway::Stage",
+			"name": "barInf-Development-MobileHub-1541391316",
+			"arn": null,
+			"feature": "cloud-api",
+			"attributes": {
+				"cfLogicalID": "barInfDevelopmentMobileHub1541391316",
+				"cfPhysicalID": "Development",
+				"lastUpdateTimestamp": "1517442392080",
+				"reason": "none",
+				"region": "us-east-1",
+				"status": "UPDATE_COMPLETE"
+			}
+		},
+		{
+			"type": "AWS::Lambda::Alias",
+			"name": "barInf-barInf-Development-mobilehub-1541391316",
+			"arn": null,
+			"feature": "cloud-api",
+			"attributes": {
+				"cfLogicalID": "DevelopmentbarInfbarInfaliasmobilehub1541391316",
+				"cfPhysicalID": "arn:aws:lambda:us-east-1:525603262884:function:barInf-barInf-mobilehub-1541391316:Development",
+				"deeplinkURL": "https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/barInf-barInf-mobilehub-1541391316/Development",
+				"lastUpdateTimestamp": "1517429545607",
+				"reason": "none",
+				"region": "us-east-1",
+				"status": "CREATE_COMPLETE"
+			}
+		},
+		{
+			"type": "AWS::ApiGateway::RestApi",
+			"name": "barInf-MobileHub-1541391316",
+			"arn": null,
+			"feature": "cloud-api",
+			"attributes": {
+				"cfLogicalID": "barInfMobileHub1541391316",
+				"cfPhysicalID": "0jl8r6ytha",
+				"configApiName": "barInf",
+				"deeplinkURL": "https://console.aws.amazon.com/apigateway/home?region=us-east-1#/apis/0jl8r6ytha/resources",
+				"lastUpdateTimestamp": "1517442386145",
+				"reason": "none",
+				"region": "us-east-1",
+				"status": "UPDATE_COMPLETE"
+			}
+		},
+		{
+			"type": "AWS::IAM::Policy",
+			"name": "MOBIL-Poli-TGISXUWB6SBJ",
+			"arn": null,
+			"feature": "cloud-api",
+			"attributes": {
+				"cfLogicalID": "PolicybarInfMobileHub1541391316",
+				"cfPhysicalID": "MOBIL-Poli-TGISXUWB6SBJ",
+				"lastUpdateTimestamp": "1517429546976",
+				"reason": "none",
+				"region": "us-east-1",
+				"status": "CREATE_COMPLETE"
+			}
+		},
+		{
+			"type": "AWS::ApiGateway::Deployment",
+			"name": "barInf-Development140f2b02361e7717-MobileHub-1541391316",
+			"arn": null,
+			"feature": "cloud-api",
+			"attributes": {
+				"cfLogicalID": "barInfDevelopment140f2b02361e7717MobileHub1541391316",
+				"cfPhysicalID": "uqty2q",
+				"lastUpdateTimestamp": "1517442388976",
+				"reason": "none",
+				"region": "us-east-1",
+				"status": "CREATE_COMPLETE"
+			}
+		},
+		{
+			"type": "AWS::S3::Bucket",
+			"name": "hercone-deployments-mobilehub-1541391316",
+			"arn": null,
+			"feature": "common",
+			"attributes": {
+				"region": "us-east-1"
+			}
+		},
+		{
+			"type": "AWS::CloudFormation::Stack",
+			"name": "Development",
+			"arn": "arn:aws:cloudformation:us-east-1:525603262884:stack/MOBILEHUB-1541391316-Development/ebee3880-06c2-11e8-a449-50fae9882035",
+			"feature": "cloud-api",
+			"attributes": {
+				"cfHash": "-136950348",
+				"locked": "true",
+				"primary": "true",
+				"region": "us-east-1",
+				"stack-arn": "arn:aws:cloudformation:us-east-1:525603262884:stack/MOBILEHUB-1541391316-Development/ebee3880-06c2-11e8-a449-50fae9882035",
+				"stateDetails": "none",
+				"stateSummary": "UPDATE_COMPLETE"
+			}
+		}
+	]
+}
