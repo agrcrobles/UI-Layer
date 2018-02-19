@@ -14,14 +14,14 @@ import digiView from "../components/buttons/digitalViewBtn.png";
 import blockScan from "../components/buttons/blockScannerBtn.png";
 import settings from "../components/buttons/settingsBtn.png";
 import wallet from "../components/buttons/walletBtn.png";
-
+import styles from "../assets/styles";
 
 
 export default class MenuOptions extends Component {
-  static navigationOptions = {
-    header: null,
+  // static navigationOptions = {
+  //   header: null,
   
-  }
+  // }
   constructor(props) {
     super(props);
     this.state = {
@@ -40,10 +40,10 @@ export default class MenuOptions extends Component {
     
     }
   }
-  returnData(id) {
-    this.setState({Bar_Id: id});
-    console.log(this.state)
-  }
+  // returnData(id) {
+  //   this.setState({Bar_Id: id});
+  //   console.log(this.state)
+  // }
   componentDidMount(){
 
   }
@@ -62,14 +62,15 @@ export default class MenuOptions extends Component {
     
   // }
   render(){
+    console.log(styles);
     const { navigate } = this.props.navigation;
     console.log(this.props,'this props options')
-    let values = this.props.navigation.state.params;
-    console.log(values, 'values')
+    // let values = this.props.navigation.state.params;
+    // console.log(values, 'values')
     return(
       <View style={styles.container}>
-      <Image source={logo} style={styles.menuLogo}/>
-        <Title image={menuOpts} />
+      {/* <Image source={logo} style={styles.menuLogo}/> */}
+        <Image source={menuOpts} style={styles.menuInputTitle} />
           
           <View style={styles.menu}>
         
@@ -82,7 +83,7 @@ export default class MenuOptions extends Component {
                 />
             </TouchableHighlight> */}
 
-            <TouchableHighlight  onPress={() => Alert.alert('Uninstalled Component')}>
+            <TouchableHighlight onPress={() => Alert.alert('Uninstalled Component')}>
             <Image
               style={styles.button}
               source={wallet}
@@ -147,58 +148,58 @@ export default class MenuOptions extends Component {
   };
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 30,
-    // width: "100%",
-    backgroundColor: '#021227',
-    // backgroundColor: '#fff',
-    alignItems: 'center',
-    // justifyContent: 'space-around',
-  },
-  menu: {
-    height: 400,
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: '#021227'
-    // paddingTop: 50
-    // margin: .5,
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     paddingTop: 30,
+//     // width: "100%",
+//     backgroundColor: '#021227',
+//     // backgroundColor: '#fff',
+//     alignItems: 'center',
+//     // justifyContent: 'space-around',
+//   },
+//   menu: {
+//     height: 400,
+//     alignItems: "center",
+//     justifyContent: "space-between",
+//     backgroundColor: '#021227'
+//     // paddingTop: 50
+//     // margin: .5,
   
-    },
-    button: {
-      width: 350, 
-      height: 51,
-      alignItems: 'center',
-      margin: 1
+//     },
+//     button: {
+//       width: 350, 
+//       height: 51,
+//       alignItems: 'center',
+//       margin: 1
       
-    },
-    btnImg: {
-        resizeMode: 'cover',
+//     },
+//     btnImg: {
+//         resizeMode: 'cover',
 
-    },
-    input: {
-      width: 150, 
-      height: 40,
-      textAlign: "center",
-      backgroundColor: "#132c4a", 
-      // margin: .5,
-      fontSize: 20.2,
-      fontWeight: "600",
-      borderColor: "#142535",
-      color: "white",
-      borderWidth: 1,
-      marginTop: 100
-    },
-    menuLogo: {
-    justifyContent: "center",
-    alignItems: "center",
-    height: 140,
-    width: 200,
-    resizeMode: "contain",
-    backgroundColor: '#021227',
-    // margin: .5
+//     },
+//     input: {
+//       width: 150, 
+//       height: 40,
+//       textAlign: "center",
+//       backgroundColor: "#132c4a", 
+//       // margin: .5,
+//       fontSize: 20.2,
+//       fontWeight: "600",
+//       borderColor: "#142535",
+//       color: "white",
+//       borderWidth: 1,
+//       marginTop: 100
+//     },
+//     menuLogo: {
+//     justifyContent: "center",
+//     alignItems: "center",
+//     height: 140,
+//     width: 200,
+//     resizeMode: "contain",
+//     backgroundColor: '#021227',
+//     // margin: .5
        
-  }
+//   }
  
-  });
+//   });
