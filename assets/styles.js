@@ -3,6 +3,16 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 module.exports = StyleSheet.create({
 
+    headerLogo: {
+        resizeMode: 'contain',
+        height: 100,
+        width: 300
+        // alignSelf: 'center',
+        // marginBottom: 10,
+        // height: 300,
+        // width: 700
+    },
+    
     container: {
         flex: 1,
         backgroundColor: '#021227',
@@ -11,7 +21,7 @@ module.exports = StyleSheet.create({
 
     },
     menu: {
-        height: 400,
+        height: 450,
         alignItems: "center",
         justifyContent: "space-between",
         backgroundColor: '#021227'
@@ -66,8 +76,8 @@ module.exports = StyleSheet.create({
         backgroundColor: 'red'
     },
     button: {
-        width: 300,
-        height: 60,
+        width: 275,
+        height: 47,
         backgroundColor: "#132c4a",
         margin: 5,
         borderColor: "#142535",

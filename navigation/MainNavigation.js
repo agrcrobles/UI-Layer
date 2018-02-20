@@ -4,7 +4,7 @@ import { View, Platform, Image } from 'react-native';
 import { STATUS_BAR_HEIGHT } from '../constants';
 import styles from '../assets/styles';
 import icon from '../assets/hLogo.png';
-import logo from '../assets/logo.png';
+import logo from '../assets/hercLogoBreak.png';
 import backArrow from '../assets/icon_backarrow.png';
 
 import Welcome from "../screens/Welcome";
@@ -48,9 +48,9 @@ const MainNavigator = StackNavigator({
     {
         initialRouteName: 'Welcome',
         navigationOptions: {
-            title: <Image style={{ resizeMode: 'contain', alignSelf: 'flex-start', marginBottom: 10 }} source={logo} />,
+            title: <Image style={{resizeMode: 'contain'}} source={logo} />,
             headerStyle: {
-                height: Platform.OS === 'android' ? 64 + STATUS_BAR_HEIGHT : 54,
+                height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
                 backgroundColor: '#2196F3',
                 justifyContent: 'space-between'
             },
@@ -58,9 +58,12 @@ const MainNavigator = StackNavigator({
                 marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
                 // color: 'white',
                 alignSelf: 'flex-start',
-                textAlign: 'left',
+                textAlign: 'center',
                 paddingBottom: 15,
-                marginLeft: '20%'
+                flex: 1
+                // height: 100,
+                // width: 300
+                
 
             },
             headerLeft: (
