@@ -13,7 +13,7 @@ import Destination from "../screens/Destination";
 import FileUp from "../screens/FileUp";
 import Confirm from "../screens/Confirm";
 import ThankYou from "../screens/ThankYou";
-import Legend from "../screens/Legend";
+import Create from "../screens/Create";
 import MenuOptions from '../screens/MenuOptions';
 import Tee from '../screens/Tee';
 import Digi from '../screens/DigiViewer';
@@ -27,7 +27,7 @@ import FileThanks from '../screens/FileThanks';
 const MainNavigator = StackNavigator({
     Welcome: { screen: Welcome },
     MenuOptions: { screen: MenuOptions },
-    Legend: { screen: Legend },
+    Create: { screen: Create },
     Tee: { screen: Tee },
     Tconf: { screen: Tconf },
     Digi: { screen: Digi },
@@ -48,7 +48,7 @@ const MainNavigator = StackNavigator({
     {
         initialRouteName: 'Welcome',
         navigationOptions: {
-            title: <Image style={{resizeMode: 'contain'}} source={logo} />,
+            title: <Image style={{ resizeMode: 'contain', alignSelf: 'flex-start', marginBottom: 10 }} source={logo} />,
             headerStyle: {
                 height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
                 backgroundColor: '#2196F3',
@@ -58,12 +58,12 @@ const MainNavigator = StackNavigator({
                 marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
                 // color: 'white',
                 alignSelf: 'flex-start',
-                textAlign: 'center',
+                textAlign: 'left',
                 paddingBottom: 15,
-                flex: 1
+                marginLeft: '20%'
                 // height: 100,
                 // width: 300
-                
+
 
             },
             headerLeft: (

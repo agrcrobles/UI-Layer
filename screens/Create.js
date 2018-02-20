@@ -4,12 +4,8 @@ import logo from "../assets/logo.png";
 import Title from "../components/MenuInputTitle";
 import personal from "../assets/personalLegend.png";
 
- export default class Legend extends Component {
-     static navigationOptions = {
-         header: null,
- 
-        }
-      
+ export default class Create extends Component {
+          
     render(){
       const { navigate } = this.props.navigation;
       return(

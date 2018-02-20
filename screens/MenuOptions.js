@@ -104,7 +104,7 @@ export default class MenuOptions extends Component {
             />
           </TouchableHighlight> 
           
-          <TouchableHighlight  onPress={() => navigate('Legend')}>
+          <TouchableHighlight  onPress={() => navigate('Create')}>
             <Image
               style={styles.button}
               source={igvc}
