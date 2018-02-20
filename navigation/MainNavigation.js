@@ -4,7 +4,7 @@ import { View, Platform, Image } from 'react-native';
 import { STATUS_BAR_HEIGHT } from '../constants';
 import styles from '../assets/styles';
 import icon from '../assets/hLogo.png';
-import logo from '../assets/hercLogoBreak.png';
+import logo from '../assets/logo.png';
 import backArrow from '../assets/icon_backarrow.png';
 
 import Welcome from "../screens/Welcome";
@@ -48,21 +48,32 @@ const MainNavigator = StackNavigator({
     {
         initialRouteName: 'Welcome',
         navigationOptions: {
-            title: <Image style={{ resizeMode: 'contain', alignSelf: 'flex-start', marginBottom: 10 }} source={logo} />,
+            title: <Image style={{
+                height: 300, 
+                width: 800, 
+                // marginBottom: 10 
+            }}
+             source={logo} />,
+                    
             headerStyle: {
                 height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
                 backgroundColor: '#2196F3',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+
             },
             headerTitleStyle: {
-                marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+                // marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
                 // color: 'white',
-                alignSelf: 'flex-start',
                 textAlign: 'left',
-                paddingBottom: 15,
-                marginLeft: '20%'
-                // height: 100,
-                // width: 300
+                textAlignVertical: 'center',
+                // alignSelf: 'center',
+                // justifyContent: 'center',
+                marginLeft: '10%',
+                width: 300,
+                height: 150,
+                backgroundColor: '#021227',
+                // margin: .5
+
 
 
             },
