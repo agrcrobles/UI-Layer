@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
-import { View, Platform, Image } from 'react-native';
+import { View, Platform, Image, TouchableHighlight } from 'react-native';
 import { STATUS_BAR_HEIGHT } from '../constants';
 import styles from '../assets/styles';
 import icon from '../assets/hLogo.png';
@@ -15,6 +15,7 @@ import Confirm from "../screens/Confirm";
 import ThankYou from "../screens/ThankYou";
 import Create from "../screens/Create";
 import MenuOptions from '../screens/MenuOptions';
+import InputMan from '../screens/InputMan';
 import Tee from '../screens/Tee';
 import Digi from '../screens/DigiViewer';
 import Anthem from '../screens/Anthem';
@@ -35,6 +36,7 @@ const MainNavigator = StackNavigator({
     Hipr: { screen: Hipr },
     BlockScan: { screen: BlockScan },
     Splash: { screen: Splash },
+    InputMan: { screen: InputMan },
     Origin: { screen: Origin },
     Destination: { screen: Destination },
     FileUp: { screen: FileUp },
@@ -49,12 +51,12 @@ const MainNavigator = StackNavigator({
         initialRouteName: 'Welcome',
         navigationOptions: {
             title: <Image style={{
-                height: 300, 
-                width: 800, 
+                height: 300,
+                width: 800,
                 // marginBottom: 10 
             }}
-             source={logo} />,
-                    
+                source={logo} />,
+
             headerStyle: {
                 height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
                 backgroundColor: '#2196F3',
@@ -79,20 +81,24 @@ const MainNavigator = StackNavigator({
             },
             headerLeft: (
                 <View>
-                    <Image
-                        source={backArrow}
-                        style={styles.backArrow}
-                    />
+                    <TouchableHighlight
+                        onPress={() => navigation.goBack(null)} >
+                        <Image
+                            source={backArrow}
+                            style={styles.backArrow}
+                        />
+                
+                    </TouchableHighlight>
                 </View>
-            )
-        }
-
-    });
-
+                    )
+                }
+        
+            });
+        
 export default class MainNavigation extends Component {
-    render() {
-        return (
+                        render() {
+                    return (
             <MainNavigator />
-        )
-    }
+                    )
+                }
 }

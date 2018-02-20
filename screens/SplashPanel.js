@@ -38,26 +38,26 @@ export default class SplashPanel extends Component {
         <Title image={vendorSupply} />
       
         <View style={styles.menu}> 
-          <TouchableHighlight  onPress={() => navigate('Destination')}>
+          <TouchableHighlight  onPress={() => navigate('InputMan',{image: 'destination'})}>
             <Image
                 style={styles.button}
                 source={require('../assets/destinationLabel.png')}
               />
           </TouchableHighlight>
 
-          <TouchableHighlight  onPress={() => navigate('Origin')}>
+          <TouchableHighlight  onPress={() => navigate('InputMan', {image: 'origin'})}>
             <Image
               style={styles.button}
               source={require('../assets/originLabel.png')}
             />
           </TouchableHighlight> 
 
-          <TouchableHighlight  onPress={() => navigate('FileUp')}>
+          {/* <TouchableHighlight  onPress={() => navigate('FileUp')}>
             <Image
               style={styles.button}
               source={pictures}
             />
-          </TouchableHighlight> 
+          </TouchableHighlight>  */}
 
         </View>
       </View>

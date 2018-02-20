@@ -11,10 +11,10 @@ import personal from "../assets/personalLegend.png";
       return(
           
         <View style={styles.container}>
-          <View style={styles.header}>
-            <Image source={logo} style={styles.menuLogo}/>
-            <Image source={personal} style={styles.label} image={personal} /> 
-          </View>
+        {/* //   <View style={styles.header}>
+        //     <Image source={logo} style={styles.menuLogo}/>
+        //     <Image source={personal} style={styles.label} image={personal} /> 
+        //   </View> */}
          
           <View style={styles.legendInput}>
             <Text style={styles.input}> 10,000 </Text>
