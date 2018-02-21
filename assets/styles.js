@@ -12,12 +12,19 @@ module.exports = StyleSheet.create({
         // height: 300,
         // width: 700
     },
-    
+
     container: {
         flex: 1,
         backgroundColor: '#021227',
         alignItems: 'center',
         justifyContent: 'flex-start',
+
+    },
+    spaceAroundContainer: {
+        flex: 1,
+        backgroundColor: '#021227',
+        alignItems: 'center',
+        justifyContent: 'space-around',
 
     },
     menu: {
@@ -29,10 +36,11 @@ module.exports = StyleSheet.create({
         // margin: .5,
     },
     menuInputTitle: {
-        width:300,
-        height: 50, 
+        width: 300,
+        height: 50,
         marginBottom: 10,
-        marginTop: 10
+        marginTop: 10,
+        resizeMode: 'contain'
     },
     label: {
         color: "white",
@@ -41,6 +49,18 @@ module.exports = StyleSheet.create({
         fontWeight: "600",
         paddingLeft: 5
 
+    },
+    legendInputContainer: {
+        alignSelf: "center",
+        padding: 5,
+        width: 350,
+        height: 80,
+        alignItems: 'center',
+        margin: 1,
+        marginBottom: 10,
+        backgroundColor: "#14283f",
+        justifyContent: "space-around",
+        flexDirection: "row"
     },
     field: {
         height: 60,
@@ -87,6 +107,32 @@ module.exports = StyleSheet.create({
     },
     btnImg: {
         resizeMode: 'cover',
+
+    },
+    hercInput: {
+        backgroundColor: '#021227',
+        width: 200,
+        height: 50,
+        textAlign: "center",
+        justifyContent: "flex-end",
+        color: "white",
+        paddingTop: 15
+    },
+    icon: {
+        height: 30,
+        width: 80,
+        alignSelf: "center"
+    },
+    bigButton: {
+
+        backgroundColor: "#14283f",
+        height: 80,
+        width: 350,
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: 10
+
+
 
     }
 });

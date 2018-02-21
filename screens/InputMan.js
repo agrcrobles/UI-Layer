@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import Next from "../components/NextBtn";
 import styles from "../assets/styles";
 import destination from "../assets/destinationLabel.png";
 import origin from "../assets/originLabel.png";
+import pictures from "../assets/picturesLabel.png";
 import { StackNavigator, } from 'react-navigation';
 
 export default class InputMan extends Component {

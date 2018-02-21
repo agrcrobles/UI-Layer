@@ -12,30 +12,14 @@ import pictures from "../assets/picturesLabel.png";
 
 
 export default class SplashPanel extends Component {
-  static navigationOptions = {
-    header: null,
-  
-  }
+ 
   render(){
-
-     
-    // console.log(
-    //    query.once('value').then((snapshot) => {
-    //      snapshot.forEach((bar) => {
-    //        bar.getKey();
-    //        bar.val();
-    //       });
-    //    })
-    // )
-  
 
     const { navigate } = this.props.navigation;
     console.log(this.props, "this.props")
     return(
       <View style={styles.container}>
-        <WelcomeHeader />
-        
-        <Title image={vendorSupply} />
+       
       
         <View style={styles.menu}> 
           <TouchableHighlight  onPress={() => navigate('InputMan',{image: 'destination'})}>

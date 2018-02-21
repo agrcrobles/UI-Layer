@@ -111,7 +111,7 @@ export default class MenuOptions extends Component {
             />
           </TouchableHighlight> 
           
-          <TouchableHighlight  onPress={() => navigate('Splash')}>
+          <TouchableHighlight  onPress={() => navigate('Splash1')}>
             <Image
               style={styles.button}
               source={verifyBtn}

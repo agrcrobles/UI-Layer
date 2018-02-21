@@ -5,7 +5,7 @@ import { STATUS_BAR_HEIGHT } from '../constants';
 import styles from '../assets/styles';
 import icon from '../assets/hLogo.png';
 import logo from '../assets/logo.png';
-import backArrow from '../assets/icon_backarrow.png';
+import arrow from "../assets/icon_backarrow.png";
 
 import Welcome from "../screens/Welcome";
 import Origin from "../screens/Origin";
@@ -20,7 +20,8 @@ import Tee from '../screens/Tee';
 import Digi from '../screens/DigiViewer';
 import Anthem from '../screens/Anthem';
 import Hipr from '../screens/Hipr';
-import Splash from '../screens/SplashPanel';
+import Splash1 from '../screens/Splash1';
+import Splash2 from '../screens/Splash2';
 import BlockScan from '../screens/BlockScan';
 import Tconf from '../screens/Tconf';
 import FileThanks from '../screens/FileThanks';
@@ -35,7 +36,8 @@ const MainNavigator = StackNavigator({
     Anthem: { screen: Anthem },
     Hipr: { screen: Hipr },
     BlockScan: { screen: BlockScan },
-    Splash: { screen: Splash },
+    Splash1: { screen: Splash1 },
+    Splash2: { screen: Splash2 },
     InputMan: { screen: InputMan },
     Origin: { screen: Origin },
     Destination: { screen: Destination },
@@ -81,24 +83,21 @@ const MainNavigator = StackNavigator({
             },
             headerLeft: (
                 <View>
-                    <TouchableHighlight
-                        onPress={() => navigation.goBack(null)} >
-                        <Image
-                            source={backArrow}
-                            style={styles.backArrow}
-                        />
-                
+                    <TouchableHighlight  >
+                        <Image source={arrow} style={styles.icon} />
                     </TouchableHighlight>
                 </View>
-                    )
-                }
-        
-            });
-        
+            )
+        }
+
+    });
+
 export default class MainNavigation extends Component {
-                        render() {
-                    return (
+    render() {
+            
+        console.log(this.props.navigate);
+        return (
             <MainNavigator />
-                    )
-                }
+        )
+    }
 }
