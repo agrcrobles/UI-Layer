@@ -9,9 +9,17 @@ import aws_exports from '../src/aws-exports.js';
 import Amplify , { API } from 'aws-amplify';
 Amplify.configure(aws_exports);
 console.log(aws_exports);
+import abc from 'airbitz-core-js'
+import abcReact from 'edge-login'
 
+console.log("HERE!")
+abcReact.makeReactNativeIo().then(io => {
+  const context = abc.makeContext({ io })
+  console.log("context is: ", context);
+})
 
 export default class Welcome extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
