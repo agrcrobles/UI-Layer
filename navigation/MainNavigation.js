@@ -22,6 +22,7 @@ import Anthem from '../screens/Anthem';
 import Hipr from '../screens/Hipr';
 import Splash1 from '../screens/Splash1';
 import Splash2 from '../screens/Splash2';
+import Splash3 from '../screens/Splash3';
 import BlockScan from '../screens/BlockScan';
 import Tconf from '../screens/Tconf';
 import FileThanks from '../screens/FileThanks';
@@ -38,6 +39,7 @@ const MainNavigator = StackNavigator({
     BlockScan: { screen: BlockScan },
     Splash1: { screen: Splash1 },
     Splash2: { screen: Splash2 },
+    Splash3: { screen: Splash3 },
     InputMan: { screen: InputMan },
     Origin: { screen: Origin },
     Destination: { screen: Destination },
@@ -84,7 +86,7 @@ const MainNavigator = StackNavigator({
             headerLeft: (
                 <View>
                     <TouchableHighlight  >
-                        <Image source={arrow} style={styles.icon} />
+                        <Image source={arrow} style={styles.backArrow} />
                     </TouchableHighlight>
                 </View>
             )

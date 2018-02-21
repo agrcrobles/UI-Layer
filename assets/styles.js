@@ -134,5 +134,12 @@ module.exports = StyleSheet.create({
 
 
 
+    },
+    subHeader: {
+        flexDirection: 'row',
+        width: '90%',
+        height: 100,
+        backgroundColor: 'blue',
+        justifyContent: 'center'
     }
 });
