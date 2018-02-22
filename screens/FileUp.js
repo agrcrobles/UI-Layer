@@ -58,13 +58,17 @@ export default class FileUp extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
+    
+        let location = this.props.navigation.state.params.location;
+        let locationLabel = location === 'destination' ? destination : origin;
+        console.log(this.props.navigation.state.params, "this.props")
     let { image } = this.state;
-    let file = this.state.image;
+    let imageFile = this.state.image;
     return (
       <View style={styles.container}>
 
         <View style={styles.subHeader}>
-          <Image style={styles.assetLocation} source={image} />
+          <Image style={styles.assetLocation} source={locationLabel} />
           <Image style={styles.assetButton} source={agld} />
         </View>
 
@@ -81,7 +85,7 @@ export default class FileUp extends Component {
           <Image source={{ uri: image }} style={{ width: 100, height: 100 }} />
         </View>
 
-        <Submit onPress={() => navigate('FileThanks')} />
+        <Submit onPress={() => navigate('Splash3', {image: imageFile})} />
 
       </View>
     )
