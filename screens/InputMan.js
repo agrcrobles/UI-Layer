@@ -16,14 +16,8 @@ export default class InputMan extends Component {
 
                 <Image style={styles.menuInputTitle} source={image} />
 
-                <TouchableHighlight onPress={() => navigate('FileUp')}>
-                    <Image
-                        style={styles.button}
-                        source={pictures}
-                    />
-                </TouchableHighlight>
 
-                <ScrollView contentContainerStyle={styles.menu}>
+                {/* <ScrollView contentContainerStyle={styles.menu}> */}
                     <View style={styles.scrollContent}>
 
                         <View style={styles.field}>
@@ -108,7 +102,7 @@ export default class InputMan extends Component {
                             />
                         </View>
                     </View>
-                </ScrollView>
+                {/* </ScrollView> */}
 
                 <Next onPress={() => {
                     console.log(this.state);

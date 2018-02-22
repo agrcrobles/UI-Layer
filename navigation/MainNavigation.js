@@ -52,7 +52,7 @@ const MainNavigator = StackNavigator({
 
 
     {
-        initialRouteName: 'Welcome',
+        initialRouteName: 'Splash1',
         navigationOptions: {
             title: <Image style={{
                 height: 300,

@@ -31,20 +31,20 @@ export default class Splash2 extends Component {
       //   <TouchableHighlight onPress={navigate(() => 'MenuOptions')}>
       //     <Image source={agld} style={styles.headerLogo} />
       //   </TouchableHighlight> */}
-        <View style={styles.subHeader}>
-          <Image style={styles.headerLogo} source={agld} />
+        
+          <Image style={styles.assetButton} source={agld} />
           
-          </View>
+          
         
         <View style={{height: 200, width: '80%', alignItems:'center', backgroundColor: 'yellow', justifyContent:'space-between'}}>
-          <TouchableHighlight onPress={() => navigate('Splash3', { image: 'destination' })}>
+          <TouchableHighlight onPress={() => navigate('Splash3', { location: 'destination' })}>
             <Image
               style={styles.menuInputTitle}
               source={require('../assets/destinationLabel.png')}
             />
           </TouchableHighlight>
 
-          <TouchableHighlight onPress={() => navigate('Splash3', { image: 'origin' })}>
+          <TouchableHighlight onPress={() => navigate('Splash3', { location: 'origin' })}>
             <Image
               style={styles.menuInputTitle}
               source={require('../assets/originLabel.png')}

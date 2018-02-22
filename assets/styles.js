@@ -17,11 +17,11 @@ module.exports = StyleSheet.create({
         flex: 1,
         backgroundColor: '#021227',
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        
 
     },
     spaceAroundContainer: {
-        flex: 1,
+        height: 250,
         backgroundColor: '#021227',
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -34,6 +34,40 @@ module.exports = StyleSheet.create({
         backgroundColor: '#021227'
         // paddingTop: 50
         // margin: .5,
+    },
+    assetMenu: {
+        flexDirection: 'row',
+        height: 180,
+        width: '60%',
+        backgroundColor: 'red',
+        justifyContent: 'center',
+        padding: 5
+
+    },
+    assetMenuLabel: {
+        textAlign: 'center',
+        color: "white",
+        width: 300,
+        fontSize: 20.2,
+        fontWeight: "600",
+        height: 50,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'red',
+        margin: 10
+
+    },
+    assetButton: {
+        height: 100,
+        width: 100,
+        margin: 3
+
+    },
+    assetLocation: {
+        height:50,
+        width: 200,
+        resizeMode: 'cover',
+        marginTop: 33
     },
     menuInputTitle: {
         width: 300,
@@ -137,9 +171,11 @@ module.exports = StyleSheet.create({
     },
     subHeader: {
         flexDirection: 'row',
-        width: '90%',
-        height: 100,
+        width: '80%',
+        height: 110,
         backgroundColor: 'blue',
-        justifyContent: 'center'
+        justifyContent: 'space-between',
+        padding: 5,
+        
     }
 });

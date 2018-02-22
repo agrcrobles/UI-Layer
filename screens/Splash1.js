@@ -15,68 +15,18 @@ export default class Splash1 extends Component {
     console.log(this.props, "this.props")
     return (
       <View style={styles.container}>
-        <View style={{ height: 400, width: 300, flexDirection: 'row' }}>
-          <Text> Press to Create </Text>
-        
-        <TouchableHighlight onPress={() => navigate('Splash2')} >
-          <Image style={{ justifyContent: 'center', height: 100, width: 100 }} source={agld} />
-        </TouchableHighlight>
+            <Text style={styles.assetMenuLabel}> Press Asset to Select </Text>
+        <View style={styles.assetMenu}>
+
+            <TouchableHighlight style={{ justifyContent: 'center', height: 100, width: 100 }} onPress={() => navigate('Splash2')} >
+              <Image style={styles.assetButton} source={agld} />
+            </TouchableHighlight>
+          </View>
         </View>
-        {/* <View style={styles.menu}> 
-          <TouchableHighlight  onPress={() => navigate('InputMan',{image: 'destination'})}>
-            <Image
-                style={styles.button}
-                source={require('../assets/destinationLabel.png')}
-              />
-          </TouchableHighlight>
-
-          <TouchableHighlight  onPress={() => navigate('InputMan', {image: 'origin'})}>
-            <Image
-              style={styles.button}
-              source={require('../assets/originLabel.png')}
-            />
-          </TouchableHighlight> 
-
-          {/* <TouchableHighlight  onPress={() => navigate('FileUp')}>
-            <Image
-              style={styles.button}
-              source={pictures}
-            />
-          </TouchableHighlight>  */}
-
-      </View>
+      
 
 
     )
   };
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     paddingTop: 30,
-//     // width: "100%",
-//     backgroundColor: '#021227',
-//     // backgroundColor: '#fff',
-//     alignItems: 'center',
-//     // justifyContent: 'space-around',
-//   },
-//   menu: {
-//     height: 300,
-//     justifyContent: "space-around",
-//     backgroundColor: '#021227',
-//     // margin: .5,
-
-//     },
-//     button: {
-//       width: 250, 
-//       height: 50
-//     }
-//   });
-
-
-// // export default StackNavigator({
-// //   Splash: {
-// //     screen: Splash
-// //   }
-// // })
