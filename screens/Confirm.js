@@ -56,7 +56,7 @@ export default class Confirm extends Component  {
       // debugger;
       const { navigate } = this.props.navigation;
       let image = this.props.navigation.state.params.image === 'destination' ? destination : origin;
-      // let values = this.props.navigation.state.params.values;
+      let values = this.props.navigation.state.params.values;
      console.log(values, 'val')
       // const id = values.Bar_Id;
      
