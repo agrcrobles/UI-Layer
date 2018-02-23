@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'space-around',
   },
   menu: {
-    height: 400,
+    height: 300,
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: '#021227'
