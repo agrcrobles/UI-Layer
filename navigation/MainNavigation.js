@@ -5,7 +5,7 @@ import { STATUS_BAR_HEIGHT } from '../constants';
 import styles from '../assets/styles';
 import icon from '../assets/hLogo.png';
 import logo from '../assets/logo.png';
-import arrow from "../assets/icon_backarrow.png";
+import backArrow from '../assets/icon_backarrow.png';
 
 import Welcome from "../screens/Welcome";
 import Origin from "../screens/Origin";
@@ -20,9 +20,7 @@ import Tee from '../screens/Tee';
 import Digi from '../screens/DigiViewer';
 import Anthem from '../screens/Anthem';
 import Hipr from '../screens/Hipr';
-import Splash1 from '../screens/Splash1';
-import Splash2 from '../screens/Splash2';
-import Splash3 from '../screens/Splash3';
+import Splash from '../screens/SplashPanel';
 import BlockScan from '../screens/BlockScan';
 import Tconf from '../screens/Tconf';
 import FileThanks from '../screens/FileThanks';
@@ -37,9 +35,7 @@ const MainNavigator = StackNavigator({
     Anthem: { screen: Anthem },
     Hipr: { screen: Hipr },
     BlockScan: { screen: BlockScan },
-    Splash1: { screen: Splash1 },
-    Splash2: { screen: Splash2 },
-    Splash3: { screen: Splash3 },
+    Splash: { screen: Splash },
     InputMan: { screen: InputMan },
     Origin: { screen: Origin },
     Destination: { screen: Destination },
@@ -52,7 +48,7 @@ const MainNavigator = StackNavigator({
 
 
     {
-        initialRouteName: 'Splash1',
+        initialRouteName: 'Welcome',
         navigationOptions: {
             title: <Image style={{
                 height: 300,
@@ -85,21 +81,24 @@ const MainNavigator = StackNavigator({
             },
             headerLeft: (
                 <View>
-                    <TouchableHighlight  >
-                        <Image source={arrow} style={styles.backArrow} />
+                    <TouchableHighlight
+                        onPress={() => navigation.goBack(null)} >
+                        <Image
+                            source={backArrow}
+                            style={styles.backArrow}
+                        />
+                
                     </TouchableHighlight>
                 </View>
-            )
-        }
-
-    });
-
+                    )
+                }
+        
+            });
+        
 export default class MainNavigation extends Component {
-    render() {
-            
-        console.log(this.props.navigate);
-        return (
+                        render() {
+                    return (
             <MainNavigator />
-        )
-    }
+                    )
+                }
 }

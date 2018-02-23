@@ -12,19 +12,12 @@ module.exports = StyleSheet.create({
         // height: 300,
         // width: 700
     },
-
+    
     container: {
         flex: 1,
         backgroundColor: '#021227',
         alignItems: 'center',
-        
-
-    },
-    spaceAroundContainer: {
-        height: 250,
-        backgroundColor: '#021227',
-        alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'flex-start',
 
     },
     menu: {
@@ -35,46 +28,11 @@ module.exports = StyleSheet.create({
         // paddingTop: 50
         // margin: .5,
     },
-    assetMenu: {
-        flexDirection: 'row',
-        height: 180,
-        width: '60%',
-        backgroundColor: 'red',
-        justifyContent: 'center',
-        padding: 5
-
-    },
-    assetMenuLabel: {
-        textAlign: 'center',
-        color: "white",
-        width: 300,
-        fontSize: 20.2,
-        fontWeight: "600",
-        height: 50,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'red',
-        margin: 10
-
-    },
-    assetButton: {
-        height: 100,
-        width: 100,
-        margin: 3
-
-    },
-    assetLocation: {
-        height:50,
-        width: 200,
-        resizeMode: 'cover',
-        marginTop: 33
-    },
     menuInputTitle: {
-        width: 300,
-        height: 50,
+        width:300,
+        height: 50, 
         marginBottom: 10,
-        marginTop: 10,
-        resizeMode: 'contain'
+        marginTop: 10
     },
     label: {
         color: "white",
@@ -83,18 +41,6 @@ module.exports = StyleSheet.create({
         fontWeight: "600",
         paddingLeft: 5
 
-    },
-    legendInputContainer: {
-        alignSelf: "center",
-        padding: 5,
-        width: 350,
-        height: 80,
-        alignItems: 'center',
-        margin: 1,
-        marginBottom: 10,
-        backgroundColor: "#14283f",
-        justifyContent: "space-around",
-        flexDirection: "row"
     },
     field: {
         height: 60,
@@ -142,40 +88,5 @@ module.exports = StyleSheet.create({
     btnImg: {
         resizeMode: 'cover',
 
-    },
-    hercInput: {
-        backgroundColor: '#021227',
-        width: 200,
-        height: 50,
-        textAlign: "center",
-        justifyContent: "flex-end",
-        color: "white",
-        paddingTop: 15
-    },
-    icon: {
-        height: 30,
-        width: 80,
-        alignSelf: "center"
-    },
-    bigButton: {
-
-        backgroundColor: "#14283f",
-        height: 80,
-        width: 350,
-        justifyContent: "center",
-        alignItems: "center",
-        marginBottom: 10
-
-
-
-    },
-    subHeader: {
-        flexDirection: 'row',
-        width: '80%',
-        height: 110,
-        backgroundColor: 'blue',
-        justifyContent: 'space-between',
-        padding: 5,
-        
     }
 });
