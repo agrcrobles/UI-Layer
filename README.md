@@ -1,10 +1,11 @@
 # HERCone
 
-Branches are thus:
 
-Master: Best to leave this alone
-Cleaning: Making the necessary UI/UX adjustments detailed in the Trello
-Redux: Implementing redux eventually to incorporate with Cleaning then with Master
-TestLogin: Not sure what's happening over there. 
+# Branches are thus:
 
-I'll make this better looking evenetually
+  1. **Master:** Best to leave this alone
+  2. **Cleaning:** Making the necessary UI/UX adjustments detailed in the corresponding [Trello](https://trello.com/b/JBpQRM4S/hercone)
+  3. **Redux:** Implementing redux eventually to incorporate with Cleaning branch then  Master
+  4. **TestLogin:** Not sure what's happening over there. 
+
+
