@@ -5,37 +5,44 @@ import { connect } from 'react-redux';
 import styles from '../assets/styles';
 
 import agldLogo from "../assets/AG_logo.png";
+import { getAsset } from '../actions/AssetActions';
 // import { listAssets, getAsset } from '../actions/AssetActions';
 
-// this.state = {
-//   images:[
-//     require('../assets/AG_logo.png'),
-//     require('../assets/icon_logout.png'),
+this.state = {
+  images:[
+    require('../assets/AG_logo.png'),
+    require('../assets/icon_logout.png'),
     
-//   ]
-// }
+  ]
+}
 
 
 class Splash1 extends Component {
   componentDidMount() {
     console.log("this.props.assets!!",this.props.assets);
-
-
-
+    
+    
+    
   }
-
-  // onPress={navigate('Splash2', { asset: asset })}
+  
+  _onPress = (index) => {
+    const { navigate } = this.props.navigation;
+    //  console.log(index, 'index');
+    //  console.log(this.props.assets[index], 'thisgetass')
+    //  let pickedAsset = this.props.getAsset(index);
+     console.log(this.props, 'asset') 
+    // navigate('Splash2', { asset:  this.props.getAsset(index)});
+   }
 
   render() {
-    const { navigate } = this.props.navigation;
     console.log(this.props, "this.props");
     console.log(this.state)
     let list = this.props.assets.map((asset, index) => {
-      console.log(asset, 'asset');
+      console.log(asset.Logo, 'logo/uri');
       return (
         <View key={index} style={styles.field}>
-          <TouchableHighlight  >
-            <Image style={styles.assetButton} source={{uri: asset.Logo }} />
+          <TouchableHighlight onPress={() => this._onPress(index)}  >
+            <Image style={styles.assetButton} source={{uri: asset.Logo}} />
           </TouchableHighlight>
           <Text style={styles.label}>{asset.Name}</Text>
         </View>
@@ -45,8 +52,8 @@ class Splash1 extends Component {
     return (
 
       <View style={styles.container}>
-        <Image sourc={{uri:this.props.assets[0].Logo}}/>
-        {/* {list} */}
+        {/* <Image sourc={{uri:this.props.assets[0].Logo}}/> */}
+        {list}
         {/* <Text style={styles.assetMenuLabel}> Press Asset to Select </Text>
         <View style={styles.assetMenu}>
 
@@ -65,7 +72,7 @@ class Splash1 extends Component {
 const mapStateToProps = (state) => ({ assets: state.assets });
 const mapDispatchToProps = (dispatch) => ({
   getAsset: function (assetIndex) {
-    dipatch(getAsset(assetIndex))
+    dispatch(getAsset(assetIndex))
   },
   listAssets: function () {
     dispatch(listAssets())

@@ -1,5 +1,5 @@
 import { ADD_ASSET, GET_ASSET, LIST_ASSETS } from './types';
-// import assets from './assetListReducer';
+ import assets from '../reducers/assetListReducer';
 
 export function listAssets() {
     return {

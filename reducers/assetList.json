@@ -1,7 +1,9 @@
 [
     {
         "Name": "AGLD",
+        "ID": "001",
         "Logo": "../assets/AG_logo.png",
+        "Location": "",
         "Properties": {
             "BarID": "",
             "BarSerial": "",
@@ -15,7 +17,9 @@
     },
     {
         "Name": "Tastee Toasters",
+        "ID":"002",
         "Logo": "../assets/icon_logout.png",
+        "Location": "",
         "Properties": {
             "Weight": "",
             "Color": "",

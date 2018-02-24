@@ -4,7 +4,8 @@ import assets from './assetListReducer';
 
 const INITIAL_STATE = {
     assets: assets,
-    selectedAsset: 0,
+    selectedAsset: {},
+    assetIdx: 0,
     newAsset: {}
 
 };
@@ -18,13 +19,15 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
         case GET_ASSET:
             return Object.assign({}, state, {
                 ...state,
-                asset: action.GET_ASSET
+                selectedAsset: GET_ASSET.asset
             })
         case ADD_ASSET:
             return Object.assign({}, state, {
                 ...state,
                 newAsset: {
                     Name: action.newAsset.Name,
+                    ID: action.newAsset.ID,
+                    Location: action.newAsset.Location,
                     Logo: action.newAsset.Logo,
                     Properties: {
                         input1: action.newAsset.input1,
