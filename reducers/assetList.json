@@ -12,5 +12,19 @@
             "DateProc": "",
             "Supplier": ""
         }
+    },
+    {
+        "Name": "Tastee Toasters",
+        "Logo": "../assets/icon_logout.png",
+        "Properties": {
+            "Weight": "",
+            "Color": "",
+            "NumSlices": "",
+            "Height": "",
+            "Width": "",
+            "Condition": "",
+            "Style": "",
+            "XtraProp": "testerExtra"
+        }
     }
 ]

@@ -12,7 +12,7 @@ module.exports = StyleSheet.create({
         // height: 300,
         // width: 700
     },
-    
+
     container: {
         flex: 1,
         backgroundColor: '#021227',
@@ -29,8 +29,8 @@ module.exports = StyleSheet.create({
         // margin: .5,
     },
     menuInputTitle: {
-        width:300,
-        height: 50, 
+        width: 300,
+        height: 50,
         marginBottom: 10,
         marginTop: 10
     },
@@ -47,7 +47,7 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         width: "80%",
-        backgroundColor: "#021227",
+        backgroundColor: "blue",
         // marginTop: 5,
         // marginBottom: 5,
         alignItems: "center",
@@ -88,5 +88,40 @@ module.exports = StyleSheet.create({
     btnImg: {
         resizeMode: 'cover',
 
-    }
+    },
+    assetMenu: {
+         flexDirection: 'row',
+         height: 180,
+            width: '60%',
+            backgroundColor: 'red',
+            justifyContent: 'center',
+            padding: 5
+    
+        },
+        assetMenuLabel: {
+         textAlign: 'center',
+            color: "white",
+            width: 300,
+            fontSize: 20.2,
+            fontWeight: "600",
+            height: 50,
+            alignSelf: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'red',
+            margin: 10
+    
+        },
+        assetButton: {
+         height: 100,
+            width: 100,
+            margin: 3
+    
+        },
+        assetLocation: {
+         height: 50,
+            width: 200,
+            resizeMode: 'cover',
+            marginTop: 33
+        },
+    
 });

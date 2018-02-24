@@ -7,42 +7,53 @@ import styles from '../assets/styles';
 import agldLogo from "../assets/AG_logo.png";
 // import { listAssets, getAsset } from '../actions/AssetActions';
 
+this.state = {
+  images:[
+    require('../assets/AG_logo.png'),
+    require('../assets/icon_logout.png'),
+    
+  ]
+}
 
 
 class Splash1 extends Component {
   componentDidMount() {
-   console.log(this.props.assets);
-    
-   
+    console.log("this.props.assets!!",this.props.assets);
 
-    // return this.props.assets.map((asset, index) => {
-    //   console.log(asset, 'asset');
-    //   return (
-    //     <View key={idx} style={styles.field}>
-    //       <TouchableHighlight onPress={navigate('Splash2', { asset: asset })} >
-    //         <Image style={styles.assetButton} source={asset.Logo} />
-    //       </TouchableHighlight>
-    //       <Text style={styles.label}>{asset.Name}</Text>
-    //     </View>
-    //   )
-    // });
+
+
   }
 
-
+  // onPress={navigate('Splash2', { asset: asset })}
 
   render() {
-
     const { navigate } = this.props.navigation;
-    console.log(this.props, "this.props")
+    console.log(this.props, "this.props");
+    console.log(this.state)
+    let list = this.props.assets.map((asset, index) => {
+      console.log(asset, 'asset');
+      return (
+        <View key={index} style={styles.field}>
+          <TouchableHighlight  >
+            <Image style={styles.assetButton} source={this.state.images[index]} />
+          </TouchableHighlight>
+          <Text style={styles.label}>{asset.Name}</Text>
+        </View>
+      )
+    });
+
     return (
+
       <View style={styles.container}>
-        <Text style={styles.assetMenuLabel}> Press Asset to Select </Text>
+        
+        {list}
+        {/* <Text style={styles.assetMenuLabel}> Press Asset to Select </Text>
         <View style={styles.assetMenu}>
 
           <TouchableHighlight style={{ justifyContent: 'center', height: 100, width: 100 }} onPress={() => navigate('Splash2')} >
             <Image style={styles.assetButton} source={agldLogo} />
           </TouchableHighlight>
-        </View>
+        </View> */}
       </View>
 
 
@@ -52,11 +63,11 @@ class Splash1 extends Component {
 }
 
 const mapStateToProps = (state) => ({ assets: state.assets });
-const mapDispatchToProps =(dispatch) => ({
-  getAsset: function(assetIndex){
+const mapDispatchToProps = (dispatch) => ({
+  getAsset: function (assetIndex) {
     dipatch(getAsset(assetIndex))
   },
-  listAssets: function(){
+  listAssets: function () {
     dispatch(listAssets())
   }
 })
