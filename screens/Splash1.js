@@ -7,13 +7,13 @@ import styles from '../assets/styles';
 import agldLogo from "../assets/AG_logo.png";
 // import { listAssets, getAsset } from '../actions/AssetActions';
 
-this.state = {
-  images:[
-    require('../assets/AG_logo.png'),
-    require('../assets/icon_logout.png'),
+// this.state = {
+//   images:[
+//     require('../assets/AG_logo.png'),
+//     require('../assets/icon_logout.png'),
     
-  ]
-}
+//   ]
+// }
 
 
 class Splash1 extends Component {
@@ -35,7 +35,7 @@ class Splash1 extends Component {
       return (
         <View key={index} style={styles.field}>
           <TouchableHighlight  >
-            <Image style={styles.assetButton} source={this.state.images[index]} />
+            <Image style={styles.assetButton} source={{uri: asset.Logo }} />
           </TouchableHighlight>
           <Text style={styles.label}>{asset.Name}</Text>
         </View>
@@ -45,8 +45,8 @@ class Splash1 extends Component {
     return (
 
       <View style={styles.container}>
-        
-        {list}
+        <Image sourc={{uri:this.props.assets[0].Logo}}/>
+        {/* {list} */}
         {/* <Text style={styles.assetMenuLabel}> Press Asset to Select </Text>
         <View style={styles.assetMenu}>
 
