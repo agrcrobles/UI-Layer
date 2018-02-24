@@ -5,20 +5,27 @@ import { connect } from 'react-redux';
 import styles from '../assets/styles';
 
 import agldLogo from "../assets/AG_logo.png";
+// import { listAssets, getAsset } from '../actions/AssetActions';
 
 
 
-export default class Splash1 extends Component {
+class Splash1 extends Component {
   componentDidMount() {
+   console.log(this.props.assets);
+    
+   
 
-    return this.props.assets.map((asset, index)) => {
-      console.log(asset, 'asset');
-      return (<View key={idx}>
-        <Image style={styles.icon} sourc={asset.Properties.logo}
-        <Text key={idx} style={{ color: 'white' }}>{bar.BarId}</Text>
-      </View>
-      )
-    }
+    // return this.props.assets.map((asset, index) => {
+    //   console.log(asset, 'asset');
+    //   return (
+    //     <View key={idx} style={styles.field}>
+    //       <TouchableHighlight onPress={navigate('Splash2', { asset: asset })} >
+    //         <Image style={styles.assetButton} source={asset.Logo} />
+    //       </TouchableHighlight>
+    //       <Text style={styles.label}>{asset.Name}</Text>
+    //     </View>
+    //   )
+    // });
   }
 
 
@@ -44,10 +51,13 @@ export default class Splash1 extends Component {
   };
 }
 
-const mapStateToProps = (state) => ({assets: state.assets});
+const mapStateToProps = (state) => ({ assets: state.assets });
 const mapDispatchToProps =(dispatch) => ({
-  chooseBar: function(bar){
-    dipatch(chooseBar(bar))
+  getAsset: function(assetIndex){
+    dipatch(getAsset(assetIndex))
+  },
+  listAssets: function(){
+    dispatch(listAssets())
   }
 })
-export default connect(mapStateToProps, mapDispatchToProps)(Bars);
+export default connect(mapStateToProps, mapDispatchToProps)(Splash1);

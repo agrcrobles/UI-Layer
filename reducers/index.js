@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import assets from './assetList';
+import assets from './assetListReducer';
 import AssetReducers from './AssetReducers';
 
 const rootReducer = combineReducers({
-    AssetReducers
+    AssetReducers,
+    assets
 })
 
 export default rootReducer
