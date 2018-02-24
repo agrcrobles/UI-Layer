@@ -20,10 +20,12 @@ import Tee from '../screens/Tee';
 import Digi from '../screens/DigiViewer';
 import Anthem from '../screens/Anthem';
 import Hipr from '../screens/Hipr';
-import Splash from '../screens/SplashPanel';
 import BlockScan from '../screens/BlockScan';
 import Tconf from '../screens/Tconf';
 import FileThanks from '../screens/FileThanks';
+import Splash1 from '../screens/Splash1';
+import Splash2 from '../screens/Splash2';
+import Splash3 from '../screens/Splash3';
 
 const MainNavigator = StackNavigator({
     Welcome: { screen: Welcome },
@@ -35,7 +37,9 @@ const MainNavigator = StackNavigator({
     Anthem: { screen: Anthem },
     Hipr: { screen: Hipr },
     BlockScan: { screen: BlockScan },
-    Splash: { screen: Splash },
+    Splash1: { screen: Splash1 },
+    Splash2: { screen: Splash2 },
+    Splash3: { screen: Splash3 },
     InputMan: { screen: InputMan },
     Origin: { screen: Origin },
     Destination: { screen: Destination },
@@ -48,7 +52,7 @@ const MainNavigator = StackNavigator({
 
 
     {
-        initialRouteName: 'Welcome',
+        initialRouteName: 'Splash1',
         navigationOptions: {
             title: <Image style={{
                 height: 300,

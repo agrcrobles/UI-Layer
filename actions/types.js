@@ -1,0 +1,9 @@
+export const ADD_ASSET = 'ADD_ASSET';
+export const GET_ASSET = 'GET_ASSET';
+export const LIST_ASSETS = 'GET_ASSETS';
+
+
+
+
+// export const FETCHING_ASSETS_SUCCESS = 'FETCHING_ASSETS_SUCCESS';
+// export const FETCHING_ASSETS_FAILURE = 'FETCHING_ASSETS_FAILURE';

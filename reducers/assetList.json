@@ -1,0 +1,16 @@
+[
+    {
+        "Name": "AGLD",
+        "Logo": "../assets/AG_logo.png",
+        "Properties": {
+            "BarID": "",
+            "BarSerial": "",
+            "VaultLocation": "",
+            "Weight": "",
+            "Purity": "",
+            "DateRec": "",
+            "DateProc": "",
+            "Supplier": "",
+        }
+    }
+]
