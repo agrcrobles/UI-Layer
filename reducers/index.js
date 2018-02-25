@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import assets from './assetListReducer';
+import assets from './assetList';
 import AssetReducers from './AssetReducers';
 
 const rootReducer = combineReducers({

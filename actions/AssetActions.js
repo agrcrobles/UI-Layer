@@ -1,4 +1,4 @@
-import { ADD_ASSET, GET_ASSET, LIST_ASSETS, SELECT_ASSET } from './types';
+import { ADD_ASSET, LIST_ASSETS, SELECT_ASSET, SET_PLACE, ADD_PHOTO} from './types';
 import assets from '../reducers/assetListReducer';
 
 export function listAssets() {
@@ -10,22 +10,32 @@ export function listAssets() {
 }
 
 
-export function selectAsset(assetIndex) {
+export function selectAsset(asset) {
 
     return (
-        console.log(assetIndex, 'assetIndex'),
+        console.log(asset, 'assetSelected'),
         {
             type: SELECT_ASSET,
-            assetIndex: assetIndex
+            data: asset
         }
     )
 }
-export function getAsset(assetIndex) {
-    return {
-        type: GET_ASSET,
-
-        selectedAsset: assets[assetIndex]
+export function setPlace(place) {
+    return (
+        console.log(place, "inside set Location action"),
+        {
+        type: SET_PLACE,
+        data: place
     }
+)
+}
+
+export function addPhoto(uri) {
+    return ({
+        type: ADD_PHOTO,
+        data: uri
+    }
+    )
 }
 
 export function addAsset(asset) {

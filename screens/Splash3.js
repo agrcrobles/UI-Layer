@@ -9,47 +9,52 @@ import agld from "../assets/AG_logo.png";
 import origin from "../assets/originLabel.png";
 import destination from "../assets/destinationLabel.png";
 import csv from "../assets/csvLabel.png";
-import pics from "../assets/picturesLabel.png"
+import camera from "../assets/cameraLabel.png";
 import styles from "../assets/styles";
-import AgldHead from "../components/NavButtons";
-import vendorSupply from "../assets/vendorAndSupplier.png";
+import manual from "../assets/manLabel.png";
+import toast from "../assets/toast.jpg";
+
+import { connect } from "react-redux";
 
 
 
-export default class Splash3 extends Component {
-
+class Splash3 extends Component {
+    static navigationOptions = {
+        header: null
+    
+      }
     // this.props.navigation.state.params.image
     render() {
         const { navigate } = this.props.navigation;
-        let location = this.props.navigation.state.params.location;
-        let image = location === 'destination' ? destination : origin;
-        console.log(this.props.navigation.state.params, "this.props")
+         let locationImage = this.props.selectedAsset.place === 'destination'? destination : origin;
+         let logo = this.props.selectedAsset.Logo;
+        console.log(this.props.selectedAsset, 'splash3 this.props.selectedAsset ');
 
         return (
-            <View style={styles.container}>
+            <View style={styles.containerCenter}>
 
                 <View style={styles.subHeader}>
-                    <Image style={styles.assetLocation} source={image} />
-                    <Image style={styles.assetButton} source={agld} />
+                    <Image style={styles.assetLocation} source={locationImage} />
+                    <Image style={styles.assetButton} source={logo} />
                 </View>
 
                 <View style={styles.spaceAroundContainer}>
-                    <TouchableHighlight onPress={() => navigate('FileUp', { location: location } )}>
+                    <TouchableHighlight onPress={() => navigate('FileUp')}>
                         <Image
                             style={styles.menuInputTitle}
-                            source={pics}
+                            source={camera}
                         />
                     </TouchableHighlight>
-                    <TouchableHighlight onPress={() => navigate('FileUp', { location: location })}>
+                    <TouchableHighlight onPress={() => navigate('FileUp')}>
                         <Image
                             style={styles.menuInputTitle}
                             source={csv}
                         />
                     </TouchableHighlight>
-                    <TouchableHighlight onPress={() => navigate('InputMan', { location: location })}>
+                    <TouchableHighlight onPress={() => navigate('InputMan')}>
                         <Image
-                            style={styles.button}
-                            source={vendorSupply}
+                            style={styles.menuInputTitle}
+                            source={manual}
                         />
                     </TouchableHighlight>
 
@@ -67,3 +72,7 @@ export default class Splash3 extends Component {
     };
 }
 
+const mapStateToProps = (state) => ({
+    selectedAsset: state.AssetReducers.selectedAsset
+  });
+  export default connect(mapStateToProps)(Splash3);

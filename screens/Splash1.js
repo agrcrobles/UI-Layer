@@ -5,52 +5,39 @@ import { connect } from 'react-redux';
 import styles from '../assets/styles';
 import create from '../assets/createNewAssetButton.png';
 import agldLogo from "../assets/AG_logo.png";
-import { getAsset, selectAsset } from '../actions/AssetActions';
-// import { listAssets, getAsset } from '../actions/AssetActions';
-
-// this.state = {
-//   images:[
-//     require('../assets/AG_logo.png'),
-//     require('../assets/icon_logout.png'),
-
-//   ]
-// }
+import toast from "../assets/toast.jpg";
+import { selectAsset, listAssets } from '../actions/AssetActions';
 
 
 class Splash1 extends Component {
   constructor(props) {
     super(props);
-  }
+    
+    }
   componentDidMount() {
+    this.props.listAssets();
     console.log("this.props.assets!!", this.props.assets);
     console.log(this.props, 'thisstate')
-
-
-
   }
-
   _onPress = (index) => {
     const { navigate } = this.props.navigation;
-    this.props.selectAsset(index);
-
-    console.log(this.props.assetIndex, 'idx')
-
-    console.log(this.props, 'this.props')
-    // this.props.getAsset(this.props.assetIndex);
-    console.log()
-
-    navigate('Splash2', { assetIndex: this.props.assetIndex });
+   
+    let asset = this.props.assets[index];
+   
+    this.props.selectAsset(asset);
+    
+   
+    navigate('Splash2');
   }
 
   render() {
-    console.log(this.props, "this.props");
-    console.log(this.state)
+    console.log(this.props)
     let list = this.props.assets.map((asset, index) => {
       console.log(asset.Logo, 'logo/uri');
       return (
-        <View key={index} style={styles.field}>
+        <View key={index} style={styles.assetField}>
           <TouchableHighlight onPress={() => this._onPress(index)}  >
-            <Image style={styles.assetButton} source={agldLogo} />
+            <Image style={styles.assetButton} source={asset.Logo} />
           </TouchableHighlight>
           <Text style={styles.label}>{asset.Name}</Text>
         </View>
@@ -60,10 +47,10 @@ class Splash1 extends Component {
     return (
 
       <View style={styles.container}>
-        {/* <Image sourc={{uri:this.props.assets[0].Logo}}/> */}
+        <View style={styles.assetMenu}>
         {list}
-
-        <TouchableHighlight onPress={console.log('pressing Create')}>
+        </View>
+        <TouchableHighlight onPress={() => console.log('pressing Create')}>
           <Image
             style={{ resizeMode: 'contain', height: 80, width: 150 }}
             source={create}
@@ -79,15 +66,13 @@ class Splash1 extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  assets: state.assets,
-  selectedAsset: state.assets[state.assetIndex],
-  assetIndex: state.assetIndex
-
+  assets: state.AssetReducers.assets,
+  
 });
 const mapDispatchToProps = (dispatch) => ({
-
-  selectAsset: (assetIndex) =>
-    dispatch(selectAsset(assetIndex)),
+  
+  selectAsset: (asset) =>
+    dispatch(selectAsset(asset)),
 
   listAssets: () => dispatch(listAssets())
 

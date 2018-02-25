@@ -20,11 +20,25 @@ module.exports = StyleSheet.create({
         justifyContent: 'flex-start',
 
     },
+    containerCenter: {
+        flex: 1,
+        backgroundColor: '#021227',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     menu: {
         height: 450,
         alignItems: "center",
         justifyContent: "space-between",
         backgroundColor: '#021227'
+        // paddingTop: 50
+        // margin: .5,
+    },
+    smallMenu: {
+        height: 250,
+        alignItems: "center",
+        justifyContent: "space-around",
+        backgroundColor: 'blue'
         // paddingTop: 50
         // margin: .5,
     },
@@ -90,38 +104,60 @@ module.exports = StyleSheet.create({
 
     },
     assetMenu: {
-         flexDirection: 'row',
-         height: 180,
-            width: '60%',
-            backgroundColor: 'red',
-            justifyContent: 'center',
-            padding: 5
-    
-        },
-        assetMenuLabel: {
-         textAlign: 'center',
-            color: "white",
-            width: 300,
-            fontSize: 20.2,
-            fontWeight: "600",
-            height: 50,
-            alignSelf: 'center',
-            justifyContent: 'center',
-            backgroundColor: 'red',
-            margin: 10
-    
-        },
-        assetButton: {
-         height: 100,
-            width: 100,
-            margin: 3
-    
-        },
-        assetLocation: {
-         height: 50,
-            width: 200,
-            resizeMode: 'cover',
-            marginTop: 33
-        },
-    
+       
+        height: 300,
+        width: '80%',
+        backgroundColor: 'blue',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 5
+
+    },
+    assetField: {
+        height: 120,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: "80%",
+        backgroundColor: "#021227",
+        margin: 5,
+        // marginBottom: 5,
+        alignItems: "center",
+        padding: 2
+    },
+
+    assetMenuLabel: {
+        textAlign: 'center',
+        color: "white",
+        width: 300,
+        fontSize: 20.2,
+        fontWeight: "600",
+        height: 50,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#021227',
+        margin: 10
+
+    },
+    assetButton: {
+        height: 100,
+        width: 100,
+        margin: 3
+
+    },
+    assetLocation: {
+        height: 50,
+        width: 200,
+        resizeMode: 'cover',
+        marginTop: 33
+    },
+    subHeader: {
+        flexDirection: 'row',
+        width: '80%',
+        height: 110,
+        backgroundColor: 'blue',
+        justifyContent: 'space-between',
+        padding: 5,
+
+    }
+
 });

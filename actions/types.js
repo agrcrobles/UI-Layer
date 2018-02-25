@@ -1,7 +1,8 @@
-export const ADD_ASSET = 'ADD_ASSET';
-export const GET_ASSET = 'GET_ASSET';
-export const SELECT_ASSET = 'SELECT_ASSET';
-export const LIST_ASSETS = 'GET_ASSETS';
+export const ADD_ASSET = 'addAsset';
+export const SELECT_ASSET = 'selectAsset';
+export const SET_PLACE = 'setPlace';
+export const LIST_ASSETS = 'listAssets';
+export const ADD_PHOTO  = 'addPhoto';
 
 
 

@@ -5,13 +5,14 @@ import menuOptions from '../components/buttons/menuOptions.png';
 import { StackNavigator } from 'react-navigation';
 import styles from '../assets/styles';
 import pictures from '../assets/picturesLabel.png';
-import csv from '../assets/csvLabel.png';
+import { connect } from 'react-redux';
 import agld from '../assets/AG_logo.png';
 import origin from "../assets/originLabel.png";
 import destination from "../assets/destinationLabel.png";
 import Submit from '../components/SubmitBtn';
-import { DocumentPicker, ImagePicker } from 'expo';
-import Amplify, { Storage } from 'aws-amplify';
+import { ImagePicker } from 'expo';
+
+// import Amplify, { Storage } from 'aws-amplify';
 // import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
 // console.log(aws_exports);
 // Amplify.configure({
@@ -29,68 +30,88 @@ import Amplify, { Storage } from 'aws-amplify';
 
 
 
-export default class FileUp extends Component {
+class FileUp extends Component {
+  static navigationOptions = {
+    header: null
 
-  state = {
-    image: null,
-  };
-
-
-
-  _takePhoto = async () => {
-    let snappedPhoto = await ImagePicker.launchCameraAsync({
-      allowsEditing: false,
-      aspect: [4, 3],
-    });
-
-    if (!snappedPhoto.cancelled) {
-      console.log(snappedPhoto, "snapped Photo");
-      this.setState({
-
-        image: snappedPhoto.uri
-
-
-      });
-    }
-    console.log(this.state, 'thisState')
-  };
-
-
-  render() {
-    const { navigate } = this.props.navigation;
-    
-        let location = this.props.navigation.state.params.location;
-        let locationLabel = location === 'destination' ? destination : origin;
-        console.log(this.props.navigation.state.params, "this.props")
-    let { image } = this.state;
-    let imageFile = this.state.image;
-    return (
-      <View style={styles.container}>
-
-        <View style={styles.subHeader}>
-          <Image style={styles.assetLocation} source={locationLabel} />
-          <Image style={styles.assetButton} source={agld} />
-        </View>
-
-        <Image source={pictures} style={styles.menuInputTitle}/>
-
-
-        {/* <View style={styles.imageContainer}> */}
-        <View style={{ height: 100, width: 100, alignItems: 'center', justifyContent: 'space-around' }}>
-          <Button
-            title="Take a Photo"
-            onPress={this._takePhoto}
-          />
-
-          <Image source={{ uri: image }} style={{ width: 100, height: 100 }} />
-        </View>
-
-        <Submit onPress={() => navigate('Splash3', {image: imageFile})} />
-
-      </View>
-    )
   }
-}
+  constructor(props) {
+    super(props);
+    state = {
+      image: null,
+    }
+  }
+    _takePhoto = async () => {
+      let snappedPhoto = await ImagePicker.launchCameraAsync({
+        allowsEditing: false,
+        aspect: [4, 3],
+      });
+
+      if (!snappedPhoto.cancelled) {
+        console.log(snappedPhoto, "snapped Photo");
+        this.setState({
+          image: snappedPhoto.uri
+        })
+      };
+    }
+    _onSubmit = (photo) => {
+      console.log(photo, "onsubmitphoto")
+      this.props.addPhoto(photo)
+
+    };
+
+
+    render() {
+      
+      let { image } = this.state
+      const { navigate } = this.props.navigation;
+      let locationImage = this.props.selectedAsset.place === 'destination' ? destination : origin;
+      let logo = this.props.selectedAsset.Logo;
+
+      console.log(this.props.selectedAsset, 'splash3 this.props.selectedAsset ');
+
+      return (
+        <View style={styles.containerCenter}>
+
+          <View style={styles.subHeader}>
+            <Image style={styles.assetLocation} source={locationImage} />
+            <Image style={styles.assetButton} source={logo} />
+          </View>
+
+
+
+
+          <Image source={pictures} style={styles.menuInputTitle} />
+
+
+
+          <View style={{ height: 100, width: 100, alignItems: 'center', justifyContent: 'space-around' }}>
+            <Button
+              title="Take a Photo"
+              onPress={this._takePhoto}
+            />
+
+            <Image source={{ uri: image }} style={{ width: 100, height: 100 }} />
+          </View>
+
+          <Submit onPress={() => navigate('Splash3', { image: imageFile })} />
+
+        </View>
+      )
+    }
+  }
+
+  const mapStateToProps = (state) => ({
+    selectedAsset: state.AssetReducers.selectedAsset,
+
+  });
+  const mapDispatchToProps = (dispatch) => ({
+
+    addPhoto: (uri) =>
+      dispatch(addPhoto(uri)),
+
+  })
+  export default connect(mapStateToProps, mapDispatchToProps)(FileUp);
 // const styles = StyleSheet.create({
 //   container: {
 //     flex: 1,
