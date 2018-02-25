@@ -1,5 +1,5 @@
-import { ADD_ASSET, GET_ASSET, LIST_ASSETS } from './types';
- import assets from '../reducers/assetListReducer';
+import { ADD_ASSET, GET_ASSET, LIST_ASSETS, SELECT_ASSET } from './types';
+import assets from '../reducers/assetListReducer';
 
 export function listAssets() {
     return {
@@ -9,11 +9,22 @@ export function listAssets() {
     }
 }
 
+
+export function selectAsset(assetIndex) {
+
+    return (
+        console.log(assetIndex, 'assetIndex'),
+        {
+            type: SELECT_ASSET,
+            assetIndex: assetIndex
+        }
+    )
+}
 export function getAsset(assetIndex) {
     return {
         type: GET_ASSET,
 
-        asset: assets[assetIndex]
+        selectedAsset: assets[assetIndex]
     }
 }
 

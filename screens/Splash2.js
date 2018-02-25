@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
 import { StyleSheet, Platform, Text, View, Image, ScrollView, TouchableHighlight, Alert, TouchableNativeFeedback } from 'react-native';
 import { STATUS_BAR_HEIGHT } from '../constants';
-import WelcomeHeader from "../components/WelcomeHeader";
-// import Welcome from "../components/Welcome";
-import { StackNavigator } from 'react-navigation';
-import Title from "../components/MenuInputTitle";
-import agld from "../assets/AG_logo.png";
 import arrow from "../assets/icon_backarrow.png";
 import styles from "../assets/styles";
-import AgldHead from "../components/NavButtons";
-import vendorSupply from "../assets/vendorAndSupplier.png";
-import pictures from "../assets/picturesLabel.png";
+import { connect } from 'react-redux';
 
 
 
-
-export default class Splash2 extends Component {
+class Splash2 extends Component {
   
-
+componentDidMount() {
+  console.log(this.props, 'thispropsSpash2')
+}
   render() {
 
 
@@ -27,12 +21,7 @@ export default class Splash2 extends Component {
     return (
       <View style={styles.container}>
  
-      {/* // <View style={styles.container}>
-      //   <TouchableHighlight onPress={navigate(() => 'MenuOptions')}>
-      //     <Image source={agld} style={styles.headerLogo} />
-      //   </TouchableHighlight> */}
-        
-          <Image style={styles.assetButton} source={agld} />
+       <Image style={styles.assetButton} source={this.props.selectedAsset.Logo} />
           
           
         
@@ -51,13 +40,7 @@ export default class Splash2 extends Component {
             />
           </TouchableHighlight>
         </View>
-          {/* <TouchableHighlight  onPress={() => navigate('FileUp')}>
-            <Image
-              style={styles.button}
-              source={pictures}
-            />
-          </TouchableHighlight>  */}
-
+         
 
         </View>
      
@@ -65,3 +48,17 @@ export default class Splash2 extends Component {
     )
   };
 }
+
+const mapStateToProps = (state) => ({ 
+  selectedAsset: state.selectedAsset,
+  
+});
+// const mapDispatchToProps = (dispatch) => ({
+  
+//   selectAsset: (assetIndex) =>
+//     dispatch(selectAsset(assetIndex)),
+  
+//   listAssets: () =>  dispatch(listAssets())
+   
+// })
+export default connect(mapStateToProps)(Splash2);

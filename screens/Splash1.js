@@ -3,36 +3,44 @@ import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert } 
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
-
+import create from '../assets/createNewAssetButton.png';
 import agldLogo from "../assets/AG_logo.png";
-import { getAsset } from '../actions/AssetActions';
+import { getAsset, selectAsset } from '../actions/AssetActions';
 // import { listAssets, getAsset } from '../actions/AssetActions';
 
-this.state = {
-  images:[
-    require('../assets/AG_logo.png'),
-    require('../assets/icon_logout.png'),
-    
-  ]
-}
+// this.state = {
+//   images:[
+//     require('../assets/AG_logo.png'),
+//     require('../assets/icon_logout.png'),
+
+//   ]
+// }
 
 
 class Splash1 extends Component {
-  componentDidMount() {
-    console.log("this.props.assets!!",this.props.assets);
-    
-    
-    
+  constructor(props) {
+    super(props);
   }
-  
+  componentDidMount() {
+    console.log("this.props.assets!!", this.props.assets);
+    console.log(this.props, 'thisstate')
+
+
+
+  }
+
   _onPress = (index) => {
     const { navigate } = this.props.navigation;
-    //  console.log(index, 'index');
-    //  console.log(this.props.assets[index], 'thisgetass')
-    //  let pickedAsset = this.props.getAsset(index);
-     console.log(this.props, 'asset') 
-    // navigate('Splash2', { asset:  this.props.getAsset(index)});
-   }
+    this.props.selectAsset(index);
+
+    console.log(this.props.assetIndex, 'idx')
+
+    console.log(this.props, 'this.props')
+    // this.props.getAsset(this.props.assetIndex);
+    console.log()
+
+    navigate('Splash2', { assetIndex: this.props.assetIndex });
+  }
 
   render() {
     console.log(this.props, "this.props");
@@ -42,7 +50,7 @@ class Splash1 extends Component {
       return (
         <View key={index} style={styles.field}>
           <TouchableHighlight onPress={() => this._onPress(index)}  >
-            <Image style={styles.assetButton} source={{uri: asset.Logo}} />
+            <Image style={styles.assetButton} source={agldLogo} />
           </TouchableHighlight>
           <Text style={styles.label}>{asset.Name}</Text>
         </View>
@@ -54,13 +62,14 @@ class Splash1 extends Component {
       <View style={styles.container}>
         {/* <Image sourc={{uri:this.props.assets[0].Logo}}/> */}
         {list}
-        {/* <Text style={styles.assetMenuLabel}> Press Asset to Select </Text>
-        <View style={styles.assetMenu}>
 
-          <TouchableHighlight style={{ justifyContent: 'center', height: 100, width: 100 }} onPress={() => navigate('Splash2')} >
-            <Image style={styles.assetButton} source={agldLogo} />
-          </TouchableHighlight>
-        </View> */}
+        <TouchableHighlight onPress={console.log('pressing Create')}>
+          <Image
+            style={{ resizeMode: 'contain', height: 80, width: 150 }}
+            source={create}
+          />
+        </TouchableHighlight>
+       
       </View>
 
 
@@ -69,13 +78,18 @@ class Splash1 extends Component {
   };
 }
 
-const mapStateToProps = (state) => ({ assets: state.assets });
+const mapStateToProps = (state) => ({
+  assets: state.assets,
+  selectedAsset: state.assets[state.assetIndex],
+  assetIndex: state.assetIndex
+
+});
 const mapDispatchToProps = (dispatch) => ({
-  getAsset: function (assetIndex) {
-    dispatch(getAsset(assetIndex))
-  },
-  listAssets: function () {
-    dispatch(listAssets())
-  }
+
+  selectAsset: (assetIndex) =>
+    dispatch(selectAsset(assetIndex)),
+
+  listAssets: () => dispatch(listAssets())
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Splash1);

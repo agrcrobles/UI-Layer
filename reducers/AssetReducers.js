@@ -1,11 +1,11 @@
-import { LIST_ASSETS, GET_ASSET, ADD_ASSET } from '../actions/types';
+import { LIST_ASSETS, GET_ASSET, ADD_ASSET, SELECT_ASSET } from '../actions/types';
 import assets from './assetListReducer';
 
 
 const INITIAL_STATE = {
     assets: assets,
     selectedAsset: {},
-    assetIdx: 0,
+    assetIndex: 0,
     newAsset: {}
 
 };
@@ -15,12 +15,24 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
         case LIST_ASSETS:
             return Object.assign({}, state, {
                 ...state,
-               });
+            });
+
+        case SELECT_ASSET:
+            let assetIndex = action.assetIndex;
+            console.log(assetIndex, 'actionpayload')
+            return Object.assign({}, state, {
+                assetIndex: assetIndex
+            })
+
+
         case GET_ASSET:
+            let selectedAsset = assets[action.selectedAsset];
+            console.log(selectedAsset, "selectedAsset Reduction")
             return Object.assign({}, state, {
                 ...state,
-                selectedAsset: GET_ASSET.asset
+                selectedAsset
             })
+
         case ADD_ASSET:
             return Object.assign({}, state, {
                 ...state,
