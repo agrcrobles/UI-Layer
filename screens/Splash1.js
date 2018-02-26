@@ -7,9 +7,22 @@ import create from '../assets/createNewAssetButton.png';
 import agldLogo from "../assets/AG_logo.png";
 import toast from "../assets/toast.jpg";
 import { selectAsset, listAssets } from '../actions/AssetActions';
+import backArrow from '../assets/icon_backarrow.png';
 
 
 class Splash1 extends Component {
+  static navigationOptions = {  headerLeft: (
+    <View>
+        <TouchableHighlight
+            onPress={() => this.props.navigation.goBack(state.key)} >
+            <Image
+                source={backArrow}
+                style={styles.backArrow}
+            />
+    
+        </TouchableHighlight>
+    </View>
+        ) };
   constructor(props) {
     super(props);
     

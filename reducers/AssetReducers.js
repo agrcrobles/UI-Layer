@@ -1,10 +1,14 @@
-import { LIST_ASSETS, ADD_ASSET, SELECT_ASSET, SET_PLACE, ADD_PHOTO } from '../actions/types';
+import { LIST_ASSETS, ADD_ASSET, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS } from '../actions/types';
 import assets from './assetList';
 
 
 const INITIAL_STATE = {
     assets: assets,
-    selectedAsset: {},
+    selectedAsset: {
+        Images: [],
+        csv: [],
+    },
+
     newAsset: {}
 
 };
@@ -45,7 +49,22 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                   Images:[...state.selectedAsset.Images, image]
                 }
             )
-        
+        case ADD_DOC:
+            let doc = action.data;
+            console.log('adding doc', doc);
+            return Object.assign({}, state, {
+                ...state.selectedAsset,
+                csv:[ action.data.docUri]
+                
+            })
+
+        case ADD_PROPS:
+            let attr = action.data;
+            console.log(attr, "updating attributes in reducers");
+            return Object.assign({}, state, {
+                ...state.selectedAsset.Properties,
+                attr
+            })
             
 
         case ADD_ASSET:

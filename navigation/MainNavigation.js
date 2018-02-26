@@ -11,6 +11,7 @@ import Welcome from "../screens/Welcome";
 import Origin from "../screens/Origin";
 import Destination from "../screens/Destination";
 import FileUp from "../screens/FileUp";
+import DocUp from "../screens/DocUp";
 import Confirm from "../screens/Confirm";
 import ThankYou from "../screens/ThankYou";
 import Create from "../screens/Create";
@@ -44,6 +45,7 @@ const MainNavigator = StackNavigator({
     Origin: { screen: Origin },
     Destination: { screen: Destination },
     FileUp: { screen: FileUp },
+    DocUp: { screen: DocUp },
     Confirm: { screen: Confirm },
     ThankYou: { screen: ThankYou },
     FileThanks: { screen: FileThanks }
@@ -83,18 +85,18 @@ const MainNavigator = StackNavigator({
 
 
             },
-            headerLeft: (
-                <View>
-                    <TouchableHighlight
-                        onPress={() => navigation.goBack(null)} >
-                        <Image
-                            source={backArrow}
-                            style={styles.backArrow}
-                        />
+            // headerLeft: (
+            //     <View>
+            //         <TouchableHighlight
+            //             onPress={() => navigation.goBack(state.key)} >
+            //             <Image
+            //                 source={backArrow}
+            //                 style={styles.backArrow}
+            //             />
                 
-                    </TouchableHighlight>
-                </View>
-                    )
+            //         </TouchableHighlight>
+            //     </View>
+            //         )
                 }
         
             });

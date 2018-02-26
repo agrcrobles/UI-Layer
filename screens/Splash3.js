@@ -4,19 +4,16 @@ import { STATUS_BAR_HEIGHT } from '../constants';
 import WelcomeHeader from "../components/WelcomeHeader";
 // import Welcome from "../components/Welcome";
 import { StackNavigator } from 'react-navigation';
+
 import MenuOptions from "../components/buttons/menuOptions.png";
-import agld from "../assets/AG_logo.png";
 import origin from "../assets/originLabel.png";
 import destination from "../assets/destinationLabel.png";
 import csv from "../assets/csvLabel.png";
 import camera from "../assets/cameraLabel.png";
 import styles from "../assets/styles";
 import manual from "../assets/manLabel.png";
-import toast from "../assets/toast.jpg";
 
 import { connect } from "react-redux";
-
-
 
 class Splash3 extends Component {
     static navigationOptions = {
@@ -27,6 +24,7 @@ class Splash3 extends Component {
         super(props);
     }
     componentDidMount() {
+        console.log(this.props.selectedAsset, 'onmount selasset')
 
 
     }
@@ -55,7 +53,7 @@ class Splash3 extends Component {
                         
                     </TouchableHighlight>
                     <Image source={image} />
-                    <TouchableHighlight onPress={() => navigate('FileUp')}>
+                    <TouchableHighlight onPress={() => navigate('DocUp')}>
                         <Image
                             style={styles.menuInputTitle}
                             source={csv}

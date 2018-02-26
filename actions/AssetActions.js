@@ -1,4 +1,4 @@
-import { ADD_ASSET, LIST_ASSETS, SELECT_ASSET, SET_PLACE, ADD_PHOTO} from './types';
+import { ADD_ASSET, LIST_ASSETS, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS } from './types';
 import assets from '../reducers/assetListReducer';
 
 export function listAssets() {
@@ -43,5 +43,21 @@ export function addAsset(asset) {
         type: ADD_ASSET,
         newAsset: asset
 
+    }
+}
+export function addDoc(uri, docName) {
+    return {
+        type: ADD_DOC,
+       data:{
+        docUri: uri,
+        docName
+       }
+    }
+}
+
+export function addProps (attributes) {
+    return {
+        type: ADD_PROPS,
+        data: attributes
     }
 }

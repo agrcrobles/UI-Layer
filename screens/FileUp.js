@@ -32,6 +32,7 @@ import { addPhoto } from '../actions/AssetActions';
 
 
 class FileUp extends Component {
+  
   static navigationOptions = {
     header: null
 
@@ -39,7 +40,6 @@ class FileUp extends Component {
      state = {
       image: null
     }
- 
   
 
     // _takePhoto = async () => {
@@ -63,8 +63,8 @@ class FileUp extends Component {
       console.log("picking Image")
       let result = await ImagePicker.launchCameraAsync({
         // base64: true
-        // allowsEditing: false,
-        // aspect: [4, 3],
+        allowsEditing: false,
+        aspect: [4, 3],
       });
   
       console.log(result);
@@ -75,22 +75,22 @@ class FileUp extends Component {
           
             image: result.uri  
            
-         
         });
       }
     };
     _onSubmit = (photoUri) => {
-
+      const { navigate } = this.props.navigation;
       console.log(photoUri, "onsubmitphoto")
       this.props.addPhoto(photoUri)
-      // navigate('Splash3')
+      console.log(this.props.selectedAsset, "selectedAsset in onsubmit")
+      navigate('Splash3')
     };
 
 
     render() {
       
       let  { image }  = this.state;
-      const { navigate } = this.props.navigation;
+     
       let locationImage = this.props.selectedAsset.place === 'destination' ? destination : origin;
       let logo = this.props.selectedAsset.Logo;
 
@@ -103,9 +103,6 @@ class FileUp extends Component {
             <Image style={styles.assetLocation} source={locationImage} />
             <Image style={styles.assetButton} source={logo} />
           </View>
-
-
-
 
           <Image source={pictures} style={styles.menuInputTitle} />
 

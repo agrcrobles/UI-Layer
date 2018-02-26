@@ -5,116 +5,78 @@ import styles from "../assets/styles";
 import destination from "../assets/destinationLabel.png";
 import origin from "../assets/originLabel.png";
 import { StackNavigator, } from 'react-navigation';
+import { connect } from "react-redux";
+import { addProps } from "../actions/AssetActions";
 
-export default class InputMan extends Component {
+class InputMan extends Component {
+    static navigationOptions = {
+        header: null
+
+    }
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    _onReview = () => {
+        let attributes = this.state;
+        console.log(this.state, "stateInputesfilled?");
+        this.props.addProps(attributes);
+        console.log("justaddedPRoperties");
+        // navigate('Confirm');
+    }
     render() {
-        let image = this.props.navigation.state.params.image === 'destination' ? destination : origin;
         const { navigate } = this.props.navigation;
-        return (
-            <View style={styles.container}>
+        let locationImage = this.props.selectedAsset.place === 'destination' ? destination : origin;
+        let logo = this.props.selectedAsset.Logo;
 
-                <Image style={styles.menuInputTitle} source={image} />
+        let list = Object.keys(this.props.properties).map((propName, idx) => {
+            let name = propName;
+            return (
 
-                <TouchableHighlight onPress={() => navigate('FileUp')}>
-                    <Image
-                        style={styles.button}
-                        source={pictures}
+                <View key={idx} style={styles.field}>
+                    <Text style={styles.label}>{name}</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(name) => this.setState({ name })}
+                        placeholder={name}
                     />
-                </TouchableHighlight>
+                </View>
 
-                <ScrollView contentContainerStyle={styles.menu}>
-                    <View style={styles.scrollContent}>
+            )
 
-                        <View style={styles.field}>
-                            <Text style={styles.label}>Bar ID</Text>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={(Bar_Id) => this.setState({ Bar_Id })}
-                                placeholder="Bar ID"
-                            />
-                        </View>
+        })
 
-                        <View style={styles.field}>
-                            <Text style={styles.label}>Bar Serial</Text>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={(Bar_Serial) => this.setState({ Bar_Serial })}
-                                placeholder="Bar Serial"
-                            />
-                        </View>
+        return (
+            <View style={styles.containerCenter}>
 
-                        <View style={styles.field}>
-                            <Text style={styles.label}>Vault Location</Text>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={(Vault_Location) => this.setState({ Vault_Location })}
-                                placeholder="Vault Location"
-                            />
-                        </View>
+                <View style={styles.subHeader}>
+                    <Image style={styles.assetLocation} source={locationImage} />
+                    <Image style={styles.assetButton} source={logo} />
+                </View>
 
-                        <View style={styles.field}>
-                            <Text style={styles.label}>Weight</Text>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={(Weight) => this.setState({ Weight })}
-                                placeholder="Weight"
-                            />
-                        </View>
+                <ScrollView contentContainerStyle={styles.inputMenu}>
+                    <View style={{ flex: 1 }}>
 
-                        <View style={styles.field}>
-                            <Text style={styles.label}>Purity</Text>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={(Purity) => this.setState({ Purity })}
-                                placeholder="Purity"
-
-                            />
-                        </View>
-
-                        <View style={styles.field}>
-                            <Text style={styles.label}>Date Received</Text>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={(Date_Received) => this.setState({ Date_Received })}
-                                placeholder="Date Recieved"
-                            />
-                        </View>
-
-                        <View style={styles.field}>
-                            <Text style={styles.label}>Date Processed</Text>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={(Date_Processed) => this.setState({ Date_Processed })}
-                                placeholder="Date Processed"
-                            />
-                        </View>
-
-                        <View style={styles.field}>
-                            <Text style={styles.label}>Mint</Text>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={(Mint) => this.setState({ Mint })}
-                                placeholder="Mint"
-                            />
-                        </View>
-
-                        <View style={styles.field}>
-                            <Text style={styles.label}>Supplier</Text>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={(Supplier) => this.setState({ Supplier })}
-                                placeholder="Supplier"
-                            />
-                        </View>
+                        {list}
                     </View>
                 </ScrollView>
 
-                <Next onPress={() => {
-                    console.log(this.state);
-                    navigate('Confirm', { image: 'destination', values: this.state })
-                }}
-                />
+                <Next onPress={() => this._onReview()} />
             </View>
+
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+
+    selectedAsset: state.AssetReducers.selectedAsset,
+    properties: state.AssetReducers.selectedAsset.Properties
+});
+const mapDispatchToProps = (dispatch) => ({
+    addProps: (attributes) =>
+        dispatch(addProps(attributes),
+        )
+})
+export default connect(mapStateToProps, mapDispatchToProps)(InputMan);

@@ -34,6 +34,21 @@ module.exports = StyleSheet.create({
         // paddingTop: 50
         // margin: .5,
     },
+    inputMenu: {
+        width: '80%',
+        height: 350,
+        alignItems: "center",
+        justifyContent: "space-between",
+        backgroundColor: '#021227'
+        // paddingTop: 50
+        // margin: .5,
+    },
+    inputView: {
+        width: '95%',
+        alignItems: 'center'
+
+
+    },
     smallMenu: {
         height: 250,
         alignItems: "center",
@@ -104,7 +119,7 @@ module.exports = StyleSheet.create({
 
     },
     assetMenu: {
-       
+
         height: 300,
         width: '80%',
         backgroundColor: 'blue',
@@ -157,7 +172,8 @@ module.exports = StyleSheet.create({
         backgroundColor: 'blue',
         justifyContent: 'space-between',
         padding: 5,
-
+        margin: 5,
+        marginTop: 10
     }
 
 });
