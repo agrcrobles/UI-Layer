@@ -12,7 +12,11 @@ module.exports = StyleSheet.create({
         // height: 300,
         // width: 700
     },
-
+    createParamsLogo: {
+        resizeMode: 'contain',
+        height: 200,
+        width: 300
+    },
     container: {
         flex: 1,
         backgroundColor: '#021227',
@@ -34,6 +38,20 @@ module.exports = StyleSheet.create({
         // paddingTop: 50
         // margin: .5,
     },
+    scrollMenu: {
+        height: 200,
+        width: "85%",
+        // justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: '#021227',
+        paddingTop: 5,
+        paddingBottom: 5
+      },
+      scrollContent: {
+        flex: 1,
+        padding: 2,
+        justifyContent: "space-around"
+      },
     inputMenu: {
         width: '80%',
         height: 350,
@@ -43,17 +61,19 @@ module.exports = StyleSheet.create({
         // paddingTop: 50
         // margin: .5,
     },
+  
     inputView: {
+        height: 300,
         width: '95%',
         alignItems: 'center'
 
 
     },
     smallMenu: {
-        height: 250,
+        height: 200,
         alignItems: "center",
         justifyContent: "space-around",
-        backgroundColor: 'blue'
+        backgroundColor: '#021227'
         // paddingTop: 50
         // margin: .5,
     },
@@ -76,7 +96,7 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         width: "80%",
-        backgroundColor: "blue",
+        backgroundColor: '#021227',
         // marginTop: 5,
         // marginBottom: 5,
         alignItems: "center",
@@ -102,7 +122,7 @@ module.exports = StyleSheet.create({
         marginRight: 50,
         width: 40,
         height: 40,
-        backgroundColor: 'red'
+        backgroundColor: '#021227'
     },
     button: {
         width: 275,
@@ -122,7 +142,7 @@ module.exports = StyleSheet.create({
 
         height: 300,
         width: '80%',
-        backgroundColor: 'blue',
+        backgroundColor: '#021227',
         justifyContent: 'center',
         alignItems: 'center',
         padding: 5
@@ -169,7 +189,7 @@ module.exports = StyleSheet.create({
         flexDirection: 'row',
         width: '80%',
         height: 110,
-        backgroundColor: 'blue',
+        backgroundColor: '#021227',
         justifyContent: 'space-between',
         padding: 5,
         margin: 5,

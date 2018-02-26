@@ -7,7 +7,7 @@ let assetList =
         place: "",
         csv: [],
         Images: [],
-        Properties: {
+        CoreProperties: {
             BarID: "",
             BarSerial: "",
             VaultLocation: "",
@@ -25,7 +25,7 @@ let assetList =
         place: "",
         csv: [],
         Images: [],
-        Properties: {
+        CoreProperties: {
             Weight: "",
             Color: "",
             NumSlices: "",

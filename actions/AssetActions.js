@@ -38,10 +38,10 @@ export function addPhoto(uri) {
     )
 }
 
-export function addAsset(asset) {
+export function addAsset(newAsset) {
     return {
         type: ADD_ASSET,
-        newAsset: asset
+        newAsset
 
     }
 }

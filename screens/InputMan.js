@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import Next from "../components/NextBtn";
 import styles from "../assets/styles";
 import destination from "../assets/destinationLabel.png";
@@ -7,6 +7,7 @@ import origin from "../assets/originLabel.png";
 import { StackNavigator, } from 'react-navigation';
 import { connect } from "react-redux";
 import { addProps } from "../actions/AssetActions";
+import review from "../assets/reviewLabel.png";
 
 class InputMan extends Component {
     static navigationOptions = {
@@ -19,14 +20,15 @@ class InputMan extends Component {
     }
 
     _onReview = () => {
+        const { navigate } = this.props.navigation;
         let attributes = this.state;
         console.log(this.state, "stateInputesfilled?");
         this.props.addProps(attributes);
         console.log("justaddedPRoperties");
-        // navigate('Confirm');
+        navigate('Confirm');
     }
     render() {
-        const { navigate } = this.props.navigation;
+
         let locationImage = this.props.selectedAsset.place === 'destination' ? destination : origin;
         let logo = this.props.selectedAsset.Logo;
 
@@ -38,7 +40,7 @@ class InputMan extends Component {
                     <Text style={styles.label}>{name}</Text>
                     <TextInput
                         style={styles.input}
-                        onChangeText={(name) => this.setState({ name })}
+                        onChangeText={text => this.setState({ [propName]: text })}
                         placeholder={name}
                     />
                 </View>
@@ -55,24 +57,24 @@ class InputMan extends Component {
                     <Image style={styles.assetButton} source={logo} />
                 </View>
 
-                <ScrollView contentContainerStyle={styles.inputMenu}>
-                    <View style={{ flex: 1 }}>
 
-                        {list}
-                    </View>
-                </ScrollView>
+                <View style={styles.scrollContent}>
 
-                <Next onPress={() => this._onReview()} />
-            </View>
+                    {list}
+                </View>
 
-        )
+                <TouchableHighlight onPress={() => this._onReview()} >
+                    <Image source={review} style={styles.button} />
+                </TouchableHighlight>
+
+            </View>)
     }
 }
 
 const mapStateToProps = (state) => ({
 
     selectedAsset: state.AssetReducers.selectedAsset,
-    properties: state.AssetReducers.selectedAsset.Properties
+    properties: state.AssetReducers.selectedAsset.CoreProperties
 });
 const mapDispatchToProps = (dispatch) => ({
     addProps: (attributes) =>

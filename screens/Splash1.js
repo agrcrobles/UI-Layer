@@ -44,6 +44,7 @@ class Splash1 extends Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     console.log(this.props)
     let list = this.props.assets.map((asset, index) => {
       console.log(asset.Logo, 'logo/uri');
@@ -63,7 +64,7 @@ class Splash1 extends Component {
         <View style={styles.assetMenu}>
         {list}
         </View>
-        <TouchableHighlight onPress={() => console.log('pressing Create')}>
+        <TouchableHighlight onPress={() => navigate('Create')}>
           <Image
             style={{ resizeMode: 'contain', height: 80, width: 150 }}
             source={create}

@@ -54,7 +54,7 @@ const MainNavigator = StackNavigator({
 
 
     {
-        initialRouteName: 'Splash1',
+        initialRouteName: 'Welcome',
         navigationOptions: {
             title: <Image style={{
                 height: 300,
@@ -65,7 +65,7 @@ const MainNavigator = StackNavigator({
 
             headerStyle: {
                 height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
-                backgroundColor: '#2196F3',
+                backgroundColor: '#021227',
                 justifyContent: 'space-between',
 
             },
@@ -85,18 +85,18 @@ const MainNavigator = StackNavigator({
 
 
             },
-            // headerLeft: (
-            //     <View>
-            //         <TouchableHighlight
-            //             onPress={() => navigation.goBack(state.key)} >
-            //             <Image
-            //                 source={backArrow}
-            //                 style={styles.backArrow}
-            //             />
+            headerLeft: (
+                <View>
+                    <TouchableHighlight
+                        onPress={() => navigation.goBack(state.key)} >
+                        <Image
+                            source={backArrow}
+                            style={styles.backArrow}
+                        />
                 
-            //         </TouchableHighlight>
-            //     </View>
-            //         )
+                    </TouchableHighlight>
+                </View>
+                    )
                 }
         
             });

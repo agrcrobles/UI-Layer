@@ -31,7 +31,7 @@ class Splash3 extends Component {
     // this.props.navigation.state.params.image
     render() {
         const { navigate } = this.props.navigation;
-        let  image  = this.props.selectedAsset.Images[0] ? this.props.selectedAsset.Images[0] : null;
+        let  image  = this.props.selectedAsset.Images ? this.props.selectedAsset.Images[0] : null;
         let locationImage = this.props.selectedAsset.place === 'destination' ? destination : origin;
         let logo = this.props.selectedAsset.Logo;
         console.log(this.props.selectedAsset, 'splash3 this.props.selectedAsset ');
@@ -59,6 +59,7 @@ class Splash3 extends Component {
                             source={csv}
                         />
                     </TouchableHighlight>
+                    
                     <TouchableHighlight onPress={() => navigate('InputMan')}>
                         <Image
                             style={styles.menuInputTitle}

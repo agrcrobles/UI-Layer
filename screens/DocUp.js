@@ -32,7 +32,7 @@ class DocUp extends Component {
     console.log(uri, docName, "onsubmitcsv")
     this.props.addDoc(uri, docName);
     console.log(this.props.selectedAsset, "selectedAsset in onsubmitCSV")
-    //navigate('Splash3')
+    navigate('Splash3');
   };
 
 
