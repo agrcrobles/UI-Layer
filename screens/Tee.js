@@ -23,15 +23,17 @@ class Tee extends Component {
   }
 
   _onSubmit = () => {
+    const { navigate } = this.props.navigation;
     console.log(this.state, "thisstate confimrmtee");
     let newAsset = this.state;
     this.props.addAsset(newAsset);
 
-    console.log(newAsset, "newasset");
+    console.log(newAsset, "ewasset");
+    navigate('NewAssetConfirm');
   }
   render() {
 
-    const { navigate } = this.props.navigation;
+   
 
     return (
 

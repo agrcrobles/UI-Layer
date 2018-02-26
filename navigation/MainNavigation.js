@@ -27,6 +27,7 @@ import FileThanks from '../screens/FileThanks';
 import Splash1 from '../screens/Splash1';
 import Splash2 from '../screens/Splash2';
 import Splash3 from '../screens/Splash3';
+import NewAssetConfirm from '../screens/NewAssetConfirm';
 
 const MainNavigator = StackNavigator({
     Welcome: { screen: Welcome },
@@ -48,7 +49,9 @@ const MainNavigator = StackNavigator({
     DocUp: { screen: DocUp },
     Confirm: { screen: Confirm },
     ThankYou: { screen: ThankYou },
-    FileThanks: { screen: FileThanks }
+    FileThanks: { screen: FileThanks },
+    NewAssetConfirm: { screen: NewAssetConfirm}
+
 
 },
 
@@ -66,8 +69,7 @@ const MainNavigator = StackNavigator({
             headerStyle: {
                 height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
                 backgroundColor: '#021227',
-                justifyContent: 'space-between',
-
+                
             },
             headerTitleStyle: {
                 // marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
