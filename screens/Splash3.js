@@ -21,13 +21,21 @@ import { connect } from "react-redux";
 class Splash3 extends Component {
     static navigationOptions = {
         header: null
-    
-      }
+
+    }
+    constructor(props) {
+        super(props);
+    }
+    componentDidMount() {
+
+
+    }
     // this.props.navigation.state.params.image
     render() {
         const { navigate } = this.props.navigation;
-         let locationImage = this.props.selectedAsset.place === 'destination'? destination : origin;
-         let logo = this.props.selectedAsset.Logo;
+        let  image  = this.props.selectedAsset.Images[0] ? this.props.selectedAsset.Images[0] : null;
+        let locationImage = this.props.selectedAsset.place === 'destination' ? destination : origin;
+        let logo = this.props.selectedAsset.Logo;
         console.log(this.props.selectedAsset, 'splash3 this.props.selectedAsset ');
 
         return (
@@ -44,7 +52,9 @@ class Splash3 extends Component {
                             style={styles.menuInputTitle}
                             source={camera}
                         />
+                        
                     </TouchableHighlight>
+                    <Image source={image} />
                     <TouchableHighlight onPress={() => navigate('FileUp')}>
                         <Image
                             style={styles.menuInputTitle}
@@ -59,12 +69,12 @@ class Splash3 extends Component {
                     </TouchableHighlight>
 
                 </View>
-            <TouchableHighlight onPress={() => navigate('MenuOptions')} >
-                <Image 
-                    style={styles.button}
-                    source={MenuOptions}
-                />
-            </TouchableHighlight>
+                <TouchableHighlight onPress={() => navigate('MenuOptions')} >
+                    <Image
+                        style={styles.button}
+                        source={MenuOptions}
+                    />
+                </TouchableHighlight>
             </View>
 
 
@@ -74,5 +84,5 @@ class Splash3 extends Component {
 
 const mapStateToProps = (state) => ({
     selectedAsset: state.AssetReducers.selectedAsset
-  });
-  export default connect(mapStateToProps)(Splash3);
+});
+export default connect(mapStateToProps)(Splash3);
