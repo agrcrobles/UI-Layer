@@ -1,0 +1,39 @@
+let assetList = 
+[
+    {
+        Name: "AGLD",
+        HercID: "001",
+        Logo: require('../assets/AG_logo.png'),
+        place: "",
+        Images: [],
+        Properties: {
+            BarID: "",
+            BarSerial: "",
+            VaultLocation: "",
+            Weight: "",
+            Purity: "",
+            Mint: "",
+            DateProc: "",
+            Supplier:"" 
+        }
+    },
+    {
+        Name: "Tastee Toasters",
+        HercID: "002",
+        Logo: require('../assets/toast.jpg'),
+        place: "",
+        Images: [],
+        Properties: {
+            Weight: "",
+            Color: "",
+            NumSlices: "",
+            Height: "",
+            Width: "",
+            Condition: "",
+            Style: "",
+            Serial: "424242"
+        }
+    }
+]
+
+export default assetList;
