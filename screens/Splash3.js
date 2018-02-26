@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Platform, Text, View, Image, ScrollView, TouchableHighlight, Alert, TouchableNativeFeedback } from 'react-native';
+import { StyleSheet, Platform,TextInput, Text, View, Image, ScrollView, TouchableHighlight, Alert, TouchableNativeFeedback } from 'react-native';
 import { STATUS_BAR_HEIGHT } from '../constants';
 import WelcomeHeader from "../components/WelcomeHeader";
 // import Welcome from "../components/Welcome";
@@ -31,7 +31,7 @@ class Splash3 extends Component {
     // this.props.navigation.state.params.image
     render() {
         const { navigate } = this.props.navigation;
-        let  image  = this.props.selectedAsset.Images ? this.props.selectedAsset.Images[0] : null;
+        let image = this.props.selectedAsset.Images ? this.props.selectedAsset.Images[0] : null;
         let locationImage = this.props.selectedAsset.place === 'destination' ? destination : origin;
         let logo = this.props.selectedAsset.Logo;
         console.log(this.props.selectedAsset, 'splash3 this.props.selectedAsset ');
@@ -43,14 +43,17 @@ class Splash3 extends Component {
                     <Image style={styles.assetLocation} source={locationImage} />
                     <Image style={styles.assetButton} source={logo} />
                 </View>
-
+                <View style={styles.field}>
+                    <Text style={styles.label}>Herc-ID</Text>
+                    <TextInput style={styles.input} placeholder="ID" />
+                </View>
                 <View style={styles.spaceAroundContainer}>
                     <TouchableHighlight onPress={() => navigate('FileUp')}>
                         <Image
                             style={styles.menuInputTitle}
                             source={camera}
                         />
-                        
+
                     </TouchableHighlight>
                     <Image source={image} />
                     <TouchableHighlight onPress={() => navigate('DocUp')}>
@@ -59,7 +62,7 @@ class Splash3 extends Component {
                             source={csv}
                         />
                     </TouchableHighlight>
-                    
+
                     <TouchableHighlight onPress={() => navigate('InputMan')}>
                         <Image
                             style={styles.menuInputTitle}
