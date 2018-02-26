@@ -8,7 +8,8 @@ import origin from "../assets/originLabel.png";
 import { StackNavigator } from 'react-navigation';
 import { connect } from "react-redux";
 import styles from "../assets/styles";
-
+import fee from "../assets/hercFEE.jpg";
+<Image style={styles.assetFee} source={fee} />
 // import Amplify, { API } from 'aws-amplify';
 // import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
 // Amplify.configure(aws_exports);
@@ -93,7 +94,9 @@ class Confirm extends Component {
             <Text>{this.props.selectedAsset.Images[0]}</Text> */}
 
 
-        <Submit onPress={() => navigate('BlockScanner')} />
+        <Submit onPress={() => navigate('BlockScan')} />
+          <Image style={styles.assetFee} source={fee} />
+      
       </View>
 
 

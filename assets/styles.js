@@ -56,7 +56,7 @@ module.exports = StyleSheet.create({
         width: '80%',
         height: 350,
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "space-around",
         backgroundColor: '#021227'
         // paddingTop: 50
         // margin: .5,
@@ -184,6 +184,12 @@ module.exports = StyleSheet.create({
         width: 200,
         resizeMode: 'cover',
         marginTop: 33
+    },
+    assetFee: {
+        height: 50,
+        width: 200,
+        resizeMode: 'cover',
+        
     },
     subHeader: {
         flexDirection: 'row',

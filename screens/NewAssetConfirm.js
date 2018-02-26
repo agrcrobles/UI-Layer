@@ -8,6 +8,8 @@ import params from "../assets/igvcParamsLabel.png";
 import { StackNavigator } from 'react-navigation';
 import { connect } from "react-redux";
 import styles from "../assets/styles";
+import fee from "../assets/hercFEE.jpg";
+
 
 // import Amplify, { API } from 'aws-amplify';
 // import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
@@ -92,6 +94,7 @@ class NewAssetConfirm extends Component {
 
 
                 <Submit onPress={() => navigate('BlockScan')} />
+                <Image style={styles.assetFee} source={fee} />
             </View>
 
 
