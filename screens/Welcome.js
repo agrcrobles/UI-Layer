@@ -29,7 +29,7 @@ export default class Welcome extends Component {
    if(!this.state.pin === 7362){ 
      Alert.alert("Wrong Pin!");
    }
-     navigate('MenuOptions');
+     navigate('MenuOptions', navigationOptions={ headerLeft: });
  
   }
   render(){

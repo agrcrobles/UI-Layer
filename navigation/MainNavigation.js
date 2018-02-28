@@ -89,8 +89,8 @@ const MainNavigator = StackNavigator({
             },
             headerLeft: (
                 <View>
-                    <TouchableHighlight
-                        onPress={() => navigation.goBack(state.key)} >
+                    <TouchableHighlight>
+                       
                         <Image
                             source={backArrow}
                             style={styles.backArrow}

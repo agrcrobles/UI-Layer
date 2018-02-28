@@ -93,7 +93,7 @@ class NewAssetConfirm extends Component {
             <Text>{this.props.selectedAsset.Images[0]}</Text> */}
 
 
-                <Submit onPress={() => navigate('BlockScan')} />
+                <Submit onPress={() => navigate('')} />
                 <Image style={styles.assetFee} source={fee} />
             </View>
 

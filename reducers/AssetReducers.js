@@ -4,11 +4,7 @@ import assets from './assetList';
 
 const INITIAL_STATE = {
     assets: assets,
-    selectedAsset: {
-        Images: [],
-        csv: [],
-    },
-
+    selectedAsset: {},
     newAsset: {}
 
 };
@@ -63,8 +59,10 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             console.log(Properties, "updating attributes in reducers");
             return Object.assign({}, state, {
 
-                ...selectedAsset,
-                Properties
+                ...state.selectedAsset,
+                selectedAsset : {
+                    Properties
+                }
                 
             })
 
