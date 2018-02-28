@@ -72,7 +72,7 @@ const MainNavigator = StackNavigator({
                 
             },
             headerTitleStyle: {
-                // marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+                marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
                 // color: 'white',
                 textAlign: 'left',
                 textAlignVertical: 'center',
