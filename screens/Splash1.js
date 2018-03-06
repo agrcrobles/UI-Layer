@@ -11,22 +11,33 @@ import backArrow from '../assets/icon_backarrow.png';
 
 
 class Splash1 extends Component {
-  static navigationOptions = {  headerLeft: (
-    <View>
-        <TouchableHighlight
-            onPress={() => this.props.navigation.goBack(state.key)} >
-            <Image
-                source={backArrow}
-                style={styles.backArrow}
-            />
-    
-        </TouchableHighlight>
-    </View>
-        ) };
   constructor(props) {
     super(props);
-    
-    }
+
+  }
+  // _goBack = () => {
+  //   const { navigate } = this.props.navigation;
+
+  //   navigate.goBack(this.props.navigation.state.key);
+  // }
+
+  // static navigationOptions = ({ navigation }) => {
+  //   headerLeft: (
+  //     <View>
+  //         <TouchableHighlight>
+             
+  //             <Image
+  //                 source={backArrow}
+  //                 style={styles.backArrow}
+  //                 onPress={() => this._goBack}
+                     
+
+  //             />
+      
+  //         </TouchableHighlight>
+  //     </View>
+  //         )
+  // }
   componentDidMount() {
     this.props.listAssets();
     console.log("this.props.assets!!", this.props.assets);
@@ -34,12 +45,12 @@ class Splash1 extends Component {
   }
   _onPress = (index) => {
     const { navigate } = this.props.navigation;
-   
+
     let asset = this.props.assets[index];
-   
+
     this.props.selectAsset(asset);
-    
-   
+
+
     navigate('Splash2');
   }
 
@@ -62,7 +73,7 @@ class Splash1 extends Component {
 
       <View style={styles.container}>
         <View style={styles.assetMenu}>
-        {list}
+          {list}
         </View>
         <TouchableHighlight onPress={() => navigate('Create')}>
           <Image
@@ -70,7 +81,7 @@ class Splash1 extends Component {
             source={create}
           />
         </TouchableHighlight>
-       
+
       </View>
 
 
@@ -81,10 +92,10 @@ class Splash1 extends Component {
 
 const mapStateToProps = (state) => ({
   assets: state.AssetReducers.assets,
-  
+
 });
 const mapDispatchToProps = (dispatch) => ({
-  
+
   selectAsset: (asset) =>
     dispatch(selectAsset(asset)),
 

@@ -86,22 +86,28 @@ const MainNavigator = StackNavigator({
 
 
 
-            },
-            headerLeft: (
-                <View>
-                    <TouchableHighlight>
+            }
+            // headerBackImage: require('../assets/icon_backarrow.png')
+            // <Image
+            //     source={backArrow}
+            //     style={styles.backArrow}
+            //     onPress={() => navigation.goBack()}
+                   
+
+            // />
+            // headerLeft: (
+            //     <View>
+            //         <TouchableHighlight>
                        
-                        <Image
-                            source={backArrow}
-                            style={styles.backArrow}
-                        />
+                        
                 
-                    </TouchableHighlight>
-                </View>
-                    )
-                }
+            //         </TouchableHighlight>
+            //     </View>
+            //         )
+            //     }
         
-            });
+            }
+        })
         
 export default class MainNavigation extends Component {
                         render() {
