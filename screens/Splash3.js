@@ -71,12 +71,12 @@ class Splash3 extends Component {
                     </TouchableHighlight>
 
                 </View>
-                <TouchableHighlight onPress={() => navigate('MenuOptions')} >
+                {/* <TouchableHighlight onPress={() => navigate('MenuOptions')} >
                     <Image
                         style={styles.button}
                         source={MenuOptions}
                     />
-                </TouchableHighlight>
+                </TouchableHighlight> */}
             </View>
 
 

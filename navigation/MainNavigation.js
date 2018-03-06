@@ -50,7 +50,7 @@ const MainNavigator = StackNavigator({
     Confirm: { screen: Confirm },
     ThankYou: { screen: ThankYou },
     FileThanks: { screen: FileThanks },
-    NewAssetConfirm: { screen: NewAssetConfirm}
+    NewAssetConfirm: { screen: NewAssetConfirm }
 
 
 },
@@ -59,60 +59,35 @@ const MainNavigator = StackNavigator({
     {
         initialRouteName: 'Welcome',
         navigationOptions: {
-            title: <Image style={{
-                height: 300,
-                width: 800,
-                // marginBottom: 10 
+            headerTitle: <Image style={{
+                height: 100,
+                width: 254,
+                marginLeft: '3%'
             }}
                 source={logo} />,
 
             headerStyle: {
                 height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
                 backgroundColor: '#021227',
-                
+
             },
             headerTitleStyle: {
                 marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
-                // color: 'white',
                 textAlign: 'left',
                 textAlignVertical: 'center',
-                // alignSelf: 'center',
-                // justifyContent: 'center',
-                marginLeft: '10%',
-                width: 300,
-                height: 150,
                 backgroundColor: '#021227',
-                // margin: .5
-
-
-
-            }
-            // headerBackImage: require('../assets/icon_backarrow.png')
-            // <Image
-            //     source={backArrow}
-            //     style={styles.backArrow}
-            //     onPress={() => navigation.goBack()}
-                   
-
-            // />
-            // headerLeft: (
-            //     <View>
-            //         <TouchableHighlight>
-                       
-                        
                 
-            //         </TouchableHighlight>
-            //     </View>
-            //         )
-            //     }
-        
-            }
-        })
-        
+            },
+            headerBackImage: require('../assets/icon_backarrow.png')
+          
+
+        }
+    })
+
 export default class MainNavigation extends Component {
-                        render() {
-                    return (
+    render() {
+        return (
             <MainNavigator />
-                    )
-                }
+        )
+    }
 }

@@ -1,6 +1,20 @@
-import { ADD_ASSET, LIST_ASSETS, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS } from './types';
+import { ADD_ASSET, LIST_ASSETS, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS, SET_OP_ID, GET_OP_ID } from './types';
 import assets from '../reducers/assetListReducer';
 
+export function setOpId(id) {
+    return {
+        type: SET_OP_ID,
+        id
+    }
+}
+
+export function getOpId(id) {
+    return {
+        type: GET_OP_ID,
+        id
+    }
+
+}
 export function listAssets() {
     return {
         type: LIST_ASSETS,
@@ -8,7 +22,6 @@ export function listAssets() {
 
     }
 }
-
 
 export function selectAsset(asset) {
 

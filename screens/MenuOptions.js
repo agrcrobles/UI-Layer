@@ -39,6 +39,7 @@ export default class MenuOptions extends Component {
     // console.log(values, 'values')
     return(
       <View style={styles.container}>
+      
       {/* <Image source={logo} style={styles.menuLogo}/> */}
         <Image source={menuOpts} style={styles.menuInputTitle} />
           

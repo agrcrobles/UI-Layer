@@ -14,7 +14,14 @@ import review from "../assets/reviewLabel.png";
 
 class Tee extends Component {
   static navigationOptions = {
-    header: null
+    headerTitle: <Image style={{
+      height: 100,
+      width: 220,
+      marginLeft: '3%',
+      resizeMode: 'contain'
+  }}
+      source={logo} />,
+
   }
 
   constructor(props) {
@@ -38,25 +45,16 @@ class Tee extends Component {
     return (
 
       <View style={styles.container}>
-
-        <View style={styles.smallMenu}>
+          <Image style={styles.teeLabel} source={params} />
+<ScrollView contentContainerStyle={{width: '100%', alignItems: 'center'}}>
+        {/* <View style={styles.smallMenu}>
           <TouchableHighlight onPress={() => navigate('MenuOptions')}>
             <Image style={styles.createParamsLogo} source={logo} />
           </TouchableHighlight>
-          <Image style={styles.headerLogo} source={params} />
         </View>
-        <View style={styles.scrollmenu}>
+        <View style={styles.scrollmenu}> */}
           {/* <ScrollView contentContainerStyle={styles.inputMenu}> */}
 
-
-          <View style={styles.field}>
-            <Text style={styles.label}>Name</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={Name => this.setState({ Name })}
-              placeholder="Name"
-            />
-          </View>
           <View style={styles.field}>
             <Text style={styles.label}>Input1</Text>
             <TextInput
@@ -89,11 +87,43 @@ class Tee extends Component {
               placeholder="Input4"
             />
           </View>
+          <View style={styles.field}>
+            <Text style={styles.label}>Input5</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={Input5 => this.setState({ Input5 })}
+              placeholder="Input5"
+            />
+          </View>
+          <View style={styles.field}>
+            <Text style={styles.label}>Input6</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={Input6 => this.setState({ Input6 })}
+              placeholder="Input5"
+            />
+          </View>
+          <View style={styles.field}>
+            <Text style={styles.label}>Input7</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={Input7 => this.setState({ Input7 })}
+              placeholder="Input7"
+            />
+          </View>
+          <View style={styles.field}>
+            <Text style={styles.label}>Input8</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={Input8 => this.setState({ Input8 })}
+              placeholder="Input8"
+            />
+          </View>
 
 
-          {/* </ScrollView> */}
+          </ScrollView>
 
-        </View>
+        
 
 
 

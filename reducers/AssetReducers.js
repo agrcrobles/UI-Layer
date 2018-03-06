@@ -1,10 +1,13 @@
-import { LIST_ASSETS, ADD_ASSET, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS } from '../actions/types';
+import { LIST_ASSETS, ADD_ASSET, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS, SET_OP_ID, GET_OP_ID } from '../actions/types';
 import assets from './assetList';
 
 
 const INITIAL_STATE = {
     assets: assets,
-    selectedAsset: {},
+
+    selectedAsset: {
+        opId: 0
+    },
     newAsset: {}
 
 };
@@ -14,7 +17,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
         case LIST_ASSETS:
             return Object.assign({}, state, {
                 assets
-            });
+            })
 
         case SELECT_ASSET:
             let selectedAsset = action.data;
@@ -24,7 +27,15 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                 selectedAsset
             })
 
+        case SET_OP_ID:
+            let newId = action.id;
+            console.log(action.data, "actiondatafrom in reducer")
+            return Object.assign({}, state, {
+                ...state.selectedAsset,
+                opId: newId
+            })
 
+       
         case SET_PLACE:
             let place = action.data;
             console.log(state.selectedAsset, "selectedAsset Reduction")
@@ -60,10 +71,10 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             return Object.assign({}, state, {
 
                 ...state.selectedAsset,
-                selectedAsset : {
+                selectedAsset: {
                     Properties
                 }
-                
+
             })
 
 
@@ -73,10 +84,10 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                 ...state,
                 newAsset
             }
-        )
-    
+            )
+
         default:
-return state;
+            return state;
     }
 }
 

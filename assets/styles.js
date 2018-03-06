@@ -91,10 +91,16 @@ module.exports = StyleSheet.create({
         paddingLeft: 5
 
     },
+    teeLabel: {
+        height: 50,
+        width: 300,
+        resizeMode: 'contain'
+    },
+
     field: {
         height: 60,
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "space-around",
         width: "80%",
         backgroundColor: '#021227',
         // marginTop: 5,
@@ -102,6 +108,17 @@ module.exports = StyleSheet.create({
         alignItems: "center",
         paddingLeft: 5
     },
+    // scrollField: {
+    //     height: 60,
+    //     flexDirection: "row",
+    //     justifyContent: "space-around",
+    //     width: "80%",
+    //     backgroundColor: '#021227',
+    //     // marginTop: 5,
+    //     // marginBottom: 5,
+    //     alignItems: "center",
+    //     paddingLeft: 5
+    // },
 
     input: {
         width: 150,

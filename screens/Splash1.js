@@ -15,29 +15,7 @@ class Splash1 extends Component {
     super(props);
 
   }
-  // _goBack = () => {
-  //   const { navigate } = this.props.navigation;
-
-  //   navigate.goBack(this.props.navigation.state.key);
-  // }
-
-  // static navigationOptions = ({ navigation }) => {
-  //   headerLeft: (
-  //     <View>
-  //         <TouchableHighlight>
-             
-  //             <Image
-  //                 source={backArrow}
-  //                 style={styles.backArrow}
-  //                 onPress={() => this._goBack}
-                     
-
-  //             />
-      
-  //         </TouchableHighlight>
-  //     </View>
-  //         )
-  // }
+ 
   componentDidMount() {
     this.props.listAssets();
     console.log("this.props.assets!!", this.props.assets);

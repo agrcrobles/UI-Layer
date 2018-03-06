@@ -33,7 +33,7 @@ let assetList =
             Width: "",
             Condition: "",
             Style: "",
-            Serial: "424242"
+            Serial: ""
         }
     }
 ]

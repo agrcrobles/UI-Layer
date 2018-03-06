@@ -5,7 +5,8 @@ export const LIST_ASSETS = 'listAssets';
 export const ADD_PHOTO  = 'addPhoto';
 export const ADD_DOC    = 'addDoc';
 export const ADD_PROPS = 'addProps';
-
+export const SET_OP_ID = 'setOpId';
+export const GET_OP_ID = 'getOpId';
 
 
 
