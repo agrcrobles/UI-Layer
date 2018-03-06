@@ -32,7 +32,7 @@ export default class MenuOptions extends Component {
   }
   
   render(){
-    console.log(styles);
+   
     const { navigate } = this.props.navigation;
     console.log(this.props,'this props options')
     // let values = this.props.navigation.state.params;
@@ -44,14 +44,6 @@ export default class MenuOptions extends Component {
           
           <View style={styles.menu}>
         
-           
-        
-            {/* <TouchableHighlight onPress={() => navigate('Welcome')}>
-              <Image style={styles.button}
-                  
-                  source={home}
-                />
-            </TouchableHighlight> */}
 
             <TouchableHighlight onPress={() => Alert.alert('Uninstalled Component')}>
             <Image
@@ -59,14 +51,7 @@ export default class MenuOptions extends Component {
               source={wallet}
             />
           </TouchableHighlight> 
-          
-          {/* <TouchableHighlight  onPress={() => navigate('Origin')}>
-            <Image
-              style={styles.button}
-              source={lore}
-            />
-          </TouchableHighlight>  */}
-
+     
           <TouchableHighlight  onPress={() => navigate('Hipr')}>
             <Image
               style={styles.button}

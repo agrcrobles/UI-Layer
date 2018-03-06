@@ -5,11 +5,6 @@ import WelcomeHeader from "../components/WelcomeHeader";
 import { StackNavigator } from 'react-navigation';
 import Title from "../components/MenuInputTitle";
 import welcome from "../assets/welcome.png";
-import aws_exports from '../src/aws-exports.js';
-import Amplify , { API } from 'aws-amplify';
-Amplify.configure(aws_exports);
-console.log(aws_exports);
-
 
 export default class Welcome extends Component {
   constructor(props) {
