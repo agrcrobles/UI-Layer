@@ -4,21 +4,17 @@ import logo from "../assets/logo.png";
 import Title from "../components/MenuInputTitle";
 import personal from "../assets/personalLegend.png";
 
- export default class Legend extends Component {
-     static navigationOptions = {
-         header: null,
- 
-        }
-      
+ export default class Create extends Component {
+          
     render(){
       const { navigate } = this.props.navigation;
       return(
           
         <View style={styles.container}>
-          <View style={styles.header}>
-            <Image source={logo} style={styles.menuLogo}/>
-            <Image source={personal} style={styles.label} image={personal} /> 
-          </View>
+        {/* //   <View style={styles.header}>
+        //     <Image source={logo} style={styles.menuLogo}/>
+        //     <Image source={personal} style={styles.label} image={personal} /> 
+        //   </View> */}
          
           <View style={styles.legendInput}>
             <Text style={styles.input}> 10,000 </Text>
