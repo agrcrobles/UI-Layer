@@ -10,28 +10,17 @@ import { connect } from "react-redux";
 import styles from "../assets/styles";
 import fee from "../assets/hercFEE.jpg";
 
-
-// import Amplify, { API } from 'aws-amplify';
-// import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
-// Amplify.configure(aws_exports);
-// Auth: {
-//   'aws_cognito_identity_pool_id': 'us-east-1:f0e40134-54a1-47b0-b297-d895a1e5a4ca', //REQUIRED - Amazon Cognito Identity Pool ID
-//   'aws_cognito_region': 'us-east-1', // REQUIRED - Amazon Cognito Region
-//  },
-// API: {
-//   endpoints: [
-//     {
-//       name: "barInf",
-//       endpoint: "https://0jl8r6ytha.execute-api.us-east-1.amazonaws.com/MobileHub_Deployments"
-//     }
-//   ]
-// }
-
-
 class NewAssetConfirm extends Component {
 
     static navigationOptions = {
-        header: null
+        headerTitle: <Image style={{
+            height: 100,
+            width: 220,
+            marginLeft: '3%',
+            resizeMode: 'contain'
+        }}
+            source={logo} />,
+
     }
 
     constructor(props) {
@@ -67,8 +56,8 @@ class NewAssetConfirm extends Component {
             return (
 
                 <View key={idx} style={styles.field}>
-                    <Text style={styles.label}>{name}</Text>
-                    <Text style={styles.input}>{this.props.newAsset[name]}</Text>
+                    <Text style={styles.label}>{this.props.newAsset[name]}</Text>
+                    <Text style={styles.input}>""</Text>
                 </View>
             )
         });
@@ -76,16 +65,7 @@ class NewAssetConfirm extends Component {
         return (
             <View style={styles.containerCenter}>
 
-                <View style={styles.smallMenu}>
-                    <TouchableHighlight onPress={() => navigate('MenuOptions')}>
-                        <Image style={styles.createParamsLogo} source={logo} />
-                    </TouchableHighlight>
-                    <Image style={styles.headerLogo} source={params} />
-                </View>
-
-
                 <View style={styles.inputMenu}>
-
                     {list}
                 </View>
 

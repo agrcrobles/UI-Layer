@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, Platform, View, Image, TouchableHighlight, Alert } from 'react-native';
 import logo from "../assets/teeLabel.png";
 import params from "../assets/igvcParamsLabel.png";
 import { connect } from "react-redux";
 import styles from "../assets/styles";
 import { addAsset } from "../actions/AssetActions";
 import review from "../assets/reviewLabel.png";
+import { STATUS_BAR_HEIGHT } from '../constants';
 
 // - Make Name an input field
 // - Make Symbol an input field
@@ -14,10 +15,15 @@ import review from "../assets/reviewLabel.png";
 
 class Tee extends Component {
   static navigationOptions = {
+    headerStyle: {
+      height: Platform.OS === 'android' ? 50 + STATUS_BAR_HEIGHT : 50,
+      backgroundColor: '#021227',
+
+  },
     headerTitle: <Image style={{
-      height: 100,
-      width: 220,
-      marginLeft: '3%',
+      height: 80,
+      width: 200,
+      marginLeft: 10,
       resizeMode: 'contain'
   }}
       source={logo} />,
@@ -46,14 +52,6 @@ class Tee extends Component {
 
       <View style={styles.container}>
           <Image style={styles.teeLabel} source={params} />
-<ScrollView contentContainerStyle={{width: '100%', alignItems: 'center'}}>
-        {/* <View style={styles.smallMenu}>
-          <TouchableHighlight onPress={() => navigate('MenuOptions')}>
-            <Image style={styles.createParamsLogo} source={logo} />
-          </TouchableHighlight>
-        </View>
-        <View style={styles.scrollmenu}> */}
-          {/* <ScrollView contentContainerStyle={styles.inputMenu}> */}
 
           <View style={styles.field}>
             <Text style={styles.label}>Input1</Text>
@@ -119,12 +117,6 @@ class Tee extends Component {
               placeholder="Input8"
             />
           </View>
-
-
-          </ScrollView>
-
-        
-
 
 
         <TouchableHighlight onPress={this._onSubmit}>
