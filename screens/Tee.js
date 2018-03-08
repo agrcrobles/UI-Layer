@@ -5,13 +5,9 @@ import params from "../assets/igvcParamsLabel.png";
 import { connect } from "react-redux";
 import styles from "../assets/styles";
 import { addAsset } from "../actions/AssetActions";
-import review from "../assets/reviewLabel.png";
+import next from "../assets/nextLabel.png";
 import { STATUS_BAR_HEIGHT } from '../constants';
 
-// - Make Name an input field
-// - Make Symbol an input field
-// - Lock Decimals to "18"
-// - Lock Total Market Supply to "40,000" <- this number subject to change after
 
 class Tee extends Component {
   static navigationOptions = {
@@ -38,10 +34,9 @@ class Tee extends Component {
   _onSubmit = () => {
     const { navigate } = this.props.navigation;
     console.log(this.state, "thisstate confimrmtee");
-    let newAsset = this.state;
-    this.props.addAsset(newAsset);
-
-    console.log(newAsset, "ewasset");
+    let CoreProperties = this.state;
+    this.props.addAsset(CoreProperties);
+    console.log(CoreProperties, "ewasset");
     navigate('NewAssetConfirm');
   }
   render() {
@@ -120,7 +115,7 @@ class Tee extends Component {
 
 
         <TouchableHighlight onPress={this._onSubmit}>
-          <Image style={styles.button} source={review} />
+          <Image style={styles.button} source={next} />
         </TouchableHighlight>
       </View>
 
@@ -130,99 +125,100 @@ class Tee extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  newAsset: state.AssetReducers.newAsset,
+  coreProperties: state.AssetReducers.newAsset.CoreProperties,
   // newProperties: state.AssetReducers.selectedAsset.newProperties
 
 
 });
 const mapDispatchToProps = (dispatch) => ({
-  addAsset: (newAsset) =>
-    dispatch(addAsset(newAsset)
+  addAsset: (CoreProperties) =>
+    dispatch(addAsset(CoreProperties)
     )
 })
+
 export default connect(mapStateToProps, mapDispatchToProps)(Tee);
 
-// const styles = StyleSheet.create({
-//     container: {
-//       flex: 1,
-//       paddingTop: 30,
-//       // width: "100%",
-//       backgroundColor: '#02182d',
-//       // backgroundColor: '#fff',
-//       alignItems: 'center',
-//       justifyContent: 'space-between',
-//     },
-//     header: {
-//       height: "27%",
-//       width: 360,
-//       backgroundColor: '#02182d',
-//       alignSelf: 'center',
-//       alignItems: 'center',
-//       // margin: 5
+// // const styles = StyleSheet.create({
+// //     container: {
+// //       flex: 1,
+// //       paddingTop: 30,
+// //       // width: "100%",
+// //       backgroundColor: '#02182d',
+// //       // backgroundColor: '#fff',
+// //       alignItems: 'center',
+// //       justifyContent: 'space-between',
+// //     },
+// //     header: {
+// //       height: "27%",
+// //       width: 360,
+// //       backgroundColor: '#02182d',
+// //       alignSelf: 'center',
+// //       alignItems: 'center',
+// //       // margin: 5
 
 
-//     },
-//     menuLogo: {
-//         justifyContent: "center",
-//         alignItems: "center",
-//         height: 120,
-//         width: 200,
-//         resizeMode: "contain",
-//         backgroundColor: '#02182d',
-//       },
-//       label: {
-//         height: 50,
-//         width: '80%',
-//         resizeMode: 'contain'
-//       },
-//     legendInput: {
-//       // alignSelf: "center",
-//       padding: 5,
-//       width: 330, 
-//       height: 90,
-//       // alignItems: 'center',
-//       margin: 1,
-//       marginBottom: 5,
-//       backgroundColor: "#14283f",
-//       justifyContent:"space-between", 
+// //     },
+// //     menuLogo: {
+// //         justifyContent: "center",
+// //         alignItems: "center",
+// //         height: 120,
+// //         width: 200,
+// //         resizeMode: "contain",
+// //         backgroundColor: '#02182d',
+// //       },
+// //       label: {
+// //         height: 50,
+// //         width: '80%',
+// //         resizeMode: 'contain'
+// //       },
+// //     legendInput: {
+// //       // alignSelf: "center",
+// //       padding: 5,
+// //       width: 330, 
+// //       height: 90,
+// //       // alignItems: 'center',
+// //       margin: 1,
+// //       marginBottom: 5,
+// //       backgroundColor: "#14283f",
+// //       justifyContent:"space-between", 
 
-//       borderRadius: 4
-//       },
-//     input:{
-//       backgroundColor: '#14283f',
-//       width: 200,
-//       height:50,
-//       textAlign: "center",
-//       color: "white", 
-//       alignSelf: "center",
-//       fontSize: 20.2,
-//       fontWeight: "600"
-//     },
-//     icon: {
-//         height: 30,
-//         width: 80, 
-//         alignSelf:"center"
-//     },
-//     bigButton: {
+// //       borderRadius: 4
+// //       },
+// //     input:{
+// //       backgroundColor: '#14283f',
+// //       width: 200,
+// //       height:50,
+// //       textAlign: "center",
+// //       color: "white", 
+// //       alignSelf: "center",
+// //       fontSize: 20.2,
+// //       fontWeight: "600"
+// //     },
+// //     icon: {
+// //         height: 30,
+// //         width: 80, 
+// //         alignSelf:"center"
+// //     },
+// //     bigButton: {
 
-//       backgroundColor: "#14283f",
-//       height: 80,
-//       width: 350,
-//       justifyContent:"center",
-//       alignItems: "center",
-//       marginBottom: 10
-//     },
-//     inputLabel: {
-//       textAlign: 'right',
-//       alignSelf: 'flex-end',
-//       justifyContent: 'flex-end',
-//       alignItems: 'flex-end',
-//       color:'white',
-//       height: 20,
-//       width: 120
-//     },
-//     button: {
-//       height: 70,
-//       width: 120
-//     }
-//     })
+// //       backgroundColor: "#14283f",
+// //       height: 80,
+// //       width: 350,
+// //       justifyContent:"center",
+// //       alignItems: "center",
+// //       marginBottom: 10
+// //     },
+// //     inputLabel: {
+// //       textAlign: 'right',
+// //       alignSelf: 'flex-end',
+// //       justifyContent: 'flex-end',
+// //       alignItems: 'flex-end',
+// //       color:'white',
+// //       height: 20,
+// //       width: 120
+// //     },
+// //     button: {
+// //       height: 70,
+// //       width: 120
+// //     }
+// //     })

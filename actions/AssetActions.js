@@ -51,10 +51,10 @@ export function addPhoto(uri) {
     )
 }
 
-export function addAsset(newAsset) {
+export function addAsset(CoreProperties) {
     return {
         type: ADD_ASSET,
-        newAsset
+        CoreProperties
 
     }
 }

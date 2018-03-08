@@ -5,10 +5,12 @@ import assets from './assetList';
 const INITIAL_STATE = {
     assets: assets,
 
-    selectedAsset: {
-        opId: 0
-    },
-    newAsset: {}
+    selectedAsset: {},
+
+    newAsset: {
+        CoreProperties:{},
+        Logo: {}
+    }
 
 };
 
@@ -79,10 +81,12 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
 
         case ADD_ASSET:
-            const newAsset = action.newAsset;
+            const CoreProperties = action.CoreProperties;
             return Object.assign({}, state, {
                 ...state,
-                newAsset
+                newAsset:{
+                CoreProperties
+                }
             }
             )
 
