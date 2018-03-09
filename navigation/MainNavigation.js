@@ -59,7 +59,7 @@ const MainNavigator = StackNavigator({
 
 
     {
-        initialRouteName: 'Tee',
+        initialRouteName: 'Welcome',
         navigationOptions: {
             headerTitle: <Image style={{
                 height: 100,
