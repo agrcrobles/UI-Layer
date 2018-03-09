@@ -28,6 +28,7 @@ import Splash1 from '../screens/Splash1';
 import Splash2 from '../screens/Splash2';
 import Splash3 from '../screens/Splash3';
 import NewAssetConfirm from '../screens/NewAssetConfirm';
+import testFileUP from '../screens/testFileUP';
 
 const MainNavigator = StackNavigator({
     Welcome: { screen: Welcome },
@@ -50,14 +51,15 @@ const MainNavigator = StackNavigator({
     Confirm: { screen: Confirm },
     ThankYou: { screen: ThankYou },
     FileThanks: { screen: FileThanks },
-    NewAssetConfirm: { screen: NewAssetConfirm }
+    NewAssetConfirm: { screen: NewAssetConfirm },
+    TestFileUP: { screen: testFileUP}
 
 
 },
 
 
     {
-        initialRouteName: 'Welcome',
+        initialRouteName: 'Tee',
         navigationOptions: {
             headerTitle: <Image style={{
                 height: 100,

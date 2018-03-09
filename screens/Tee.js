@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, Platform, View, Image, TouchableHighlight, Alert } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, Platform, View, Image, TouchableHighlight, Alert, Button } from 'react-native';
 import logo from "../assets/teeLabel.png";
 import params from "../assets/igvcParamsLabel.png";
 import { connect } from "react-redux";
 import styles from "../assets/styles";
 import { addAsset } from "../actions/AssetActions";
+import { DocumentPicker } from 'expo';
 import next from "../assets/nextLabel.png";
 import { STATUS_BAR_HEIGHT } from '../constants';
 
@@ -15,44 +16,79 @@ class Tee extends Component {
       height: Platform.OS === 'android' ? 50 + STATUS_BAR_HEIGHT : 50,
       backgroundColor: '#021227',
 
-  },
+    },
     headerTitle: <Image style={{
       height: 80,
       width: 200,
       marginLeft: 10,
       resizeMode: 'contain'
-  }}
+    }}
       source={logo} />,
 
   }
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      Name: "",
+      CoreProperties:{},
+      Logo: null
+    };
   }
+
+  _pickImage = async () => {
+
+    let logo = await DocumentPicker.getDocumentAsync({
+      //MIME type 
+    });
+    alert(logo.uri);
+    console.log(logo, "docPickResult");
+
+
+    console.log(logo.name, "logoName");
+
+    if (!logo.cancelled) {
+      this.setState({
+        Logo: logo.uri
+
+
+      });
+    }
+  };
+
 
   _onSubmit = () => {
     const { navigate } = this.props.navigation;
     console.log(this.state, "thisstate confimrmtee");
-    let CoreProperties = this.state;
-    this.props.addAsset(CoreProperties);
-    console.log(CoreProperties, "ewasset");
+    let newAsset = this.state;
+  
+  
+    this.props.addAsset(newAsset);
+    console.log(newAsset, "newasset");
     navigate('NewAssetConfirm');
   }
   render() {
+    let { Logo } = this.state;
 
-   
 
     return (
 
       <View style={styles.container}>
-          <Image style={styles.teeLabel} source={params} />
-
+        <Image style={styles.teeLabel} source={params} />
+        <ScrollView contentContainerStyle={{ alignSelf: 'center' }}>
+          <View style={styles.field}>
+            <Text style={styles.label}>Asset Name</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={Name => this.setState({ Name })}
+              placeholder="Name"
+            />
+          </View>
           <View style={styles.field}>
             <Text style={styles.label}>Input1</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input1 => this.setState({ Input1 })}
+              onChangeText={Input1 => this.setState({ CoreProperties: {Input1} })}
               placeholder="Input1"
             />
           </View>
@@ -60,7 +96,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input2</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input2 => this.setState({ Input2 })}
+              onChangeText={Input2 => this.setState({ CoreProperties:{ ...this.state.CoreProperties,  Input2  }})}
               placeholder="Input2"
             />
           </View>
@@ -68,7 +104,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input3</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input3 => this.setState({ Input3 })}
+              onChangeText={Input3 => this.setState({ CoreProperties: {...this.state.CoreProperties,  Input3 }})}
               placeholder="Input3"
             />
           </View>
@@ -76,7 +112,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input4</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input4 => this.setState({ Input4 })}
+              onChangeText={Input4 => this.setState({ CoreProperties: {...this.state.CoreProperties, Input4 }})}
               placeholder="Input4"
             />
           </View>
@@ -84,7 +120,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input5</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input5 => this.setState({ Input5 })}
+              onChangeText={Input5 => this.setState({ CoreProperties: {...this.state.CoreProperties, Input5 }})}
               placeholder="Input5"
             />
           </View>
@@ -92,7 +128,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input6</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input6 => this.setState({ Input6 })}
+              onChangeText={Input6 => this.setState({ CoreProperties: {...this.state.CoreProperties, Input6 }})}
               placeholder="Input5"
             />
           </View>
@@ -100,7 +136,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input7</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input7 => this.setState({ Input7 })}
+              onChangeText={Input7 => this.setState({ CoreProperties: {...this.state.CoreProperties, Input7 }})}
               placeholder="Input7"
             />
           </View>
@@ -108,11 +144,21 @@ class Tee extends Component {
             <Text style={styles.label}>Input8</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input8 => this.setState({ Input8 })}
+              onChangeText={Input8 => this.setState({ CoreProperties: {...this.state.CoreProperties, Input8 }})}
               placeholder="Input8"
             />
           </View>
 
+          <View style={styles.picker}>
+            <Button
+              title="Pick a Logo!"
+              onPress={this._pickImage}
+            />
+            {Logo &&
+              <Image source={{ uri: Logo }} style={{ width: 100, height: 100 }} />
+            }
+          </View>
+        </ScrollView>
 
         <TouchableHighlight onPress={this._onSubmit}>
           <Image style={styles.button} source={next} />
@@ -125,14 +171,14 @@ class Tee extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  coreProperties: state.AssetReducers.newAsset.CoreProperties,
+  newAsset: state.AssetReducers.newAsset
   // newProperties: state.AssetReducers.selectedAsset.newProperties
 
 
 });
 const mapDispatchToProps = (dispatch) => ({
-  addAsset: (CoreProperties) =>
-    dispatch(addAsset(CoreProperties)
+  addAsset: (newAsset) =>
+    dispatch(addAsset(newAsset)
     )
 })
 

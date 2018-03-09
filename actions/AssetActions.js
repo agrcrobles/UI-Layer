@@ -1,18 +1,21 @@
-import { ADD_ASSET, LIST_ASSETS, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS, SET_OP_ID, GET_OP_ID } from './types';
+import { ADD_ASSET, LIST_ASSETS, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID } from './types';
 import assets from '../reducers/assetListReducer';
 
-export function setOpId(id) {
+export function incHercId(hercId) {
     return {
-        type: SET_OP_ID,
-        id
+        type: INC_HERC_ID,
+        hercId
     }
 }
 
-export function getOpId(id) {
-    return {
-        type: GET_OP_ID,
-        id
-    }
+export function getHercId() {
+    return( {
+        type: GET_HERC_ID,
+        hercId: state.hercId,
+    },
+    dispatch(incHercId)
+    
+)
 
 }
 export function listAssets() {
@@ -51,10 +54,10 @@ export function addPhoto(uri) {
     )
 }
 
-export function addAsset(CoreProperties) {
+export function addAsset(newAsset) {
     return {
         type: ADD_ASSET,
-        CoreProperties
+        newAsset
 
     }
 }

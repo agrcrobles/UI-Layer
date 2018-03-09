@@ -1,13 +1,15 @@
-import { LIST_ASSETS, ADD_ASSET, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS, SET_OP_ID, GET_OP_ID } from '../actions/types';
+import { LIST_ASSETS, ADD_ASSET, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID } from '../actions/types';
 import assets from './assetList';
 
 
 const INITIAL_STATE = {
+    hercId: "003",
     assets: assets,
 
     selectedAsset: {},
 
     newAsset: {
+        Name: "",
         CoreProperties:{},
         Logo: {}
     }
@@ -29,13 +31,13 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                 selectedAsset
             })
 
-        case SET_OP_ID:
-            let newId = action.id;
+        case INC_HERC_ID:
+            let hercId = action.hercId + 1;
             console.log(action.data, "actiondatafrom in reducer")
             return Object.assign({}, state, {
-                ...state.selectedAsset,
-                opId: newId
-            })
+                ...state,
+                hercId
+            }), console.log('Hercincrease', state)
 
        
         case SET_PLACE:
@@ -81,12 +83,12 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
 
         case ADD_ASSET:
-            const CoreProperties = action.CoreProperties;
+            const newAsset = action.newAsset;
             return Object.assign({}, state, {
                 ...state,
-                newAsset:{
-                CoreProperties
-                }
+                
+                newAsset
+                
             }
             )
 

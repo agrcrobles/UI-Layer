@@ -12,7 +12,7 @@ import styles from "../assets/styles";
 import fee from "../assets/hercFEE.jpg";
 
 class NewAssetConfirm extends Component {
-    
+
     static navigationOptions = {
         headerTitle: <Image style={{
             height: 100,
@@ -20,31 +20,14 @@ class NewAssetConfirm extends Component {
             marginLeft: '3%',
             resizeMode: 'contain'
         }}
-        source={logo} />,
-        
-    }
-    
-    constructor(props) {
-        super(props);
-        
-       this.state = {
-            image: null
-        }
+            source={logo} />,
+
     }
 
-    _pickImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-          allowsEditing: true,
-          aspect: [4, 3],
-        });
-    
-        console.log(result, "image results");
-    
-        if (!result.cancelled) {
-          this.setState({ image: result.uri });
-        }
-      };
-    
+    constructor(props) {
+        super(props);
+    }
+
     componentDidMount() {
         console.log(this.props)
 
@@ -54,45 +37,47 @@ class NewAssetConfirm extends Component {
     _onPressSubmit() {
         // let asset = Object.values(this.props.newAsset.CoreProperties);
         console.log(this.props.newAsset);
-     
+
     }
 
 
-
     render() {
-     
-        const { navigate } = this.props.navigation;
-        console.log(this.props.newAsset, "confirmselasset")
-         let {image}  = this.state;
 
-        let list = Object.keys(this.props.newAsset.CoreProperties).map((propName, idx) => {
-            let name = propName;
+        const { navigate } = this.props.navigation;
+        console.log(this.props.CoreProperties, "confirmselasset")
+        console.log(this.props.Name);
+        let Logo = this.props.Logo;
+        let Name = this.props.Name;
+
+       let newProperties = Object.values(this.props.CoreProperties);
+       console.log(newProperties, 'newprops'); 
+       const CoreProperties = {};
+
+       for (const key of newProperties) {
+            CoreProperties[key] = "";
+       }
+      
+       console.log(CoreProperties, 'corprops');
+           let list = newProperties.map((x,i) => {
             return (
 
-                <View key={idx} style={styles.field}>
-                    <Text style={styles.label}>{this.props.newAsset.CoreProperties[name]}</Text>
+                <View key={i} style={styles.field}>
+                    <Text style={styles.label}>{x}</Text>
                     <Text style={styles.input}>""</Text>
                 </View>
             )
-        });
+            })
 
         return (
             <View style={styles.containerCenter}>
+
+                <Image source={{uri: Logo}} />
 
                 <View style={styles.inputMenu}>
                     {list}
                 </View>
 
-                <View style={{ height: 100, width: 100, alignItems: 'center', justifyContent: 'space-around' }}>
-                    <Button
-                        title="Pick a Logo!"
-                        onPress={this._pickImage}
-                    />
-                    {image && 
-                    <Image source={{ uri: image }} style={{ width: 100, height: 100 }} />
-                    }
-                </View>
-
+              
 
                 <Submit onPress={this._onPressSubmit} />
                 <Image style={styles.assetFee} source={fee} />
@@ -107,8 +92,10 @@ class NewAssetConfirm extends Component {
 
 
 const mapStateToProps = (state) => ({
-    newAsset: state.AssetReducers.newAsset
-    
+    Name: state.AssetReducers.newAsset.Name,
+    Logo: state.AssetReducers.newAsset.Logo,
+    CoreProperties: state.AssetReducers.newAsset.CoreProperties
+
     // selectedAsset: state.AssetReducers.selectedAsset
     // newProperties: state.AssetReducers.selectedAsset.newProperties
 
@@ -116,9 +103,9 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
     addAsset: (newAsset) =>
-      dispatch(addAsset(newAsset)
-      )
-  })
+        dispatch(addAsset(newAsset)
+        )
+})
 export default connect(mapStateToProps, mapDispatchToProps)(NewAssetConfirm);
 
 

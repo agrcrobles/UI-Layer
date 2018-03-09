@@ -108,17 +108,20 @@ module.exports = StyleSheet.create({
         alignItems: "center",
         paddingLeft: 5
     },
-    // scrollField: {
-    //     height: 60,
-    //     flexDirection: "row",
-    //     justifyContent: "space-around",
-    //     width: "80%",
-    //     backgroundColor: '#021227',
-    //     // marginTop: 5,
-    //     // marginBottom: 5,
-    //     alignItems: "center",
-    //     paddingLeft: 5
-    // },
+    picker: {
+        height: 100,
+        width: 100,
+        margin: 8,
+        alignSelf: 'center',
+        // flexDirection: "row",
+        justifyContent: "space-around",
+        // width: "80%",
+        // backgroundColor: '#021227',
+        // marginTop: 5,
+        // marginBottom: 5,
+        alignItems: "center",
+        paddingLeft: 5
+    },
 
     input: {
         width: 150,
