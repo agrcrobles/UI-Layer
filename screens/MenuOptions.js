@@ -28,6 +28,7 @@ export default class MenuOptions extends Component {
   }
   
   componentDidMount(){
+    console.log(this.state, 'state')
 
   }
   

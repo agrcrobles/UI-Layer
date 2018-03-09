@@ -10,7 +10,7 @@ import { ImagePicker } from 'expo';
 import { connect } from "react-redux";
 import styles from "../assets/styles";
 import fee from "../assets/hercFEE.jpg";
-
+import { incHercId, confirmAsset } from "../actions/AssetActions"
 class NewAssetConfirm extends Component {
 
     static navigationOptions = {
@@ -34,10 +34,21 @@ class NewAssetConfirm extends Component {
     }
 
 
-    _onPressSubmit() {
+    _onPressSubmit(CoreProperties) {
+        const { navigate } = this.props.navigation;
         // let asset = Object.values(this.props.newAsset.CoreProperties);
-        console.log(this.props.newAsset);
+        let Name = this.props.Name;
 
+        Name = {
+            Name,
+            hercId: this.props.hercId,
+            Logo: this.props.Logo,
+            CoreProperties
+        }
+        console.log(Name)
+        this.props.confirmAsset(Name);
+        navigate('MenuOptions');
+        // console.log(this.state.AssetReducers.assets, 'assets after')
     }
 
 
@@ -49,16 +60,16 @@ class NewAssetConfirm extends Component {
         let Logo = this.props.Logo;
         let Name = this.props.Name;
 
-       let newProperties = Object.values(this.props.CoreProperties);
-       console.log(newProperties, 'newprops'); 
-       const CoreProperties = {};
+        let newProperties = Object.values(this.props.CoreProperties);
+        console.log(newProperties, 'newprops');
+        const CoreProperties = {};
 
-       for (const key of newProperties) {
+        for (const key of newProperties) {
             CoreProperties[key] = "";
-       }
-      
-       console.log(CoreProperties, 'corprops');
-           let list = newProperties.map((x,i) => {
+        }
+
+        console.log(CoreProperties, 'corprops');
+        let list = newProperties.map((x, i) => {
             return (
 
                 <View key={i} style={styles.field}>
@@ -66,20 +77,26 @@ class NewAssetConfirm extends Component {
                     <Text style={styles.input}>""</Text>
                 </View>
             )
-            })
+        })
 
         return (
+
             <View style={styles.containerCenter}>
+                <View style={styles.assetField}>
 
-                <Image source={{uri: Logo}} />
-
-                <View style={styles.inputMenu}>
-                    {list}
+                    <Image style={styles.assetButton} source={{ uri: Logo }} />
+                    <Text style={styles.label}>{Name}</Text>
                 </View>
 
-              
+                <ScrollView contentContainerStyle={{ alignSelf: 'center', width: '90%' }}>
 
-                <Submit onPress={this._onPressSubmit} />
+                    <View style={styles.inputMenu}>
+                        {list}
+                    </View>
+
+                </ScrollView>
+
+                <Submit onPress={() => this._onPressSubmit(CoreProperties)} />
                 <Image style={styles.assetFee} source={fee} />
             </View>
 
@@ -94,17 +111,18 @@ class NewAssetConfirm extends Component {
 const mapStateToProps = (state) => ({
     Name: state.AssetReducers.newAsset.Name,
     Logo: state.AssetReducers.newAsset.Logo,
-    CoreProperties: state.AssetReducers.newAsset.CoreProperties
-
+    CoreProperties: state.AssetReducers.newAsset.CoreProperties,
+    hercId: state.AssetReducers.hercId
     // selectedAsset: state.AssetReducers.selectedAsset
     // newProperties: state.AssetReducers.selectedAsset.newProperties
 
 
 });
 const mapDispatchToProps = (dispatch) => ({
-    addAsset: (newAsset) =>
-        dispatch(addAsset(newAsset)
-        )
+    confirmAsset: (asset) =>
+        dispatch(confirmAsset(asset)),
+    incHercId: () =>
+        dispatch(incHercId)
 })
 export default connect(mapStateToProps, mapDispatchToProps)(NewAssetConfirm);
 

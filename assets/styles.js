@@ -53,7 +53,7 @@ module.exports = StyleSheet.create({
         justifyContent: "space-around"
       },
     inputMenu: {
-        width: '80%',
+        width: '110%',
         height: 350,
         alignItems: "center",
         justifyContent: "space-around",

@@ -7,7 +7,7 @@ export const ADD_DOC    = 'addDoc';
 export const ADD_PROPS = 'addProps';
 export const INC_HERC_ID = 'incHercId';
 export const GET_HERC_ID = 'getHercId';
-
+export const CONFIRM_ASSET = 'confirmAsset';
 
 
 // export const FETCHING_ASSETS_SUCCESS = 'FETCHING_ASSETS_SUCCESS';

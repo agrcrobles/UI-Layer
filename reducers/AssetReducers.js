@@ -1,4 +1,4 @@
-import { LIST_ASSETS, ADD_ASSET, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID } from '../actions/types';
+import { LIST_ASSETS, ADD_ASSET, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET } from '../actions/types';
 import assets from './assetList';
 
 
@@ -32,7 +32,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             })
 
         case INC_HERC_ID:
-            let hercId = action.hercId + 1;
+            let hercId = state.hercId + 1;
             console.log(action.data, "actiondatafrom in reducer")
             return Object.assign({}, state, {
                 ...state,
@@ -88,6 +88,18 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                 ...state,
                 
                 newAsset
+                
+            }
+            )
+
+            case CONFIRM_ASSET:
+            const asset = action.asset;
+            console.log(asset, 'asset in reducerconfirm', state, 'state')
+            return Object.assign({}, state, {
+                ...state,
+                
+                assets:[...assets, asset]
+                    
                 
             }
             )
