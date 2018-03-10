@@ -5,8 +5,9 @@ let assetList =
         HercID: "001",
         Logo: require('../assets/AG_logo.png'),
         place: "",
+        csv: [],
         Images: [],
-        Properties: {
+        CoreProperties: {
             BarID: "",
             BarSerial: "",
             VaultLocation: "",
@@ -22,8 +23,9 @@ let assetList =
         HercID: "002",
         Logo: require('../assets/toast.jpg'),
         place: "",
+        csv: [],
         Images: [],
-        Properties: {
+        CoreProperties: {
             Weight: "",
             Color: "",
             NumSlices: "",
@@ -31,7 +33,7 @@ let assetList =
             Width: "",
             Condition: "",
             Style: "",
-            Serial: "424242"
+            Serial: ""
         }
     }
 ]

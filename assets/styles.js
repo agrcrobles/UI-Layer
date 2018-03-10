@@ -12,7 +12,11 @@ module.exports = StyleSheet.create({
         // height: 300,
         // width: 700
     },
-
+    createParamsLogo: {
+        resizeMode: 'contain',
+        height: 200,
+        width: 300
+    },
     container: {
         flex: 1,
         backgroundColor: '#021227',
@@ -34,11 +38,42 @@ module.exports = StyleSheet.create({
         // paddingTop: 50
         // margin: .5,
     },
-    smallMenu: {
-        height: 250,
+    scrollMenu: {
+        height: 200,
+        width: "85%",
+        // justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: '#021227',
+        paddingTop: 5,
+        paddingBottom: 5
+      },
+      scrollContent: {
+        flex: 1,
+        padding: 2,
+        justifyContent: "space-around"
+      },
+    inputMenu: {
+        width: '110%',
+        height: 350,
         alignItems: "center",
         justifyContent: "space-around",
-        backgroundColor: 'blue'
+        backgroundColor: '#021227'
+        // paddingTop: 50
+        // margin: .5,
+    },
+  
+    inputView: {
+        height: 300,
+        width: '95%',
+        alignItems: 'center'
+
+
+    },
+    smallMenu: {
+        height: 200,
+        alignItems: "center",
+        justifyContent: "space-around",
+        backgroundColor: '#021227'
         // paddingTop: 50
         // margin: .5,
     },
@@ -56,12 +91,32 @@ module.exports = StyleSheet.create({
         paddingLeft: 5
 
     },
+    teeLabel: {
+        height: 50,
+        width: 300,
+        resizeMode: 'contain'
+    },
+
     field: {
         height: 60,
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "space-around",
         width: "80%",
-        backgroundColor: "blue",
+        backgroundColor: '#021227',
+        // marginTop: 5,
+        // marginBottom: 5,
+        alignItems: "center",
+        paddingLeft: 5
+    },
+    picker: {
+        height: 100,
+        width: 100,
+        margin: 8,
+        alignSelf: 'center',
+        // flexDirection: "row",
+        justifyContent: "space-around",
+        // width: "80%",
+        // backgroundColor: '#021227',
         // marginTop: 5,
         // marginBottom: 5,
         alignItems: "center",
@@ -87,7 +142,7 @@ module.exports = StyleSheet.create({
         marginRight: 50,
         width: 40,
         height: 40,
-        backgroundColor: 'red'
+        backgroundColor: '#021227'
     },
     button: {
         width: 275,
@@ -104,10 +159,10 @@ module.exports = StyleSheet.create({
 
     },
     assetMenu: {
-       
+
         height: 300,
         width: '80%',
-        backgroundColor: 'blue',
+        backgroundColor: '#021227',
         justifyContent: 'center',
         alignItems: 'center',
         padding: 5
@@ -150,14 +205,21 @@ module.exports = StyleSheet.create({
         resizeMode: 'cover',
         marginTop: 33
     },
+    assetFee: {
+        height: 50,
+        width: 200,
+        resizeMode: 'cover',
+        
+    },
     subHeader: {
         flexDirection: 'row',
         width: '80%',
         height: 110,
-        backgroundColor: 'blue',
+        backgroundColor: '#021227',
         justifyContent: 'space-between',
         padding: 5,
-
+        margin: 5,
+        marginTop: 10
     }
 
 });

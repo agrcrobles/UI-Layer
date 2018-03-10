@@ -11,6 +11,7 @@ import Welcome from "../screens/Welcome";
 import Origin from "../screens/Origin";
 import Destination from "../screens/Destination";
 import FileUp from "../screens/FileUp";
+import DocUp from "../screens/DocUp";
 import Confirm from "../screens/Confirm";
 import ThankYou from "../screens/ThankYou";
 import Create from "../screens/Create";
@@ -26,6 +27,8 @@ import FileThanks from '../screens/FileThanks';
 import Splash1 from '../screens/Splash1';
 import Splash2 from '../screens/Splash2';
 import Splash3 from '../screens/Splash3';
+import NewAssetConfirm from '../screens/NewAssetConfirm';
+import testFileUP from '../screens/testFileUP';
 
 const MainNavigator = StackNavigator({
     Welcome: { screen: Welcome },
@@ -44,65 +47,49 @@ const MainNavigator = StackNavigator({
     Origin: { screen: Origin },
     Destination: { screen: Destination },
     FileUp: { screen: FileUp },
+    DocUp: { screen: DocUp },
     Confirm: { screen: Confirm },
     ThankYou: { screen: ThankYou },
-    FileThanks: { screen: FileThanks }
+    FileThanks: { screen: FileThanks },
+    NewAssetConfirm: { screen: NewAssetConfirm },
+    TestFileUP: { screen: testFileUP}
+
 
 },
 
 
     {
-        initialRouteName: 'Splash1',
+        initialRouteName: 'Welcome',
         navigationOptions: {
-            title: <Image style={{
-                height: 300,
-                width: 800,
-                // marginBottom: 10 
+            headerTitle: <Image style={{
+                height: 100,
+                width: 254,
+                marginLeft: 10
             }}
                 source={logo} />,
 
             headerStyle: {
                 height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
-                backgroundColor: '#2196F3',
-                justifyContent: 'space-between',
+                backgroundColor: '#021227',
 
             },
             headerTitleStyle: {
-                // marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
-                // color: 'white',
+                marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
                 textAlign: 'left',
                 textAlignVertical: 'center',
-                // alignSelf: 'center',
-                // justifyContent: 'center',
-                marginLeft: '10%',
-                width: 300,
-                height: 150,
                 backgroundColor: '#021227',
-                // margin: .5
-
-
-
-            },
-            headerLeft: (
-                <View>
-                    <TouchableHighlight
-                        onPress={() => navigation.goBack(null)} >
-                        <Image
-                            source={backArrow}
-                            style={styles.backArrow}
-                        />
                 
-                    </TouchableHighlight>
-                </View>
-                    )
-                }
-        
-            });
-        
+            },
+            headerBackImage: require('../assets/icon_backarrow.png')
+          
+
+        }
+    })
+
 export default class MainNavigation extends Component {
-                        render() {
-                    return (
+    render() {
+        return (
             <MainNavigator />
-                    )
-                }
+        )
+    }
 }

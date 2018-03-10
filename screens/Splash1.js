@@ -7,13 +7,15 @@ import create from '../assets/createNewAssetButton.png';
 import agldLogo from "../assets/AG_logo.png";
 import toast from "../assets/toast.jpg";
 import { selectAsset, listAssets } from '../actions/AssetActions';
+import backArrow from '../assets/icon_backarrow.png';
 
 
 class Splash1 extends Component {
   constructor(props) {
     super(props);
-    
-    }
+
+  }
+ 
   componentDidMount() {
     this.props.listAssets();
     console.log("this.props.assets!!", this.props.assets);
@@ -21,25 +23,26 @@ class Splash1 extends Component {
   }
   _onPress = (index) => {
     const { navigate } = this.props.navigation;
-   
+
     let asset = this.props.assets[index];
-   
+
     this.props.selectAsset(asset);
-    
-   
+
+
     navigate('Splash2');
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     console.log(this.props)
     let list = this.props.assets.map((asset, index) => {
       console.log(asset.Logo, 'logo/uri');
       return (
         <View key={index} style={styles.assetField}>
           <TouchableHighlight onPress={() => this._onPress(index)}  >
-            <Image style={styles.assetButton} source={asset.Logo} />
-          </TouchableHighlight>
+            {/* <Image style={styles.assetButton} source={asset.Logo} /> */}
           <Text style={styles.label}>{asset.Name}</Text>
+          </TouchableHighlight>
         </View>
       )
     });
@@ -48,15 +51,15 @@ class Splash1 extends Component {
 
       <View style={styles.container}>
         <View style={styles.assetMenu}>
-        {list}
+          {list}
         </View>
-        <TouchableHighlight onPress={() => console.log('pressing Create')}>
+        <TouchableHighlight onPress={() => navigate('Create')}>
           <Image
             style={{ resizeMode: 'contain', height: 80, width: 150 }}
             source={create}
           />
         </TouchableHighlight>
-       
+
       </View>
 
 
@@ -67,10 +70,10 @@ class Splash1 extends Component {
 
 const mapStateToProps = (state) => ({
   assets: state.AssetReducers.assets,
-  
+
 });
 const mapDispatchToProps = (dispatch) => ({
-  
+
   selectAsset: (asset) =>
     dispatch(selectAsset(asset)),
 
