@@ -5,11 +5,6 @@ import WelcomeHeader from "../components/WelcomeHeader";
 import { StackNavigator } from 'react-navigation';
 import Title from "../components/MenuInputTitle";
 import welcome from "../assets/welcome.png";
-import aws_exports from '../src/aws-exports.js';
-import Amplify , { API } from 'aws-amplify';
-Amplify.configure(aws_exports);
-console.log(aws_exports);
-
 
 export default class Welcome extends Component {
   constructor(props) {
@@ -23,25 +18,14 @@ export default class Welcome extends Component {
   
   }
 
-  _onPress(pin){
-    
-     console.log(pin)
-     
-  //   let apiName = 'barInf';
-  //   let path = 'bars';
-  //   let myInit = {
-  //     headers: {
-  //       bar_Id: pin,
-  //       bar_Id: {
-  //         bar_Serial: '5432'
-  //       }
-  //     }
-  //   }
-  //   API.post(apiName, path, myInit).then(response => {
-  //     console.log(response);
-  //   })
-
-  // }
+  _onPinPress(){
+    const { navigate } = this.props.navigation;
+    console.log(this.state.pin);
+   if(!this.state.pin === 7362){ 
+     Alert.alert("Wrong Pin!");
+   }
+     navigate('MenuOptions');
+ 
   }
   render(){
     const { navigate } = this.props.navigation;
@@ -52,7 +36,7 @@ export default class Welcome extends Component {
         
             <TextInput onChangeText={(pin) => this.setState({pin})} placeholder="PIN" underlineColorAndroid='transparent' style={styles.input}/>
         
-            <TouchableHighlight style={styles.welcomeBtn} onPress={() => navigate('MenuOptions')}>
+            <TouchableHighlight style={styles.welcomeBtn} onPress={() => this._onPinPress()}>
               <Image
                   style={styles.button}
                   source={welcome}

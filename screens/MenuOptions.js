@@ -24,64 +24,28 @@ export default class MenuOptions extends Component {
   // }
   constructor(props) {
     super(props);
-    this.state = {
-      
-      Bar_Id: "",
-      Bar_Serial: "",
-      Vault_Location: "",
-      Weight: "",
-      Purity: "",
-      Date_Received: "",
-      Date_Processed: "",
-      Mint: "",
-      Supplier: "",
-      location: ""
-      
-    
-    }
+   
   }
-  // returnData(id) {
-  //   this.setState({Bar_Id: id});
-  //   console.log(this.state)
-  // }
+  
   componentDidMount(){
+    console.log(this.state, 'state')
 
   }
-  // componentDidMount() {
-  //   let values;
-    
-    
-  //      console.log(this.props);
-  //      if(this.props.navigation.state.params === 'undefined'){
-  //        console.log("nothing here");
-  //      }
-  //      else{
-  //        console.log(this.props.navigation.state.params, "params in options");
-  //         // values = this.props.navigation.state.params.values;
-  //      }
-    
-  // }
+  
   render(){
-    console.log(styles);
+   
     const { navigate } = this.props.navigation;
     console.log(this.props,'this props options')
     // let values = this.props.navigation.state.params;
     // console.log(values, 'values')
     return(
       <View style={styles.container}>
+      
       {/* <Image source={logo} style={styles.menuLogo}/> */}
         <Image source={menuOpts} style={styles.menuInputTitle} />
           
           <View style={styles.menu}>
         
-           
-        
-            {/* <TouchableHighlight onPress={() => navigate('Welcome')}>
-              <Image style={styles.button}
-                  
-                  source={home}
-                />
-            </TouchableHighlight> */}
 
             <TouchableHighlight onPress={() => Alert.alert('Uninstalled Component')}>
             <Image
@@ -89,14 +53,7 @@ export default class MenuOptions extends Component {
               source={wallet}
             />
           </TouchableHighlight> 
-          
-          {/* <TouchableHighlight  onPress={() => navigate('Origin')}>
-            <Image
-              style={styles.button}
-              source={lore}
-            />
-          </TouchableHighlight>  */}
-
+     
           <TouchableHighlight  onPress={() => navigate('Hipr')}>
             <Image
               style={styles.button}
@@ -111,7 +68,7 @@ export default class MenuOptions extends Component {
             />
           </TouchableHighlight> 
           
-          <TouchableHighlight  onPress={() => navigate('Splash')}>
+          <TouchableHighlight  onPress={() => navigate('Splash1')}>
             <Image
               style={styles.button}
               source={verifyBtn}
@@ -125,7 +82,7 @@ export default class MenuOptions extends Component {
             />
           </TouchableHighlight> 
           
-          <TouchableHighlight  onPress={() => navigate('BlockScan', values={values})}>
+          <TouchableHighlight  onPress={() => navigate('BlockScan')}>
             <Image
               style={styles.button}
               source={blockScan}

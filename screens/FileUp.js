@@ -5,13 +5,15 @@ import menuOptions from '../components/buttons/menuOptions.png';
 import { StackNavigator } from 'react-navigation';
 import styles from '../assets/styles';
 import pictures from '../assets/picturesLabel.png';
-import csv from '../assets/csvLabel.png';
+import { connect } from 'react-redux';
 import agld from '../assets/AG_logo.png';
 import origin from "../assets/originLabel.png";
 import destination from "../assets/destinationLabel.png";
 import Submit from '../components/SubmitBtn';
-import { DocumentPicker, ImagePicker } from 'expo';
-import Amplify, { Storage } from 'aws-amplify';
+import { ImagePicker, DocumentPicker } from 'expo';
+import { addPhoto } from '../actions/AssetActions';
+
+// import Amplify, { Storage } from 'aws-amplify';
 // import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
 // console.log(aws_exports);
 // Amplify.configure({
@@ -29,128 +31,120 @@ import Amplify, { Storage } from 'aws-amplify';
 
 
 
-export default class FileUp extends Component {
+class FileUp extends Component {
 
+  static navigationOptions = {
+    header: null
+
+  }
   state = {
-    image: null,
-  };
-
-
-
-  _takePhoto = async () => {
-    let snappedPhoto = await ImagePicker.launchCameraAsync({
+    imaget: null,
+    imagep: null,
+  }
+  _pickImage = async () => {
+    console.log("picking Image")
+    let result = await DocumentPicker.getDocumentAsync({
+      // base64: true
       allowsEditing: false,
       aspect: [4, 3],
     });
 
-    if (!snappedPhoto.cancelled) {
-      console.log(snappedPhoto, "snapped Photo");
+    console.log(result);
+
+    if (!result.cancelled) {
+      console.log(result);
       this.setState({
 
-        image: snappedPhoto.uri
-
+        imagep: result.uri
 
       });
     }
-    console.log(this.state, 'thisState')
+  };
+
+
+  _takeImage = async () => {
+    console.log("picking Image")
+    let result = await ImagePicker.launchCameraAsync({
+      // base64: true
+      allowsEditing: false,
+      aspect: [4, 3],
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      console.log(result);
+      this.setState({
+
+        imaget: result.uri
+
+      });
+    }
+  };
+  _onSubmit = (photoUri) => {
+    const { navigate } = this.props.navigation;
+    console.log(photoUri, "onsubmitphoto")
+    this.props.addPhoto(photoUri)
+    console.log(this.props.selectedAsset, "selectedAsset in onsubmit")
+    navigate('Splash3')
   };
 
 
   render() {
-    const { navigate } = this.props.navigation;
-    
-        let location = this.props.navigation.state.params.location;
-        let locationLabel = location === 'destination' ? destination : origin;
-        console.log(this.props.navigation.state.params, "this.props")
-    let { image } = this.state;
-    let imageFile = this.state.image;
+
+    let { imaget, imagep } = this.state;
+
+    let locationImage = this.props.selectedAsset.place === 'destination' ? destination : origin;
+    let logo = this.props.selectedAsset.Logo;
+
+    console.log(this.props.selectedAsset, 'splash3 this.props.selectedAsset ');
+
     return (
-      <View style={styles.container}>
+      <View style={styles.containerCenter}>
 
         <View style={styles.subHeader}>
-          <Image style={styles.assetLocation} source={locationLabel} />
-          <Image style={styles.assetButton} source={agld} />
+          <Image style={styles.assetLocation} source={locationImage} />
+          <Image style={styles.assetButton} source={logo} />
         </View>
 
-        <Image source={pictures} style={styles.menuInputTitle}/>
+        <Image source={pictures} style={styles.menuInputTitle} />
+        
+        <View style={styles.picker}>
+            <Button
+              title="Pick a Photo"
+              onPress={this._pickImage}
+            />
+            {imagep &&
+              <Image source={{ uri: imagep }} style={{ width: 100, height: 100 }} />
+            }
+          </View>
 
 
-        {/* <View style={styles.imageContainer}> */}
-        <View style={{ height: 100, width: 100, alignItems: 'center', justifyContent: 'space-around' }}>
+        <View style={styles.picker}>
           <Button
             title="Take a Photo"
-            onPress={this._takePhoto}
+            onPress={this._takeImage}
           />
-
-          <Image source={{ uri: image }} style={{ width: 100, height: 100 }} />
+          {imaget &&
+            <Image source={{ uri: image }} style={{ width: 100, height: 100 }} />
+          }
         </View>
 
-        <Submit onPress={() => navigate('Splash3', {image: imageFile})} />
-
+        <Submit onPress={() => this._onSubmit(imagep)} /> 
+{/* // pass mult images as array */}
       </View>
     )
   }
 }
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     // paddingTop: 30,
-//     // width: "100%",
-//     backgroundColor: '#021227',
-//     // backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
 
-//   },
-//   imagePick: {
-//     height: 500,
-//     width: 300,
-//     justifyContent: "space-around",
-//     alignItems: "center",
-//     backgroundColor: 'blue'
-//     // paddingTop: 5,
-//     // paddingBottom: 5
-//   },
-//   imageContainer: {
-//     height: 150,
-//     padding: 1,
-//     justifyContent: "center"
-//   },
+const mapStateToProps = (state) => ({
+  selectedAsset: state.AssetReducers.selectedAsset,
 
-//   label: {
-//     color: "green",
-//     width: 120,
-//     fontSize: 20.2,
-//     fontWeight: "600",
-//     margin: 1
+});
+const mapDispatchToProps = (dispatch) => ({
 
-//   },
-//   field: {
-//     height: 60,
-//     flexDirection: "row",
-//     justifyContent: "space-between",
-//     width: "100%",
-//     backgroundColor: "yellow",
-//     // marginTop: 5,
-//     // marginBottom: 5,
-//     alignItems: "center",
-//     paddingLeft: 5
-//   },
-//   button: {
-//     width: 50,
-//     height: 30
-//   },
-//   input: {
-//     width: 150,
-//     height: 40,
-//     textAlign: "center",
-//     backgroundColor: "#132c4a",
-//     // margin: .5,
-//     fontSize: 20.2,
-//     fontWeight: "600",
-//     borderColor: "#142535",
-//     color: "white",
-//     borderWidth: 1,
-//     // paddingLeft: 1
-//   }
-// });
+  addPhoto: (uri) =>
+    dispatch(addPhoto(uri)),
+
+})
+export default connect(mapStateToProps, mapDispatchToProps)(FileUp);

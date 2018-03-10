@@ -1,31 +1,83 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import { connect } from 'react-redux';
 import styles from '../assets/styles';
+import create from '../assets/createNewAssetButton.png';
+import agldLogo from "../assets/AG_logo.png";
+import toast from "../assets/toast.jpg";
+import { selectAsset, listAssets } from '../actions/AssetActions';
+import backArrow from '../assets/icon_backarrow.png';
 
-import agld from "../assets/AG_logo.png";
+
+class Splash1 extends Component {
+  constructor(props) {
+    super(props);
+
+  }
+ 
+  componentDidMount() {
+    this.props.listAssets();
+    console.log("this.props.assets!!", this.props.assets);
+    console.log(this.props, 'thisstate')
+  }
+  _onPress = (index) => {
+    const { navigate } = this.props.navigation;
+
+    let asset = this.props.assets[index];
+
+    this.props.selectAsset(asset);
 
 
-
-export default class Splash1 extends Component {
+    navigate('Splash2');
+  }
 
   render() {
-
     const { navigate } = this.props.navigation;
-    console.log(this.props, "this.props")
-    return (
-      <View style={styles.container}>
-            <Text style={styles.assetMenuLabel}> Press Asset to Select </Text>
-        <View style={styles.assetMenu}>
-
-            <TouchableHighlight style={{ justifyContent: 'center', height: 100, width: 100 }} onPress={() => navigate('Splash2')} >
-              <Image style={styles.assetButton} source={agld} />
-            </TouchableHighlight>
-          </View>
+    console.log(this.props)
+    let list = this.props.assets.map((asset, index) => {
+      console.log(asset.Logo, 'logo/uri');
+      return (
+        <View key={index} style={styles.assetField}>
+          <TouchableHighlight onPress={() => this._onPress(index)}  >
+            {/* <Image style={styles.assetButton} source={asset.Logo} /> */}
+          <Text style={styles.label}>{asset.Name}</Text>
+          </TouchableHighlight>
         </View>
-      
+      )
+    });
+
+    return (
+
+      <View style={styles.container}>
+        <View style={styles.assetMenu}>
+          {list}
+        </View>
+        <TouchableHighlight onPress={() => navigate('Create')}>
+          <Image
+            style={{ resizeMode: 'contain', height: 80, width: 150 }}
+            source={create}
+          />
+        </TouchableHighlight>
+
+      </View>
+
 
 
     )
   };
 }
+
+const mapStateToProps = (state) => ({
+  assets: state.AssetReducers.assets,
+
+});
+const mapDispatchToProps = (dispatch) => ({
+
+  selectAsset: (asset) =>
+    dispatch(selectAsset(asset)),
+
+  listAssets: () => dispatch(listAssets())
+
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Splash1);
