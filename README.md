@@ -22,4 +22,9 @@ https://docs.expo.io/versions/latest/guides/genymotion.html
 > save your PATH environment variable so that XDE knows where to find
 > your Android tools.
 > 
-This is important. 
+This is important, as is this: https://github.com/jhen0409/react-native-debugger 
+
+If you are using Expo 25 or up there has been an issue with debugging remotely so the native-debugger comes in really handy.
+
+See this https://www.gravitywell.co.uk/latest/rd/posts/react-native-debugger-expo-awesome/
+
