@@ -15,9 +15,11 @@ import blockScan from "../components/buttons/blockScannerBtn.png";
 import settings from "../components/buttons/settingsBtn.png";
 import wallet from "../components/buttons/walletBtn.png";
 import styles from "../assets/styles";
+import { connect } from 'react-redux';
+import { listAssets } from '../actions/AssetActions';
 
 
-export default class MenuOptions extends Component {
+ class MenuOptions extends Component {
   // static navigationOptions = {
   //   header: null,
   
@@ -27,9 +29,10 @@ export default class MenuOptions extends Component {
    
   }
   
-  componentDidMount(){
-    console.log(this.state, 'state')
-
+  componentDidMount() {
+    this.props.listAssets();
+    console.log("this.props.assets!!", this.props.assets);
+   
   }
   
   render(){
@@ -105,58 +108,9 @@ export default class MenuOptions extends Component {
   };
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     paddingTop: 30,
-//     // width: "100%",
-//     backgroundColor: '#021227',
-//     // backgroundColor: '#fff',
-//     alignItems: 'center',
-//     // justifyContent: 'space-around',
-//   },
-//   menu: {
-//     height: 400,
-//     alignItems: "center",
-//     justifyContent: "space-between",
-//     backgroundColor: '#021227'
-//     // paddingTop: 50
-//     // margin: .5,
-  
-//     },
-//     button: {
-//       width: 350, 
-//       height: 51,
-//       alignItems: 'center',
-//       margin: 1
-      
-//     },
-//     btnImg: {
-//         resizeMode: 'cover',
+const mapDispatchToProps = (dispatch) => ({
 
-//     },
-//     input: {
-//       width: 150, 
-//       height: 40,
-//       textAlign: "center",
-//       backgroundColor: "#132c4a", 
-//       // margin: .5,
-//       fontSize: 20.2,
-//       fontWeight: "600",
-//       borderColor: "#142535",
-//       color: "white",
-//       borderWidth: 1,
-//       marginTop: 100
-//     },
-//     menuLogo: {
-//     justifyContent: "center",
-//     alignItems: "center",
-//     height: 140,
-//     width: 200,
-//     resizeMode: "contain",
-//     backgroundColor: '#021227',
-//     // margin: .5
-       
-//   }
- 
-//   });
+   listAssets: () => dispatch(listAssets())
+
+})
+export default connect(null, mapDispatchToProps)(MenuOptions);

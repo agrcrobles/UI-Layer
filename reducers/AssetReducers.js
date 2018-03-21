@@ -1,10 +1,15 @@
 import { LIST_ASSETS, ADD_ASSET, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET } from '../actions/types';
-import assets from './assetList';
+import ApiKeys from '../constants/apiKeys';
+import * as firebase from 'firebase';
+
+firebase.initializeApp(ApiKeys.FirebaseConfig);
+
+const rootRef = firebase.database().ref();
 
 
 const INITIAL_STATE = {
     hercId: "003",
-    assets: assets,
+    assets: [],
 
     selectedAsset: {},
 
@@ -19,6 +24,21 @@ const INITIAL_STATE = {
 const AssetReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case LIST_ASSETS:
+        let assets = [];
+        rootRef.on('value', (snapshot) => {
+            //    let asset = snapshot.toJSON();
+            // var size = Object.keys(asset).length;
+            //    let keys = Object.keys(obj.coreProps);//this might not work
+            snapshot.forEach((obj) => {
+                assets.push({
+                    key: obj.key,
+                    name: obj.toJSON().Name,
+                    logo: obj.toJSON().Logo
+                })
+                console.log(obj.child('CoreProps').val(), 'haschilds?')//this is coreProps!! that's how! 
+            })
+            console.log(assets.length, 'assets')
+        })
             return Object.assign({}, state, {
                 assets
             })

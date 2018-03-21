@@ -17,14 +17,14 @@ class Splash1 extends Component {
   }
  
   componentDidMount() {
-    this.props.listAssets();
+   
     console.log("this.props.assets!!", this.props.assets);
    
   }
   _onPress = (index) => {
     const { navigate } = this.props.navigation;
 
-    let asset = this.props.assets[index];
+    let asset = this.props.assets[index]; //cleaner way or better way to do this
 
     this.props.selectAsset(asset);
 
