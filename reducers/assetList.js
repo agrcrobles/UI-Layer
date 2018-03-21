@@ -1,41 +1,26 @@
-let assetList = 
-[
-    {
-        Name: "AGLD",
-        HercID: "001",
-        Logo: require('../assets/AG_logo.png'),
-        place: "",
-        csv: [],
-        Images: [],
-        CoreProperties: {
-            BarID: "",
-            BarSerial: "",
-            VaultLocation: "",
-            Weight: "",
-            Purity: "",
-            Mint: "",
-            DateProc: "",
-            Supplier:"" 
-        }
-    },
-    {
-        Name: "Tastee Toasters",
-        HercID: "002",
-        Logo: require('../assets/toast.jpg'),
-        place: "",
-        csv: [],
-        Images: [],
-        CoreProperties: {
-            Weight: "",
-            Color: "",
-            NumSlices: "",
-            Height: "",
-            Width: "",
-            Condition: "",
-            Style: "",
-            Serial: ""
-        }
-    }
-]
+import ApiKeys from '../constants/apiKeys';
+import * as firebase from 'firebase';
 
-export default assetList;
+firebase.initializeApp(ApiKeys.FirebaseConfig);
+
+const rootRef = firebase.database().ref();
+
+let assets = [];
+rootRef.on('value', (snapshot) => {
+    //    let asset = snapshot.toJSON();
+    // var size = Object.keys(asset).length;
+    //    let keys = Object.keys(obj.coreProps);//this might not work
+    snapshot.forEach((obj) => {
+        assets.push({
+            key: obj.key,
+            name: obj.toJSON().Name,
+            logo: obj.toJSON().Logo
+        })
+        console.log(obj.child('CoreProps').val(), 'haschilds?')//this is coreProps!! that's how! 
+    })
+    console.log(assets.length, 'assets')
+})
+
+
+
+export default assets;

@@ -3,6 +3,7 @@ import { StackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 import MainNavigation from './navigation/MainNavigation';
 
+
 import store from './store';
 
 

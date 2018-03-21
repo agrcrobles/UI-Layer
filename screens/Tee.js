@@ -5,7 +5,7 @@ import params from "../assets/igvcParamsLabel.png";
 import { connect } from "react-redux";
 import styles from "../assets/styles";
 import { addAsset } from "../actions/AssetActions";
-import { DocumentPicker } from 'expo';
+import { ImagePicker } from 'expo';
 import next from "../assets/nextLabel.png";
 import { STATUS_BAR_HEIGHT } from '../constants';
 
@@ -38,9 +38,7 @@ class Tee extends Component {
 
   _pickImage = async () => {
 
-    let logo = await DocumentPicker.getDocumentAsync({
-      //MIME type 
-    });
+    let logo = await ImagePicker.launchImageLibraryAsync({ allowsEditing: false, quality: .8, base64: true });
     alert(logo.uri);
     console.log(logo, "docPickResult");
 
@@ -49,10 +47,11 @@ class Tee extends Component {
 
     if (!logo.cancelled) {
       this.setState({
-        Logo: logo.uri
+        Logo: "data:image/png;base64," + logo.base64
 
 
       });
+      console.log('image in state');
     }
   };
 

@@ -11,7 +11,7 @@ const INITIAL_STATE = {
     newAsset: {
         Name: "",
         CoreProperties:{},
-        Logo: {}
+        Logo: ""
     }
 
 };

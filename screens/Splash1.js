@@ -19,7 +19,7 @@ class Splash1 extends Component {
   componentDidMount() {
     this.props.listAssets();
     console.log("this.props.assets!!", this.props.assets);
-    console.log(this.props, 'thisstate')
+   
   }
   _onPress = (index) => {
     const { navigate } = this.props.navigation;
@@ -36,13 +36,12 @@ class Splash1 extends Component {
     const { navigate } = this.props.navigation;
     console.log(this.props)
     let list = this.props.assets.map((asset, index) => {
-      console.log(asset.Logo, 'logo/uri');
       return (
         <View key={index} style={styles.assetField}>
           <TouchableHighlight onPress={() => this._onPress(index)}  >
-            {/* <Image style={styles.assetButton} source={asset.Logo} /> */}
-          <Text style={styles.label}>{asset.Name}</Text>
+            <Image style={styles.assetButton} source={{uri:asset.logo}} />
           </TouchableHighlight>
+          <Text style={styles.label}>{asset.name}</Text>
         </View>
       )
     });
