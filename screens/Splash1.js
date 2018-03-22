@@ -16,9 +16,11 @@ class Splash1 extends Component {
 
   }
  
+  //  Need to determine the ideal way to get the selected asset, currently am pulling them both down entirely and then just assigning the selected to state...I think...
   componentDidMount() {
    
-    console.log("this.props.assets!!", this.props.assets);
+    console.log("this.props.assets!! in Splash", this.props.assets);
+    
    
   }
   _onPress = (index) => {
@@ -38,8 +40,8 @@ class Splash1 extends Component {
     let list = this.props.assets.map((asset, index) => {
       return (
         <View key={index} style={styles.assetField}>
-          <TouchableHighlight onPress={() => this._onPress(index)}  >
-            <Image style={styles.assetButton} source={{uri:asset.logo}} />
+          <TouchableHighlight onPress={() => this._onPress(asset.key)}  >
+            <Image style={styles.assetButton} source={{uri:asset.logo}} />  
           </TouchableHighlight>
           <Text style={styles.label}>{asset.name}</Text>
         </View>

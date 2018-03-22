@@ -21,6 +21,9 @@ const INITIAL_STATE = {
 
 };
 
+// key: obj.key,
+// name: obj.toJSON().Name,
+// logo: obj.toJSON().Logo
 const AssetReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case LIST_ASSETS:
@@ -31,11 +34,11 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             //    let keys = Object.keys(obj.coreProps);//this might not work
             snapshot.forEach((obj) => {
                 assets.push({
-                    key: obj.key,
-                    name: obj.toJSON().Name,
-                    logo: obj.toJSON().Logo
-                })
-                console.log(obj.child('CoreProps').val(), 'haschilds?')//this is coreProps!! that's how! 
+                     name: obj.toJSON().Name,
+                     key: obj.key,
+                     logo: obj.toJSON().Logo
+                    });
+            console.log(obj.child('CoreProps').val(), 'haschilds?')//this is coreProps!! that's how! 
             })
             console.log(assets.length, 'assets')
         })

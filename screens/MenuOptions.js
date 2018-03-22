@@ -31,7 +31,7 @@ import { listAssets } from '../actions/AssetActions';
   
   componentDidMount() {
     this.props.listAssets();
-    console.log("this.props.assets!!", this.props.assets);
+    console.log("this.props.assets!! in Options", this.props.assets);
    
   }
   
