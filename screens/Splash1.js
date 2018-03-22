@@ -18,6 +18,7 @@ class Splash1 extends Component {
  
   //  Need to determine the ideal way to get the selected asset, currently am pulling them both down entirely and then just assigning the selected to state...I think...
   componentDidMount() {
+    this.props.listAssets();
    
     console.log("this.props.assets!! in Splash", this.props.assets);
     
@@ -26,10 +27,10 @@ class Splash1 extends Component {
   _onPress = (index) => {
     const { navigate } = this.props.navigation;
 
-    let asset = this.props.assets[index]; //cleaner way or better way to do this
+    // let asset = this.props.assets[index]; //cleaner way or better way to do this
 
-    this.props.selectAsset(asset);
-
+    this.props.selectAsset(index);
+    
 
     navigate('Splash2');
   }
@@ -51,9 +52,9 @@ class Splash1 extends Component {
     return (
 
       <View style={styles.container}>
-        <View style={styles.assetMenu}>
+       <ScrollView contentContainerStyle={{ alignSelf: 'center', width: '90%' }}>
           {list}
-        </View>
+        </ScrollView>
         <TouchableHighlight onPress={() => navigate('Create')}>
           <Image
             style={{ resizeMode: 'contain', height: 80, width: 150 }}

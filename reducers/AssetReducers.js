@@ -15,7 +15,7 @@ const INITIAL_STATE = {
 
     newAsset: {
         Name: "",
-        CoreProperties:{},
+        coreProps:{},
         Logo: ""
     }
 
@@ -47,13 +47,22 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             })
 
         case SELECT_ASSET:
-            let selectedAsset = action.data;
-            console.log(action.data, "actiondatafrom in reducer")
-            return Object.assign({}, state, {
-
-                selectedAsset
-            })
-
+            let assetKey = action.data;
+            let assetRef = rootRef.child(assetKey);
+            let selectedAsset = {};
+            assetRef.once('value')
+                .then((snapshot) => {
+                    selectedAsset = snapshot.toJSON();
+                    console.log(snapshot.val(), 'snapshot val');
+                    console.log(selectedAsset, 'selectedAsset var')
+                    
+                });
+                
+                return Object.assign({}, state, {
+   
+                   selectedAsset 
+               })
+               
         case INC_HERC_ID:
             let hercId = state.hercId + 1;
             console.log(action.data, "actiondatafrom in reducer")
@@ -118,8 +127,11 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             case CONFIRM_ASSET:
             const asset = action.asset;
             console.log(asset, 'asset in reducerconfirm', state, 'state')
+            rootRef.push(asset);
+
             return Object.assign({}, state, {
                 ...state,
+                ...state.assets,
                 
                 assets:[...assets, asset]
                     

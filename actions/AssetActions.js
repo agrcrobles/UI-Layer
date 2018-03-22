@@ -26,13 +26,13 @@ export function listAssets() {
     }
 }
 
-export function selectAsset(asset) {
+export function selectAsset(assetKey) {
 
     return (
-        console.log(asset, 'assetSelected'),
+       
         {
             type: SELECT_ASSET,
-            data: asset
+            data: assetKey
         }
     )
 }

@@ -31,7 +31,7 @@ class Tee extends Component {
     super(props);
     this.state = {
       Name: "",
-      CoreProperties:{},
+      coreProps:{},
       Logo: null
     };
   }
@@ -87,7 +87,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input1</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input1 => this.setState({ CoreProperties: {Input1} })}
+              onChangeText={Input1 => this.setState({ coreProps: {Input1} })}
               placeholder="Input1"
             />
           </View>
@@ -95,7 +95,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input2</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input2 => this.setState({ CoreProperties:{ ...this.state.CoreProperties,  Input2  }})}
+              onChangeText={Input2 => this.setState({ coreProps:{ ...this.state.coreProps,  Input2  }})}
               placeholder="Input2"
             />
           </View>
@@ -103,7 +103,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input3</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input3 => this.setState({ CoreProperties: {...this.state.CoreProperties,  Input3 }})}
+              onChangeText={Input3 => this.setState({ coreProps: {...this.state.coreProps,  Input3 }})}
               placeholder="Input3"
             />
           </View>
@@ -111,7 +111,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input4</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input4 => this.setState({ CoreProperties: {...this.state.CoreProperties, Input4 }})}
+              onChangeText={Input4 => this.setState({ coreProps: {...this.state.coreProps, Input4 }})}
               placeholder="Input4"
             />
           </View>
@@ -119,7 +119,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input5</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input5 => this.setState({ CoreProperties: {...this.state.CoreProperties, Input5 }})}
+              onChangeText={Input5 => this.setState({ coreProps: {...this.state.coreProps, Input5 }})}
               placeholder="Input5"
             />
           </View>
@@ -127,7 +127,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input6</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input6 => this.setState({ CoreProperties: {...this.state.CoreProperties, Input6 }})}
+              onChangeText={Input6 => this.setState({ coreProps: {...this.state.coreProps, Input6 }})}
               placeholder="Input5"
             />
           </View>
@@ -135,7 +135,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input7</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input7 => this.setState({ CoreProperties: {...this.state.CoreProperties, Input7 }})}
+              onChangeText={Input7 => this.setState({ coreProps: {...this.state.coreProps, Input7 }})}
               placeholder="Input7"
             />
           </View>
@@ -143,7 +143,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input8</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input8 => this.setState({ CoreProperties: {...this.state.CoreProperties, Input8 }})}
+              onChangeText={Input8 => this.setState({ coreProps: {...this.state.coreProps, Input8 }})}
               placeholder="Input8"
             />
           </View>
