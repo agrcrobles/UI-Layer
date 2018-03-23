@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Platform,TextInput, Text, View, Image, ScrollView, TouchableHighlight, Alert, TouchableNativeFeedback } from 'react-native';
+import { StyleSheet, Platform, TextInput, Text, View, Image, ScrollView, TouchableHighlight, Alert, TouchableNativeFeedback } from 'react-native';
 import { STATUS_BAR_HEIGHT } from '../constants';
 import WelcomeHeader from "../components/WelcomeHeader";
 // import Welcome from "../components/Welcome";
@@ -31,21 +31,22 @@ class Splash3 extends Component {
     // this.props.navigation.state.params.image
     render() {
         const { navigate } = this.props.navigation;
-        let image = this.props.selectedAsset.Images ? this.props.selectedAsset.Images[0] : null;
-        let locationImage = this.props.selectedAsset.place === 'destination' ? destination : origin;
-        let logo = this.props.selectedAsset.Logo;
-        console.log(this.props.selectedAsset, 'splash3 this.props.selectedAsset ');
+        let image = this.props.asset.Images ? this.props.asset.Images[0] : null;
+        let locationImage = this.props.asset.place === 'destination' ? destination : origin;
+        let logo = this.props.asset.Logo;
+        console.log(this.props.asset, 'splash3 this.props.selectedAsset ');
 
         return (
             <View style={styles.containerCenter}>
-
-                <View style={styles.subHeader}>
-                    <Image style={styles.assetLocation} source={locationImage} />
-                    <Image style={styles.assetButton} source={logo} />
+                <View style={styles.assetField}>
+                    <Image style={styles.assetButton} source={{ uri: logo }} />
+                    <Text style={styles.label}>{this.props.asset.Name}</Text>
                 </View>
+
+                    <Image style={styles.assetLocation} source={locationImage} />
                 <View style={styles.field}>
-                    <Text style={styles.label}>Herc-ID</Text>
-                    <TextInput style={styles.input} placeholder="ID" />
+                    <Text style={styles.label}>HercID: {this.props.asset.hercId}</Text>
+                    {/* <TextInput style={styles.input} placeholder="ID" /> */}
                 </View>
                 <View style={styles.spaceAroundContainer}>
                     <TouchableHighlight onPress={() => navigate('FileUp')}>
@@ -85,6 +86,6 @@ class Splash3 extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    selectedAsset: state.AssetReducers.selectedAsset
+    asset: state.AssetReducers.selectedAsset
 });
 export default connect(mapStateToProps)(Splash3);

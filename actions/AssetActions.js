@@ -1,5 +1,5 @@
 import { ADD_ASSET, LIST_ASSETS, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET } from './types';
-import assets from '../reducers/assetListReducer';
+// import assets from '../reducers/assetListReducer';
 
 export function incHercId() {
     return {
@@ -21,8 +21,7 @@ export function getHercId() {
 export function listAssets() {
     return {
         type: LIST_ASSETS,
-        assets
-
+    
     }
 }
 

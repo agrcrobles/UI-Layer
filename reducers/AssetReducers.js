@@ -49,17 +49,19 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
         case SELECT_ASSET:
             let assetKey = action.data;
             let assetRef = rootRef.child(assetKey);
-            let selectedAsset = {};
-            assetRef.once('value')
-                .then((snapshot) => {
-                    selectedAsset = snapshot.toJSON();
+            console.log(assetRef, 'assetRef')
+            let selectedAsset ={};
+            console.log(selectedAsset, 'selected');
+            assetRef.on('value', (snapshot) => {
+                    selectedAsset = snapshot.val();
                     console.log(snapshot.val(), 'snapshot val');
                     console.log(selectedAsset, 'selectedAsset var')
                     
-                });
-                
+                })
+                console.log(selectedAsset, "outside of promise")
                 return Object.assign({}, state, {
-   
+                    ...state,
+                   
                    selectedAsset 
                })
                
@@ -73,16 +75,17 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
        
         case SET_PLACE:
-            let place = action.data;
+            let Place = action.data;
             console.log(state.selectedAsset, "selectedAsset Reduction")
             return Object.assign({}, state, {
-                selectedAsset: {
+            
                     ...state.selectedAsset,
-                    place
-
+                    
+                    selectedAsset: Place
+                    
                 }
 
-            })
+            )
 
         case ADD_PHOTO:
             let image = [action.data];

@@ -19,25 +19,28 @@ class Splash2 extends Component {
 
     const { navigate } = this.props.navigation;
     console.log('pressing place')
-    this.props.selectedAsset.place = place;
-    console.log(this.props.selectedAsset, 'after place')
+    this.props.asset.place = place;
+    console.log(this.props.asset, 'after place')
     this.props.setPlace(place);
     console.log
     navigate('Splash3');
   }
 
   componentDidMount() {
-    console.log(this.props.selectedAsset, 'this.props.selectedAsset');
+    console.log(this.props.asset, 'this.props.asset');
 
 
   }
   render() {
-    let image = this.props.selectedAsset.Logo;
+    let image = this.props.asset.Logo;
 
 
     return (
       <View style={styles.containerCenter}>
-        <Image style={styles.headerLogo} source={image} />
+        <View style={styles.assetField}>
+          <Image style={styles.assetButton} source={{ uri: image }} />
+          <Text style={styles.label}>{this.props.asset.Name}</Text>
+        </View>
         <View style={styles.smallMenu}>
           <TouchableHighlight onPress={() => this._onPress('destination')}>
             <Image
@@ -63,7 +66,7 @@ class Splash2 extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  selectedAsset: state.AssetReducers.selectedAsset
+  asset: state.AssetReducers.selectedAsset
 });
 const mapDispatchToProps = (dispatch) => ({
   setPlace: (place) =>
