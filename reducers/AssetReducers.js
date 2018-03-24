@@ -113,12 +113,12 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             return Object.assign({}, state, {
 
                 ...state,
-                ...state.transInfo,
-                
-                    newProps
-                
+               
+               ...state.transInfo,  
+                newProps
+               }
 
-            })
+            )
 
 
         case ADD_ASSET:

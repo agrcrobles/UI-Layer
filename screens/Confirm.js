@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight, Alert } from 'react-native';
-import Title from "../components/MenuInputTitle";
-import WelcomeHeader from "../components/WelcomeHeader";
+
 import Submit from "../components/SubmitBtn";
 import originator from "../assets/originator.png";
 import recipient from "../assets/recipient.png";
@@ -26,25 +25,18 @@ class Confirm extends Component {
 
 
   componentDidMount() {
-    console.log(this.props.newProps, 'thisnewprops')
-
-
+    console.log(this.props.newProps, 'thisnewtransinfo')
+    console.log(this.props, 'props')
 
 
   }
 
 
-  // _onPressSubmit(values) {
-
-  //   const { navigate } = this.props.navigation;
-
-
-  //   navigate('BlockScan');
-  // }
-
+ 
 
 
   render() {
+    
     const { navigate } = this.props.navigation;
     console.log(this.props.newProps, "txNewProps")
 
@@ -52,16 +44,16 @@ class Confirm extends Component {
     let logo = this.props.logo;
     // console.log(this.props.Assets);
 
-    // let list = Object.keys(this.props.newProps).map((propName, idx) => {
-    //   let name = propName;
-    //   return (
+    let list = Object.keys(this.props.newProps).map((propName, idx) => {
+      let name = propName;
+      return (
 
-    //     <View key={idx} style={styles.field}>
-    //       <Text style={styles.label}>{name}</Text>
-    //       <Text style={styles.input}>{this.props.newProps[name]}</Text>
-    //     </View>
-    //   )
-    // });
+        <View key={idx} style={styles.field}>
+          <Text style={styles.label}>{name}</Text>
+          <Text style={styles.input}>{this.props.newProps[name]}</Text>
+        </View>
+      )
+    });
 
     return (
       <View style={styles.containerCenter}>
@@ -74,7 +66,7 @@ class Confirm extends Component {
 
         <View style={styles.inputMenu}>
 
-          {/* {list} */}
+          {list}
         </View>
 
         {/* <Text>{this.props.selectedAsset.csv[0]}</Text>
@@ -95,7 +87,7 @@ class Confirm extends Component {
 
 
 const mapStateToProps = (state) => ({
-  newProps: state.AssetReducers.transInfo.newProps,
+  newProps: state.AssetReducers.newProps,
   location: state.AssetReducers.transInfo.location,
   logo: state.AssetReducers.transInfo.logo
   // newProperties: state.AssetReducers.selectedAsset.newProperties
