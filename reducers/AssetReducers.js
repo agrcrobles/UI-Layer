@@ -1,4 +1,4 @@
-import { LIST_ASSETS, ADD_ASSET, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET } from '../actions/types';
+import { LIST_ASSETS, ADD_ASSET, SELECT_ASSET, START_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET } from '../actions/types';
 import ApiKeys from '../constants/apiKeys';
 import * as firebase from 'firebase';
 
@@ -11,13 +11,12 @@ const INITIAL_STATE = {
     hercId: "003",
     assets: [],
 
-    selectedAsset: {},
-
-    newAsset: {
-        Name: "",
-        coreProps:{},
-        Logo: ""
-    }
+    // leave this until the tx bundle is set
+    // newAsset: {
+    //     Name: "",
+    //     coreProps:{},
+    //     Logo: ""
+    // }
 
 };
 
@@ -27,21 +26,21 @@ const INITIAL_STATE = {
 const AssetReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case LIST_ASSETS:
-        let assets = [];
-        rootRef.on('value', (snapshot) => {
-            //    let asset = snapshot.toJSON();
-            // var size = Object.keys(asset).length;
-            //    let keys = Object.keys(obj.coreProps);//this might not work
-            snapshot.forEach((obj) => {
-                assets.push({
-                     name: obj.toJSON().Name,
-                     key: obj.key,
-                     logo: obj.toJSON().Logo
+            let assets = [];
+            rootRef.on('value', (snapshot) => {
+                //    let asset = snapshot.toJSON();
+                // var size = Object.keys(asset).length;
+                //    let keys = Object.keys(obj.coreProps);//this might not work
+                snapshot.forEach((obj) => {
+                    assets.push({
+                        name: obj.toJSON().Name,
+                        key: obj.key,
+                        logo: obj.toJSON().Logo
                     });
-            console.log(obj.child('CoreProps').val(), 'haschilds?')//this is coreProps!! that's how! 
+                    console.log(obj.child('CoreProps').val(), 'haschilds?')//this is coreProps!! that's how! 
+                })
+                console.log(assets, 'assets')
             })
-            console.log(assets.length, 'assets')
-        })
             return Object.assign({}, state, {
                 assets
             })
@@ -50,21 +49,38 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             let assetKey = action.data;
             let assetRef = rootRef.child(assetKey);
             console.log(assetRef, 'assetRef')
-            let selectedAsset ={};
+            let selectedAsset = {};
             console.log(selectedAsset, 'selected');
             assetRef.on('value', (snapshot) => {
-                    selectedAsset = snapshot.val();
-                    console.log(snapshot.val(), 'snapshot val');
-                    console.log(selectedAsset, 'selectedAsset var')
-                    
-                })
-                console.log(selectedAsset, "outside of promise")
-                return Object.assign({}, state, {
-                    ...state,
-                   
-                   selectedAsset 
-               })
-               
+                selectedAsset = snapshot.val();
+                console.log(snapshot.val(), 'snapshot val');
+                console.log(selectedAsset, 'selectedAsset var')
+
+            })
+            console.log(selectedAsset, "outside of promise")
+            return Object.assign({}, state, {
+                ...state,
+
+                selectedAsset
+            })
+
+        // this used to be  SET_PLACE
+        case START_TRANS:
+            let transInfo = action.data;
+            console.log(state.selectedAsset, "selectedAsset Reduction")
+
+           
+            
+            return Object.assign({}, state, {
+
+                ...state,
+
+               transInfo
+
+            }
+
+            )
+
         case INC_HERC_ID:
             let hercId = state.hercId + 1;
             console.log(action.data, "actiondatafrom in reducer")
@@ -73,19 +89,6 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                 hercId
             }), console.log('Hercincrease', state)
 
-       
-        case SET_PLACE:
-            let Place = action.data;
-            console.log(state.selectedAsset, "selectedAsset Reduction")
-            return Object.assign({}, state, {
-            
-                    ...state.selectedAsset,
-                    
-                    selectedAsset: Place
-                    
-                }
-
-            )
 
         case ADD_PHOTO:
             let image = [action.data];
@@ -105,14 +108,15 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             })
 
         case ADD_PROPS:
-            const Properties = action.data;
-            console.log(Properties, "updating attributes in reducers");
+            const newProps = action.data;
+            console.log(newProps, "updating attributes in reducers");
             return Object.assign({}, state, {
 
-                ...state.selectedAsset,
-                selectedAsset: {
-                    Properties
-                }
+                ...state,
+                ...state.transInfo,
+                
+                    newProps
+                
 
             })
 
@@ -121,13 +125,13 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             const newAsset = action.newAsset;
             return Object.assign({}, state, {
                 ...state,
-                
+
                 newAsset
-                
+
             }
             )
 
-            case CONFIRM_ASSET:
+        case CONFIRM_ASSET:
             const asset = action.asset;
             console.log(asset, 'asset in reducerconfirm', state, 'state')
             rootRef.push(asset);
@@ -135,10 +139,10 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             return Object.assign({}, state, {
                 ...state,
                 ...state.assets,
-                
-                assets:[...assets, asset]
-                    
-                
+
+                assets: [...assets, asset]
+
+
             }
             )
 

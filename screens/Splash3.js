@@ -6,8 +6,9 @@ import WelcomeHeader from "../components/WelcomeHeader";
 import { StackNavigator } from 'react-navigation';
 
 import MenuOptions from "../components/buttons/menuOptions.png";
-import origin from "../assets/originLabel.png";
-import destination from "../assets/destinationLabel.png";
+import originator from "../assets/originator.png";
+import recipient from "../assets/recipient.png";
+
 import csv from "../assets/csvLabel.png";
 import camera from "../assets/cameraLabel.png";
 import styles from "../assets/styles";
@@ -24,28 +25,30 @@ class Splash3 extends Component {
         super(props);
     }
     componentDidMount() {
-        console.log(this.props.selectedAsset, 'onmount selasset')
+        console.log(this.props.transBase, 'onmount selasset')
 
 
     }
     // this.props.navigation.state.params.image
     render() {
         const { navigate } = this.props.navigation;
-        let image = this.props.asset.Images ? this.props.asset.Images[0] : null;
-        let locationImage = this.props.asset.place === 'destination' ? destination : origin;
-        let logo = this.props.asset.Logo;
-        console.log(this.props.asset, 'splash3 this.props.selectedAsset ');
+        // let image = this.props.asset.Images ? this.props.asset.Images[0] : null;
+        let locationImage = this.props.transBase.location === 'destination' ? recipient : originator;
+        let logo = this.props.transBase.logo;
+        let asset = this.props.transBase;
+        let hercId = this.props.hercId;
+        console.log(asset, 'splash3 this.props.selectedAsset ');
 
         return (
             <View style={styles.containerCenter}>
                 <View style={styles.assetField}>
                     <Image style={styles.assetButton} source={{ uri: logo }} />
-                    <Text style={styles.label}>{this.props.asset.Name}</Text>
+                    <Text style={styles.label}>{asset.name}</Text>
                 </View>
 
                     <Image style={styles.assetLocation} source={locationImage} />
                 <View style={styles.field}>
-                    <Text style={styles.label}>HercID: {this.props.asset.hercId}</Text>
+                    <Text style={styles.label}>HercID: {hercId}</Text>
                     {/* <TextInput style={styles.input} placeholder="ID" /> */}
                 </View>
                 <View style={styles.spaceAroundContainer}>
@@ -56,7 +59,7 @@ class Splash3 extends Component {
                         />
 
                     </TouchableHighlight>
-                    <Image source={image} />
+                    <Image source={{uri: logo}} />
                     <TouchableHighlight onPress={() => navigate('DocUp')}>
                         <Image
                             style={styles.menuInputTitle}
@@ -86,6 +89,8 @@ class Splash3 extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    asset: state.AssetReducers.selectedAsset
+    transBase: state.AssetReducers.transInfo,
+    hercId: state.AssetReducers.hercId
+
 });
 export default connect(mapStateToProps)(Splash3);

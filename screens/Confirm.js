@@ -3,28 +3,14 @@ import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighligh
 import Title from "../components/MenuInputTitle";
 import WelcomeHeader from "../components/WelcomeHeader";
 import Submit from "../components/SubmitBtn";
-import destination from "../assets/destinationLabel.png";
-import origin from "../assets/originLabel.png";
+import originator from "../assets/originator.png";
+import recipient from "../assets/recipient.png";
 import { StackNavigator } from 'react-navigation';
 import { connect } from "react-redux";
 import styles from "../assets/styles";
 import fee from "../assets/hercFEE.jpg";
-<Image style={styles.assetFee} source={fee} />
-// import Amplify, { API } from 'aws-amplify';
-// import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
-// Amplify.configure(aws_exports);
-// Auth: {
-//   'aws_cognito_identity_pool_id': 'us-east-1:f0e40134-54a1-47b0-b297-d895a1e5a4ca', //REQUIRED - Amazon Cognito Identity Pool ID
-//   'aws_cognito_region': 'us-east-1', // REQUIRED - Amazon Cognito Region
-//  },
-// API: {
-//   endpoints: [
-//     {
-//       name: "barInf",
-//       endpoint: "https://0jl8r6ytha.execute-api.us-east-1.amazonaws.com/MobileHub_Deployments"
-//     }
-//   ]
-// }
+{/* <Image style={styles.assetFee} source={fee} /> */}
+
 
 
 class Confirm extends Component {
@@ -40,6 +26,7 @@ class Confirm extends Component {
 
 
   componentDidMount() {
+    console.log(this.props.newProps, 'thisnewprops')
 
 
 
@@ -59,35 +46,35 @@ class Confirm extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    console.log(this.props.selectedAsset, "confirmselasset")
+    console.log(this.props.newProps, "txNewProps")
 
-    let locationImage = this.props.selectedAsset.place === 'destination' ? destination : origin;
-    let logo = this.props.selectedAsset.Logo;
-    console.log(this.props.Assets);
+    let locationImage = this.props.location === 'originator' ? originator : recipient;
+    let logo = this.props.logo;
+    // console.log(this.props.Assets);
 
-    let list = Object.keys(this.props.Properties).map((propName, idx) => {
-      let name = propName;
-      return (
+    // let list = Object.keys(this.props.newProps).map((propName, idx) => {
+    //   let name = propName;
+    //   return (
 
-        <View key={idx} style={styles.field}>
-          <Text style={styles.label}>{name}</Text>
-          <Text style={styles.input}>{this.props.Properties[name]}</Text>
-        </View>
-      )
-    });
+    //     <View key={idx} style={styles.field}>
+    //       <Text style={styles.label}>{name}</Text>
+    //       <Text style={styles.input}>{this.props.newProps[name]}</Text>
+    //     </View>
+    //   )
+    // });
 
     return (
       <View style={styles.containerCenter}>
 
         <View style={styles.subHeader}>
           <Image style={styles.assetLocation} source={locationImage} />
-          <Image style={styles.assetButton} source={logo} />
+          <Image style={styles.assetButton} source={{uri: logo}} />
         </View>
 
 
         <View style={styles.inputMenu}>
 
-          {list}
+          {/* {list} */}
         </View>
 
         {/* <Text>{this.props.selectedAsset.csv[0]}</Text>
@@ -95,8 +82,8 @@ class Confirm extends Component {
 
 
         <Submit onPress={() => navigate('BlockScan')} />
-          <Image style={styles.assetFee} source={fee} />
-      
+        <Image style={styles.assetFee} source={fee} />
+
       </View>
 
 
@@ -108,8 +95,9 @@ class Confirm extends Component {
 
 
 const mapStateToProps = (state) => ({
-  Properties: state.AssetReducers.Properties,
-  selectedAsset: state.AssetReducers.selectedAsset
+  newProps: state.AssetReducers.transInfo.newProps,
+  location: state.AssetReducers.transInfo.location,
+  logo: state.AssetReducers.transInfo.logo
   // newProperties: state.AssetReducers.selectedAsset.newProperties
 
 

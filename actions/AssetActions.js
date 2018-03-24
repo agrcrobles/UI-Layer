@@ -1,4 +1,4 @@
-import { ADD_ASSET, LIST_ASSETS, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET } from './types';
+import { ADD_ASSET, LIST_ASSETS, SELECT_ASSET, START_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET } from './types';
 // import assets from '../reducers/assetListReducer';
 
 export function incHercId() {
@@ -49,14 +49,21 @@ export function confirmAsset(asset) {
 
     }
 }
-export function setPlace(place) {
+export function startTrans(txBase) {
     return (
-        console.log(place, "inside set Location action"),
+        console.log(txBase, "inside set Location action"),
         {
-            type: SET_PLACE,
-            data: place
+            type: START_TRANS,
+            data: txBase
         }
     )
+}
+
+export function addProps(newProps) {
+    return {
+        type: ADD_PROPS,
+        data: newProps
+    }
 }
 
 export function addPhoto(uri) {
@@ -74,12 +81,5 @@ export function addDoc(uri, docName) {
             docUri: uri,
             docName
         }
-    }
-}
-
-export function addProps(attributes) {
-    return {
-        type: ADD_PROPS,
-        data: attributes
     }
 }

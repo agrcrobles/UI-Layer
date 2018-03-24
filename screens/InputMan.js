@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import Next from "../components/NextBtn";
 import styles from "../assets/styles";
-import destination from "../assets/destinationLabel.png";
-import origin from "../assets/originLabel.png";
+import originator from "../assets/originator.png";
+import recipient from "../assets/recipient.png";
 import { StackNavigator, } from 'react-navigation';
 import { connect } from "react-redux";
 import { addProps } from "../actions/AssetActions";
@@ -29,10 +29,10 @@ class InputMan extends Component {
     }
     render() {
 
-        let locationImage = this.props.selectedAsset.place === 'destination' ? destination : origin;
-        let logo = this.props.selectedAsset.Logo;
+        let locationImage = this.props.location === 'originator' ? originator : recipient;
+        let logo = this.props.logo;
 
-        let list = Object.keys(this.props.properties).map((propName, idx) => {
+        let list = Object.keys(this.props.coreProps).map((propName, idx) => {
             let name = propName;
             return (
 
@@ -54,7 +54,7 @@ class InputMan extends Component {
 
                 <View style={styles.subHeader}>
                     <Image style={styles.assetLocation} source={locationImage} />
-                    <Image style={styles.assetButton} source={logo} />
+                    <Image style={styles.assetButton} source={{uri: logo}} />
                 </View>
 
 
@@ -72,9 +72,10 @@ class InputMan extends Component {
 }
 
 const mapStateToProps = (state) => ({
-
-    selectedAsset: state.AssetReducers.selectedAsset,
-    properties: state.AssetReducers.selectedAsset.CoreProperties
+    location: state.AssetReducers.transInfo.location,
+    coreProps: state.AssetReducers.transInfo.coreProps,
+    logo: state.AssetReducers.transInfo.logo
+    // properties: state.AssetReducers.selectedAsset.CoreProperties
 });
 const mapDispatchToProps = (dispatch) => ({
     addProps: (attributes) =>

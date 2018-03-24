@@ -34,16 +34,16 @@ class NewAssetConfirm extends Component {
     }
 
 
-    _onPressSubmit(CoreProperties) {
+    _onPressSubmit(coreProps) {
         const { navigate } = this.props.navigation;
-        // let asset = Object.values(this.props.newAsset.CoreProperties);
+        // let asset = Object.values(this.props.newAsset.coreProps);
         let Name = this.props.Name;
 
         Name = {
             Name,
             hercId: this.props.hercId,
             Logo: this.props.Logo,
-            CoreProperties
+            coreProps
         }
         console.log(Name)
         this.props.confirmAsset(Name);
@@ -55,20 +55,20 @@ class NewAssetConfirm extends Component {
     render() {
 
         const { navigate } = this.props.navigation;
-        console.log(this.props.CoreProperties, "confirmselasset")
+        console.log(this.props.coreProps, "confirmselasset")
         console.log(this.props.Name);
         let Logo = this.props.Logo;
         let Name = this.props.Name;
 
-        let newProperties = Object.values(this.props.CoreProperties);
+        let newProperties = Object.values(this.props.coreProps);
         console.log(newProperties, 'newprops');
-        const CoreProperties = {};
+        const coreProps = {};
 
         for (const key of newProperties) {
-            CoreProperties[key] = "";
+            coreProps[key] = "";
         }
 
-        console.log(CoreProperties, 'corprops');
+        console.log(coreProps, 'corprops');
         let list = newProperties.map((x, i) => {
             return (
 
@@ -96,7 +96,7 @@ class NewAssetConfirm extends Component {
 
                 </ScrollView>
 
-                <Submit onPress={() => this._onPressSubmit(CoreProperties)} />
+                <Submit onPress={() => this._onPressSubmit(coreProps)} />
                 <Image style={styles.assetFee} source={fee} />
             </View>
 
@@ -111,7 +111,7 @@ class NewAssetConfirm extends Component {
 const mapStateToProps = (state) => ({
     Name: state.AssetReducers.newAsset.Name,
     Logo: state.AssetReducers.newAsset.Logo,
-    CoreProperties: state.AssetReducers.newAsset.CoreProperties,
+    coreProps: state.AssetReducers.newAsset.coreProps,
     hercId: state.AssetReducers.hercId
     // selectedAsset: state.AssetReducers.selectedAsset
     // newProperties: state.AssetReducers.selectedAsset.newProperties

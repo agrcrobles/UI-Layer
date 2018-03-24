@@ -1,6 +1,6 @@
 export const ADD_ASSET = 'addAsset';
 export const SELECT_ASSET = 'selectAsset';
-export const SET_PLACE = 'setPlace';
+export const START_TRANS = 'startTrans';
 export const LIST_ASSETS = 'listAssets';
 export const ADD_PHOTO  = 'addPhoto';
 export const ADD_DOC    = 'addDoc';

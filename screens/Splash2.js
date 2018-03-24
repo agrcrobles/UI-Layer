@@ -3,9 +3,11 @@ import { StyleSheet, Platform, Text, View, Image, ScrollView, TouchableHighlight
 import arrow from "../assets/icon_backarrow.png";
 import styles from "../assets/styles";
 import { connect } from "react-redux";
-import { setPlace } from '../actions/AssetActions';
+import { startTrans } from '../actions/AssetActions';
 import agldLogo from "../assets/AG_logo.png";
-import toast from "../assets/toast.jpg";
+import originator from "../assets/originator.png";
+import recipient from "../assets/recipient.png";
+
 
 class Splash2 extends Component {
   constructor(props) {
@@ -15,13 +17,21 @@ class Splash2 extends Component {
     header: null
 
   }
-  _onPress = place => {
+  _onPress = (place) => {
 
     const { navigate } = this.props.navigation;
-    console.log('pressing place')
-    this.props.asset.place = place;
-    console.log(this.props.asset, 'after place')
-    this.props.setPlace(place);
+    console.log(place, 'pressing place');
+    let asset = this.props.asset;
+
+    let transBase = {
+      name: asset.Name,
+      logo: asset.Logo,
+      location: place,
+      coreProps: asset.CoreProps
+    
+    }
+    console.log(transBase, 'txbase')
+    this.props.startTrans(transBase);
     console.log
     navigate('Splash3');
   }
@@ -42,17 +52,17 @@ class Splash2 extends Component {
           <Text style={styles.label}>{this.props.asset.Name}</Text>
         </View>
         <View style={styles.smallMenu}>
-          <TouchableHighlight onPress={() => this._onPress('destination')}>
+          <TouchableHighlight onPress={() => this._onPress('recipient')}>
             <Image
               style={styles.menuInputTitle}
-              source={require('../assets/destinationLabel.png')}
+              source={recipient}
             />
           </TouchableHighlight>
 
-          <TouchableHighlight onPress={() => this._onPress('origin')}>
+          <TouchableHighlight onPress={() => this._onPress('originator')}>
             <Image
               style={styles.menuInputTitle}
-              source={require('../assets/originLabel.png')}
+              source={originator}
             />
           </TouchableHighlight>
         </View>
@@ -69,8 +79,8 @@ const mapStateToProps = (state) => ({
   asset: state.AssetReducers.selectedAsset
 });
 const mapDispatchToProps = (dispatch) => ({
-  setPlace: (place) =>
-    dispatch(setPlace(place))
+  startTrans: (trans) =>
+    dispatch(startTrans(trans))
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Splash2);
