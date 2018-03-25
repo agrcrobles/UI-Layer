@@ -13,24 +13,6 @@ import Submit from '../components/SubmitBtn';
 import { ImagePicker, DocumentPicker } from 'expo';
 import { addPhoto } from '../actions/AssetActions';
 
-// import Amplify, { Storage } from 'aws-amplify';
-// import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
-// console.log(aws_exports);
-// Amplify.configure({
-//     Auth: {
-//     identityPoolId: 'us-east-1:f0e40134-54a1-47b0-b297-d895a1e5a4ca', //REQUIRED - Amazon Cognito Identity Pool ID
-//     region: 'us-east-1', // REQUIRED - Amazon Cognito Region
-
-//   },
-//   Storage: {
-//     bucket: 'hercone-deployments-mobilehub-1541391316', //REQUIRED -  Amazon S3 bucket
-//     region: 'us-east-1', //OPTIONAL -  Amazon service region
-//   }
-//   });
-
-
-
-
 class FileUp extends Component {
 
   static navigationOptions = {
@@ -38,8 +20,8 @@ class FileUp extends Component {
 
   }
   state = {
-    imaget: null,
-    imagep: null,
+    imageT: null,
+    imageP: null,
   }
   _pickImage = async () => {
     console.log("picking Image")
@@ -76,7 +58,7 @@ class FileUp extends Component {
       console.log(result);
       this.setState({
 
-        imaget: result.
+        imaget: result.base64
 
       });
     }
@@ -138,7 +120,7 @@ class FileUp extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  selectedAsset: state.AssetReducers.selectedAsset,
+  transInfo: state.AssetReducers.transInfo,
 
 });
 const mapDispatchToProps = (dispatch) => ({
