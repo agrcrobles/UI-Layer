@@ -43,8 +43,8 @@ class FileUp extends Component {
   }
   _pickImage = async () => {
     console.log("picking Image")
-    let result = await DocumentPicker.getDocumentAsync({
-      // base64: true
+    let result = await ImagePicker.launchImageLibraryAsync({
+      base64: true,
       allowsEditing: false,
       aspect: [4, 3],
     });
@@ -65,7 +65,7 @@ class FileUp extends Component {
   _takeImage = async () => {
     console.log("picking Image")
     let result = await ImagePicker.launchCameraAsync({
-      // base64: true
+      base64: true,
       allowsEditing: false,
       aspect: [4, 3],
     });
@@ -76,7 +76,7 @@ class FileUp extends Component {
       console.log(result);
       this.setState({
 
-        imaget: result.uri
+        imaget: result.
 
       });
     }
