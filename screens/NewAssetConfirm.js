@@ -34,7 +34,7 @@ class NewAssetConfirm extends Component {
     }
 
 
-    _onPressSubmit(coreProps) {
+    _onPressSubmit(CoreProps) {
         const { navigate } = this.props.navigation;
         // let asset = Object.values(this.props.newAsset.coreProps);
         let Name = this.props.Name;
@@ -43,7 +43,7 @@ class NewAssetConfirm extends Component {
             Name,
             hercId: this.props.hercId,
             Logo: this.props.Logo,
-            coreProps
+            CoreProps
         }
         console.log(Name)
         this.props.confirmAsset(Name);
@@ -62,13 +62,13 @@ class NewAssetConfirm extends Component {
 
         let newProperties = Object.values(this.props.coreProps);
         console.log(newProperties, 'newprops');
-        const coreProps = {};
+        const CoreProps = {};
 
         for (const key of newProperties) {
-            coreProps[key] = "";
+            CoreProps[key] = "";
         }
 
-        console.log(coreProps, 'corprops');
+        console.log(CoreProps, 'corprops');
         let list = newProperties.map((x, i) => {
             return (
 
@@ -96,7 +96,7 @@ class NewAssetConfirm extends Component {
 
                 </ScrollView>
 
-                <Submit onPress={() => this._onPressSubmit(coreProps)} />
+                <Submit onPress={() => this._onPressSubmit(CoreProps)} />
                 <Image style={styles.assetFee} source={fee} />
             </View>
 

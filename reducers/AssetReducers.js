@@ -35,7 +35,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                     assets.push({
                         name: obj.toJSON().Name,
                         key: obj.key,
-                        logo: obj.toJSON().Logo
+                        Logo: obj.toJSON().Logo
                     });
                     console.log(obj.child('CoreProps').val(), 'haschilds?')//this is coreProps!! that's how! 
                 })

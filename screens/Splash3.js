@@ -33,7 +33,7 @@ class Splash3 extends Component {
     render() {
         const { navigate } = this.props.navigation;
         // let image = this.props.asset.Images ? this.props.asset.Images[0] : null;
-        let locationImage = this.props.transBase.location === 'destination' ? recipient : originator;
+        let locationImage = this.props.transBase.location === 'recipient' ? recipient : originator;
         let logo = this.props.transBase.logo;
         let asset = this.props.transBase;
         let hercId = this.props.hercId;

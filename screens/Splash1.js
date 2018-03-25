@@ -42,7 +42,7 @@ class Splash1 extends Component {
       return (
         <View key={index} style={styles.assetField}>
           <TouchableHighlight onPress={() => this._onPress(asset.key)}  >
-            <Image style={styles.assetButton} source={{uri:asset.logo}} />  
+            <Image style={styles.assetButton} source={{uri:asset.Logo}} />  
           </TouchableHighlight>
           <Text style={styles.label}>{asset.name}</Text>
         </View>

@@ -139,14 +139,14 @@ class Tee extends Component {
               placeholder="Input7"
             />
           </View>
-          <View style={styles.field}>
+          {/* <View style={styles.field}>
             <Text style={styles.label}>Input8</Text>
             <TextInput
               style={styles.input}
               onChangeText={Input8 => this.setState({ coreProps: {...this.state.coreProps, Input8 }})}
               placeholder="Input8"
             />
-          </View>
+          </View> */}
 
           <View style={styles.picker}>
             <Button
