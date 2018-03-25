@@ -110,7 +110,7 @@ module.exports = StyleSheet.create({
     },
     picker: {
         height: 100,
-        width: 100,
+        width: '80%',
         margin: 8,
         alignSelf: 'center',
         // flexDirection: "row",
@@ -120,7 +120,8 @@ module.exports = StyleSheet.create({
         // marginTop: 5,
         // marginBottom: 5,
         alignItems: "center",
-        paddingLeft: 5
+        paddingLeft: 5,
+        backgroundColor: 'blue'
     },
 
     input: {
@@ -196,7 +197,8 @@ module.exports = StyleSheet.create({
     assetButton: {
         height: 100,
         width: 100,
-        margin: 3
+        margin: 3,
+        borderRadius: .8
 
     },
     assetLocation: {
