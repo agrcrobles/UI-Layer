@@ -12,7 +12,7 @@ import documents from "../assets/documents.png";
 import camera from "../assets/cameraLabel.png";
 import styles from "../assets/styles";
 import manual from "../assets/manLabel.png";
-
+import EDIT from "../assets/EDIT-Sets.png";
 import { connect } from "react-redux";
 
 class Splash3 extends Component {
@@ -73,13 +73,13 @@ class Splash3 extends Component {
                         />
                     </TouchableHighlight>
 
-                </View>
-                {/* <TouchableHighlight onPress={() => navigate('MenuOptions')} >
+                <TouchableHighlight>
                     <Image
-                        style={styles.button}
-                        source={MenuOptions}
+                        style={styles.menuInputTitle}
+                        source={EDIT}
                     />
-                </TouchableHighlight> */}
+                </TouchableHighlight>
+                </View>
             </View>
 
 
