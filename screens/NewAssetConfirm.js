@@ -9,10 +9,10 @@ import { StackNavigator } from 'react-navigation';
 import { ImagePicker } from 'expo';
 import { connect } from "react-redux";
 import styles from "../assets/styles";
-import fee from "../assets/hercFEE.jpg";
+import fee from "../assets/hercFeeLabel.png";
 import { incHercId, confirmAsset } from "../actions/AssetActions"
 class NewAssetConfirm extends Component {
-
+    state = {};
     static navigationOptions = {
         headerTitle: <Image style={{
             height: 100,
@@ -29,10 +29,28 @@ class NewAssetConfirm extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
-
+        // console.log(this.props)
+        // price = data.pricePerHercForFCT
+        // let price = this.getPrice();
+        // fetch('https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON').then(data => console.log(data.json()) ); 
+        // console.log(price, 'price')
+   this.getPricesFromApi();
     }
 
+    async getPricesFromApi() {
+        try {
+          let response = await fetch(
+            'https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON'
+          );
+          let responseJson = await response.json();
+          let fctPrice = responseJson.list["0"].pricePerHercForFCT; // this is what I'm going with for now  
+          console.log(fctPrice, 'newthing');
+          this.setState({fctPrice});
+          
+        } catch (error) {
+          console.error(error);
+        }
+      }
 
     _onPressSubmit(CoreProps) {
         const { navigate } = this.props.navigation;
@@ -53,6 +71,9 @@ class NewAssetConfirm extends Component {
 
 
     render() {
+       
+        // console.log(price, 'pricey?')
+        let price = this.state.fctPrice;
 
         const { navigate } = this.props.navigation;
         console.log(this.props.coreProps, "confirmselasset")
@@ -98,6 +119,7 @@ class NewAssetConfirm extends Component {
 
                 <Submit onPress={() => this._onPressSubmit(CoreProps)} />
                 <Image style={styles.assetFee} source={fee} />
+               <View style={styles.assetFeeLabel}><Text>{price}</Text></View>
             </View>
 
 

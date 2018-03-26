@@ -213,6 +213,13 @@ module.exports = StyleSheet.create({
         resizeMode: 'cover',
         
     },
+    assetFeeLabel: {
+        height: 50,
+        width: 100,
+        backgroundColor: 'blue',
+        flexDirection: 'row',
+        
+    },
     subHeader: {
         flexDirection: 'row',
         width: '80%',

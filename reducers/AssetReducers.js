@@ -93,9 +93,10 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
         case ADD_PHOTO:
             let image = [action.data];
             console.log('adding photo', image);
+            let images = [image];
             return Object.assign({}, state, {
-                ...state.selectedAsset,
-                Images: [...state.selectedAsset.Images, image]
+                ...state,
+                images
             }
             )
         case ADD_DOC:
