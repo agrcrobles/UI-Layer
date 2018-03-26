@@ -7,8 +7,8 @@ import recipient from "../assets/recipient.png";
 import { StackNavigator } from 'react-navigation';
 import { connect } from "react-redux";
 import styles from "../assets/styles";
-import fee from "../assets/hercFEE.jpg";
-{/* <Image style={styles.assetFee} source={fee} /> */}
+import fee from "../assets/hercFeeLabel.png";
+{/* <Image style={styles.assetFee} source={fee} /> */ }
 
 
 
@@ -22,21 +22,35 @@ class Confirm extends Component {
     super(props);
 
   }
+  state = {};
 
 
   componentDidMount() {
     console.log(this.props.newProps, 'thisnewtransinfo')
     console.log(this.props, 'props')
+    this.getPricesFromApi();
 
+  }
+  async getPricesFromApi() {
+    try {
+      let response = await fetch(
+        'https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON'
+      );
+      let responseJson = await response.json();
+      let fctPrice = responseJson.list["0"].pricePerHercForFCT; // this is what I'm going with for now  
+      console.log(fctPrice, 'newthing');
+      this.setState({ fctPrice });
 
+    } catch (error) {
+      console.error(error);
+    }
   }
 
 
- 
 
 
   render() {
-    
+    let price = this.state.fctPrice;
     const { navigate } = this.props.navigation;
     console.log(this.props.newProps, "txNewProps")
 
@@ -60,7 +74,7 @@ class Confirm extends Component {
 
         <View style={styles.subHeader}>
           <Image style={styles.assetLocation} source={locationImage} />
-          <Image style={styles.assetButton} source={{uri: logo}} />
+          <Image style={styles.assetButton} source={{ uri: logo }} />
         </View>
 
 
@@ -74,7 +88,10 @@ class Confirm extends Component {
 
 
         <Submit onPress={() => navigate('BlockScan')} />
-        <Image style={styles.assetFee} source={fee} />
+        <View style={styles.assetFee}>
+          <Image style={styles.assetFeeLabel} source={fee} />
+          <Text style={styles.teePrice}>{price}</Text>
+        </View>
 
       </View>
 

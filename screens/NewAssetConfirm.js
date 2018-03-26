@@ -34,23 +34,23 @@ class NewAssetConfirm extends Component {
         // let price = this.getPrice();
         // fetch('https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON').then(data => console.log(data.json()) ); 
         // console.log(price, 'price')
-        this.getPricesFromApi();
+    
     }
 
-    async getPricesFromApi() {
-        try {
-            let response = await fetch(
-                'https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON'
-            );
-            let responseJson = await response.json();
-            let fctPrice = responseJson.list["0"].pricePerHercForFCT; // this is what I'm going with for now  
-            console.log(fctPrice, 'newthing');
-            this.setState({ fctPrice });
+    // async getPricesFromApi() {
+    //     try {
+    //         let response = await fetch(
+    //             'https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON'
+    //         );
+    //         let responseJson = await response.json();
+    //         let fctPrice = responseJson.list["0"].pricePerHercForFCT; // this is what I'm going with for now  
+    //         console.log(fctPrice, 'newthing');
+    //         this.setState({ fctPrice });
 
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
 
     _onPressSubmit(CoreProps) {
         const { navigate } = this.props.navigation;
@@ -121,7 +121,7 @@ class NewAssetConfirm extends Component {
 
                 <View style={styles.assetFee}>
                     <Image style={styles.assetFeeLabel} source={fee} />
-                    <Text style={styles.teePrice}>{price}</Text>
+                    <Text style={styles.teePrice}>10,000</Text>
                 </View>
             </View>
 
