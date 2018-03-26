@@ -57,7 +57,7 @@ import { listAssets } from '../actions/AssetActions';
             />
           </TouchableHighlight> 
      
-          <TouchableHighlight  onPress={() => navigate('Hipr')}>
+          <TouchableHighlight  onPress={() => navigate('PreHipr')}>
             <Image
               style={styles.button}
               source={hiprBtn}

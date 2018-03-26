@@ -29,6 +29,7 @@ import Splash2 from '../screens/Splash2';
 import Splash3 from '../screens/Splash3';
 import NewAssetConfirm from '../screens/NewAssetConfirm';
 import testFileUP from '../screens/testFileUP';
+import PreHipr from '../screens/PreHIPR';
 
 const MainNavigator = StackNavigator({
     Welcome: { screen: Welcome },
@@ -52,7 +53,8 @@ const MainNavigator = StackNavigator({
     ThankYou: { screen: ThankYou },
     FileThanks: { screen: FileThanks },
     NewAssetConfirm: { screen: NewAssetConfirm },
-    TestFileUP: { screen: testFileUP}
+    TestFileUP: { screen: testFileUP},
+    PreHipr: { screen: PreHipr }
 
 
 },
