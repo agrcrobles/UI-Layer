@@ -46,12 +46,12 @@ module.exports = StyleSheet.create({
         backgroundColor: '#021227',
         paddingTop: 5,
         paddingBottom: 5
-      },
-      scrollContent: {
+    },
+    scrollContent: {
         flex: 1,
         padding: 2,
         justifyContent: "space-around"
-      },
+    },
     inputMenu: {
         width: '110%',
         height: 350,
@@ -61,7 +61,7 @@ module.exports = StyleSheet.create({
         // paddingTop: 50
         // margin: .5,
     },
-  
+
     inputView: {
         height: 300,
         width: '95%',
@@ -209,15 +209,31 @@ module.exports = StyleSheet.create({
     },
     assetFee: {
         height: 50,
-        width: 200,
-        resizeMode: 'cover',
-        
+        width: 285,
+        // resizeMode: 'cover',
+        flexDirection: 'row',
+        // justifyContent: 'space-between',
+        // textAlign: "center",
+        justifyContent: 'center',
+        alignItems: 'center'
+
     },
     assetFeeLabel: {
         height: 50,
-        width: 100,
-        backgroundColor: 'blue',
-        flexDirection: 'row',
+        width: 80,
+        backgroundColor: '#021227',
+        resizeMode: 'contain',
+        marginRight: 7
+
+    },
+    teePrice: {
+        backgroundColor: "#021227",
+       textAlign: 'center',
+        fontSize: 20.2,
+        fontWeight: "400",
+        // borderColor: "#142535",
+        color: "white",
+        height: 30,
         
     },
     subHeader: {
