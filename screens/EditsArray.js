@@ -1,8 +1,8 @@
 
 let EDITS = [[140, 'Product Registration'], [141, 'Product Service Claim Response'],
 [142, 'Product Service Claim'], [143, 'Product Service Notification'], [159, 'Motion Picture Booking Confirmation'], [170, 'Revenue Receipts Statement'],
-[180, 'Return Merchandise Authorization and Notification'][244, 'Product Source Information'], [249, 'Animal Toxicological Data'],
-[251, 'Pricing Support'][290, 'Cooperative Advertising Agreements'], [501, 'Vendor Performance Review'], [503, 'Pricing History'],
+[180, 'Return Merchandise Authorization and Notification'], [244, 'Product Source Information'], [249, 'Animal Toxicological Data'],
+[251, 'Pricing Support'], [290, 'Cooperative Advertising Agreements'], [501, 'Vendor Performance Review'], [503, 'Pricing History'],
 [504, 'Clauses and Provisions'], [511, 'Requisition'], [517, 'Material Obligation Validation'], [536, 'Logistics Reassignment'],
 [561, 'Contract Abstract'], [567, 'Contract Completion Status'], [568, 'Contract Payment Management Report'], [620, 'Excavation Communication'],
 [625, 'Well Information'], [650, 'Maintenance Service Order'], [753, 'Request for Routing Instructions'], [754, 'Routing Instructions'],
@@ -23,3 +23,4 @@ let EDITS = [[140, 'Product Registration'], [141, 'Product Service Claim Respons
 [893, 'Item Information Request'], [894, 'Delivery/Return Base Record'], [895, 'Delivery/Return Acknowledgment or Adjustment'],
 [896, 'Product Dimension Maintenance'], [940, 'Warehouse Shipping Order'], [943, 'Warehouse Stock Transfer Shipment Advice'],
 [944, 'Warehouse Stock Transfer Receipt Advice'], [945, 'Warehouse Shipping Advice'], [947, 'Warehouse Inventory Adjustment Advice']];
+ 

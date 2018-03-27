@@ -5,9 +5,9 @@ import menuOptions from '../components/buttons/menuOptions.png';
 
 import { StackNavigator } from 'react-navigation';
 import styles from '../assets/styles';
-import camera from '../assets/cameraLabel.png';
+import camera from '../assets/camera.png';
 import { connect } from 'react-redux';
-import originator from "../assets/originator.png";
+import originator from "../assets/origin.png";
 import recipient from "../assets/recipient.png";
 
 import Submit from '../components/SubmitBtn';
@@ -86,7 +86,9 @@ class FileUp extends Component {
           <Image style={styles.assetButton} source={{ uri: logo }} />
           <Text style={styles.assetLabel}>{transInfo.name}</Text>
         </View>
-        <Image source={camera} style={styles.menuInputTitle} />
+
+          <Image source={locationImage} style={styles.assetLocation} />
+        {/* <Image source={camera} style={styles.menuInputTitle} /> */}
 
         <View style={styles.picker}>
           {/* <Button style={styles.picButton}
@@ -95,7 +97,7 @@ class FileUp extends Component {
           />  
           { fontSize: 20, color: 'white', borderColor:"red", backgroundColor:"#021227" } */}
           <Button
-          
+
             style={styles.picButton}
 
             onPress={() => this._pickImage()}>
@@ -107,7 +109,7 @@ class FileUp extends Component {
 
             onPress={() => this._takeImage()}>
 
-           Take Photo
+            Take Photo
   </Button>
         </View>
 

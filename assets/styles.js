@@ -182,6 +182,16 @@ module.exports = StyleSheet.create({
         marginTop: 15,
         width: "60%"
     },
+    assetFieldHeader: {
+        height: 200,
+        // backgroundColor: 'blue',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        margin: 8,
+        marginTop: 15,
+        width: "60%"
+    },
     
     // assetField: {
     //     height: 120,
@@ -225,8 +235,8 @@ module.exports = StyleSheet.create({
     assetLocation: {
         height: 50,
         width: 200,
-        resizeMode: 'cover',
-        marginTop: 33
+        resizeMode: 'contain',
+        marginTop:5 
     },
     assetFee: {
         height: 50,
@@ -270,7 +280,7 @@ module.exports = StyleSheet.create({
     picButton: {
         borderColor: '#F3C736',
         backgroundColor: '#021227',
-        borderWidth: 1,
+        borderWidth: .5,
         height: 45,
         width: 200,
         margin: 5,

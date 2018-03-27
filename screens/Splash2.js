@@ -5,7 +5,7 @@ import styles from "../assets/styles";
 import { connect } from "react-redux";
 import { startTrans } from '../actions/AssetActions';
 import agldLogo from "../assets/AG_logo.png";
-import originator from "../assets/originator.png";
+import originator from "../assets/origin.png";
 import recipient from "../assets/recipient.png";
 
 

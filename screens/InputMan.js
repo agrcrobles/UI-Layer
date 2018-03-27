@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import Next from "../components/NextBtn";
 import styles from "../assets/styles";
-import originator from "../assets/originator.png";
+import originator from "../assets/origin.png";
 import recipient from "../assets/recipient.png";
 import { StackNavigator, } from 'react-navigation';
 import { connect } from "react-redux";
 import { addProps } from "../actions/AssetActions";
-import review from "../assets/reviewLabel.png";
+import review from "../assets/review.png";
 
 class InputMan extends Component {
     static navigationOptions = {
@@ -56,7 +56,7 @@ class InputMan extends Component {
                     <Image style={styles.assetButton} source={{ uri: logo }} />
                     <Text style={styles.assetLabel}>{this.props.name}</Text>
                 </View>
-
+                <Image style={styles.assetLocation} source={locationImage} />
 
                  <ScrollView contentContainerStyle={{ alignItems: 'center', alignContent: 'center', alignSelf: 'center', width: '100%' }}>
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight, Alert } from 'react-native';
 
 import Submit from "../components/SubmitBtn";
-import originator from "../assets/originator.png";
+import originator from "../assets/origin.png";
 import recipient from "../assets/recipient.png";
 import { StackNavigator } from 'react-navigation';
 import { connect } from "react-redux";
@@ -65,6 +65,7 @@ class Confirm extends Component {
         <View key={idx} style={styles.field}>
           <Text style={styles.label}>{name}</Text>
           <Text style={styles.input}>{this.props.newProps[name]}</Text>
+        
         </View>
       )
     });
@@ -72,10 +73,11 @@ class Confirm extends Component {
     return (
       <View style={styles.containerCenter}>
 
-        <View style={styles.subHeader}>
-          <Image style={styles.assetLocation} source={locationImage} />
-          <Image style={styles.assetButton} source={{ uri: logo }} />
-        </View>
+       <View style={styles.assetFieldHeader}>
+                    <Image style={styles.assetButton} source={{ uri: logo }} />
+                    <Text style={styles.assetLabel}>{this.props.name}</Text>
+                    <Image style={styles.assetLocation} source={locationImage} />
+                </View>
 
 
         <View style={styles.inputMenu}>
@@ -106,7 +108,8 @@ class Confirm extends Component {
 const mapStateToProps = (state) => ({
   newProps: state.AssetReducers.newProps,
   location: state.AssetReducers.transInfo.location,
-  logo: state.AssetReducers.transInfo.logo
+  logo: state.AssetReducers.transInfo.logo,
+  name: state.AssetReducers.transInfo.name
   // newProperties: state.AssetReducers.selectedAsset.newProperties
 
 

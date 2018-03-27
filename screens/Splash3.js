@@ -5,14 +5,14 @@ import { STATUS_BAR_HEIGHT } from '../constants';
 import { StackNavigator } from 'react-navigation';
 
 
-import originator from "../assets/originator.png";
+import originator from "../assets/origin.png";
 import recipient from "../assets/recipient.png";
 
-import documents from "../assets/documents.png";
-import camera from "../assets/cameraLabel.png";
+import documents from "../assets/docs.png";
+import camera from "../assets/camera.png";
 import styles from "../assets/styles";
-import manual from "../assets/manLabel.png";
-import EDIT from "../assets/EDIT-Sets.png";
+import manual from "../assets/manual.png";
+import EDIT from "../assets/EdiT-Sets.png";
 import { connect } from "react-redux";
 
 class Splash3 extends Component {

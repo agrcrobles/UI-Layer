@@ -19,7 +19,7 @@ export default class PreHIPR extends Component {
         headerTitle: <Image style={{
             height: 100,
             width: 120,
-            marginLeft: 90,
+            marginLeft: 70,
             resizeMode: 'contain'
         }}
             source={hiprLogo} />,

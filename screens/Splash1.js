@@ -4,8 +4,7 @@ import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
 import create from '../assets/createNewAssetButton.png';
-import agldLogo from "../assets/AG_logo.png";
-import toast from "../assets/toast.jpg";
+
 import { selectAsset, listAssets } from '../actions/AssetActions';
 import backArrow from '../assets/icon_backarrow.png';
 

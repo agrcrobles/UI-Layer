@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert } from 'react-native';
+import Button from 'react-native-button';
 import TouchableHeader from '../components/TouchableHeader';
 // import Welcome from '../components/Welcome';
 import { StackNavigator } from 'react-navigation';
 import Title from '../components/MenuInputTitle';
 import pictures from '../assets/picturesLabel.png';
-import document from '../assets/documents.png';
-import originator from "../assets/originator.png";
+import document from '../assets/docs.png';
+import originator from "../assets/origin.png";
 import recipient from "../assets/recipient.png";
 import Submit from '../components/SubmitBtn';
 import { DocumentPicker } from 'expo';
@@ -72,15 +73,18 @@ class DocUp extends Component {
           <Image style={styles.assetButton} source={{ uri: logo }} />
           <Text style={styles.assetLabel}>{asset.name}</Text>
         </View>
+          <Image style={styles.assetLocation} source={locationImage} />
 
-        <Image source={document} style={styles.menuInputTitle} />
+        {/* <Image source={document} style={styles.menuInputTitle} /> */}
 
         {/* <View style={styles.imageContainer}> */}
         <Button
-          title="Select Document"
-          onPress={this._pickDocument}
-          style={styles.label}
-        />
+
+          style={styles.picButton}
+
+          onPress={() => this._pickImage()}>
+          Upload Document
+      </Button>
         <Text style={styles.label}>
           {this.state.document.name}
         </Text>
