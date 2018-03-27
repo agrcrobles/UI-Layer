@@ -52,16 +52,16 @@ class InputMan extends Component {
         return (
             <View style={styles.containerCenter}>
 
-                <View style={styles.subHeader}>
-                    <Image style={styles.assetLocation} source={locationImage} />
-                    <Image style={styles.assetButton} source={{uri: logo}} />
+                <View style={styles.assetField}>
+                    <Image style={styles.assetButton} source={{ uri: logo }} />
+                    <Text style={styles.assetLabel}>{this.props.name}</Text>
                 </View>
 
 
-                <View style={styles.scrollContent}>
+                 <ScrollView contentContainerStyle={{ alignItems: 'center', alignContent: 'center', alignSelf: 'center', width: '100%' }}>
 
                     {list}
-                </View>
+                </ScrollView>
 
                 <TouchableHighlight onPress={() => this._onReview()} >
                     <Image source={review} style={styles.button} />
@@ -74,7 +74,8 @@ class InputMan extends Component {
 const mapStateToProps = (state) => ({
     location: state.AssetReducers.transInfo.location,
     coreProps: state.AssetReducers.transInfo.coreProps,
-    logo: state.AssetReducers.transInfo.logo
+    logo: state.AssetReducers.transInfo.logo,
+    name: state.AssetReducers.transInfo.name
     // properties: state.AssetReducers.selectedAsset.CoreProperties
 });
 const mapDispatchToProps = (dispatch) => ({

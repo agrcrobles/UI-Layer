@@ -42,7 +42,7 @@ class Splash3 extends Component {
             <View style={styles.containerCenter}>
                 <View style={styles.assetField}>
                     <Image style={styles.assetButton} source={{ uri: logo }} />
-                    <Text style={styles.label}>{asset.name}</Text>
+                    <Text style={styles.assetLabel}>{asset.name}</Text>
                 </View>
 
                     <Image style={styles.assetLocation} source={locationImage} />

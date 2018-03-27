@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert, Button } from 'react-native';
-
+import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert } from 'react-native';
+import Button from 'react-native-button';
 import menuOptions from '../components/buttons/menuOptions.png';
 
 import { StackNavigator } from 'react-navigation';
@@ -78,37 +78,49 @@ class FileUp extends Component {
     let transInfo = this.props.transInfo;
     let locationImage = this.props.transInfo.location === 'recipient' ? recipient : originator;
     let logo = this.props.transInfo.logo;
-   
+
     return (
       <View style={styles.containerCenter}>
 
         <View style={styles.assetField}>
           <Image style={styles.assetButton} source={{ uri: logo }} />
-          <Text style={styles.label}>{transInfo.name}</Text>
+          <Text style={styles.assetLabel}>{transInfo.name}</Text>
         </View>
         <Image source={camera} style={styles.menuInputTitle} />
 
         <View style={styles.picker}>
-          <Button
-            title="Pick a Photo"
+          {/* <Button style={styles.picButton}
+            title="Upload a Photo"
             onPress={this._pickImage}
-          />
-         
-         <Button
-            title="Take a Photo"
-            onPress={this._takeImage}
-          />
-         
+          />  
+          { fontSize: 20, color: 'white', borderColor:"red", backgroundColor:"#021227" } */}
+          <Button
+          
+            style={styles.picButton}
+
+            onPress={() => this._pickImage()}>
+            Upload Image
+      </Button>
+
+          <Button
+            style={styles.picButton}
+
+            onPress={() => this._takeImage()}>
+
+           Take Photo
+  </Button>
         </View>
 
 
-         
-          {image &&
-            <Image source={{ uri: image }} style={{ width: 100, height: 100 }} />}
+
+        {
+          image &&
+          <Image source={{ uri: image }} style={{ width: 100, height: 100 }} />
+        }
 
         <Submit onPress={() => this._onSubmit(image)} />
         {/* // pass mult images as array */}
-      </View>
+      </View >
     )
   }
 }

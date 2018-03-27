@@ -20,7 +20,7 @@ class Tee extends Component {
     headerTitle: <Image style={{
       height: 80,
       width: 200,
-      marginLeft: 10,
+      marginLeft: 40,
       resizeMode: 'contain'
     }}
       source={logo} />,

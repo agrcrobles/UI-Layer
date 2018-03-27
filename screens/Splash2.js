@@ -49,9 +49,16 @@ class Splash2 extends Component {
       <View style={styles.containerCenter}>
         <View style={styles.assetField}>
           <Image style={styles.assetButton} source={{ uri: image }} />
-          <Text style={styles.label}>{this.props.asset.Name}</Text>
+          <Text style={styles.assetLabel}>{this.props.asset.Name}</Text>
         </View>
         <View style={styles.smallMenu}>
+          <TouchableHighlight onPress={() => this._onPress('originator')}>
+            <Image
+              style={styles.menuInputTitle}
+              source={originator}
+            />
+          </TouchableHighlight>
+          
           <TouchableHighlight onPress={() => this._onPress('recipient')}>
             <Image
               style={styles.menuInputTitle}
@@ -59,12 +66,6 @@ class Splash2 extends Component {
             />
           </TouchableHighlight>
 
-          <TouchableHighlight onPress={() => this._onPress('originator')}>
-            <Image
-              style={styles.menuInputTitle}
-              source={originator}
-            />
-          </TouchableHighlight>
         </View>
 
 

@@ -6,6 +6,7 @@ import styles from '../assets/styles';
 import icon from '../assets/hLogo.png';
 import logo from '../assets/logo.png';
 import backArrow from '../assets/icon_backarrow.png';
+import { Font } from 'expo';
 
 import Welcome from "../screens/Welcome";
 import Origin from "../screens/Origin";
@@ -66,7 +67,7 @@ const MainNavigator = StackNavigator({
             headerTitle: <Image style={{
                 height: 100,
                 width: 254,
-                marginLeft: 10
+                // marginLeft: 10
             }}
                 source={logo} />,
 
@@ -89,6 +90,11 @@ const MainNavigator = StackNavigator({
     })
 
 export default class MainNavigation extends Component {
+    componentDidMount() {
+        Font.loadAsync({
+          'dinPro': require('../assets/font/DINPro-Regular_13937.ttf'),
+        });
+      }
     render() {
         return (
             <MainNavigator />

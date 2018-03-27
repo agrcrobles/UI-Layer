@@ -44,7 +44,7 @@ class Splash1 extends Component {
           <TouchableHighlight onPress={() => this._onPress(asset.key)}  >
             <Image style={styles.assetButton} source={{uri:asset.Logo}} />  
           </TouchableHighlight>
-          <Text style={styles.label}>{asset.name}</Text>
+          <Text style={styles.assetLabel}>{asset.name}</Text>
         </View>
       )
     });
@@ -52,7 +52,7 @@ class Splash1 extends Component {
     return (
 
       <View style={styles.container}>
-       <ScrollView contentContainerStyle={{ alignSelf: 'center', width: '90%' }}>
+       <ScrollView contentContainerStyle={{ alignItems: 'center', alignContent: 'center', alignSelf: 'center', width: '90%' }}>
           {list}
         </ScrollView>
         <TouchableHighlight onPress={() => navigate('Create')}>

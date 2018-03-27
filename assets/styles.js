@@ -29,6 +29,7 @@ module.exports = StyleSheet.create({
         backgroundColor: '#021227',
         alignItems: 'center',
         justifyContent: 'center',
+        padding: 20
     },
     menu: {
         height: 450,
@@ -72,7 +73,7 @@ module.exports = StyleSheet.create({
     smallMenu: {
         height: 200,
         alignItems: "center",
-        justifyContent: "space-around",
+        justifyContent: 'center',
         backgroundColor: '#021227'
         // paddingTop: 50
         // margin: .5,
@@ -80,8 +81,9 @@ module.exports = StyleSheet.create({
     menuInputTitle: {
         width: 300,
         height: 50,
-        marginBottom: 10,
-        marginTop: 10
+        margin: 5
+        // marginBottom: 10,
+        // marginTop: 10
     },
     label: {
         color: "white",
@@ -101,7 +103,7 @@ module.exports = StyleSheet.create({
         height: 60,
         flexDirection: "row",
         justifyContent: "space-around",
-        width: "80%",
+        width: "90%",
         backgroundColor: '#021227',
         // marginTop: 5,
         // marginBottom: 5,
@@ -114,14 +116,14 @@ module.exports = StyleSheet.create({
         margin: 8,
         alignSelf: 'center',
         // flexDirection: "row",
-        justifyContent: "space-around",
+        justifyContent: "center",
         // width: "80%",
         // backgroundColor: '#021227',
         // marginTop: 5,
         // marginBottom: 5,
         alignItems: "center",
         paddingLeft: 5,
-        backgroundColor: 'blue'
+        // backgroundColor: 'blue'
     },
 
     input: {
@@ -150,7 +152,7 @@ module.exports = StyleSheet.create({
         height: 47,
         backgroundColor: "#132c4a",
         margin: 5,
-        borderColor: "#142535",
+        // borderColor: "#F3C736",
         borderWidth: 1,
         resizeMode: 'contain'
         // paddingLeft: 1
@@ -169,18 +171,37 @@ module.exports = StyleSheet.create({
         padding: 5
 
     },
+    
     assetField: {
-        height: 120,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        width: "80%",
-        backgroundColor: "#021227",
-        margin: 5,
-        // marginBottom: 5,
-        alignItems: "center",
-        padding: 2
+        height: 140,
+        // backgroundColor: 'blue',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        margin: 8,
+        marginTop: 15,
+        width: "60%"
     },
+    
+    // assetField: {
+    //     height: 120,
+    //     flexDirection: "row",
+    //     justifyContent: "space-between",
+    //     width: "80%",
+    //     backgroundColor: "#021227",
+    //     margin: 5,
+    //     // marginBottom: 5,
+    //     alignItems: "center",
+    //     padding: 2
+    // },
+    assetLabel: {
+        color: 'white',
+       alignSelf: 'center',
+        fontSize: 20.2,
+        fontWeight: "600",
+        margin: 5
 
+    },
     assetMenuLabel: {
         textAlign: 'center',
         color: "white",
@@ -198,7 +219,7 @@ module.exports = StyleSheet.create({
         height: 100,
         width: 100,
         margin: 3,
-        borderRadius: .8
+        borderRadius: 50
 
     },
     assetLocation: {
@@ -245,6 +266,20 @@ module.exports = StyleSheet.create({
         padding: 5,
         margin: 5,
         marginTop: 10
+    },
+    picButton: {
+        borderColor: '#F3C736',
+        backgroundColor: '#021227',
+        borderWidth: 1,
+        height: 45,
+        width: 200,
+        margin: 5,
+        color: 'white',
+        justifyContent: 'flex-end',
+        fontFamily: 'dinPro',
+        alignItems: 'center',
+        textAlignVertical: 'center',
+
     }
 
 });
