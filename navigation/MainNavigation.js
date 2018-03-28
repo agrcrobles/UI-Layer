@@ -7,6 +7,7 @@ import icon from '../assets/hLogo.png';
 import logo from '../assets/logo.png';
 import backArrow from '../assets/icon_backarrow.png';
 import { Font } from 'expo';
+import BackArrowButton from '../components/BackArrowButton';
 
 import Welcome from "../screens/Welcome";
 import Origin from "../screens/Origin";
@@ -29,7 +30,7 @@ import Splash1 from '../screens/Splash1';
 import Splash2 from '../screens/Splash2';
 import Splash3 from '../screens/Splash3';
 import NewAssetConfirm from '../screens/NewAssetConfirm';
-import testFileUP from '../screens/testFileUP';
+
 import PreHipr from '../screens/PreHIPR';
 
 const MainNavigator = StackNavigator({
@@ -54,7 +55,7 @@ const MainNavigator = StackNavigator({
     ThankYou: { screen: ThankYou },
     FileThanks: { screen: FileThanks },
     NewAssetConfirm: { screen: NewAssetConfirm },
-    TestFileUP: { screen: testFileUP},
+   
     PreHipr: { screen: PreHipr }
 
 
@@ -83,7 +84,16 @@ const MainNavigator = StackNavigator({
                 backgroundColor: '#021227',
                 
             },
-            headerBackImage: require('../assets/icon_backarrow.png')
+            headerLeft: <BackArrowButton />
+            
+            
+            // <Image style={{ 
+            //     height: 30,
+            //     width: 30,
+            //     // marginLeft: 10
+            // }}
+            //     source={ backArrow }
+            // />
           
 
         }

@@ -8,12 +8,14 @@ import { StackNavigator, } from 'react-navigation';
 import { connect } from "react-redux";
 import { addProps } from "../actions/AssetActions";
 import review from "../assets/review.png";
+import BackArrowButton from '../components/BackArrowButton';
 
 class InputMan extends Component {
-    static navigationOptions = {
-        header: null
+    
+    // static navigationOptions = {
+    //     headerLeft: <BackArrowButton onPress={(navigation) => navigation.navigat.goBack()} />
 
-    }
+    // }
     constructor(props) {
         super(props);
         this.state = {};

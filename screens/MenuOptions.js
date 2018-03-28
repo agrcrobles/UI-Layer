@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert } f
 // import WelcomeHeader from "../components/WelcomeHeader";
 import menuOpts from "../components/buttons/menuOptions.png";
 import { StackNavigator } from 'react-navigation';
-import Title from "../components/MenuInputTitle";
+// import Title from "../components/MenuInputTitle";
 import logo from "../assets/hercLogoBreak.png";
 import menuOptions from "../components/buttons/menuOptions.png";
 import home from "../components/buttons/homeBtn.png";
@@ -17,13 +17,15 @@ import wallet from "../components/buttons/walletBtn.png";
 import styles from "../assets/styles";
 import { connect } from 'react-redux';
 import { listAssets } from '../actions/AssetActions';
+import BackArrowButton from '../components/BackArrowButton';
 
 
  class MenuOptions extends Component {
-  // static navigationOptions = {
-  //   header: null,
+  static navigationOptions = (navigation) => {
+    headerLeft: <BackArrowButton navigation={navigation} />
+
+}
   
-  // }
   constructor(props) {
     super(props);
    
@@ -32,6 +34,7 @@ import { listAssets } from '../actions/AssetActions';
   componentDidMount() {
     this.props.listAssets();
     console.log("this.props.assets!! in Options", this.props.assets);
+    console.log(this.props);
    
   }
   
