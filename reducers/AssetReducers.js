@@ -1,35 +1,80 @@
-import { LIST_ASSETS, ADD_ASSET, SELECT_ASSET, SET_PLACE, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET } from '../actions/types';
-import assets from './assetList';
+import { LIST_ASSETS, ADD_ASSET, SELECT_ASSET, START_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET } from '../actions/types';
+import ApiKeys from '../constants/apiKeys';
+import * as firebase from 'firebase';
+
+firebase.initializeApp(ApiKeys.FirebaseConfig);
+
+const rootRef = firebase.database().ref();
 
 
 const INITIAL_STATE = {
     hercId: "003",
-    assets: assets,
+    assets: [],
 
-    selectedAsset: {},
-
-    newAsset: {
-        Name: "",
-        CoreProperties:{},
-        Logo: {}
-    }
+    // leave this until the tx bundle is set
+    // newAsset: {
+    //     Name: "",
+    //     coreProps:{},
+    //     Logo: ""
+    // }
 
 };
 
+// key: obj.key,
+// name: obj.toJSON().Name,
+// logo: obj.toJSON().Logo
 const AssetReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case LIST_ASSETS:
+            let assets = [];
+            rootRef.on('value', (snapshot) => {
+                //    let asset = snapshot.toJSON();
+                // var size = Object.keys(asset).length;
+                //    let keys = Object.keys(obj.coreProps);//this might not work
+                snapshot.forEach((obj) => {
+                    assets.push({
+                        name: obj.toJSON().Name,
+                        key: obj.key,
+                        Logo: obj.toJSON().Logo
+                    });
+                    console.log(obj.child('CoreProps').val(), 'haschilds?')//this is coreProps!! that's how! 
+                })
+               
+            })
             return Object.assign({}, state, {
                 assets
             })
 
         case SELECT_ASSET:
-            let selectedAsset = action.data;
-            console.log(action.data, "actiondatafrom in reducer")
+            let assetKey = action.data;
+            let assetRef = rootRef.child(assetKey);
+            console.log(assetKey.key, 'asset pushkey?')
+            let selectedAsset = {};
+            assetRef.on('value', (snapshot) => {
+                selectedAsset = snapshot.val();
+               
+            })
+            console.log(selectedAsset.name, "outside of promise")
             return Object.assign({}, state, {
+                ...state,
 
                 selectedAsset
             })
+
+        // this used to be  SET_PLACE
+        case START_TRANS:
+            let transInfo = action.data;
+            console.log(state.selectedAsset.name, "selectedAsset Reduction")
+
+            return Object.assign({}, state, {
+
+                ...state,
+
+               transInfo
+
+            }
+
+            )
 
         case INC_HERC_ID:
             let hercId = state.hercId + 1;
@@ -39,25 +84,14 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                 hercId
             }), console.log('Hercincrease', state)
 
-       
-        case SET_PLACE:
-            let place = action.data;
-            console.log(state.selectedAsset, "selectedAsset Reduction")
-            return Object.assign({}, state, {
-                selectedAsset: {
-                    ...state.selectedAsset,
-                    place
-
-                }
-
-            })
 
         case ADD_PHOTO:
             let image = [action.data];
-            console.log('adding photo', image);
+            console.log('adding photo');
+            let images = [image];
             return Object.assign({}, state, {
-                ...state.selectedAsset,
-                Images: [...state.selectedAsset.Images, image]
+                ...state,
+                images
             }
             )
         case ADD_DOC:
@@ -70,37 +104,42 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             })
 
         case ADD_PROPS:
-            const Properties = action.data;
-            console.log(Properties, "updating attributes in reducers");
+            const newProps = action.data;
+            console.log(newProps, "updating attributes in reducers");
             return Object.assign({}, state, {
 
-                ...state.selectedAsset,
-                selectedAsset: {
-                    Properties
-                }
+                ...state,
+               
+               ...state.transInfo,  
+                newProps
+               }
 
-            })
+            )
 
 
         case ADD_ASSET:
             const newAsset = action.newAsset;
+            console.log('adding asset', newAsset.name)
             return Object.assign({}, state, {
                 ...state,
-                
+
                 newAsset
-                
+
             }
             )
 
-            case CONFIRM_ASSET:
+        case CONFIRM_ASSET:
             const asset = action.asset;
-            console.log(asset, 'asset in reducerconfirm', state, 'state')
+            console.log(asset.name, 'asset in reducerconfirm', state, 'state')
+            rootRef.push(asset);
+
             return Object.assign({}, state, {
                 ...state,
-                
-                assets:[...assets, asset]
-                    
-                
+                ...state.assets,
+
+                assets: [...assets, asset]
+
+
             }
             )
 

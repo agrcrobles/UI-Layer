@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import { StyleSheet, Platform,TextInput, Text, View, Image, ScrollView, TouchableHighlight, Alert, TouchableNativeFeedback } from 'react-native';
+import { StyleSheet, Platform, TextInput, Text, View, Image, ScrollView, TouchableHighlight, Alert, TouchableNativeFeedback } from 'react-native';
 import { STATUS_BAR_HEIGHT } from '../constants';
-import WelcomeHeader from "../components/WelcomeHeader";
-// import Welcome from "../components/Welcome";
+
 import { StackNavigator } from 'react-navigation';
 
-import MenuOptions from "../components/buttons/menuOptions.png";
-import origin from "../assets/originLabel.png";
-import destination from "../assets/destinationLabel.png";
-import csv from "../assets/csvLabel.png";
-import camera from "../assets/cameraLabel.png";
-import styles from "../assets/styles";
-import manual from "../assets/manLabel.png";
 
+import originator from "../assets/origin.png";
+import recipient from "../assets/recipient.png";
+
+import documents from "../assets/docs.png";
+import camera from "../assets/camera.png";
+import styles from "../assets/styles";
+import manual from "../assets/manual.png";
+import EDIT from "../assets/EdiT-Sets.png";
 import { connect } from "react-redux";
 
 class Splash3 extends Component {
@@ -24,28 +24,31 @@ class Splash3 extends Component {
         super(props);
     }
     componentDidMount() {
-        console.log(this.props.selectedAsset, 'onmount selasset')
+        console.log(this.props.transInfo, 'onmount selasset')
 
 
     }
     // this.props.navigation.state.params.image
     render() {
         const { navigate } = this.props.navigation;
-        let image = this.props.selectedAsset.Images ? this.props.selectedAsset.Images[0] : null;
-        let locationImage = this.props.selectedAsset.place === 'destination' ? destination : origin;
-        let logo = this.props.selectedAsset.Logo;
-        console.log(this.props.selectedAsset, 'splash3 this.props.selectedAsset ');
+        // let image = this.props.asset.Images ? this.props.asset.Images[0] : null;
+        let locationImage = this.props.transInfo.location === 'recipient' ? recipient : originator;
+        let logo = this.props.transInfo.logo;
+        let asset = this.props.transInfo;
+        let hercId = this.props.hercId;
+        console.log(asset, 'splash3 this.props.selectedAsset ');
 
         return (
             <View style={styles.containerCenter}>
-
-                <View style={styles.subHeader}>
-                    <Image style={styles.assetLocation} source={locationImage} />
-                    <Image style={styles.assetButton} source={logo} />
+                <View style={styles.assetField}>
+                    <Image style={styles.assetButton} source={{ uri: logo }} />
+                    <Text style={styles.assetLabel}>{asset.name}</Text>
                 </View>
+
+                    <Image style={styles.assetLocation} source={locationImage} />
                 <View style={styles.field}>
-                    <Text style={styles.label}>Herc-ID</Text>
-                    <TextInput style={styles.input} placeholder="ID" />
+                    <Text style={styles.label}>HercID: {hercId}</Text>
+                    {/* <TextInput style={styles.input} placeholder="ID" /> */}
                 </View>
                 <View style={styles.spaceAroundContainer}>
                     <TouchableHighlight onPress={() => navigate('FileUp')}>
@@ -55,11 +58,11 @@ class Splash3 extends Component {
                         />
 
                     </TouchableHighlight>
-                    <Image source={image} />
+                    <Image source={{uri: logo}} />
                     <TouchableHighlight onPress={() => navigate('DocUp')}>
                         <Image
                             style={styles.menuInputTitle}
-                            source={csv}
+                            source={documents}
                         />
                     </TouchableHighlight>
 
@@ -70,13 +73,13 @@ class Splash3 extends Component {
                         />
                     </TouchableHighlight>
 
-                </View>
-                {/* <TouchableHighlight onPress={() => navigate('MenuOptions')} >
+                <TouchableHighlight>
                     <Image
-                        style={styles.button}
-                        source={MenuOptions}
+                        style={styles.menuInputTitle}
+                        source={EDIT}
                     />
-                </TouchableHighlight> */}
+                </TouchableHighlight>
+                </View>
             </View>
 
 
@@ -85,6 +88,8 @@ class Splash3 extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    selectedAsset: state.AssetReducers.selectedAsset
+    transInfo: state.AssetReducers.transInfo,
+    hercId: state.AssetReducers.hercId
+
 });
 export default connect(mapStateToProps)(Splash3);

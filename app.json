@@ -1,12 +1,18 @@
 {
   "expo": {
     "name": "hercone",
-    "description": "This project is really great.",
+    "description": "Asset tracking and verification",
     "slug": "hercone",
+    "version": "0.0.2",
     "privacy": "public",
     "sdkVersion": "25.0.0",
-    "platforms": ["ios", "android"],
-    "version": "1.0.0",
+    "ios": {
+      "bundleIdentifier": "com.hercone.hercmobile"
+    },
+    "android":{
+      "package": "com.hercone.hercmobile"
+    },
+    
     "orientation": "portrait",
     "icon": "./assets/hLogo.png",
     "splash": {
@@ -14,9 +20,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#021227",
       "justifyContent": "center"
-    },
-    "ios": {
-      "supportsTablet": true
     }
+   
   }
 }

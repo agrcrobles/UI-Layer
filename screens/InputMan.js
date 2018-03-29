@@ -2,18 +2,20 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import Next from "../components/NextBtn";
 import styles from "../assets/styles";
-import destination from "../assets/destinationLabel.png";
-import origin from "../assets/originLabel.png";
+import originator from "../assets/origin.png";
+import recipient from "../assets/recipient.png";
 import { StackNavigator, } from 'react-navigation';
 import { connect } from "react-redux";
 import { addProps } from "../actions/AssetActions";
-import review from "../assets/reviewLabel.png";
+import review from "../assets/review.png";
+import BackArrowButton from '../components/BackArrowButton';
 
 class InputMan extends Component {
-    static navigationOptions = {
-        header: null
+    
+    // static navigationOptions = {
+    //     headerLeft: <BackArrowButton onPress={(navigation) => navigation.navigat.goBack()} />
 
-    }
+    // }
     constructor(props) {
         super(props);
         this.state = {};
@@ -29,10 +31,10 @@ class InputMan extends Component {
     }
     render() {
 
-        let locationImage = this.props.selectedAsset.place === 'destination' ? destination : origin;
-        let logo = this.props.selectedAsset.Logo;
+        let locationImage = this.props.location === 'originator' ? originator : recipient;
+        let logo = this.props.logo;
 
-        let list = Object.keys(this.props.properties).map((propName, idx) => {
+        let list = Object.keys(this.props.coreProps).map((propName, idx) => {
             let name = propName;
             return (
 
@@ -52,16 +54,16 @@ class InputMan extends Component {
         return (
             <View style={styles.containerCenter}>
 
-                <View style={styles.subHeader}>
-                    <Image style={styles.assetLocation} source={locationImage} />
-                    <Image style={styles.assetButton} source={logo} />
+                <View style={styles.assetField}>
+                    <Image style={styles.assetButton} source={{ uri: logo }} />
+                    <Text style={styles.assetLabel}>{this.props.name}</Text>
                 </View>
+                <Image style={styles.assetLocation} source={locationImage} />
 
-
-                <View style={styles.scrollContent}>
+                 <ScrollView contentContainerStyle={{ alignItems: 'center', alignContent: 'center', alignSelf: 'center', width: '100%' }}>
 
                     {list}
-                </View>
+                </ScrollView>
 
                 <TouchableHighlight onPress={() => this._onReview()} >
                     <Image source={review} style={styles.button} />
@@ -72,9 +74,11 @@ class InputMan extends Component {
 }
 
 const mapStateToProps = (state) => ({
-
-    selectedAsset: state.AssetReducers.selectedAsset,
-    properties: state.AssetReducers.selectedAsset.CoreProperties
+    location: state.AssetReducers.transInfo.location,
+    coreProps: state.AssetReducers.transInfo.coreProps,
+    logo: state.AssetReducers.transInfo.logo,
+    name: state.AssetReducers.transInfo.name
+    // properties: state.AssetReducers.selectedAsset.CoreProperties
 });
 const mapDispatchToProps = (dispatch) => ({
     addProps: (attributes) =>

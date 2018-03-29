@@ -4,8 +4,7 @@ import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
 import create from '../assets/createNewAssetButton.png';
-import agldLogo from "../assets/AG_logo.png";
-import toast from "../assets/toast.jpg";
+
 import { selectAsset, listAssets } from '../actions/AssetActions';
 import backArrow from '../assets/icon_backarrow.png';
 
@@ -16,18 +15,20 @@ class Splash1 extends Component {
 
   }
  
+  //  Need to determine the ideal way to get the selected asset, currently am pulling them both down entirely and then just assigning the selected to state...I think...
   componentDidMount() {
-    this.props.listAssets();
-    console.log("this.props.assets!!", this.props.assets);
-    console.log(this.props, 'thisstate')
+    // this.props.listAssets();
+   
+    
+   
   }
   _onPress = (index) => {
     const { navigate } = this.props.navigation;
 
-    let asset = this.props.assets[index];
+    // let asset = this.props.assets[index]; //cleaner way or better way to do this
 
-    this.props.selectAsset(asset);
-
+    this.props.selectAsset(index);
+    
 
     navigate('Splash2');
   }
@@ -36,13 +37,12 @@ class Splash1 extends Component {
     const { navigate } = this.props.navigation;
     console.log(this.props)
     let list = this.props.assets.map((asset, index) => {
-      console.log(asset.Logo, 'logo/uri');
       return (
         <View key={index} style={styles.assetField}>
-          <TouchableHighlight onPress={() => this._onPress(index)}  >
-            {/* <Image style={styles.assetButton} source={asset.Logo} /> */}
-          <Text style={styles.label}>{asset.Name}</Text>
+          <TouchableHighlight onPress={() => this._onPress(asset.key)}  >
+            <Image style={styles.assetButton} source={{uri:asset.Logo}} />  
           </TouchableHighlight>
+          <Text style={styles.assetLabel}>{asset.name}</Text>
         </View>
       )
     });
@@ -50,9 +50,9 @@ class Splash1 extends Component {
     return (
 
       <View style={styles.container}>
-        <View style={styles.assetMenu}>
+       <ScrollView contentContainerStyle={{ alignItems: 'center', alignContent: 'center', alignSelf: 'center', width: '90%' }}>
           {list}
-        </View>
+        </ScrollView>
         <TouchableHighlight onPress={() => navigate('Create')}>
           <Image
             style={{ resizeMode: 'contain', height: 80, width: 150 }}

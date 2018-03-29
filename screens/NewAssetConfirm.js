@@ -9,10 +9,10 @@ import { StackNavigator } from 'react-navigation';
 import { ImagePicker } from 'expo';
 import { connect } from "react-redux";
 import styles from "../assets/styles";
-import fee from "../assets/hercFEE.jpg";
+import fee from "../assets/hercFeeLabel.png";
 import { incHercId, confirmAsset } from "../actions/AssetActions"
 class NewAssetConfirm extends Component {
-
+    state = {};
     static navigationOptions = {
         headerTitle: <Image style={{
             height: 100,
@@ -29,21 +29,39 @@ class NewAssetConfirm extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
-
+        // console.log(this.props)
+        // price = data.pricePerHercForFCT
+        // let price = this.getPrice();
+        // fetch('https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON').then(data => console.log(data.json()) ); 
+        // console.log(price, 'price')
+    
     }
 
+    // async getPricesFromApi() {
+    //     try {
+    //         let response = await fetch(
+    //             'https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON'
+    //         );
+    //         let responseJson = await response.json();
+    //         let fctPrice = responseJson.list["0"].pricePerHercForFCT; // this is what I'm going with for now  
+    //         console.log(fctPrice, 'newthing');
+    //         this.setState({ fctPrice });
 
-    _onPressSubmit(CoreProperties) {
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
+
+    _onPressSubmit(CoreProps) {
         const { navigate } = this.props.navigation;
-        // let asset = Object.values(this.props.newAsset.CoreProperties);
+        // let asset = Object.values(this.props.newAsset.coreProps);
         let Name = this.props.Name;
 
         Name = {
             Name,
             hercId: this.props.hercId,
             Logo: this.props.Logo,
-            CoreProperties
+            CoreProps
         }
         console.log(Name)
         this.props.confirmAsset(Name);
@@ -54,21 +72,24 @@ class NewAssetConfirm extends Component {
 
     render() {
 
+        // console.log(price, 'pricey?')
+        let price = this.state.fctPrice;
+
         const { navigate } = this.props.navigation;
-        console.log(this.props.CoreProperties, "confirmselasset")
+        console.log(this.props.coreProps, "confirmselasset")
         console.log(this.props.Name);
         let Logo = this.props.Logo;
         let Name = this.props.Name;
 
-        let newProperties = Object.values(this.props.CoreProperties);
+        let newProperties = Object.values(this.props.coreProps);
         console.log(newProperties, 'newprops');
-        const CoreProperties = {};
+        const CoreProps = {};
 
         for (const key of newProperties) {
-            CoreProperties[key] = "";
+            CoreProps[key] = "";
         }
 
-        console.log(CoreProperties, 'corprops');
+        console.log(CoreProps, 'corprops');
         let list = newProperties.map((x, i) => {
             return (
 
@@ -96,8 +117,12 @@ class NewAssetConfirm extends Component {
 
                 </ScrollView>
 
-                <Submit onPress={() => this._onPressSubmit(CoreProperties)} />
-                <Image style={styles.assetFee} source={fee} />
+                <Submit onPress={() => this._onPressSubmit(CoreProps)} />
+
+                <View style={styles.assetFee}>
+                    <Image style={styles.assetFeeLabel} source={fee} />
+                    <Text style={styles.teePrice}>10,000</Text>
+                </View>
             </View>
 
 
@@ -111,7 +136,7 @@ class NewAssetConfirm extends Component {
 const mapStateToProps = (state) => ({
     Name: state.AssetReducers.newAsset.Name,
     Logo: state.AssetReducers.newAsset.Logo,
-    CoreProperties: state.AssetReducers.newAsset.CoreProperties,
+    coreProps: state.AssetReducers.newAsset.coreProps,
     hercId: state.AssetReducers.hercId
     // selectedAsset: state.AssetReducers.selectedAsset
     // newProperties: state.AssetReducers.selectedAsset.newProperties

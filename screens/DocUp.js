@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert } from 'react-native';
+import Button from 'react-native-button';
 import TouchableHeader from '../components/TouchableHeader';
 // import Welcome from '../components/Welcome';
 import { StackNavigator } from 'react-navigation';
 import Title from '../components/MenuInputTitle';
 import pictures from '../assets/picturesLabel.png';
-import csv from '../assets/csvLabel.png';
-import origin from "../assets/originLabel.png";
-import destination from "../assets/destinationLabel.png";
+import document from '../assets/docs.png';
+import originator from "../assets/origin.png";
+import recipient from "../assets/recipient.png";
 import Submit from '../components/SubmitBtn';
 import { DocumentPicker } from 'expo';
 import { connect } from 'react-redux';
@@ -28,7 +29,7 @@ class DocUp extends Component {
     let uri = this.state.document.uri;
     let docName = this.state.document.name;
     const { navigate } = this.props.navigation;
-    
+
     console.log(uri, docName, "onsubmitcsv")
     this.props.addDoc(uri, docName);
     console.log(this.props.selectedAsset, "selectedAsset in onsubmitCSV")
@@ -60,27 +61,30 @@ class DocUp extends Component {
   render() {
 
     const { navigate } = this.props.navigation;
-    let locationImage = this.props.selectedAsset.place === 'destination' ? destination : origin;
-    let logo = this.props.selectedAsset.Logo;
-
-    console.log(this.props.selectedAsset, 'splash3 this.props.selectedAsset ');
+    // let image = this.props.asset.Images ? this.props.asset.Images[0] : null;
+    let locationImage = this.props.transInfo.location === 'recipient' ? recipient : originator;
+    let logo = this.props.transInfo.logo;
+    let asset = this.props.transInfo;
+    let hercId = this.props.hercId;
 
     return (
       <View style={styles.containerCenter}>
-
-        <View style={styles.subHeader}>
-          <Image style={styles.assetLocation} source={locationImage} />
-          <Image style={styles.assetButton} source={logo} />
+        <View style={styles.assetField}>
+          <Image style={styles.assetButton} source={{ uri: logo }} />
+          <Text style={styles.assetLabel}>{asset.name}</Text>
         </View>
+          <Image style={styles.assetLocation} source={locationImage} />
 
-        <Image source={csv} style={styles.menuInputTitle} />
+        {/* <Image source={document} style={styles.menuInputTitle} /> */}
 
         {/* <View style={styles.imageContainer}> */}
         <Button
-          title="Select Document"
-          onPress={this._pickDocument}
-          style={styles.label}
-        />
+
+          style={styles.picButton}
+
+          onPress={() => this._pickImage()}>
+          Upload Document
+      </Button>
         <Text style={styles.label}>
           {this.state.document.name}
         </Text>
@@ -93,7 +97,8 @@ class DocUp extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  selectedAsset: state.AssetReducers.selectedAsset,
+  transInfo: state.AssetReducers.transInfo,
+
 
 });
 const mapDispatchToProps = (dispatch) => ({

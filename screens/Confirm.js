@@ -1,30 +1,15 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight, Alert } from 'react-native';
-import Title from "../components/MenuInputTitle";
-import WelcomeHeader from "../components/WelcomeHeader";
+
 import Submit from "../components/SubmitBtn";
-import destination from "../assets/destinationLabel.png";
-import origin from "../assets/originLabel.png";
+import originator from "../assets/origin.png";
+import recipient from "../assets/recipient.png";
 import { StackNavigator } from 'react-navigation';
 import { connect } from "react-redux";
 import styles from "../assets/styles";
-import fee from "../assets/hercFEE.jpg";
-<Image style={styles.assetFee} source={fee} />
-// import Amplify, { API } from 'aws-amplify';
-// import aws_exports from '../awsmobilejs/#current-backend-info/aws-exports.js';
-// Amplify.configure(aws_exports);
-// Auth: {
-//   'aws_cognito_identity_pool_id': 'us-east-1:f0e40134-54a1-47b0-b297-d895a1e5a4ca', //REQUIRED - Amazon Cognito Identity Pool ID
-//   'aws_cognito_region': 'us-east-1', // REQUIRED - Amazon Cognito Region
-//  },
-// API: {
-//   endpoints: [
-//     {
-//       name: "barInf",
-//       endpoint: "https://0jl8r6ytha.execute-api.us-east-1.amazonaws.com/MobileHub_Deployments"
-//     }
-//   ]
-// }
+import fee from "../assets/hercFeeLabel.png";
+{/* <Image style={styles.assetFee} source={fee} /> */ }
+
 
 
 class Confirm extends Component {
@@ -37,41 +22,50 @@ class Confirm extends Component {
     super(props);
 
   }
+  state = {};
 
 
   componentDidMount() {
-
-
-
+    console.log(this.props.newProps, 'thisnewtransinfo')
+    console.log(this.props, 'props')
+    this.getPricesFromApi();
 
   }
+  async getPricesFromApi() {
+    try {
+      let response = await fetch(
+        'https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON'
+      );
+      let responseJson = await response.json();
+      let fctPrice = responseJson.list["0"].pricePerHercForFCT; // this is what I'm going with for now  
+      console.log(fctPrice, 'newthing');
+      this.setState({ fctPrice });
 
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
-  // _onPressSubmit(values) {
-
-  //   const { navigate } = this.props.navigation;
-
-
-  //   navigate('BlockScan');
-  // }
 
 
 
   render() {
+    let price = this.state.fctPrice;
     const { navigate } = this.props.navigation;
-    console.log(this.props.selectedAsset, "confirmselasset")
+    console.log(this.props.newProps, "txNewProps")
 
-    let locationImage = this.props.selectedAsset.place === 'destination' ? destination : origin;
-    let logo = this.props.selectedAsset.Logo;
-    console.log(this.props.Assets);
+    let locationImage = this.props.location === 'originator' ? originator : recipient;
+    let logo = this.props.logo;
+    // console.log(this.props.Assets);
 
-    let list = Object.keys(this.props.Properties).map((propName, idx) => {
+    let list = Object.keys(this.props.newProps).map((propName, idx) => {
       let name = propName;
       return (
 
         <View key={idx} style={styles.field}>
           <Text style={styles.label}>{name}</Text>
-          <Text style={styles.input}>{this.props.Properties[name]}</Text>
+          <Text style={styles.input}>{this.props.newProps[name]}</Text>
+        
         </View>
       )
     });
@@ -79,10 +73,11 @@ class Confirm extends Component {
     return (
       <View style={styles.containerCenter}>
 
-        <View style={styles.subHeader}>
-          <Image style={styles.assetLocation} source={locationImage} />
-          <Image style={styles.assetButton} source={logo} />
-        </View>
+       <View style={styles.assetFieldHeader}>
+                    <Image style={styles.assetButton} source={{ uri: logo }} />
+                    <Text style={styles.assetLabel}>{this.props.name}</Text>
+                    <Image style={styles.assetLocation} source={locationImage} />
+                </View>
 
 
         <View style={styles.inputMenu}>
@@ -95,8 +90,11 @@ class Confirm extends Component {
 
 
         <Submit onPress={() => navigate('BlockScan')} />
-          <Image style={styles.assetFee} source={fee} />
-      
+        <View style={styles.assetFee}>
+          <Image style={styles.assetFeeLabel} source={fee} />
+          <Text style={styles.teePrice}>{price}</Text>
+        </View>
+
       </View>
 
 
@@ -108,8 +106,10 @@ class Confirm extends Component {
 
 
 const mapStateToProps = (state) => ({
-  Properties: state.AssetReducers.Properties,
-  selectedAsset: state.AssetReducers.selectedAsset
+  newProps: state.AssetReducers.newProps,
+  location: state.AssetReducers.transInfo.location,
+  logo: state.AssetReducers.transInfo.logo,
+  name: state.AssetReducers.transInfo.name
   // newProperties: state.AssetReducers.selectedAsset.newProperties
 
 

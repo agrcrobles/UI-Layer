@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert } f
 // import WelcomeHeader from "../components/WelcomeHeader";
 import menuOpts from "../components/buttons/menuOptions.png";
 import { StackNavigator } from 'react-navigation';
-import Title from "../components/MenuInputTitle";
+// import Title from "../components/MenuInputTitle";
 import logo from "../assets/hercLogoBreak.png";
 import menuOptions from "../components/buttons/menuOptions.png";
 import home from "../components/buttons/homeBtn.png";
@@ -15,21 +15,27 @@ import blockScan from "../components/buttons/blockScannerBtn.png";
 import settings from "../components/buttons/settingsBtn.png";
 import wallet from "../components/buttons/walletBtn.png";
 import styles from "../assets/styles";
+import { connect } from 'react-redux';
+import { listAssets } from '../actions/AssetActions';
+import BackArrowButton from '../components/BackArrowButton';
 
 
-export default class MenuOptions extends Component {
-  // static navigationOptions = {
-  //   header: null,
+ class MenuOptions extends Component {
+  static navigationOptions = (navigation) => {
+    headerLeft: <BackArrowButton navigation={navigation} onPress={()=> console.log('pressing!')} />
+
+}
   
-  // }
   constructor(props) {
     super(props);
    
   }
   
-  componentDidMount(){
-    console.log(this.state, 'state')
-
+  componentDidMount() {
+    this.props.listAssets();
+    console.log("this.props.assets!! in Options", this.props.assets);
+    console.log(this.props);
+   
   }
   
   render(){
@@ -54,7 +60,7 @@ export default class MenuOptions extends Component {
             />
           </TouchableHighlight> 
      
-          <TouchableHighlight  onPress={() => navigate('Hipr')}>
+          <TouchableHighlight  onPress={() => navigate('PreHipr')}>
             <Image
               style={styles.button}
               source={hiprBtn}
@@ -105,58 +111,9 @@ export default class MenuOptions extends Component {
   };
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     paddingTop: 30,
-//     // width: "100%",
-//     backgroundColor: '#021227',
-//     // backgroundColor: '#fff',
-//     alignItems: 'center',
-//     // justifyContent: 'space-around',
-//   },
-//   menu: {
-//     height: 400,
-//     alignItems: "center",
-//     justifyContent: "space-between",
-//     backgroundColor: '#021227'
-//     // paddingTop: 50
-//     // margin: .5,
-  
-//     },
-//     button: {
-//       width: 350, 
-//       height: 51,
-//       alignItems: 'center',
-//       margin: 1
-      
-//     },
-//     btnImg: {
-//         resizeMode: 'cover',
+const mapDispatchToProps = (dispatch) => ({
 
-//     },
-//     input: {
-//       width: 150, 
-//       height: 40,
-//       textAlign: "center",
-//       backgroundColor: "#132c4a", 
-//       // margin: .5,
-//       fontSize: 20.2,
-//       fontWeight: "600",
-//       borderColor: "#142535",
-//       color: "white",
-//       borderWidth: 1,
-//       marginTop: 100
-//     },
-//     menuLogo: {
-//     justifyContent: "center",
-//     alignItems: "center",
-//     height: 140,
-//     width: 200,
-//     resizeMode: "contain",
-//     backgroundColor: '#021227',
-//     // margin: .5
-       
-//   }
- 
-//   });
+   listAssets: () => dispatch(listAssets())
+
+})
+export default connect(null, mapDispatchToProps)(MenuOptions);
