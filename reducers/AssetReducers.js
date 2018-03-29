@@ -39,7 +39,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                     });
                     console.log(obj.child('CoreProps').val(), 'haschilds?')//this is coreProps!! that's how! 
                 })
-                console.log(assets, 'assets')
+               
             })
             return Object.assign({}, state, {
                 assets
@@ -48,16 +48,13 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
         case SELECT_ASSET:
             let assetKey = action.data;
             let assetRef = rootRef.child(assetKey);
-            console.log(assetRef, 'assetRef')
+            console.log(assetKey.key, 'asset pushkey?')
             let selectedAsset = {};
-            console.log(selectedAsset, 'selected');
             assetRef.on('value', (snapshot) => {
                 selectedAsset = snapshot.val();
-                console.log(snapshot.val(), 'snapshot val');
-                console.log(selectedAsset, 'selectedAsset var')
-
+               
             })
-            console.log(selectedAsset, "outside of promise")
+            console.log(selectedAsset.name, "outside of promise")
             return Object.assign({}, state, {
                 ...state,
 
@@ -67,10 +64,8 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
         // this used to be  SET_PLACE
         case START_TRANS:
             let transInfo = action.data;
-            console.log(state.selectedAsset, "selectedAsset Reduction")
+            console.log(state.selectedAsset.name, "selectedAsset Reduction")
 
-           
-            
             return Object.assign({}, state, {
 
                 ...state,
@@ -92,7 +87,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
         case ADD_PHOTO:
             let image = [action.data];
-            console.log('adding photo', image);
+            console.log('adding photo');
             let images = [image];
             return Object.assign({}, state, {
                 ...state,
@@ -124,6 +119,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
         case ADD_ASSET:
             const newAsset = action.newAsset;
+            console.log('adding asset', newAsset.name)
             return Object.assign({}, state, {
                 ...state,
 
@@ -134,7 +130,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
         case CONFIRM_ASSET:
             const asset = action.asset;
-            console.log(asset, 'asset in reducerconfirm', state, 'state')
+            console.log(asset.name, 'asset in reducerconfirm', state, 'state')
             rootRef.push(asset);
 
             return Object.assign({}, state, {

@@ -9,6 +9,7 @@ import originator from "../assets/origin.png";
 import recipient from "../assets/recipient.png";
 
 
+
 class Splash2 extends Component {
   constructor(props) {
     super(props);
@@ -18,26 +19,27 @@ class Splash2 extends Component {
 
   }
   _onPress = (place) => {
+    let time = new Date();
 
     const { navigate } = this.props.navigation;
     console.log(place, 'pressing place');
     let asset = this.props.asset;
-
     let transBase = {
       name: asset.Name,
       logo: asset.Logo,
       location: place,
-      coreProps: asset.CoreProps
+      coreProps: asset.CoreProps,
+      dTime: time
     
     }
-    console.log(transBase, 'txbase')
+    console.log(transBase.time, 'txbase')
     this.props.startTrans(transBase);
-    console.log
+  
     navigate('Splash3');
   }
 
   componentDidMount() {
-    console.log(this.props.asset, 'this.props.asset');
+    console.log(this.props.asset.name, 'this.props.asset');
 
 
   }

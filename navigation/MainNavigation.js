@@ -84,7 +84,9 @@ const MainNavigator = StackNavigator({
                 backgroundColor: '#021227',
                 
             },
-            headerLeft: <BackArrowButton />
+            headerBackImage: require('../assets/icon_backarrow.png') 
+            
+            // <BackArrowButton />
             
             
             // <Image style={{ 

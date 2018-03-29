@@ -8,15 +8,15 @@ export default class BackButton extends Component {
   constructor(props){
     super(props)
   }
-  _onPress = () => {
-    const { navigate } = this.props.navigation;
-    console.log('backArrowComponent onpress', this.props);
-    navigate.goBack();
-  }
+  // _onPress = () => {
+  //   console.log('backArrowComponent onpress', this.props);
+  //   navigate.goBack();
+  // }
   render(){
+    // const { navigate } = this.props.navigation;
     return(
       <Image
-      onPress={this._onPress}
+      
       source={backArrow}
       style={{height: 50, width: 50}}
      

@@ -19,7 +19,6 @@ class Splash1 extends Component {
   componentDidMount() {
     // this.props.listAssets();
    
-    console.log("this.props.assets!! in Splash", this.props.assets);
     
    
   }
