@@ -22,7 +22,7 @@ import BackArrowButton from '../components/BackArrowButton';
 
  class MenuOptions extends Component {
   static navigationOptions = (navigation) => {
-    headerLeft: <BackArrowButton navigation={navigation} onPress={()=> console.log('pressing!')} />
+    headerLeft: <BackArrowButton navigation={navigation} />
 
 }
   

@@ -33,7 +33,8 @@ class InputMan extends Component {
 
         let locationImage = this.props.location === 'originator' ? originator : recipient;
         let logo = this.props.logo;
-
+        console.log(this.props.coreProps, 'coreProps');
+        
         let list = Object.keys(this.props.coreProps).map((propName, idx) => {
             let name = propName;
             return (
@@ -53,6 +54,7 @@ class InputMan extends Component {
 
         return (
             <View style={styles.containerCenter}>
+                  <ScrollView contentContainerStyle={styles.scrollView}>
 
                 <View style={styles.assetField}>
                     <Image style={styles.assetButton} source={{ uri: logo }} />
@@ -60,24 +62,23 @@ class InputMan extends Component {
                 </View>
                 <Image style={styles.assetLocation} source={locationImage} />
 
-                 <ScrollView contentContainerStyle={{ alignItems: 'center', alignContent: 'center', alignSelf: 'center', width: '100%' }}>
 
                     {list}
-                </ScrollView>
 
                 <TouchableHighlight onPress={() => this._onReview()} >
                     <Image source={review} style={styles.button} />
                 </TouchableHighlight>
 
+                </ScrollView>
             </View>)
     }
 }
 
 const mapStateToProps = (state) => ({
+    name: state.AssetReducers.transInfo.name,
+    logo: state.AssetReducers.selectedAsset.Logo,
     location: state.AssetReducers.transInfo.location,
-    coreProps: state.AssetReducers.transInfo.coreProps,
-    logo: state.AssetReducers.transInfo.logo,
-    name: state.AssetReducers.transInfo.name
+    coreProps: state.AssetReducers.selectedAsset.CoreProps,
     // properties: state.AssetReducers.selectedAsset.CoreProperties
 });
 const mapDispatchToProps = (dispatch) => ({

@@ -86,13 +86,17 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
 
         case ADD_PHOTO:
-            let image = [action.data];
+            let image = action.data;
             console.log('adding photo');
             let images = [image];
             return Object.assign({}, state, {
                 ...state,
-                images
-            }
+                transInfo: {
+                ...state.transInfo,
+                    image 
+                }
+                }
+            
             )
         case ADD_DOC:
             let doc = action.data;

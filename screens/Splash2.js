@@ -15,8 +15,8 @@ class Splash2 extends Component {
     super(props);
   }
   static navigationOptions = {
-    header: null
-
+    // headerTitle: 
+    //    <Text>{this.props.asset.Name}</Text>
   }
   _onPress = (place) => {
     let time = new Date();
@@ -26,15 +26,12 @@ class Splash2 extends Component {
     let asset = this.props.asset;
     let transBase = {
       name: asset.Name,
-      logo: asset.Logo,
       location: place,
-      coreProps: asset.CoreProps,
       dTime: time
-    
     }
     console.log(transBase.time, 'txbase')
     this.props.startTrans(transBase);
-  
+
     navigate('Splash3');
   }
 
@@ -60,7 +57,7 @@ class Splash2 extends Component {
               source={originator}
             />
           </TouchableHighlight>
-          
+
           <TouchableHighlight onPress={() => this._onPress('recipient')}>
             <Image
               style={styles.menuInputTitle}

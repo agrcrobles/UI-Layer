@@ -50,7 +50,7 @@ class Splash1 extends Component {
     return (
 
       <View style={styles.container}>
-       <ScrollView contentContainerStyle={{ alignItems: 'center', alignContent: 'center', alignSelf: 'center', width: '90%' }}>
+       <ScrollView contentContainerStyle={styles.scrollView}>
           {list}
         </ScrollView>
         <TouchableHighlight onPress={() => navigate('Create')}>

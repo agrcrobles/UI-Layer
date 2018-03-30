@@ -171,7 +171,7 @@ module.exports = StyleSheet.create({
         padding: 5
 
     },
-    
+
     assetField: {
         height: 140,
         // backgroundColor: 'blue',
@@ -192,21 +192,23 @@ module.exports = StyleSheet.create({
         marginTop: 15,
         width: "60%"
     },
-    
-    // assetField: {
-    //     height: 120,
-    //     flexDirection: "row",
-    //     justifyContent: "space-between",
-    //     width: "80%",
-    //     backgroundColor: "#021227",
-    //     margin: 5,
-    //     // marginBottom: 5,
-    //     alignItems: "center",
-    //     padding: 2
-    // },
+
+    transPropLabel: {
+        color: 'white',
+        alignSelf: 'center',
+        fontSize: 20.2,
+        fontWeight: "400",
+       
+    },
+    transReview: {
+        color:'red',
+        alignSelf: 'center',
+        fontSize: 20.2,
+        fontWeight: "600",
+    },
     assetLabel: {
         color: 'white',
-       alignSelf: 'center',
+        alignSelf: 'center',
         fontSize: 20.2,
         fontWeight: "600",
         margin: 5
@@ -236,7 +238,7 @@ module.exports = StyleSheet.create({
         height: 50,
         width: 200,
         resizeMode: 'contain',
-        marginTop:5 
+        marginTop: 5
     },
     assetFee: {
         height: 50,
@@ -259,13 +261,13 @@ module.exports = StyleSheet.create({
     },
     teePrice: {
         backgroundColor: "#021227",
-       textAlign: 'center',
+        textAlign: 'center',
         fontSize: 20.2,
         fontWeight: "400",
         // borderColor: "#142535",
         color: "white",
         height: 30,
-        
+
     },
     subHeader: {
         flexDirection: 'row',
@@ -289,6 +291,18 @@ module.exports = StyleSheet.create({
         fontFamily: 'dinPro',
         alignItems: 'center',
         textAlignVertical: 'center',
+
+    },
+    scrollView: {
+        alignItems: 'center',
+        alignContent: 'center',
+        alignSelf: 'center',
+        width: '90%'
+    },
+    thumb: {
+        height: 150,
+        width: 150,
+        margin: 5
 
     }
 

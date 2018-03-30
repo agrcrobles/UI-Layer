@@ -85,9 +85,8 @@ const MainNavigator = StackNavigator({
                 
             },
             headerBackImage: require('../assets/icon_backarrow.png') 
-            
-            // <BackArrowButton />
-            
+            // headerLeft: <BackArrowButton navigation={navigation} /> 
+            // require('../assets/icon_backarrow.png') 
             
             // <Image style={{ 
             //     height: 30,
@@ -106,6 +105,7 @@ export default class MainNavigation extends Component {
         Font.loadAsync({
           'dinPro': require('../assets/font/DINPro-Regular_13937.ttf'),
         });
+        console.log('fonts')
       }
     render() {
         return (

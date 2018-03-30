@@ -89,7 +89,7 @@ class Confirm extends Component {
             <Text>{this.props.selectedAsset.Images[0]}</Text> */}
 
 
-        <Submit onPress={() => navigate('BlockScan')} />
+        <Submit onPress={() => navigate('Splash3')} />
         <View style={styles.assetFee}>
           <Image style={styles.assetFeeLabel} source={fee} />
           <Text style={styles.teePrice}>{price}</Text>
@@ -108,7 +108,7 @@ class Confirm extends Component {
 const mapStateToProps = (state) => ({
   newProps: state.AssetReducers.newProps,
   location: state.AssetReducers.transInfo.location,
-  logo: state.AssetReducers.transInfo.logo,
+  logo: state.AssetReducers.selectedAsset.Logo,
   name: state.AssetReducers.transInfo.name
   // newProperties: state.AssetReducers.selectedAsset.newProperties
 

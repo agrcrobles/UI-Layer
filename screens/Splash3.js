@@ -14,6 +14,7 @@ import styles from "../assets/styles";
 import manual from "../assets/manual.png";
 import EDIT from "../assets/EdiT-Sets.png";
 import { connect } from "react-redux";
+import TransRev from "../components/TransactionReview";
 
 class Splash3 extends Component {
     static navigationOptions = {
@@ -24,7 +25,7 @@ class Splash3 extends Component {
         super(props);
     }
     componentDidMount() {
-        console.log(this.props.transInfo, 'onmount selasset')
+        console.log(this.props.transInfo, 'transInfo')
 
 
     }
@@ -33,13 +34,15 @@ class Splash3 extends Component {
         const { navigate } = this.props.navigation;
         // let image = this.props.asset.Images ? this.props.asset.Images[0] : null;
         let locationImage = this.props.transInfo.location === 'recipient' ? recipient : originator;
-        let logo = this.props.transInfo.logo;
+        let logo = this.props.logo;
         let asset = this.props.transInfo;
         let hercId = this.props.hercId;
-        console.log(asset, 'splash3 this.props.selectedAsset ');
+        console.log(asset, 'splash3 this.props.transinfo');
+        
 
         return (
             <View style={styles.containerCenter}>
+             <ScrollView contentContainerStyle={styles.scrollView}>
                 <View style={styles.assetField}>
                     <Image style={styles.assetButton} source={{ uri: logo }} />
                     <Text style={styles.assetLabel}>{asset.name}</Text>
@@ -80,6 +83,9 @@ class Splash3 extends Component {
                     />
                 </TouchableHighlight>
                 </View>
+
+                <TransRev />
+                </ScrollView>
             </View>
 
 
@@ -88,6 +94,7 @@ class Splash3 extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    logo: state.AssetReducers.selectedAsset.Logo,
     transInfo: state.AssetReducers.transInfo,
     hercId: state.AssetReducers.hercId
 
