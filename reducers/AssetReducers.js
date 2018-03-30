@@ -37,9 +37,9 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                         key: obj.key,
                         Logo: obj.toJSON().Logo
                     });
-                    console.log(obj.child('CoreProps').val(), 'haschilds?')//this is coreProps!! that's how! 
+                    
                 })
-               
+
             })
             return Object.assign({}, state, {
                 assets
@@ -48,13 +48,13 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
         case SELECT_ASSET:
             let assetKey = action.data;
             let assetRef = rootRef.child(assetKey);
-            console.log(assetKey.key, 'asset pushkey?')
+         
             let selectedAsset = {};
             assetRef.on('value', (snapshot) => {
                 selectedAsset = snapshot.val();
-               
+
             })
-            console.log(selectedAsset.name, "outside of promise")
+           
             return Object.assign({}, state, {
                 ...state,
 
@@ -64,13 +64,13 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
         // this used to be  SET_PLACE
         case START_TRANS:
             let transInfo = action.data;
-            console.log(state.selectedAsset.name, "selectedAsset Reduction")
+            console.log(state.selectedAsset.name, "selectedAssetName in startTrans reducer")
 
             return Object.assign({}, state, {
 
                 ...state,
 
-               transInfo
+                transInfo
 
             }
 
@@ -92,11 +92,11 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             return Object.assign({}, state, {
                 ...state,
                 transInfo: {
-                ...state.transInfo,
-                    image 
+                    ...state.transInfo,
+                    image
                 }
-                }
-            
+            }
+
             )
         case ADD_DOC:
             let doc = action.data;
@@ -113,10 +113,12 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             return Object.assign({}, state, {
 
                 ...state,
-               
-               ...state.transInfo,  
-                newProps
-               }
+
+                transInfo: {
+                    ...state.transInfo,
+                    newProps
+                }
+            }
 
             )
 

@@ -33,7 +33,7 @@ class InputMan extends Component {
 
         let locationImage = this.props.location === 'originator' ? originator : recipient;
         let logo = this.props.logo;
-        console.log(this.props.coreProps, 'coreProps');
+        // console.log(this.props.coreProps, 'coreProps');
         
         let list = Object.keys(this.props.coreProps).map((propName, idx) => {
             let name = propName;

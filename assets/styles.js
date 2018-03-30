@@ -93,6 +93,48 @@ module.exports = StyleSheet.create({
         paddingLeft: 5
 
     },
+    transPropLabel: {
+        color: 'white',
+        alignSelf: 'center',
+   
+        fontWeight: "400",
+        fontFamily: 'dinPro',
+        fontSize: 14,
+    },
+    transReview: {
+        color: 'red',
+        alignSelf: 'center',
+        fontSize: 20.2,
+        fontWeight: "600",
+    },
+    transRevName: {
+        fontFamily: 'dinPro',
+        fontSize: 20,
+        color: 'blue',
+        margin: 5
+
+    },
+    
+    revPropVal: {
+        fontFamily: 'dinPro',
+        fontSize: 13,
+        color: 'yellow',
+        margin: 5,
+        textAlign: 'right'
+    },
+    input: {
+        width: 150,
+        height: 40,
+        textAlign: "center",
+        backgroundColor: "#132c4a",
+        // margin: .5,
+        fontSize: 20.2,
+        fontWeight: "600",
+        borderColor: "#142535",
+        color: "white",
+        borderWidth: 1,
+        // paddingLeft: 1
+    },
     teeLabel: {
         height: 50,
         width: 300,
@@ -110,6 +152,15 @@ module.exports = StyleSheet.create({
         alignItems: "center",
         paddingLeft: 5
     },
+    revPropField: {
+        height: 23,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 1,
+        margin: 2,
+        backgroundColor: 'green'
+    },
     picker: {
         height: 100,
         width: '80%',
@@ -126,19 +177,6 @@ module.exports = StyleSheet.create({
         // backgroundColor: 'blue'
     },
 
-    input: {
-        width: 150,
-        height: 40,
-        textAlign: "center",
-        backgroundColor: "#132c4a",
-        // margin: .5,
-        fontSize: 20.2,
-        fontWeight: "600",
-        borderColor: "#142535",
-        color: "white",
-        borderWidth: 1,
-        // paddingLeft: 1
-    },
     backArrow: {
         marginTop: 20,
         marginLeft: 15,
@@ -193,19 +231,7 @@ module.exports = StyleSheet.create({
         width: "60%"
     },
 
-    transPropLabel: {
-        color: 'white',
-        alignSelf: 'center',
-        fontSize: 20.2,
-        fontWeight: "400",
-       
-    },
-    transReview: {
-        color:'red',
-        alignSelf: 'center',
-        fontSize: 20.2,
-        fontWeight: "600",
-    },
+   
     assetLabel: {
         color: 'white',
         alignSelf: 'center',

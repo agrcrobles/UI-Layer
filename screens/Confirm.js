@@ -65,36 +65,32 @@ class Confirm extends Component {
         <View key={idx} style={styles.field}>
           <Text style={styles.label}>{name}</Text>
           <Text style={styles.input}>{this.props.newProps[name]}</Text>
-        
+
         </View>
       )
     });
 
     return (
       <View style={styles.containerCenter}>
+        <ScrollView contentContainerStyle={styles.scrollView}>
+          <View style={styles.assetFieldHeader}>
+            <Image style={styles.assetButton} source={{ uri: logo }} />
+            <Text style={styles.assetLabel}>{this.props.name}</Text>
+            <Image style={styles.assetLocation} source={locationImage} />
+          </View>
 
-       <View style={styles.assetFieldHeader}>
-                    <Image style={styles.assetButton} source={{ uri: logo }} />
-                    <Text style={styles.assetLabel}>{this.props.name}</Text>
-                    <Image style={styles.assetLocation} source={locationImage} />
-                </View>
 
 
-        <View style={styles.inputMenu}>
 
           {list}
-        </View>
-
-        {/* <Text>{this.props.selectedAsset.csv[0]}</Text>
-            <Text>{this.props.selectedAsset.Images[0]}</Text> */}
 
 
-        <Submit onPress={() => navigate('Splash3')} />
-        <View style={styles.assetFee}>
-          <Image style={styles.assetFeeLabel} source={fee} />
-          <Text style={styles.teePrice}>{price}</Text>
-        </View>
-
+          <Submit onPress={() => navigate('Splash3')} />
+          <View style={styles.assetFee}>
+            <Image style={styles.assetFeeLabel} source={fee} />
+            <Text style={styles.teePrice}>{price}</Text>
+          </View>
+        </ScrollView>
       </View>
 
 
@@ -106,7 +102,7 @@ class Confirm extends Component {
 
 
 const mapStateToProps = (state) => ({
-  newProps: state.AssetReducers.newProps,
+  newProps: state.AssetReducers.transInfo.newProps,
   location: state.AssetReducers.transInfo.location,
   logo: state.AssetReducers.selectedAsset.Logo,
   name: state.AssetReducers.transInfo.name
