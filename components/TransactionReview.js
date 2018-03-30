@@ -52,7 +52,7 @@ class TransRev extends Component {
 
 const mapStateToProps = (state) => ({
     transInfo: state.AssetReducers.transInfo,
-    AssetReducers: state.AssetReducers
+    AssetReducers: state.AssetReducers //I think the "newprops" is in State not transINfo
 })
 const mapDispatchToProps = (dispatch) => ({
     sendTrans: (transInfo) => dipatch(sendTrans(transInfo))
