@@ -59,6 +59,15 @@ export function startTrans(txBase) {
     )
 }
 
+export function sendTrans() {
+    return (
+        console.log(trans, "inside set Location action"),
+        {
+            type: SEND_TRANS,
+         }
+    )
+}
+
 export function addProps(newProps) {
     return {
         type: ADD_PROPS,

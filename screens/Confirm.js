@@ -102,7 +102,7 @@ class Confirm extends Component {
 
 
 const mapStateToProps = (state) => ({
-  newProps: state.AssetReducers.transInfo.newProps,
+  newProps: state.AssetReducers.transDat.properties,
   location: state.AssetReducers.transInfo.location,
   logo: state.AssetReducers.selectedAsset.Logo,
   name: state.AssetReducers.transInfo.name

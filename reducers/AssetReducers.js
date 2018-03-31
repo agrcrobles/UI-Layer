@@ -1,4 +1,16 @@
-import { LIST_ASSETS, ADD_ASSET, SELECT_ASSET, START_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET } from '../actions/types';
+import {
+    LIST_ASSETS,
+    ADD_ASSET,
+    SELECT_ASSET,
+    START_TRANS,
+    SEND_TRANS,
+    ADD_PHOTO,
+    ADD_DOC,
+    ADD_PROPS,
+    INC_HERC_ID,
+    GET_HERC_ID,
+    CONFIRM_ASSET
+} from '../actions/types';
 import ApiKeys from '../constants/apiKeys';
 import * as firebase from 'firebase';
 
@@ -10,19 +22,9 @@ const rootRef = firebase.database().ref();
 const INITIAL_STATE = {
     hercId: "003",
     assets: [],
-
-    // leave this until the tx bundle is set
-    // newAsset: {
-    //     Name: "",
-    //     coreProps:{},
-    //     Logo: ""
-    // }
-
 };
 
-// key: obj.key,
-// name: obj.toJSON().Name,
-// logo: obj.toJSON().Logo
+
 const AssetReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case LIST_ASSETS:
@@ -37,7 +39,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                         key: obj.key,
                         Logo: obj.toJSON().Logo
                     });
-                    
+
                 })
 
             })
@@ -48,13 +50,13 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
         case SELECT_ASSET:
             let assetKey = action.data;
             let assetRef = rootRef.child(assetKey);
-         
+
             let selectedAsset = {};
             assetRef.on('value', (snapshot) => {
                 selectedAsset = snapshot.val();
 
             })
-           
+
             return Object.assign({}, state, {
                 ...state,
 
@@ -70,7 +72,32 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
                 ...state,
 
-                transInfo
+                transInfo,
+                transDat: {}
+
+            }
+
+            )
+
+        case SEND_TRANS:
+            let transDat = action.data;
+            console.log(state.AssetReducers.transInfo.name, "trans in send_trans reducer")
+            rootRef.ref('transactions')
+            [trans.name] = {
+                    location: trans.location,
+                    date: trans.dTime,
+
+
+                }
+            return Object.assign({}, state, {
+
+                ...state,
+
+                transInfo: {
+                    ...state.transInfo,
+                    trans
+
+                }
 
             }
 
@@ -91,9 +118,10 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             let images = [image];
             return Object.assign({}, state, {
                 ...state,
-                transInfo: {
-                    ...state.transInfo,
-                    image
+                transDat: {
+                    ...transDat,
+                    images: [...images, image]
+
                 }
             }
 
@@ -102,9 +130,11 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             let doc = action.data;
             console.log('adding doc', doc);
             return Object.assign({}, state, {
-                ...state.selectedAsset,
-                csv: [action.data.docUri]
-
+                ...state,
+                transDat: {
+                    ...state.transDat,
+                    documents: [...documents, action.data.docUri]
+                }
             })
 
         case ADD_PROPS:
@@ -114,9 +144,9 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
                 ...state,
 
-                transInfo: {
-                    ...state.transInfo,
-                    newProps
+                transDat: {
+                    ...state.transDat,
+                    properties: newProps
                 }
             }
 
