@@ -5,7 +5,7 @@ import styles from '../assets/styles';
 import originator from "../assets/origin.png";
 import recipient from "../assets/recipient.png";
 import submit from "../assets/submitButton.png";
-
+import {sendTrans} from "../actions/AssetActions";
 
 class TransRev extends Component {
     constructor(props) {
@@ -13,10 +13,22 @@ class TransRev extends Component {
     }
     componentDidMount() {
     }
+
+
     render() {
         let transInfo = this.props.transInfo;
+        console.log(transInfo, 'pre objass');
         let transDat = this.props.transDat;
-        console.log(transInfo, 'transinfo in transreviewrender', transDat, 'transdata')
+        let finTransDat = Object.assign({}, transInfo,
+            
+            {
+                
+                ...transDat,
+            }
+
+            
+        )
+        console.log(finTransDat, 'transinfo in transreviewrender', transDat, 'transdata')
         let list;
         let locationImage = this.props.transInfo.location === 'recipient' ? recipient : originator;
         let dTime = new Date().toString();
@@ -55,7 +67,7 @@ class TransRev extends Component {
                 <View style={{ flex: 1, backgroundColor: 'blue' }}>
                     {list}
                 </View>
-                <TouchableHighlight onPress={this.props.sendTrans}>
+                <TouchableHighlight onPress={() =>this.props.sendTrans(finTransDat)}>
                     <Image source={submit} style={styles.assetLocation} />
                 </TouchableHighlight>
             </View>
@@ -69,7 +81,7 @@ const mapStateToProps = (state) => ({
     transDat: state.AssetReducers.transDat
 })
 const mapDispatchToProps = (dispatch) => ({
-    sendTrans: (transDat) => dipatch(sendTrans(transDat))
+    sendTrans: (trans) => dispatch(sendTrans(trans))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TransRev);

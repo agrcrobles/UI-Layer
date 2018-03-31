@@ -80,22 +80,22 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             )
 
         case SEND_TRANS:
-            let transDat = action.data;
-            console.log(state.AssetReducers.transInfo.name, "trans in send_trans reducer")
-            rootRef.ref('transactions')
-            [trans.name] = {
-                    location: trans.location,
-                    date: trans.dTime,
+            let finTransDat = action.data;
+            // console.log(rootRef.ref(state.AssetReducers.transInfo.name));
+            console.log(state.AssetReducers, "trans in send_trans reducer");
+            console.log(finTransDat, 'fintrans in sendtrans redux')
+            //    console.log([name], 'potential new txobject')
 
+            // rootRef.ref('transactions').push([name]);
+            // rootRef.ref()
 
-                }
             return Object.assign({}, state, {
 
                 ...state,
 
-                transInfo: {
-                    ...state.transInfo,
-                    trans
+                transactions: {
+                    ...state.transactions,
+                    finTransDat
 
                 }
 
@@ -133,7 +133,10 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                 ...state,
                 transDat: {
                     ...state.transDat,
-                    documents: [...documents, action.data.docUri]
+                    documents: {
+                        ...state.transDat.documents,
+                        doc
+                    }
                 }
             })
 

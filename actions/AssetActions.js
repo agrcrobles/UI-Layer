@@ -1,4 +1,4 @@
-import { ADD_ASSET, LIST_ASSETS, SELECT_ASSET, START_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET } from './types';
+import { ADD_ASSET, LIST_ASSETS, SELECT_ASSET, START_TRANS, SEND_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET } from './types';
 // import assets from '../reducers/assetListReducer';
 
 export function incHercId() {
@@ -59,11 +59,12 @@ export function startTrans(txBase) {
     )
 }
 
-export function sendTrans() {
+export function sendTrans(trans) {
     return (
         console.log(trans, "inside set Location action"),
         {
             type: SEND_TRANS,
+            data: trans
          }
     )
 }

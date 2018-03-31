@@ -21,7 +21,8 @@ class DocUp extends Component {
   state = {
     document: {
       name: null,
-      uri: null
+      uri: null,
+      size: null
     }
   };
 
@@ -52,7 +53,8 @@ class DocUp extends Component {
       this.setState({
         document: {
           name: docResult.name,
-          uri: docResult.uri
+          uri: docResult.uri,
+          size: docResult.size
         }
       });
     }
@@ -82,7 +84,7 @@ class DocUp extends Component {
 
           style={styles.picButton}
 
-          onPress={() => this._pickImage()}>
+          onPress={() => this._pickDocument()}>
           Upload Document
       </Button>
         <Text style={styles.label}>
