@@ -32,7 +32,7 @@ class TransRev extends Component {
         let list;
         let locationImage = this.props.transInfo.location === 'recipient' ? recipient : originator;
         let dTime = new Date().toString();
-        let image = transInfo.image || null;
+        let image = transDat.images[0] || null;
 
         console.log((transDat.hasOwnProperty('properties')));
 

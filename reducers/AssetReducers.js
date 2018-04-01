@@ -60,7 +60,10 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             return Object.assign({}, state, {
                 ...state,
 
-                selectedAsset
+                selectedAsset: {
+                    ...selectedAsset,
+                    assetKey
+                }
             })
 
         // this used to be  SET_PLACE
@@ -73,7 +76,12 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                 ...state,
 
                 transInfo,
-                transDat: {}
+                transDat: {
+                    assetKey: state.selectedAsset.assetKey,
+                    images:[],
+                    documents: [],
+                    properties:{}
+                }
 
             }
 
@@ -81,12 +89,21 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
         case SEND_TRANS:
             let finTransDat = action.data;
-            // console.log(rootRef.ref(state.AssetReducers.transInfo.name));
-            console.log(state.AssetReducers, "trans in send_trans reducer");
+            let  finTransInfo = state.transInfo;
+            let transDat = state.transDat;
+            //  console.log(rootRef.ref(state.AssetReducers.transInfo.name.val()));
+            console.log(state.transDat, "trans in send_trans reducer");
             console.log(finTransDat, 'fintrans in sendtrans redux')
             //    console.log([name], 'potential new txobject')
+             rootRef.child(state.transDat.assetKey).child('transactions').push({
+                 dateTime: state.transInfo.dTime,
+                 location: finTransInfo.location,
+                 data: {
+                     transDat
+                 }
 
-            // rootRef.ref('transactions').push([name]);
+             })   
+             rootRef.child('transactions').push(finTransDat);
             // rootRef.ref()
 
             return Object.assign({}, state, {
@@ -115,12 +132,12 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
         case ADD_PHOTO:
             let image = action.data;
             console.log('adding photo');
-            let images = [image];
+            
             return Object.assign({}, state, {
                 ...state,
                 transDat: {
-                    ...transDat,
-                    images: [...images, image]
+                    ...state.transDat,
+                    images: [...state.transDat.images, image]
 
                 }
             }

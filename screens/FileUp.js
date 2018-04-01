@@ -77,7 +77,7 @@ class FileUp extends Component {
     let { image } = this.state;
     let transInfo = this.props.transInfo;
     let locationImage = this.props.transInfo.location === 'recipient' ? recipient : originator;
-    let logo = this.props.transInfo.logo;
+    let logo = this.props.logo;
 
     return (
       <View style={styles.containerCenter}>
@@ -129,6 +129,7 @@ class FileUp extends Component {
 
 const mapStateToProps = (state) => ({
   transInfo: state.AssetReducers.transInfo,
+  logo: state.AssetReducers.selectedAsset.Logo
 
 });
 const mapDispatchToProps = (dispatch) => ({

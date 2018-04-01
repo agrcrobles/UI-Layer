@@ -11,7 +11,7 @@ import recipient from "../assets/recipient.png";
 import documents from "../assets/docs.png";
 import camera from "../assets/camera.png";
 import styles from "../assets/styles";
-import manual from "../assets/manual.png";
+import metrics from "../assets/metrics.png";
 import EDIT from "../assets/EdiT-Sets.png";
 import { connect } from "react-redux";
 import TransRev from "../components/TransactionReview";
@@ -72,7 +72,7 @@ class Splash3 extends Component {
                     <TouchableHighlight onPress={() => navigate('InputMan')}>
                         <Image
                             style={styles.menuInputTitle}
-                            source={manual}
+                            source={metrics}
                         />
                     </TouchableHighlight>
 
