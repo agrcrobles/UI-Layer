@@ -150,7 +150,8 @@ module.exports = StyleSheet.create({
         // marginTop: 5,
         // marginBottom: 5,
         alignItems: "center",
-        paddingLeft: 5
+        paddingLeft: 5,
+        marginBottom: 5
     },
     revPropField: {
         height: 23,

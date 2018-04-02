@@ -29,29 +29,11 @@ class NewAssetConfirm extends Component {
     }
 
     componentDidMount() {
-        // console.log(this.props)
-        // price = data.pricePerHercForFCT
-        // let price = this.getPrice();
-        // fetch('https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON').then(data => console.log(data.json()) ); 
-        // console.log(price, 'price')
+   
     
     }
 
-    // async getPricesFromApi() {
-    //     try {
-    //         let response = await fetch(
-    //             'https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON'
-    //         );
-    //         let responseJson = await response.json();
-    //         let fctPrice = responseJson.list["0"].pricePerHercForFCT; // this is what I'm going with for now  
-    //         console.log(fctPrice, 'newthing');
-    //         this.setState({ fctPrice });
-
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
-
+   
     _onPressSubmit(CoreProps) {
         const { navigate } = this.props.navigation;
         // let asset = Object.values(this.props.newAsset.coreProps);
@@ -103,17 +85,17 @@ class NewAssetConfirm extends Component {
         return (
 
             <View style={styles.containerCenter}>
-                <View style={styles.assetField}>
+                <ScrollView contentContainerStyle={styles.scrollView}>
+                <View style={styles.assetFieldHeader}>
 
                     <Image style={styles.assetButton} source={{ uri: Logo }} />
                     <Text style={styles.label}>{Name}</Text>
                 </View>
 
-                <ScrollView contentContainerStyle={{ alignSelf: 'center', width: '90%' }}>
 
-                    <View style={styles.inputMenu}>
+                   
                         {list}
-                    </View>
+                   
 
                 </ScrollView>
 
