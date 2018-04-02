@@ -11,13 +11,14 @@ class BackButton extends Component {
   render() {
     console.log(this.props, 'inbackbutton')
     const { navigate } = this.props.navigation;
+    let mB = 60 || this.props.marginBottom;
     return (
       <TouchableHighlight
         onPress={() => this.props.navigation.goBack()}
       >
         <Image
           source={backArrow}
-          style={{ height: 50, width: 50, marginBottom: 60, marginLeft: 5 }}
+          style={{ height: 50, width: 50, marginBottom: mB, marginLeft: 5 }}
         />
       </TouchableHighlight>
     )

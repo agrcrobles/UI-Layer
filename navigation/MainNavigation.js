@@ -55,7 +55,7 @@ const MainNavigator = StackNavigator({
     ThankYou: { screen: ThankYou },
     FileThanks: { screen: FileThanks },
     NewAssetConfirm: { screen: NewAssetConfirm },
-   
+
     PreHipr: { screen: PreHipr }
 
 
@@ -64,12 +64,12 @@ const MainNavigator = StackNavigator({
 
     {
         initialRouteName: 'Welcome',
-        navigationOptions: ({navigation}) => ({
-            
+        navigationOptions: ({ navigation }) => ({
+
             headerTitle: <Image style={{
                 height: 100,
-                width: 254,
-                // marginLeft: 10
+                width: 240,
+                marginLeft: 15
             }}
                 source={logo} />,
 
@@ -83,14 +83,14 @@ const MainNavigator = StackNavigator({
                 textAlign: 'left',
                 textAlignVertical: 'center',
                 backgroundColor: '#021227',
-                
+
             },
-            
-            headerLeft:  <BackButton navigation={navigation} /> 
-        
+
+            headerLeft: <BackButton navigation={navigation} />
+
             // headerLeft: <BackArrowButton navigation={navigation} /> 
             // require('../assets/icon_backarrow.png') 
-            
+
             // <Image style={{ 
             //     height: 40,
             //     width: 40,
@@ -98,7 +98,7 @@ const MainNavigator = StackNavigator({
             // }}
             //     source={ backArrow }
             // />
-          
+
 
         })
     })
@@ -106,10 +106,10 @@ const MainNavigator = StackNavigator({
 export default class MainNavigation extends Component {
     componentDidMount() {
         Font.loadAsync({
-          'dinPro': require('../assets/font/DINPro-Regular_13937.ttf'),
+            'dinPro': require('../assets/font/DINPro-Regular_13937.ttf'),
         });
         console.log('fonts')
-      }
+    }
     render() {
         return (
             <MainNavigator />

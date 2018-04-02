@@ -4,12 +4,16 @@ import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
 import create from '../assets/createNewAssetButton.png';
+import supply from '../components/buttons/verifyBtn.png'
 
 import { selectAsset, listAssets } from '../actions/AssetActions';
 import backArrow from '../assets/icon_backarrow.png';
 
 
 class Splash1 extends Component {
+  static navigationOptions = {
+    headerTitle: null
+  }
   constructor(props) {
     super(props);
 
@@ -22,15 +26,15 @@ class Splash1 extends Component {
     
    
   }
-  _onPress = (index) => {
+  _onPress = (asset) => {
     const { navigate } = this.props.navigation;
 
     // let asset = this.props.assets[index]; //cleaner way or better way to do this
 
-    this.props.selectAsset(index);
+    this.props.selectAsset(asset.key);
     
 
-    navigate('Splash2');
+    navigate('Splash2', {logo: asset.Logo});
   }
 
   render() {
@@ -39,20 +43,20 @@ class Splash1 extends Component {
     let list = this.props.assets.map((asset, index) => {
       return (
         <View key={index} style={styles.assetField}>
-          <TouchableHighlight onPress={() => this._onPress(asset.key)}  >
+          <TouchableHighlight style={{alignSelf: 'flex-start'}} onPress={() => this._onPress(asset)}  >
             <Image style={styles.assetButton} source={{uri:asset.Logo}} />  
           </TouchableHighlight>
           <Text style={styles.assetLabel}>{asset.name}</Text>
         </View>
       )
     });
-
+    {/* <ScrollView contentContainerStyle={styles.scrollView}> */}
+    
     return (
-
+      
       <View style={styles.container}>
-       <ScrollView contentContainerStyle={styles.scrollView}>
+      <Image source={supply} style={{height: 50, width: 250, margin: 5}} /> 
           {list}
-        </ScrollView>
         <TouchableHighlight onPress={() => navigate('Create')}>
           <Image
             style={{ resizeMode: 'contain', height: 80, width: 150 }}

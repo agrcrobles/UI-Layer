@@ -15,8 +15,8 @@ class Splash2 extends Component {
     super(props);
   }
   static navigationOptions = {
-    // headerTitle: 
-    //    <Text>{this.props.asset.Name}</Text>
+    headerTitle: 
+       null
   }
   _onPress = (place) => {
     let time = new Date();
@@ -46,9 +46,9 @@ class Splash2 extends Component {
 
     return (
       <View style={styles.containerCenter}>
-        <View style={styles.assetField}>
-          <Image style={styles.assetButton} source={{ uri: image }} />
-          <Text style={styles.assetLabel}>{this.props.asset.Name}</Text>
+        <View style={styles.assetFieldHeader}>
+          <Image style={styles.assetHeaderImage} source={{ uri: image }} />
+          <Text style={styles.assetHeaderLabel}>{this.props.asset.Name}</Text>
         </View>
         <View style={styles.smallMenu}>
           <TouchableHighlight onPress={() => this._onPress('originator')}>

@@ -4,6 +4,7 @@ import logo from "../assets/teeLabel.png";
 import params from "../assets/igvcParamsLabel.png";
 import { connect } from "react-redux";
 import styles from "../assets/styles";
+import BackButton from "../components/BackButton";
 import { addAsset } from "../actions/AssetActions";
 import { ImagePicker } from 'expo';
 import next from "../assets/nextLabel.png";
@@ -13,7 +14,7 @@ import { STATUS_BAR_HEIGHT } from '../constants';
 class Tee extends Component {
   static navigationOptions = {
     headerStyle: {
-      height: Platform.OS === 'android' ? 50 + STATUS_BAR_HEIGHT : 50,
+      height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
       backgroundColor: '#021227',
 
     },
@@ -23,8 +24,7 @@ class Tee extends Component {
       marginLeft: 30,
       resizeMode: 'contain'
     }}
-      source={logo} />,
-
+      source={logo} />
   }
 
   constructor(props) {

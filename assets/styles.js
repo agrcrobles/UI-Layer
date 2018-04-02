@@ -28,8 +28,8 @@ module.exports = StyleSheet.create({
         flex: 1,
         backgroundColor: '#021227',
         alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20
+        justifyContent: 'flex-start',
+        padding: 0
     },
     menu: {
         height: 450,
@@ -90,7 +90,8 @@ module.exports = StyleSheet.create({
         width: 120,
         fontSize: 20.2,
         fontWeight: "600",
-        paddingLeft: 5
+        paddingLeft: 5,
+        fontFamily: 'dinPro'
 
     },
     transPropLabel: {
@@ -212,35 +213,60 @@ module.exports = StyleSheet.create({
     },
 
     assetField: {
-        height: 140,
+        height: 39,
+        flexDirection: 'row',
         // backgroundColor: 'blue',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
         alignContent: 'center',
-        margin: 8,
-        marginTop: 15,
-        width: "60%"
+        margin: 17,
+        width: "50%"
     },
-    assetFieldHeader: {
-        height: 200,
-        // backgroundColor: 'blue',
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignContent: 'center',
-        margin: 8,
-        marginTop: 15,
-        width: "60%"
-    },
-
-   
     assetLabel: {
+        color: 'white',
+        alignSelf: 'center',
+        fontSize: 15.2,
+        fontWeight: "200",
+        margin: 5,
+        fontFamily: 'dinPro'
+
+    },
+    assetButton: {
+        height: 40,
+        width: 40,
+        margin: 3,
+        borderRadius: 40
+
+    },
+    assetHeaderLabel: {
         color: 'white',
         alignSelf: 'center',
         fontSize: 20.2,
         fontWeight: "600",
-        margin: 5
+        margin: 5,
+        fontFamily: 'dinPro'
 
     },
+    assetHeaderImage: {
+        height: 80,
+        width: 80,
+        margin: 5,
+        borderRadius: 40
+
+    },
+    assetFieldHeader: {
+        height: 200,
+        backgroundColor: 'blue',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        margin: 3,
+        // marginTop: 15,
+        width: "40%"
+    },
+    
+
+   
     assetMenuLabel: {
         textAlign: 'center',
         color: "white",
@@ -254,18 +280,15 @@ module.exports = StyleSheet.create({
         margin: 10
 
     },
-    assetButton: {
-        height: 100,
-        width: 100,
-        margin: 3,
-        borderRadius: 50
-
-    },
+   
     assetLocation: {
         height: 50,
-        width: 200,
+        width: 150,
         resizeMode: 'contain',
-        marginTop: 5
+        marginTop: 5,
+        alignSelf: 'center'
+        // marginRight: 10
+
     },
     assetFee: {
         height: 50,

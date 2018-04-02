@@ -15,12 +15,21 @@ import metrics from "../assets/metrics.png";
 import EDIT from "../assets/EdiT-Sets.png";
 import { connect } from "react-redux";
 import TransRev from "../components/TransactionReview";
+import BackButton from "../components/BackButton";
 
 class Splash3 extends Component {
-    static navigationOptions = {
-        header: null
 
-    }
+    static navigationOptions = (navigation) => ({
+        headerTitle: null,
+
+        headerStyle: {
+            height: Platform.OS === 'android' ? 30 + STATUS_BAR_HEIGHT : 30,
+            backgroundColor: '#021227'
+        },
+        headerLeft: <BackButton navigation={navigation} marginBottom={2} />
+
+    })
+    
     constructor(props) {
         super(props);
     }
@@ -42,13 +51,13 @@ class Splash3 extends Component {
 
         return (
             <View style={styles.containerCenter}>
-             <ScrollView contentContainerStyle={styles.scrollView}>
-                <View style={styles.assetField}>
-                    <Image style={styles.assetButton} source={{ uri: logo }} />
-                    <Text style={styles.assetLabel}>{asset.name}</Text>
-                </View>
-
+                <View style={styles.assetFieldHeader}>
+                    <Image style={styles.assetHeaderImage} source={{ uri: logo }} />
+                    <Text style={styles.assetHeaderLabel}>{asset.name}</Text>
                     <Image style={styles.assetLocation} source={locationImage} />
+                </View>
+             <ScrollView contentContainerStyle={styles.scrollView}>
+
                 <View style={styles.field}>
                     <Text style={styles.label}>HercID: {hercId}</Text>
                     {/* <TextInput style={styles.input} placeholder="ID" /> */}
