@@ -17,14 +17,13 @@ import wallet from "../components/buttons/walletBtn.png";
 import styles from "../assets/styles";
 import { connect } from 'react-redux';
 import { listAssets } from '../actions/AssetActions';
-import BackArrowButton from '../components/BackArrowButton';
+import BackButton from '../components/BackButton';
 
 
  class MenuOptions extends Component {
-  static navigationOptions = (navigation) => {
-    headerLeft: <BackArrowButton navigation={navigation} />
-
-}
+//   static navigationOptions = (navigation) => {
+   
+// }
   
   constructor(props) {
     super(props);

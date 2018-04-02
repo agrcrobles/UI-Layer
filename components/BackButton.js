@@ -4,24 +4,25 @@ import backArrow from '../assets/icon_backarrow.png';
 import { StackNavigator } from 'react-navigation';
 import styles from '../assets/styles';
 
-const BackButton = ({ navigation }) => {
-  const onPress = () => {
-  navigation.goBack();
-  console.log('gooooogg');
+class BackButton extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    console.log(this.props, 'inbackbutton')
+    const { navigate } = this.props.navigation;
+    return (
+      <TouchableHighlight
+        onPress={() => this.props.navigation.goBack()}
+      >
+        <Image
+          source={backArrow}
+          style={{ height: 50, width: 50, marginBottom: 60, marginLeft: 5 }}
+        />
+      </TouchableHighlight>
+    )
 
-  //  console.log('presssssed');
-  // }
-  return (
-    <TouchableHighlight
-      onPress={onPress}>
-      <Image
-        source={backArrow}
-        style={{ height: 50, width: 50 }}
-      />
-    </TouchableHighlight>
-  )
-
-}
+  }
 }
 export default BackButton;
 //   // _onPress = () => {

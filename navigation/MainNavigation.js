@@ -7,7 +7,7 @@ import icon from '../assets/hLogo.png';
 import logo from '../assets/logo.png';
 import backArrow from '../assets/icon_backarrow.png';
 import { Font } from 'expo';
-import BackArrowButton from '../components/BackArrowButton';
+import BackButton from '../components/BackButton';
 
 import Welcome from "../screens/Welcome";
 import Origin from "../screens/Origin";
@@ -64,7 +64,8 @@ const MainNavigator = StackNavigator({
 
     {
         initialRouteName: 'Welcome',
-        navigationOptions: {
+        navigationOptions: ({navigation}) => ({
+            
             headerTitle: <Image style={{
                 height: 100,
                 width: 254,
@@ -84,20 +85,22 @@ const MainNavigator = StackNavigator({
                 backgroundColor: '#021227',
                 
             },
-            headerBackImage: require('../assets/icon_backarrow.png') 
+            
+            headerLeft:  <BackButton navigation={navigation} /> 
+        
             // headerLeft: <BackArrowButton navigation={navigation} /> 
             // require('../assets/icon_backarrow.png') 
             
             // <Image style={{ 
-            //     height: 30,
-            //     width: 30,
-            //     // marginLeft: 10
+            //     height: 40,
+            //     width: 40,
+            //     marginBottom: 20
             // }}
             //     source={ backArrow }
             // />
           
 
-        }
+        })
     })
 
 export default class MainNavigation extends Component {
