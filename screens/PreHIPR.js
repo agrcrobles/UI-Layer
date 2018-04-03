@@ -17,9 +17,9 @@ export default class PreHIPR extends Component {
 
         },
         headerTitle: <Image style={{
-            height: 100,
-            width: 120,
-            marginLeft: 70,
+            height: 200,
+            width: 200,
+            marginLeft: 55,
             resizeMode: 'contain'
         }}
             source={hiprLogo} />,
@@ -30,30 +30,31 @@ export default class PreHIPR extends Component {
         return (
 
             <View style={styles.container}>
-                
-                <View style={{alignContent: 'center', marginTop: 50, marginBottom: 10, flexDirection: 'row', width: "70%", height: 55, justifyContent: 'space-between' }} >
-                    <TouchableHighlight onPress={() => navigate('Hipr')}>
+
+                {/* <View style={{ alignContent: 'center', marginTop: 50, marginBottom: 10, width: "50%", height: 200, justifyContent: 'center' }} > */}
+              
+                    <TouchableHighlight onPress={() => navigate('Hipr')} style={{marginTop: 50, height: 50, width: 130,}}>
                         <Image
-                            style={{ resizeMode: 'contain', height: 70, width: 130 }}
+                            style={{ height: 50, width: 130, resizeMode: 'contain' }}
                             source={begin}
                         />
                     </TouchableHighlight>
                     <TouchableHighlight >
                         <Image
-                            style={{ resizeMode: 'contain', height: 70, width: 130 }}
+                            style={{ resizeMode: 'contain', height: 50, width: 130 }}
                             source={info}
                         />
                     </TouchableHighlight>
+                    <TouchableHighlight>
+                        <Image
+                            style={{ resizeMode: 'contain', height: 50, width: 220 }}
+                            source={leaderBrd}
+                        />
+                    </TouchableHighlight>
+
                 </View>
-                <TouchableHighlight>
-                    <Image
-                        style={{ resizeMode: 'contain', height: 65, width: 260 }}
-                        source={leaderBrd}
-                    />
-                </TouchableHighlight>
 
-
-            </View>
+            // </View>
         )
 
 

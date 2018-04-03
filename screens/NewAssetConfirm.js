@@ -88,8 +88,8 @@ class NewAssetConfirm extends Component {
                 <ScrollView contentContainerStyle={styles.scrollView}>
                 <View style={styles.assetFieldHeader}>
 
-                    <Image style={styles.assetButton} source={{ uri: Logo }} />
-                    <Text style={styles.label}>{Name}</Text>
+                    <Image style={styles.assetHeaderImage} source={{ uri: Logo }} />
+                    <Text style={styles.assetHeaderlabel}>{Name}</Text>
                 </View>
 
 

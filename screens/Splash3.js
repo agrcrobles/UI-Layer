@@ -18,18 +18,37 @@ import TransRev from "../components/TransactionReview";
 import BackButton from "../components/BackButton";
 
 class Splash3 extends Component {
-
-    static navigationOptions = (navigation) => ({
-        headerTitle: null,
-
-        headerStyle: {
-            height: Platform.OS === 'android' ? 30 + STATUS_BAR_HEIGHT : 30,
-            backgroundColor: '#021227'
-        },
-        headerLeft: <BackButton navigation={navigation} marginBottom={2} />
-
-    })
+    static navigationOptions = ({ navigation }) => {
+        const { params } = navigation.state;
+        console.log(params, 'params');
+        return {
     
+          headerTitle:
+           <View style={{ height: 110, alignContent: 'center' }}>
+            <Image style={{
+              height: 80,
+              width: 80,
+              marginLeft: 102,
+              borderRadius: 120,
+              resizeMode: 'contain'
+            }}
+              source={{ uri: params.logo }} />
+            <Text style={styles.assetHeaderLabel}>{params.name}</Text>
+          </View>,
+            headerStyle: {
+              height: Platform.OS === 'android' ? 100 + STATUS_BAR_HEIGHT : 100,
+              backgroundColor: '#021227',
+    
+          },
+          headerTitleStyle: {
+              marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+              textAlign: 'center',
+              // textAlignVertical: 'center',
+              backgroundColor: '#021227',
+    
+          }
+        }
+      }
     constructor(props) {
         super(props);
     }
@@ -51,11 +70,7 @@ class Splash3 extends Component {
 
         return (
             <View style={styles.containerCenter}>
-                <View style={styles.assetFieldHeader}>
-                    <Image style={styles.assetHeaderImage} source={{ uri: logo }} />
-                    <Text style={styles.assetHeaderLabel}>{asset.name}</Text>
-                    <Image style={styles.assetLocation} source={locationImage} />
-                </View>
+                  
              <ScrollView contentContainerStyle={styles.scrollView}>
 
                 <View style={styles.field}>

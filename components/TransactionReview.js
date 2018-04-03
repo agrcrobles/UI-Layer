@@ -64,7 +64,7 @@ class TransRev extends Component {
                 <Image style={styles.assetLocation} source={locationImage} />
                 <Text style={styles.revPropVal}>{dTime}</Text>
                 <Image style={styles.thumb} source={{ uri: image }} />
-                <View style={{ flex: 1, backgroundColor: 'blue' }}>
+                <View style={{ flex: 1 }}>
                     {list}
                 </View>
                 <TouchableHighlight onPress={() =>this.props.sendTrans(finTransDat)}>

@@ -28,7 +28,7 @@ module.exports = StyleSheet.create({
         flex: 1,
         backgroundColor: '#021227',
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         padding: 0
     },
     menu: {
@@ -103,7 +103,7 @@ module.exports = StyleSheet.create({
         fontSize: 14,
     },
     transReview: {
-        color: 'red',
+        color: '#f3c736',
         alignSelf: 'center',
         fontSize: 20.2,
         fontWeight: "600",
@@ -111,7 +111,7 @@ module.exports = StyleSheet.create({
     transRevName: {
         fontFamily: 'dinPro',
         fontSize: 20,
-        color: 'blue',
+        color: 'white',
         margin: 5
 
     },
@@ -119,7 +119,7 @@ module.exports = StyleSheet.create({
     revPropVal: {
         fontFamily: 'dinPro',
         fontSize: 13,
-        color: 'yellow',
+        color: '#f3c736',
         margin: 5,
         textAlign: 'right'
     },
@@ -243,26 +243,26 @@ module.exports = StyleSheet.create({
         alignSelf: 'center',
         fontSize: 20.2,
         fontWeight: "600",
-        margin: 5,
+        marginLeft: '30%',
         fontFamily: 'dinPro'
 
     },
     assetHeaderImage: {
-        height: 80,
-        width: 80,
+        height: 100,
+        width: 100,
         margin: 5,
-        borderRadius: 40
+        borderRadius: 50
 
     },
     assetFieldHeader: {
         height: 200,
-        backgroundColor: 'blue',
+        // backgroundColor: 'blue',
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',
         margin: 3,
         // marginTop: 15,
-        width: "40%"
+        // width: "40%"
     },
     
 

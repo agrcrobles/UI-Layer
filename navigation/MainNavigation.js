@@ -74,13 +74,13 @@ const MainNavigator = StackNavigator({
                 source={logo} />,
 
             headerStyle: {
-                height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
+                height: Platform.OS === 'android' ? 100 + STATUS_BAR_HEIGHT : 100,
                 backgroundColor: '#021227',
 
             },
             headerTitleStyle: {
                 marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
-                textAlign: 'left',
+                textAlign: 'center',
                 textAlignVertical: 'center',
                 backgroundColor: '#021227',
 

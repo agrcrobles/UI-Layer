@@ -12,10 +12,10 @@ import BackButton from '../components/BackButton';
 
 class InputMan extends Component {
     
-    // static navigationOptions = {
-    //     headerLeft: <BackButton onPress={(navigation) => navigation.navigat.goBack()} />
+    static navigationOptions = {
+        headerTitle:null
 
-    // }
+    }
     constructor(props) {
         super(props);
         this.state = {};
@@ -56,9 +56,9 @@ class InputMan extends Component {
             <View style={styles.containerCenter}>
                   <ScrollView contentContainerStyle={styles.scrollView}>
 
-                <View style={styles.assetField}>
-                    <Image style={styles.assetButton} source={{ uri: logo }} />
-                    <Text style={styles.assetLabel}>{this.props.name}</Text>
+                <View style={styles.assetFieldHeader}>
+                    <Image style={styles.assetHeaderImage} source={{ uri: logo }} />
+                    <Text style={styles.assetHeaderLabel}>{this.props.name}</Text>
                 </View>
                 <Image style={styles.assetLocation} source={locationImage} />
 
