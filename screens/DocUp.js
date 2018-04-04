@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert } from 'react-native';
+import {Platform, StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert } from 'react-native';
 import Button from 'react-native-button';
-import TouchableHeader from '../components/TouchableHeader';
-// import Welcome from '../components/Welcome';
 import { StackNavigator } from 'react-navigation';
+import { STATUS_BAR_HEIGHT } from '../constants';
+
 import Title from '../components/MenuInputTitle';
 import pictures from '../assets/picturesLabel.png';
 import document from '../assets/docs.png';
@@ -17,7 +17,40 @@ import { addDoc } from '../actions/AssetActions';
 
 class DocUp extends Component {
 
-  static navigationOptions = { header: null };
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state;
+
+    return {
+
+      headerTitle:
+        <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
+          <Image style={{
+            height: 80,
+            width: 80,
+            alignSelf: 'center',
+            borderRadius: 120,
+            resizeMode: 'contain'
+          }}
+            source={{ uri: params.logo }} />
+          <Text style={styles.assetHeaderLabel}>{params.name}</Text>
+        </View>,
+
+      headerStyle: {
+        height: Platform.OS === 'android' ? 100 + STATUS_BAR_HEIGHT : 100,
+        backgroundColor: '#021227',
+
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        textAlign: 'center',
+        alignSelf: 'center',
+        // textAlignVertical: 'center',
+        backgroundColor: '#021227',
+
+      },
+      headerRight: <View></View>
+    }
+  }
   state = {
     document: {
       name: null,
@@ -29,10 +62,16 @@ class DocUp extends Component {
   _onSubmit = () => {
     let uri = this.state.document.uri;
     let docName = this.state.document.name;
+    let docSize = this.state.document.size;
     const { navigate } = this.props.navigation;
-
-    console.log(uri, docName, "onsubmitcsv")
-    this.props.addDoc(uri, docName);
+    [docName] = Object.assign({}, this.state, {
+      uri,
+      size: docSize,
+      name: docName
+    }
+  ) 
+    console.log([docName], "onsubmitcsv")
+    this.props.addDoc([docName]);
     console.log(this.props.selectedAsset, "selectedAsset in onsubmitCSV")
     navigate('Splash3');
   };
@@ -70,16 +109,10 @@ class DocUp extends Component {
     let hercId = this.props.hercId;
 
     return (
-      <View style={styles.containerCenter}>
-        <View style={styles.assetField}>
-          <Image style={styles.assetButton} source={{ uri: logo }} />
-          <Text style={styles.assetLabel}>{asset.name}</Text>
-        </View>
+      <View style={styles.container}>
+      
           <Image style={styles.assetLocation} source={locationImage} />
 
-        {/* <Image source={document} style={styles.menuInputTitle} /> */}
-
-        {/* <View style={styles.imageContainer}> */}
         <Button
 
           style={styles.picButton}

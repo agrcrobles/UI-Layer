@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight } from 'react-native';
+import { Platform, StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight } from 'react-native';
+import { STATUS_BAR_HEIGHT } from '../constants';
 import Next from "../components/NextBtn";
 import styles from "../assets/styles";
 import originator from "../assets/origin.png";
@@ -12,10 +13,40 @@ import BackButton from '../components/BackButton';
 
 class InputMan extends Component {
     
-    static navigationOptions = {
-        headerTitle:null
-
-    }
+    static navigationOptions = ({ navigation }) => {
+        const { params } = navigation.state;
+    
+        return {
+    
+          headerTitle:
+            <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
+              <Image style={{
+                height: 80,
+                width: 80,
+                alignSelf: 'center',
+                borderRadius: 120,
+                resizeMode: 'contain'
+              }}
+                source={{ uri: params.logo }} />
+              <Text style={styles.assetHeaderLabel}>{params.name}</Text>
+            </View>,
+    
+          headerStyle: {
+            height: Platform.OS === 'android' ? 100 + STATUS_BAR_HEIGHT : 100,
+            backgroundColor: '#021227',
+    
+          },
+          headerTitleStyle: {
+            marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+            textAlign: 'center',
+            alignSelf: 'center',
+            // textAlignVertical: 'center',
+            backgroundColor: '#021227',
+    
+          },
+          headerRight: <View></View>
+        }
+      }
     constructor(props) {
         super(props);
         this.state = {};
@@ -53,14 +84,11 @@ class InputMan extends Component {
         })
 
         return (
-            <View style={styles.containerCenter}>
+            <View style={styles.container}>
                   <ScrollView contentContainerStyle={styles.scrollView}>
 
-                <View style={styles.assetFieldHeader}>
-                    <Image style={styles.assetHeaderImage} source={{ uri: logo }} />
-                    <Text style={styles.assetHeaderLabel}>{this.props.name}</Text>
-                </View>
-                <Image style={styles.assetLocation} source={locationImage} />
+               
+                <Image style={styles.assetLocationNoTopMargin} source={locationImage} />
 
 
                     {list}

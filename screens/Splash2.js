@@ -14,15 +14,15 @@ import recipient from "../assets/recipient.png";
 class Splash2 extends Component {
   static navigationOptions = ({ navigation }) => {
     const { params } = navigation.state;
-    console.log(params, 'params');
+   
     return {
 
       headerTitle:
-        <View>
+        <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
           <Image style={{
             height: 80,
             width: 80,
-            marginLeft: '30%',
+            alignSelf: 'center',
             borderRadius: 120,
             resizeMode: 'contain'
           }}
@@ -31,17 +31,19 @@ class Splash2 extends Component {
         </View>,
 
       headerStyle: {
-        height: Platform.OS === 'android' ? 120 + STATUS_BAR_HEIGHT : 120,
+        height: Platform.OS === 'android' ? 100 + STATUS_BAR_HEIGHT : 100,
         backgroundColor: '#021227',
 
       },
       headerTitleStyle: {
         marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         textAlign: 'center',
+        alignSelf: 'center',
         // textAlignVertical: 'center',
         backgroundColor: '#021227',
 
-      }
+      },
+      headerRight: <View></View>
     }
   }
   constructor(props) {
@@ -80,7 +82,8 @@ class Splash2 extends Component {
           <Text style={styles.assetHeaderLabel}>{this.props.asset.Name}</Text>
         </View>
         <View style={styles.smallMenu}> */}
-        <TouchableHighlight onPress={() => this._onPress('originator')}>
+        <TouchableHighlight
+          style={{ marginTop: 50 }} onPress={() => this._onPress('originator')}>
           <Image
             style={styles.menuInputTitle}
             source={originator}

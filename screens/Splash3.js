@@ -20,35 +20,38 @@ import BackButton from "../components/BackButton";
 class Splash3 extends Component {
     static navigationOptions = ({ navigation }) => {
         const { params } = navigation.state;
-        console.log(params, 'params');
+        
         return {
-    
-          headerTitle:
-           <View style={{ height: 110, alignContent: 'center' }}>
-            <Image style={{
-              height: 80,
-              width: 80,
-              marginLeft: 102,
-              borderRadius: 120,
-              resizeMode: 'contain'
-            }}
-              source={{ uri: params.logo }} />
-            <Text style={styles.assetHeaderLabel}>{params.name}</Text>
-          </View>,
+
+            headerTitle:
+                <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
+                    <Image style={{
+                        height: 80,
+                        width: 80,
+                        alignSelf: 'center',
+                        borderRadius: 120,
+                        resizeMode: 'contain'
+                    }}
+                        source={{ uri: params.logo }} />
+                    <Text style={styles.assetHeaderLabel}>{params.name}</Text>
+                </View>,
+
             headerStyle: {
-              height: Platform.OS === 'android' ? 100 + STATUS_BAR_HEIGHT : 100,
-              backgroundColor: '#021227',
-    
-          },
-          headerTitleStyle: {
-              marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
-              textAlign: 'center',
-              // textAlignVertical: 'center',
-              backgroundColor: '#021227',
-    
-          }
+                height: Platform.OS === 'android' ? 100 + STATUS_BAR_HEIGHT : 100,
+                backgroundColor: '#021227',
+
+            },
+            headerTitleStyle: {
+                marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+                textAlign: 'center',
+                alignSelf: 'center',
+                // textAlignVertical: 'center',
+                backgroundColor: '#021227',
+
+            },
+            headerRight: <View></View>
         }
-      }
+    }
     constructor(props) {
         super(props);
     }
@@ -66,49 +69,46 @@ class Splash3 extends Component {
         let asset = this.props.transInfo;
         let hercId = this.props.hercId;
         console.log(asset, 'splash3 this.props.transinfo');
-        
+
 
         return (
-            <View style={styles.containerCenter}>
-                  
-             <ScrollView contentContainerStyle={styles.scrollView}>
+            <View style={styles.container}>
 
-                <View style={styles.field}>
-                    <Text style={styles.label}>HercID: {hercId}</Text>
-                    {/* <TextInput style={styles.input} placeholder="ID" /> */}
-                </View>
-                <View style={styles.spaceAroundContainer}>
-                    <TouchableHighlight onPress={() => navigate('FileUp')}>
-                        <Image
-                            style={styles.menuInputTitle}
-                            source={camera}
-                        />
+                <ScrollView contentContainerStyle={styles.scrollView}>
 
-                    </TouchableHighlight>
-                    <Image source={{uri: logo}} />
-                    <TouchableHighlight onPress={() => navigate('DocUp')}>
-                        <Image
-                            style={styles.menuInputTitle}
-                            source={documents}
-                        />
-                    </TouchableHighlight>
 
-                    <TouchableHighlight onPress={() => navigate('InputMan')}>
-                        <Image
-                            style={styles.menuInputTitle}
-                            source={metrics}
-                        />
-                    </TouchableHighlight>
+                    <View style={styles.spaceAroundContainer}>
+                        <TouchableHighlight onPress={() => navigate('FileUp', { logo: logo, name: asset.name })}>
+                            <Image
+                                style={styles.menuInputTitle}
+                                source={camera}
+                            />
 
-                <TouchableHighlight>
-                    <Image
-                        style={styles.menuInputTitle}
-                        source={EDIT}
-                    />
-                </TouchableHighlight>
-                </View>
+                        </TouchableHighlight>
+                        <Image source={{ uri: logo }} />
+                        <TouchableHighlight onPress={() => navigate('DocUp', { logo: logo, name: asset.name })}>
+                            <Image
+                                style={styles.menuInputTitle}
+                                source={documents}
+                            />
+                        </TouchableHighlight>
 
-                <TransRev />
+                        <TouchableHighlight onPress={() => navigate('InputMan', { logo: logo, name: asset.name })}>
+                            <Image
+                                style={styles.menuInputTitle}
+                                source={metrics}
+                            />
+                        </TouchableHighlight>
+
+                        <TouchableHighlight>
+                            <Image
+                                style={styles.menuInputTitle}
+                                source={EDIT}
+                            />
+                        </TouchableHighlight>
+                    </View>
+
+                    <TransRev />
                 </ScrollView>
             </View>
 
@@ -120,7 +120,7 @@ class Splash3 extends Component {
 const mapStateToProps = (state) => ({
     logo: state.AssetReducers.selectedAsset.Logo,
     transInfo: state.AssetReducers.transInfo,
-    hercId: state.AssetReducers.hercId
+    hercId: state.AssetReducers.transDat.hercId
 
 });
 export default connect(mapStateToProps)(Splash3);

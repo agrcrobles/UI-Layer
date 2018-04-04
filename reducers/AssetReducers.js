@@ -77,6 +77,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
                 transInfo,
                 transDat: {
+                    hercID: state.selectedAsset.hercID,
                     assetKey: state.selectedAsset.assetKey,
                     images:[],
                     documents: [],

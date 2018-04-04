@@ -61,6 +61,7 @@ class TransRev extends Component {
 
                 {/* <Image style={styles.assetLocation} source={locationImage} /> */}
                 <Text style={styles.transRevName}>{transInfo.name}</Text>
+                <Text style={styles.transRevName}>HercID: {transDat.hercID}</Text>
                 <Image style={styles.assetLocation} source={locationImage} />
                 <Text style={styles.revPropVal}>{dTime}</Text>
                 <Image style={styles.thumb} source={{ uri: image }} />

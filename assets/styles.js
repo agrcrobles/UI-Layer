@@ -107,6 +107,7 @@ module.exports = StyleSheet.create({
         alignSelf: 'center',
         fontSize: 20.2,
         fontWeight: "600",
+        fontFamily: 'dinPro',
     },
     transRevName: {
         fontFamily: 'dinPro',
@@ -166,7 +167,7 @@ module.exports = StyleSheet.create({
     picker: {
         height: 100,
         width: '80%',
-        margin: 8,
+        marginTop: 50,
         alignSelf: 'center',
         // flexDirection: "row",
         justifyContent: "center",
@@ -241,9 +242,9 @@ module.exports = StyleSheet.create({
     assetHeaderLabel: {
         color: 'white',
         alignSelf: 'center',
-        fontSize: 20.2,
+        fontSize: 20,
         fontWeight: "600",
-        marginLeft: '30%',
+        // marginLeft: '30%',
         fontFamily: 'dinPro'
 
     },
@@ -285,7 +286,16 @@ module.exports = StyleSheet.create({
         height: 50,
         width: 150,
         resizeMode: 'contain',
-        marginTop: 5,
+        marginTop: 50,
+        alignSelf: 'center'
+        // marginRight: 10
+
+    },
+    assetLocationNoTopMargin: {
+        height: 50,
+        width: 150,
+        resizeMode: 'contain',
+        // marginTop: 50,
         alignSelf: 'center'
         // marginRight: 10
 
@@ -347,7 +357,8 @@ module.exports = StyleSheet.create({
         alignItems: 'center',
         alignContent: 'center',
         alignSelf: 'center',
-        width: '90%'
+        width: '90%',
+        // marginTop: 50
     },
     thumb: {
         height: 150,

@@ -14,11 +14,12 @@ class BackButton extends Component {
     // let mB = 60 || this.props.marginBottom;
     return (
       <TouchableHighlight
+        style={{ alignSelf: 'flex-start', padding: 5 }}
         onPress={() => this.props.navigation.goBack()}
       >
         <Image
           source={backArrow}
-          style={{ height: 30, width: 30, marginBottom: 60 }}
+          style={{ height: 20, width: 20, alignSelf: 'flex-start' }}
         />
       </TouchableHighlight>
     )
