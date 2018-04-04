@@ -165,7 +165,8 @@ module.exports = StyleSheet.create({
         backgroundColor: 'green'
     },
     picker: {
-        height: 100,
+       height: 175,
+       backgroundColor: '#021227',
         width: '80%',
         marginTop: 50,
         alignSelf: 'center',
@@ -236,7 +237,7 @@ module.exports = StyleSheet.create({
         height: 40,
         width: 40,
         margin: 3,
-        borderRadius: 40
+        borderRadius: 20
 
     },
     assetHeaderLabel: {
@@ -283,7 +284,7 @@ module.exports = StyleSheet.create({
     },
    
     assetLocation: {
-        height: 50,
+        height: 30,
         width: 150,
         resizeMode: 'contain',
         marginTop: 50,
@@ -295,7 +296,7 @@ module.exports = StyleSheet.create({
         height: 50,
         width: 150,
         resizeMode: 'contain',
-        // marginTop: 50,
+        marginTop: 5,
         alignSelf: 'center'
         // marginRight: 10
 

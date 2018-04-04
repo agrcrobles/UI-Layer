@@ -59,6 +59,7 @@ class FileUp extends Component {
       base64: true,
       allowsEditing: false,
       aspect: [4, 3],
+
     });
 
     console.log(result);
@@ -67,7 +68,8 @@ class FileUp extends Component {
       console.log(result);
       this.setState({
 
-        image: "data:image/png;base64," + result.base64
+        image: "data:image/png;base64," + result.base64,
+        size: result.size
 
       });
     }
@@ -85,11 +87,11 @@ class FileUp extends Component {
     console.log(result);
 
     if (!result.cancelled) {
-      console.log(result);
+      console.log(result.size, 'this is how big');
       this.setState({
 
-        image: "data:image/png;base64," + result.base64
-
+        image: "data:image/png;base64," + result.base64,
+        size: result.size
       });
     }
   };
@@ -97,7 +99,7 @@ class FileUp extends Component {
     const { navigate } = this.props.navigation;
 
     this.props.addPhoto(imgString)
-    navigate('Splash3')
+    navigate('Splash3',{logo: this.props.logo, name: this.props.transInfo.name})
   };
 
 
@@ -111,14 +113,20 @@ class FileUp extends Component {
     return (
       <View style={styles.container} >
 
-        <Image source={locationImage} style={styles.assetLocation} />
+        <Image source={locationImage} style={[styles.assetLocation,{marginTop: 5, marginBottom: 50}]} />
 
-        <View style={styles.picker}>
+         {
+            image &&
+            <Image source={{ uri: image }} style={{ width: 200, height: 200, margin: 10 }} />
+          }
+        
+        <View style={[styles.picker,{marginTop: 0}]}>
           {/* <Button style={styles.picButton}
             title="Upload a Photo"
             onPress={this._pickImage}
           />  
           { fontSize: 20, color: 'white', borderColor:"red", backgroundColor:"#021227" } */}
+        
           <Button
 
             style={styles.picButton}
@@ -137,10 +145,7 @@ class FileUp extends Component {
 
 
 
-          {
-            image &&
-            <Image source={{ uri: image }} style={{ width: 100, height: 100 }} />
-          }
+         
 
           <Submit onPress={() => this._onSubmit(image)} />
         </View >

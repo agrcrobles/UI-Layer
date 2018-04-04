@@ -1,38 +1,43 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight, Alert, Button } from 'react-native';
+import { Platform, StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight, Alert, Button } from 'react-native';
 import Title from "../components/MenuInputTitle";
 import Submit from "../components/SubmitBtn";
 import logo from "../assets/teeLabel.png";
 import params from "../assets/igvcParamsLabel.png";
 import { StackNavigator } from 'react-navigation';
-import { ImagePicker } from 'expo';
+import { STATUS_BAR_HEIGHT } from '../constants';
 import { connect } from "react-redux";
 import styles from "../assets/styles";
 import fee from "../assets/hercFeeLabel.png";
 import { incHercId, confirmAsset } from "../actions/AssetActions"
+
 class NewAssetConfirm extends Component {
-    state = {};
     static navigationOptions = {
+        headerStyle: {
+            height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
+            backgroundColor: '#021227',
+
+        },
         headerTitle: <Image style={{
-            height: 100,
-            width: 220,
-            marginLeft: '3%',
+            height: 80,
+            width: 200,
+            marginLeft: 30,
             resizeMode: 'contain'
         }}
-            source={logo} />,
-
+            source={logo} />
     }
 
     constructor(props) {
         super(props);
     }
+    state = {};
 
     componentDidMount() {
-   
-    
+
+
     }
 
-   
+
     _onPressSubmit(CoreProps) {
         const { navigate } = this.props.navigation;
         // let asset = Object.values(this.props.newAsset.coreProps);
@@ -85,16 +90,16 @@ class NewAssetConfirm extends Component {
 
             <View style={styles.containerCenter}>
                 <ScrollView contentContainerStyle={styles.scrollView}>
-                <View style={styles.assetFieldHeader}>
+                    <View style={styles.assetFieldHeader}>
 
-                    <Image style={styles.assetHeaderImage} source={{ uri: Logo }} />
-                    <Text style={styles.assetHeaderlabel}>{Name}</Text>
-                </View>
+                        <Image style={styles.assetHeaderImage} source={{ uri: Logo }} />
+                        <Text style={styles.assetHeaderLabel}>{Name}</Text>
+                    </View>
 
 
-                   
-                        {list}
-                   
+
+                    {list}
+
 
                 </ScrollView>
 

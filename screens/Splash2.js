@@ -22,7 +22,7 @@ class Splash2 extends Component {
           <Image style={{
             height: 80,
             width: 80,
-            alignSelf: 'center',
+            // alignSelf: 'center',
             borderRadius: 120,
             resizeMode: 'contain'
           }}

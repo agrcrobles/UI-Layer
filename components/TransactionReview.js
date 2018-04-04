@@ -62,14 +62,14 @@ class TransRev extends Component {
                 {/* <Image style={styles.assetLocation} source={locationImage} /> */}
                 <Text style={styles.transRevName}>{transInfo.name}</Text>
                 <Text style={styles.transRevName}>HercID: {transDat.hercID}</Text>
-                <Image style={styles.assetLocation} source={locationImage} />
+                <Image style={styles.assetLocationNoTopMargin} source={locationImage} />
                 <Text style={styles.revPropVal}>{dTime}</Text>
                 <Image style={styles.thumb} source={{ uri: image }} />
                 <View style={{ flex: 1 }}>
                     {list}
                 </View>
                 <TouchableHighlight onPress={() =>this.props.sendTrans(finTransDat)}>
-                    <Image source={submit} style={styles.assetLocation} />
+                    <Image source={submit} style={styles.assetLocationNoTopMargin} />
                 </TouchableHighlight>
             </View>
 
