@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight, Alert, Button } from 'react-native';
 import Title from "../components/MenuInputTitle";
-import WelcomeHeader from "../components/WelcomeHeader";
 import Submit from "../components/SubmitBtn";
 import logo from "../assets/teeLabel.png";
 import params from "../assets/igvcParamsLabel.png";

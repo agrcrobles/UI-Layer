@@ -10,12 +10,10 @@ import { Font } from 'expo';
 import BackButton from '../components/BackButton';
 
 import Welcome from "../screens/Welcome";
-import Origin from "../screens/Origin";
-import Destination from "../screens/Destination";
+
 import FileUp from "../screens/FileUp";
 import DocUp from "../screens/DocUp";
 import Confirm from "../screens/Confirm";
-import ThankYou from "../screens/ThankYou";
 import Create from "../screens/Create";
 import MenuOptions from '../screens/MenuOptions';
 import InputMan from '../screens/InputMan';
@@ -24,13 +22,10 @@ import Digi from '../screens/DigiViewer';
 import Anthem from '../screens/Anthem';
 import Hipr from '../screens/Hipr';
 import BlockScan from '../screens/BlockScan';
-import Tconf from '../screens/Tconf';
-import FileThanks from '../screens/FileThanks';
 import Splash1 from '../screens/Splash1';
 import Splash2 from '../screens/Splash2';
 import Splash3 from '../screens/Splash3';
 import NewAssetConfirm from '../screens/NewAssetConfirm';
-
 import PreHipr from '../screens/PreHIPR';
 
 const MainNavigator = StackNavigator({
@@ -38,7 +33,6 @@ const MainNavigator = StackNavigator({
     MenuOptions: { screen: MenuOptions },
     Create: { screen: Create },
     Tee: { screen: Tee },
-    Tconf: { screen: Tconf },
     Digi: { screen: Digi },
     Anthem: { screen: Anthem },
     Hipr: { screen: Hipr },
@@ -47,15 +41,10 @@ const MainNavigator = StackNavigator({
     Splash2: { screen: Splash2 },
     Splash3: { screen: Splash3 },
     InputMan: { screen: InputMan },
-    Origin: { screen: Origin },
-    Destination: { screen: Destination },
     FileUp: { screen: FileUp },
     DocUp: { screen: DocUp },
     Confirm: { screen: Confirm },
-    ThankYou: { screen: ThankYou },
-    FileThanks: { screen: FileThanks },
     NewAssetConfirm: { screen: NewAssetConfirm },
-
     PreHipr: { screen: PreHipr }
 
 
