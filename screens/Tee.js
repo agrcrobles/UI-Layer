@@ -150,7 +150,7 @@ class Tee extends Component {
           </View>
 
           {Logo &&
-            <Image source={{ uri: Logo }} style={{ width: 100, height: 100, margin: 10 }} />
+            <Image source={{ uri: Logo }} style={{ width: 100, height: 100, margin: 10, alignSelf: 'center' }} />
           }
           
             <Button
