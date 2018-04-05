@@ -352,6 +352,7 @@ module.exports = StyleSheet.create({
         fontFamily: 'dinPro',
         alignItems: 'center',
         textAlignVertical: 'center',
+        alignSelf: 'center'
 
     },
     scrollView: {

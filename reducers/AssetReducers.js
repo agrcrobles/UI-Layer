@@ -29,7 +29,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case LIST_ASSETS:
             let assets = [];
-            rootRef.on('value', (snapshot) => {
+            rootRef.child('assets').on('value', (snapshot) => {
                 //    let asset = snapshot.toJSON();
                 // var size = Object.keys(asset).length;
                 //    let keys = Object.keys(obj.coreProps);//this might not work
@@ -38,7 +38,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                     assets.push({
                         name: obj.toJSON().Name,
                         key: obj.key,
-                        Logo: obj.toJSON().Logo
+                        logo: obj.toJSON().Logo
                     });
 
                 })
@@ -50,8 +50,10 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
         case SELECT_ASSET:
             let assetKey = action.data;
-            let assetRef = rootRef.child(assetKey);
-
+            let assetRef = rootRef.child('assets/'+ assetKey);
+            let jsonRef = rootRef.child('assets/' + assetKey).toJSON();
+            
+            console.log(jsonRef,'asset ref in Reducer');
             let selectedAsset = {};
             assetRef.on('value', (snapshot) => {
                 selectedAsset = snapshot.val();
@@ -189,7 +191,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
         case CONFIRM_ASSET:
             const asset = action.asset;
             console.log(asset.name, 'asset in reducerconfirm', state, 'state')
-            rootRef.child('assets/'+ asset.Name).push(asset);
+            rootRef.child('assets').push(asset);
 
             return Object.assign({}, state, {
                 ...state,

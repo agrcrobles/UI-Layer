@@ -13,7 +13,12 @@ class TransRev extends Component {
     }
     componentDidMount() {
     }
+_sendTrans(trans){
+    const { navigate } = this.props.navigation;
+    this.props.sendTrans(trans);
+    navigate('BlockScan');
 
+}
 
     render() {
         let transInfo = this.props.transInfo;
@@ -68,7 +73,7 @@ class TransRev extends Component {
                 <View style={{ flex: 1 }}>
                     {list}
                 </View>
-                <TouchableHighlight onPress={() =>this.props.sendTrans(finTransDat)}>
+                <TouchableHighlight onPress={() => this._sendTrans(finTransDat)}>
                     <Image source={submit} style={styles.assetLocationNoTopMargin} />
                 </TouchableHighlight>
             </View>

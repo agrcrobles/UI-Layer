@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { WebView } from 'react-native';
 
-export default class Hipr extends Component {
+export default class BlockScan extends Component {
   render() {
     return (
       <WebView

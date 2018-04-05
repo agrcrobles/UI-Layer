@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, Platform, View, Image, TouchableHighlight, Alert, Button } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, Platform, View, Image, TouchableHighlight, Alert} from 'react-native';
 import logo from "../assets/teeLabel.png";
 import params from "../assets/igvcParamsLabel.png";
 import { connect } from "react-redux";
 import styles from "../assets/styles";
+import Button from 'react-native-button';
 import BackButton from "../components/BackButton";
 import { addAsset } from "../actions/AssetActions";
 import { ImagePicker } from 'expo';
@@ -31,7 +32,7 @@ class Tee extends Component {
     super(props);
     this.state = {
       Name: "",
-      coreProps:{},
+      coreProps: {},
       Logo: null
     };
   }
@@ -60,15 +61,15 @@ class Tee extends Component {
     const { navigate } = this.props.navigation;
     console.log(this.state, "thisstate confimrmtee");
     let newAsset = this.state;
-  
-  
+
+
     this.props.addAsset(newAsset);
     console.log(newAsset, "newasset");
     navigate('NewAssetConfirm');
   }
   render() {
     let { Logo } = this.state;
-    
+
 
     return (
 
@@ -87,7 +88,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input1</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input1 => this.setState({ coreProps: {Input1} })}
+              onChangeText={Input1 => this.setState({ coreProps: { Input1 } })}
               placeholder="Input1"
             />
           </View>
@@ -95,7 +96,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input2</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input2 => this.setState({ coreProps:{ ...this.state.coreProps,  Input2  }})}
+              onChangeText={Input2 => this.setState({ coreProps: { ...this.state.coreProps, Input2 } })}
               placeholder="Input2"
             />
           </View>
@@ -103,7 +104,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input3</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input3 => this.setState({ coreProps: {...this.state.coreProps,  Input3 }})}
+              onChangeText={Input3 => this.setState({ coreProps: { ...this.state.coreProps, Input3 } })}
               placeholder="Input3"
             />
           </View>
@@ -111,7 +112,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input4</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input4 => this.setState({ coreProps: {...this.state.coreProps, Input4 }})}
+              onChangeText={Input4 => this.setState({ coreProps: { ...this.state.coreProps, Input4 } })}
               placeholder="Input4"
             />
           </View>
@@ -119,7 +120,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input5</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input5 => this.setState({ coreProps: {...this.state.coreProps, Input5 }})}
+              onChangeText={Input5 => this.setState({ coreProps: { ...this.state.coreProps, Input5 } })}
               placeholder="Input5"
             />
           </View>
@@ -127,7 +128,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input6</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input6 => this.setState({ coreProps: {...this.state.coreProps, Input6 }})}
+              onChangeText={Input6 => this.setState({ coreProps: { ...this.state.coreProps, Input6 } })}
               placeholder="Input5"
             />
           </View>
@@ -135,7 +136,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input7</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input7 => this.setState({ coreProps: {...this.state.coreProps, Input7 }})}
+              onChangeText={Input7 => this.setState({ coreProps: { ...this.state.coreProps, Input7 } })}
               placeholder="Input7"
             />
           </View>
@@ -143,20 +144,22 @@ class Tee extends Component {
             <Text style={styles.label}>Input8</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input8 => this.setState({ coreProps: {...this.state.coreProps, Input8 }})}
+              onChangeText={Input8 => this.setState({ coreProps: { ...this.state.coreProps, Input8 } })}
               placeholder="Input8"
             />
           </View>
 
-          <View style={styles.picker}>
+          {Logo &&
+            <Image source={{ uri: Logo }} style={{ width: 100, height: 100, margin: 10 }} />
+          }
+          
             <Button
-              title="Pick a Logo!"
-              onPress={this._pickImage}
-            />
-            {Logo &&
-              <Image source={{ uri: Logo }} style={{ width: 100, height: 100, margin: 5 }} />
-            }
-          </View>
+              // title="Upload Image"
+              style={styles.picButton}
+
+              onPress={() => this._pickImage()}>
+              Upload Image
+        </Button>
         </ScrollView>
 
         <TouchableHighlight onPress={this._onSubmit}>

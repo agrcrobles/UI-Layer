@@ -28,7 +28,7 @@ class Splash1 extends Component {
   _onPress = (asset) => {
     const { navigate } = this.props.navigation;
     this.props.selectAsset(asset.key);
-    navigate('Splash2', {logo: asset.Logo, name: asset.name});
+    navigate('Splash2', {logo: asset.logo, name: asset.name});
   }
 
   render() {
@@ -39,7 +39,7 @@ class Splash1 extends Component {
         <View key={index} style={styles.assetField}>
           <Text style={styles.assetLabel}>{asset.name}</Text>
           <TouchableHighlight style={{alignSelf: 'flex-start'}} onPress={() => this._onPress(asset)}  >
-            <Image style={styles.assetButton} source={{uri:asset.Logo}} />  
+            <Image style={styles.assetButton} source={{uri:asset.logo}} />  
           </TouchableHighlight>
         </View>
       )
@@ -74,8 +74,6 @@ const mapDispatchToProps = (dispatch) => ({
 
   selectAsset: (asset) =>
     dispatch(selectAsset(asset)),
-
-  listAssets: () => dispatch(listAssets())
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Splash1);
