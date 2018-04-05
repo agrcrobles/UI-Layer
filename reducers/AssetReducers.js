@@ -34,6 +34,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                 // var size = Object.keys(asset).length;
                 //    let keys = Object.keys(obj.coreProps);//this might not work
                 snapshot.forEach((obj) => {
+                    console.log(obj.toJSON(), 'object in listassets');
                     assets.push({
                         name: obj.toJSON().Name,
                         key: obj.key,
@@ -188,12 +189,10 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
         case CONFIRM_ASSET:
             const asset = action.asset;
             console.log(asset.name, 'asset in reducerconfirm', state, 'state')
-            rootRef.push(asset);
+            rootRef.child('assets/'+ asset.Name).push(asset);
 
             return Object.assign({}, state, {
                 ...state,
-                ...state.assets,
-
                 assets: [...assets, asset]
 
 

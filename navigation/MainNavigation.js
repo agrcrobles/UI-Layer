@@ -8,9 +8,10 @@ import logo from '../assets/logo.png';
 import backArrow from '../assets/icon_backarrow.png';
 import { Font } from 'expo';
 import BackButton from '../components/BackButton';
+import { listAssets } from '../actions/AssetActions';
+import { connect } from 'react-redux';
 
 import Welcome from "../screens/Welcome";
-
 import FileUp from "../screens/FileUp";
 import DocUp from "../screens/DocUp";
 import Confirm from "../screens/Confirm";
@@ -92,12 +93,13 @@ const MainNavigator = StackNavigator({
         })
     })
 
-export default class MainNavigation extends Component {
+ class MainNavigation extends Component {
     componentDidMount() {
         Font.loadAsync({
             'dinPro': require('../assets/font/DINPro-Regular_13937.ttf'),
         });
-        console.log('fonts')
+        console.log('fonts');
+        this.props.listAssets();
     }
     render() {
         return (
@@ -105,3 +107,10 @@ export default class MainNavigation extends Component {
         )
     }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+
+    listAssets: () => dispatch(listAssets())
+  
+  })
+  export default connect(null, mapDispatchToProps)(MainNavigation);

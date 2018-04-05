@@ -31,7 +31,7 @@ import BackButton from '../components/BackButton';
   }
   
   componentDidMount() {
-    this.props.listAssets();
+    // console.log(this.props.listAssets());
     console.log("this.props.assets!! in Options", this.props.assets);
     console.log(this.props);
    
