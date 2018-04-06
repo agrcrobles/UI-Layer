@@ -42,6 +42,7 @@ class TransRev extends Component {
         let image = transDat.images[0] || null;
         let editName = transDat.editName || null;
         let editNum = transDat.editNum || null;
+        // let docName = transDat.documents.doc.docUri.document.name || null;
 
         console.log((transDat.hasOwnProperty('properties')));
 
@@ -76,6 +77,8 @@ class TransRev extends Component {
                 <Text style={styles.editLabel}>EDI-T-SET:</Text><Text style={styles.transRevTime}>{editName}</Text>
                 <Text style={styles.transRevTime}>{editNum}</Text>
                 <Image style={styles.thumb} source={{ uri: image }} />
+                <Text style={styles.editLabel}>Document Name</Text>
+                {/* <Text style={styles.transRevTime}>{docName}</Text> */}
                 <View style={{ flex: 1 }}>
                     {list}
                 </View>
