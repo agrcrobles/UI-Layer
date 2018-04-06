@@ -64,16 +64,16 @@ class DocUp extends Component {
     let docName = this.state.document.name;
     let docSize = this.state.document.size;
     const { navigate } = this.props.navigation;
-    [docName] = Object.assign({}, this.state, {
+    pickedDoc = Object.assign({}, this.state, {
       uri,
       size: docSize,
       name: docName
     }
   ) 
-    console.log([docName], "onsubmitcsv")
-    this.props.addDoc([docName]);
-    console.log(this.props.selectedAsset, "selectedAsset in onsubmitCSV")
-    navigate('Splash3');
+    console.log(pickedDoc, "onsubmitcsv")
+    this.props.addDoc(pickedDoc);
+    
+    navigate('Splash3', {logo: this.props.logo, name: this.props.name});
   };
 
 
@@ -133,7 +133,8 @@ class DocUp extends Component {
 }
 const mapStateToProps = (state) => ({
   transInfo: state.AssetReducers.transInfo,
-
+  logo: state.AssetReducers.selectedAsset.Logo,
+  name: state.AssetReducers.transInfo.name
 
 });
 const mapDispatchToProps = (dispatch) => ({
