@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
+import { StackNavigator } from 'react-navigation';
 import styles from '../assets/styles';
 import originator from "../assets/origin.png";
 import recipient from "../assets/recipient.png";
 import submit from "../assets/submitButton.png";
-import {sendTrans} from "../actions/AssetActions";
+import { sendTrans } from "../actions/AssetActions";
 
 class TransRev extends Component {
     constructor(props) {
@@ -13,31 +14,33 @@ class TransRev extends Component {
     }
     componentDidMount() {
     }
-_sendTrans(trans){
-    const { navigate } = this.props.navigation;
-    this.props.sendTrans(trans);
-    navigate('BlockScan');
 
-}
+    _sendTrans(trans) {
+        const { navigate } = this.props.navigate;
+        this.props.sendTrans(trans);
+        this.props.navigate('BlockScan');
+
+    }
 
     render() {
         let transInfo = this.props.transInfo;
         console.log(transInfo, 'pre objass');
         let transDat = this.props.transDat;
         let finTransDat = Object.assign({}, transInfo,
-            
+
             {
-                
+
                 ...transDat,
             }
 
-            
+
         )
         console.log(finTransDat, 'transinfo in transreviewrender', transDat, 'transdata')
         let list;
         let locationImage = this.props.transInfo.location === 'recipient' ? recipient : originator;
         let dTime = new Date().toString();
         let image = transDat.images[0] || null;
+        let editName = transDat.editName || null;
 
         console.log((transDat.hasOwnProperty('properties')));
 
@@ -50,7 +53,7 @@ _sendTrans(trans){
                 return (
 
                     <View key={idx} style={styles.revPropField}>
-                        <Text style={styles.transRevName}>{name}</Text>
+                        <Text style={styles.transRevName}>{name}:</Text>
                         <Text style={styles.revPropVal}>{transDat.properties[name]}</Text>
 
                     </View>
@@ -68,7 +71,8 @@ _sendTrans(trans){
                 <Text style={styles.transRevName}>{transInfo.name}</Text>
                 <Text style={styles.transRevName}>HercID: {transDat.hercID}</Text>
                 <Image style={styles.assetLocationNoTopMargin} source={locationImage} />
-                <Text style={styles.revPropVal}>{dTime}</Text>
+                <Text style={styles.transRevTime}>{dTime}</Text>
+                <Text style={[styles.transRevName,{height: 65}]}>EDI-T-SET:</Text><Text style={styles.transRevTime}>{editName}</Text>
                 <Image style={styles.thumb} source={{ uri: image }} />
                 <View style={{ flex: 1 }}>
                     {list}

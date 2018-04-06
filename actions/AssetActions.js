@@ -1,34 +1,31 @@
-import { ADD_ASSET, LIST_ASSETS, SELECT_ASSET, START_TRANS, SEND_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET } from './types';
+import { ADD_ASSET, LIST_ASSETS, SELECT_ASSET, START_TRANS, SEND_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET, SET_SET } from './types';
 // import assets from '../reducers/assetListReducer';
 
 export function incHercId() {
     return {
         type: INC_HERC_ID,
-
     }
 }
 
 export function getHercId() {
+    console.log('getting ID')
     return ({
         type: GET_HERC_ID,
-        hercId: state.hercId,
-    },
-        dispatch(incHercId)
 
-    )
-
+    })
 }
+
 export function listAssets() {
     return {
         type: LIST_ASSETS,
-    
+
     }
 }
 
 export function selectAsset(assetKey) {
 
     return (
-       
+
         {
             type: SELECT_ASSET,
             data: assetKey
@@ -65,7 +62,7 @@ export function sendTrans(trans) {
         {
             type: SEND_TRANS,
             data: trans
-         }
+        }
     )
 }
 
@@ -91,5 +88,12 @@ export function addDoc(uri, docName) {
             docUri: uri,
             docName
         }
+    }
+}
+
+export function setSet(item){
+    return {
+        type: SET_SET,
+        item
     }
 }

@@ -111,18 +111,37 @@ module.exports = StyleSheet.create({
     },
     transRevName: {
         fontFamily: 'dinPro',
-        fontSize: 20,
+        fontSize: 21,
         color: 'white',
-        margin: 5
+        margin: 2,
+        alignSelf: 'center'
 
+    },
+    transRevTime: {
+        color: '#f3c736',
+        fontSize: 16,
+        fontFamily: 'dinPro',
+        textAlign: 'center'
+    },
+    revPropField: {
+        height: 65,
+        width: '75%',
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        padding:2,
+        margin: 5,
+        // textAlign:'center',
+        // textAlignVertical: 'center',
+        backgroundColor: '#021227'
     },
     
     revPropVal: {
         fontFamily: 'dinPro',
-        fontSize: 13,
+        fontSize: 20,
         color: '#f3c736',
-        margin: 5,
-        textAlign: 'right'
+        margin: 2,
+        // textAlign: 'right'
     },
     input: {
         width: 150,
@@ -155,15 +174,7 @@ module.exports = StyleSheet.create({
         paddingLeft: 5,
         marginBottom: 5
     },
-    revPropField: {
-        height: 23,
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 1,
-        margin: 2,
-        backgroundColor: 'green'
-    },
+   
     picker: {
        height: 175,
        backgroundColor: '#021227',

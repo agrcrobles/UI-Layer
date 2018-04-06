@@ -5,7 +5,6 @@ import menuOpts from "../components/buttons/menuOptions.png";
 import { StackNavigator } from 'react-navigation';
 // import Title from "../components/MenuInputTitle";
 import logo from "../assets/hercLogoBreak.png";
-import menuOptions from "../components/buttons/menuOptions.png";
 import home from "../components/buttons/homeBtn.png";
 import hiprBtn from "../components/buttons/hiprBtn.png";
 import igvc from "../components/buttons/igvc.png";
@@ -16,7 +15,7 @@ import settings from "../components/buttons/settingsBtn.png";
 import wallet from "../components/buttons/walletBtn.png";
 import styles from "../assets/styles";
 import { connect } from 'react-redux';
-import { listAssets } from '../actions/AssetActions';
+import { listAssets, getHercId } from '../actions/AssetActions';
 import BackButton from '../components/BackButton';
 
 
@@ -31,17 +30,16 @@ import BackButton from '../components/BackButton';
   }
   
   componentDidMount() {
-    // console.log(this.props.listAssets());
-    console.log("this.props.assets!! in Options", this.props.assets);
-    console.log(this.props);
-   
+    this.props.listAssets();
+    
+    console.log('working it');
+    
   }
   
   render(){
    
     const { navigate } = this.props.navigation;
-    // let values = this.props.navigation.state.params;
-    // console.log(values, 'values')
+  
     return(
       <View style={styles.container}>
       
@@ -111,7 +109,8 @@ import BackButton from '../components/BackButton';
 
 const mapDispatchToProps = (dispatch) => ({
 
-   listAssets: () => dispatch(listAssets())
+   listAssets: () => dispatch(listAssets()),
+   getHercId: () => dispatch(getHercId())
 
 })
 export default connect(null, mapDispatchToProps)(MenuOptions);

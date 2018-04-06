@@ -28,6 +28,7 @@ import Splash2 from '../screens/Splash2';
 import Splash3 from '../screens/Splash3';
 import NewAssetConfirm from '../screens/NewAssetConfirm';
 import PreHipr from '../screens/PreHIPR';
+import EdiT from '../screens/Edi-T';
 
 const MainNavigator = StackNavigator({
     Welcome: { screen: Welcome },
@@ -46,7 +47,8 @@ const MainNavigator = StackNavigator({
     DocUp: { screen: DocUp },
     Confirm: { screen: Confirm },
     NewAssetConfirm: { screen: NewAssetConfirm },
-    PreHipr: { screen: PreHipr }
+    PreHipr: { screen: PreHipr },
+    EdiT: { screen : EdiT}
 
 
 },
@@ -78,18 +80,6 @@ const MainNavigator = StackNavigator({
 
             headerLeft: <BackButton navigation={navigation} />
 
-            // headerLeft: <BackArrowButton navigation={navigation} /> 
-            // require('../assets/icon_backarrow.png') 
-
-            // <Image style={{ 
-            //     height: 40,
-            //     width: 40,
-            //     marginBottom: 20
-            // }}
-            //     source={ backArrow }
-            // />
-
-
         })
     })
 
@@ -99,7 +89,7 @@ const MainNavigator = StackNavigator({
             'dinPro': require('../assets/font/DINPro-Regular_13937.ttf'),
         });
         console.log('fonts');
-        this.props.listAssets();
+        // this.props.listAssets();
     }
     render() {
         return (

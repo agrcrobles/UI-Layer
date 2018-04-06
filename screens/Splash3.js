@@ -100,7 +100,7 @@ class Splash3 extends Component {
                             />
                         </TouchableHighlight>
 
-                        <TouchableHighlight>
+                        <TouchableHighlight  onPress={() => navigate('EdiT', { logo: logo, name: asset.name })}>
                             <Image
                                 style={styles.menuInputTitle}
                                 source={EDIT}
@@ -108,7 +108,7 @@ class Splash3 extends Component {
                         </TouchableHighlight>
                     </View>
 
-                    <TransRev />
+                    <TransRev navigate={navigate}/>
                 </ScrollView>
             </View>
 

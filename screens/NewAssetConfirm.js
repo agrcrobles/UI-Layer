@@ -51,6 +51,9 @@ class NewAssetConfirm extends Component {
         }
         console.log(Name)
         this.props.confirmAsset(Name);
+        // this.props.incHercId(); 
+        // console.log(this.props.hercId, 'hercid Increase?')
+        
         navigate('MenuOptions');
         // console.log(this.state.AssetReducers.assets, 'assets after')
     }
@@ -133,7 +136,7 @@ const mapDispatchToProps = (dispatch) => ({
     confirmAsset: (asset) =>
         dispatch(confirmAsset(asset)),
     incHercId: () =>
-        dispatch(incHercId)
+        dispatch(incHercId())
 })
 export default connect(mapStateToProps, mapDispatchToProps)(NewAssetConfirm);
 

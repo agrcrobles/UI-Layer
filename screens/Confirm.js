@@ -85,7 +85,7 @@ class Confirm extends Component {
           {list}
 
 
-          <Submit onPress={() => navigate('Splash3')} />
+          <Submit onPress={() => navigate('Splash3',{logo: this.props.logo, name: this.props.name})} />
           <View style={styles.assetFee}>
             <Image style={styles.assetFeeLabel} source={fee} />
             <Text style={styles.teePrice}>{price}</Text>

@@ -31,9 +31,8 @@ class Tee extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Name: "",
-      coreProps: {},
-      Logo: null
+      Logo: null,
+
     };
   }
 
@@ -60,11 +59,13 @@ class Tee extends Component {
   _onSubmit = () => {
     const { navigate } = this.props.navigation;
     console.log(this.state, "thisstate confimrmtee");
-    let newAsset = this.state;
-
-
-    this.props.addAsset(newAsset);
+    let newAsset =  Object.assign({},this.state,{
+      ...this.state,
+      hercId: this.props.getHercId
+    })
     console.log(newAsset, "newasset");
+debugger
+    this.props.addAsset(newAsset);
     navigate('NewAssetConfirm');
   }
   render() {
@@ -173,15 +174,16 @@ class Tee extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  newAsset: state.AssetReducers.newAsset
+  newAsset: state.AssetReducers.newAsset,
+  hercId: state.AssetReducers.hercId
   // newProperties: state.AssetReducers.selectedAsset.newProperties
 
 
 });
 const mapDispatchToProps = (dispatch) => ({
-  addAsset: (newAsset) =>
-    dispatch(addAsset(newAsset)
-    )
+  addAsset: (newAsset) => dispatch(addAsset(newAsset)),
+    getHercId: () => dispatch(getHercId())
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tee);

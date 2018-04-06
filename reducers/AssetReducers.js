@@ -9,7 +9,8 @@ import {
     ADD_PROPS,
     INC_HERC_ID,
     GET_HERC_ID,
-    CONFIRM_ASSET
+    CONFIRM_ASSET,
+    SET_SET
 } from '../actions/types';
 import ApiKeys from '../constants/apiKeys';
 import * as firebase from 'firebase';
@@ -20,8 +21,8 @@ const rootRef = firebase.database().ref();
 
 
 const INITIAL_STATE = {
-    hercId: "003",
-    assets: [],
+   assets: [],
+   hercId: ""
 };
 
 
@@ -45,15 +46,17 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
             })
             return Object.assign({}, state, {
+                ...state,
+                
                 assets
             })
 
         case SELECT_ASSET:
             let assetKey = action.data;
-            let assetRef = rootRef.child('assets/'+ assetKey);
+            let assetRef = rootRef.child('assets/' + assetKey);
             let jsonRef = rootRef.child('assets/' + assetKey).toJSON();
-            
-            console.log(jsonRef,'asset ref in Reducer');
+
+            console.log(jsonRef, 'asset ref in Reducer');
             let selectedAsset = {};
             assetRef.on('value', (snapshot) => {
                 selectedAsset = snapshot.val();
@@ -80,11 +83,11 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
                 transInfo,
                 transDat: {
-                    hercID: state.selectedAsset.hercID,
+                   
                     assetKey: state.selectedAsset.assetKey,
-                    images:[],
+                    images: [],
                     documents: [],
-                    properties:{}
+                    properties: {}
                 }
 
             }
@@ -93,21 +96,21 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
         case SEND_TRANS:
             let finTransDat = action.data;
-            let  finTransInfo = state.transInfo;
+            let finTransInfo = state.transInfo;
             let transDat = state.transDat;
             //  console.log(rootRef.ref(state.AssetReducers.transInfo.name.val()));
             console.log(state.transDat, "trans in send_trans reducer");
             console.log(finTransDat, 'fintrans in sendtrans redux')
             //    console.log([name], 'potential new txobject')
-             rootRef.child(state.transDat.assetKey).child('transactions').push({
-                 dateTime: state.transInfo.dTime,
-                 location: finTransInfo.location,
-                 data: {
-                     transDat
-                 }
+            rootRef.child('assets/' + state.transDat.assetKey).child('transactions').push({
+                dateTime: state.transInfo.dTime,
+                location: finTransInfo.location,
+                data: {
+                    transDat
+                }
 
-             })   
-             rootRef.child('transactions').push(finTransDat);
+            })
+            rootRef.child('transactions').push(finTransDat);
             // rootRef.ref()
 
             return Object.assign({}, state, {
@@ -124,19 +127,33 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
             )
 
+        case GET_HERC_ID:
+            let hercNum; 
+            rootRef.child('hercID').once('value').then(
+                 (snap)=> {
+                console.log(snap.val(), 'snaps')
+                hercNum = snap.val();
+
+            });
+            return Object.assign({}, state, {
+                ...state,
+                
+                hercId: hercNum
+            })
+
         case INC_HERC_ID:
-            let hercId = state.hercId + 1;
-            console.log(action.data, "actiondatafrom in reducer")
+           
+             hercId = hercId + 1;
+            // hercId = "00" + (Number(hercId)+1).toString()
             return Object.assign({}, state, {
                 ...state,
                 hercId
-            }), console.log('Hercincrease', state)
-
+            })
 
         case ADD_PHOTO:
             let image = action.data;
             console.log('adding photo');
-            
+
             return Object.assign({}, state, {
                 ...state,
                 transDat: {
@@ -200,6 +217,25 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
             }
             )
+
+            case SET_SET:
+            const setName = action.item.name;
+            const setNum = action.item.value;
+            console.log(setName, setNum,  'setset');
+            rootRef.child('assets').push(asset);
+
+            return Object.assign({}, state, {
+                ...state,
+                transDat: {
+                    ...state.transDat,
+                    editName: setName,
+                    editNum: setNum
+                }
+
+
+            }
+            )
+
 
         default:
             return state;
