@@ -63,7 +63,8 @@ const MainNavigator = StackNavigator({
             headerTitle: <Image style={{
                 height: 100,
                 width: 240,
-                marginLeft: 15
+                alignSelf: 'center',
+                resizeMode: 'contain'
             }}
                 source={logo} />,
 
