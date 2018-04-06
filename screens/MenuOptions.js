@@ -5,7 +5,6 @@ import menuOpts from "../components/buttons/menuOptions.png";
 import { StackNavigator } from 'react-navigation';
 // import Title from "../components/MenuInputTitle";
 import logo from "../assets/hercLogoBreak.png";
-import menuOptions from "../components/buttons/menuOptions.png";
 import home from "../components/buttons/homeBtn.png";
 import hiprBtn from "../components/buttons/hiprBtn.png";
 import igvc from "../components/buttons/igvc.png";
@@ -16,15 +15,14 @@ import settings from "../components/buttons/settingsBtn.png";
 import wallet from "../components/buttons/walletBtn.png";
 import styles from "../assets/styles";
 import { connect } from 'react-redux';
-import { listAssets } from '../actions/AssetActions';
-import BackArrowButton from '../components/BackArrowButton';
+import { listAssets, getHercId } from '../actions/AssetActions';
+import BackButton from '../components/BackButton';
 
 
  class MenuOptions extends Component {
-  static navigationOptions = (navigation) => {
-    headerLeft: <BackArrowButton navigation={navigation} onPress={()=> console.log('pressing!')} />
-
-}
+//   static navigationOptions = (navigation) => {
+   
+// }
   
   constructor(props) {
     super(props);
@@ -33,17 +31,15 @@ import BackArrowButton from '../components/BackArrowButton';
   
   componentDidMount() {
     this.props.listAssets();
-    console.log("this.props.assets!! in Options", this.props.assets);
-    console.log(this.props);
-   
+    
+    console.log('working it');
+    
   }
   
   render(){
    
     const { navigate } = this.props.navigation;
-    console.log(this.props,'this props options')
-    // let values = this.props.navigation.state.params;
-    // console.log(values, 'values')
+  
     return(
       <View style={styles.container}>
       
@@ -81,7 +77,7 @@ import BackArrowButton from '../components/BackArrowButton';
             />
           </TouchableHighlight> 
           
-          <TouchableHighlight  onPress={() => navigate('Digi')}>
+          <TouchableHighlight  onPress={() => navigate('PreDigi')}>
             <Image
               style={styles.button}
               source={digiView}
@@ -103,7 +99,9 @@ import BackArrowButton from '../components/BackArrowButton';
           </TouchableHighlight> 
 
           </View>
-
+<Text style={{ color: '#f3c736', alignSelf: 'baseline', fontSize: 8}}>
+V.0.20
+</Text>
         </View>
       
            
@@ -113,7 +111,8 @@ import BackArrowButton from '../components/BackArrowButton';
 
 const mapDispatchToProps = (dispatch) => ({
 
-   listAssets: () => dispatch(listAssets())
+   listAssets: () => dispatch(listAssets()),
+   getHercId: () => dispatch(getHercId())
 
 })
 export default connect(null, mapDispatchToProps)(MenuOptions);

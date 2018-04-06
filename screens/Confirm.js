@@ -7,7 +7,7 @@ import recipient from "../assets/recipient.png";
 import { StackNavigator } from 'react-navigation';
 import { connect } from "react-redux";
 import styles from "../assets/styles";
-import fee from "../assets/hercFeeLabel.png";
+import fee from "../assets/hercLogoPillar.png";
 {/* <Image style={styles.assetFee} source={fee} /> */ }
 
 
@@ -65,36 +65,32 @@ class Confirm extends Component {
         <View key={idx} style={styles.field}>
           <Text style={styles.label}>{name}</Text>
           <Text style={styles.input}>{this.props.newProps[name]}</Text>
-        
+
         </View>
       )
     });
 
     return (
       <View style={styles.containerCenter}>
+        <ScrollView contentContainerStyle={styles.scrollView}>
+          <View style={styles.assetFieldHeader}>
+            <Image style={styles.assetButton} source={{ uri: logo }} />
+            <Text style={styles.assetLabel}>{this.props.name}</Text>
+            <Image style={styles.assetLocation} source={locationImage} />
+          </View>
 
-       <View style={styles.assetFieldHeader}>
-                    <Image style={styles.assetButton} source={{ uri: logo }} />
-                    <Text style={styles.assetLabel}>{this.props.name}</Text>
-                    <Image style={styles.assetLocation} source={locationImage} />
-                </View>
 
 
-        <View style={styles.inputMenu}>
 
           {list}
-        </View>
-
-        {/* <Text>{this.props.selectedAsset.csv[0]}</Text>
-            <Text>{this.props.selectedAsset.Images[0]}</Text> */}
 
 
-        <Submit onPress={() => navigate('BlockScan')} />
-        <View style={styles.assetFee}>
-          <Image style={styles.assetFeeLabel} source={fee} />
-          <Text style={styles.teePrice}>{price}</Text>
-        </View>
-
+          <Submit onPress={() => navigate('Splash3',{logo: this.props.logo, name: this.props.name})} />
+          <View style={styles.assetFee}>
+            <Image style={styles.assetFeeLabel} source={fee} />
+            <Text style={styles.teePrice}>{price}</Text>
+          </View>
+        </ScrollView>
       </View>
 
 
@@ -106,9 +102,9 @@ class Confirm extends Component {
 
 
 const mapStateToProps = (state) => ({
-  newProps: state.AssetReducers.newProps,
+  newProps: state.AssetReducers.transDat.properties,
   location: state.AssetReducers.transInfo.location,
-  logo: state.AssetReducers.transInfo.logo,
+  logo: state.AssetReducers.selectedAsset.Logo,
   name: state.AssetReducers.transInfo.name
   // newProperties: state.AssetReducers.selectedAsset.newProperties
 

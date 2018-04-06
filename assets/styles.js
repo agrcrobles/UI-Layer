@@ -29,7 +29,7 @@ module.exports = StyleSheet.create({
         backgroundColor: '#021227',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 20
+        padding: 0
     },
     menu: {
         height: 450,
@@ -90,8 +90,105 @@ module.exports = StyleSheet.create({
         width: 120,
         fontSize: 20.2,
         fontWeight: "600",
-        paddingLeft: 5
+        paddingLeft: 5,
+        fontFamily: 'dinPro'
 
+    },
+    transPropLabel: {
+        color: 'white',
+        alignSelf: 'center',
+
+        fontWeight: "400",
+        fontFamily: 'dinPro',
+        fontSize: 14,
+    },
+    transReview: {
+        color: '#f3c736',
+        alignSelf: 'center',
+        fontSize: 20.2,
+        fontWeight: "600",
+        fontFamily: 'dinPro',
+    },
+    transRevName: {
+        fontFamily: 'dinPro',
+        fontSize: 21,
+        color: 'white',
+        margin: 2,
+        alignSelf: 'center'
+
+    },
+    transRevTime: {
+        color: '#f3c736',
+        fontSize: 16,
+        fontFamily: 'dinPro',
+        textAlign: 'center'
+    },
+    revPropField: {
+        height: 65,
+        width: '75%',
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 3,
+        margin: 5,
+        // textAlign:'center',
+        // textAlignVertical: 'center',
+        backgroundColor: '#021227'
+    },
+
+    revPropVal: {
+        fontFamily: 'dinPro',
+        fontSize: 20,
+        color: '#f3c736',
+        margin: 2,
+        // textAlign: 'right'
+    },
+    editLabel: {
+        fontFamily: 'dinPro',
+        fontSize: 21,
+        color: 'white',
+        margin: 5,
+        alignSelf: 'center',
+        height: 30,
+
+    },
+    editTouch: {
+        height: 75,
+        margin: 5,
+        width: '75%'
+    },
+    editField: {
+        height: 75,
+        width: '75%',
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        padding: 3,
+        // margin: 5,
+        // textAlign:'center',
+        // textAlignVertical: 'center',
+        backgroundColor: '#021227'
+    },
+    editName: {
+        fontFamily: 'dinPro',
+        fontSize: 21,
+        color: 'white',
+        margin: 2,
+        alignSelf: 'flex-start',
+        height: 75,
+        justifyContent: 'center'
+    },
+    input: {
+        width: 150,
+        height: 40,
+        textAlign: "center",
+        backgroundColor: "#132c4a",
+        // margin: .5,
+        fontSize: 20.2,
+        fontWeight: "600",
+        borderColor: "#142535",
+        color: "white",
+        borderWidth: 1,
+        // paddingLeft: 1
     },
     teeLabel: {
         height: 50,
@@ -108,12 +205,15 @@ module.exports = StyleSheet.create({
         // marginTop: 5,
         // marginBottom: 5,
         alignItems: "center",
-        paddingLeft: 5
+        paddingLeft: 5,
+        marginBottom: 5
     },
+
     picker: {
-        height: 100,
+        height: 175,
+        backgroundColor: '#021227',
         width: '80%',
-        margin: 8,
+        marginTop: 50,
         alignSelf: 'center',
         // flexDirection: "row",
         justifyContent: "center",
@@ -126,19 +226,6 @@ module.exports = StyleSheet.create({
         // backgroundColor: 'blue'
     },
 
-    input: {
-        width: 150,
-        height: 40,
-        textAlign: "center",
-        backgroundColor: "#132c4a",
-        // margin: .5,
-        fontSize: 20.2,
-        fontWeight: "600",
-        borderColor: "#142535",
-        color: "white",
-        borderWidth: 1,
-        // paddingLeft: 1
-    },
     backArrow: {
         marginTop: 20,
         marginLeft: 15,
@@ -171,16 +258,48 @@ module.exports = StyleSheet.create({
         padding: 5
 
     },
-    
+
     assetField: {
-        height: 140,
+        height: 39,
+        flexDirection: 'row',
         // backgroundColor: 'blue',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
         alignContent: 'center',
-        margin: 8,
-        marginTop: 15,
-        width: "60%"
+        margin: 17,
+        width: "50%"
+    },
+    assetLabel: {
+        color: 'white',
+        alignSelf: 'center',
+        fontSize: 15.2,
+        fontWeight: "200",
+        margin: 5,
+        fontFamily: 'dinPro'
+
+    },
+    assetButton: {
+        height: 40,
+        width: 40,
+        margin: 3,
+        borderRadius: 20
+
+    },
+    assetHeaderLabel: {
+        color: 'white',
+        alignSelf: 'center',
+        fontSize: 20,
+        fontWeight: "600",
+        // marginLeft: '30%',
+        fontFamily: 'dinPro'
+
+    },
+    assetHeaderImage: {
+        height: 100,
+        width: 100,
+        margin: 5,
+        borderRadius: 50
+
     },
     assetFieldHeader: {
         height: 200,
@@ -188,30 +307,13 @@ module.exports = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',
-        margin: 8,
-        marginTop: 15,
-        width: "60%"
+        margin: 3,
+        // marginTop: 15,
+        // width: "40%"
     },
-    
-    // assetField: {
-    //     height: 120,
-    //     flexDirection: "row",
-    //     justifyContent: "space-between",
-    //     width: "80%",
-    //     backgroundColor: "#021227",
-    //     margin: 5,
-    //     // marginBottom: 5,
-    //     alignItems: "center",
-    //     padding: 2
-    // },
-    assetLabel: {
-        color: 'white',
-       alignSelf: 'center',
-        fontSize: 20.2,
-        fontWeight: "600",
-        margin: 5
 
-    },
+
+
     assetMenuLabel: {
         textAlign: 'center',
         color: "white",
@@ -225,22 +327,28 @@ module.exports = StyleSheet.create({
         margin: 10
 
     },
-    assetButton: {
-        height: 100,
-        width: 100,
-        margin: 3,
-        borderRadius: 50
+
+    assetLocation: {
+        height: 30,
+        width: 150,
+        resizeMode: 'contain',
+        marginTop: 50,
+        alignSelf: 'center'
+        // marginRight: 10
 
     },
-    assetLocation: {
+    assetLocationNoTopMargin: {
         height: 50,
-        width: 200,
+        width: 150,
         resizeMode: 'contain',
-        marginTop:5 
+        marginTop: 5,
+        alignSelf: 'center'
+        // marginRight: 10
+
     },
     assetFee: {
         height: 50,
-        width: 285,
+        width: 150,
         // resizeMode: 'cover',
         flexDirection: 'row',
         // justifyContent: 'space-between',
@@ -250,22 +358,22 @@ module.exports = StyleSheet.create({
 
     },
     assetFeeLabel: {
-        height: 50,
-        width: 80,
+        height: 40,
+        width: 30,
         backgroundColor: '#021227',
         resizeMode: 'contain',
-        marginRight: 7
+        marginRight: 5
 
     },
     teePrice: {
         backgroundColor: "#021227",
-       textAlign: 'center',
+        textAlign: 'center',
         fontSize: 20.2,
         fontWeight: "400",
         // borderColor: "#142535",
         color: "white",
         height: 30,
-        
+
     },
     subHeader: {
         flexDirection: 'row',
@@ -289,6 +397,20 @@ module.exports = StyleSheet.create({
         fontFamily: 'dinPro',
         alignItems: 'center',
         textAlignVertical: 'center',
+        alignSelf: 'center'
+
+    },
+    scrollView: {
+        alignItems: 'center',
+        alignContent: 'center',
+        alignSelf: 'center',
+        width: '90%',
+        // marginTop: 50
+    },
+    thumb: {
+        height: 150,
+        width: 150,
+        margin: 5
 
     }
 

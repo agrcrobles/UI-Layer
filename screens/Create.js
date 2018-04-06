@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert } from 'react-native';
-import logo from "../assets/logo.png";
-import Title from "../components/MenuInputTitle";
+import logo from "../assets/hercLogoBreak.png";
+
 import personal from "../assets/personalLegend.png";
 
  export default class Create extends Component {

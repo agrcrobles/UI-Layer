@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, Platform, View, Image, TouchableHighlight, Alert, Button } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, Platform, View, Image, TouchableHighlight, Alert} from 'react-native';
 import logo from "../assets/teeLabel.png";
 import params from "../assets/igvcParamsLabel.png";
 import { connect } from "react-redux";
 import styles from "../assets/styles";
-import { addAsset } from "../actions/AssetActions";
+import Button from 'react-native-button';
+import BackButton from "../components/BackButton";
+import { addAsset, getHercId } from "../actions/AssetActions";
 import { ImagePicker } from 'expo';
 import next from "../assets/nextLabel.png";
 import { STATUS_BAR_HEIGHT } from '../constants';
@@ -13,7 +15,7 @@ import { STATUS_BAR_HEIGHT } from '../constants';
 class Tee extends Component {
   static navigationOptions = {
     headerStyle: {
-      height: Platform.OS === 'android' ? 50 + STATUS_BAR_HEIGHT : 50,
+      height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
       backgroundColor: '#021227',
 
     },
@@ -23,19 +25,23 @@ class Tee extends Component {
       marginLeft: 30,
       resizeMode: 'contain'
     }}
-      source={logo} />,
-
+      source={logo} />
   }
 
   constructor(props) {
     super(props);
     this.state = {
       Name: "",
-      coreProps:{},
-      Logo: null
+      Logo: null,
+      coreProps:{}
+
     };
   }
 
+  componentDidMount(){
+    // this.props.getHercId();
+    // console.log('gettingid hopefully');
+  }
   _pickImage = async () => {
 
     let logo = await ImagePicker.launchImageLibraryAsync({ allowsEditing: false, quality: .8, base64: true });
@@ -59,16 +65,18 @@ class Tee extends Component {
   _onSubmit = () => {
     const { navigate } = this.props.navigation;
     console.log(this.state, "thisstate confimrmtee");
-    let newAsset = this.state;
-  
-  
-    this.props.addAsset(newAsset);
+    let newAsset =  Object.assign({},this.state,{
+      ...this.state,
+      // hercId: this.props.getHercId
+    })
     console.log(newAsset, "newasset");
+
+    this.props.addAsset(newAsset);
     navigate('NewAssetConfirm');
   }
   render() {
     let { Logo } = this.state;
-    
+
 
     return (
 
@@ -87,7 +95,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input1</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input1 => this.setState({ coreProps: {Input1} })}
+              onChangeText={Input1 => this.setState({ coreProps: { Input1 } })}
               placeholder="Input1"
             />
           </View>
@@ -95,7 +103,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input2</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input2 => this.setState({ coreProps:{ ...this.state.coreProps,  Input2  }})}
+              onChangeText={Input2 => this.setState({ coreProps: { ...this.state.coreProps, Input2 } })}
               placeholder="Input2"
             />
           </View>
@@ -103,7 +111,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input3</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input3 => this.setState({ coreProps: {...this.state.coreProps,  Input3 }})}
+              onChangeText={Input3 => this.setState({ coreProps: { ...this.state.coreProps, Input3 } })}
               placeholder="Input3"
             />
           </View>
@@ -111,7 +119,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input4</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input4 => this.setState({ coreProps: {...this.state.coreProps, Input4 }})}
+              onChangeText={Input4 => this.setState({ coreProps: { ...this.state.coreProps, Input4 } })}
               placeholder="Input4"
             />
           </View>
@@ -119,7 +127,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input5</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input5 => this.setState({ coreProps: {...this.state.coreProps, Input5 }})}
+              onChangeText={Input5 => this.setState({ coreProps: { ...this.state.coreProps, Input5 } })}
               placeholder="Input5"
             />
           </View>
@@ -127,7 +135,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input6</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input6 => this.setState({ coreProps: {...this.state.coreProps, Input6 }})}
+              onChangeText={Input6 => this.setState({ coreProps: { ...this.state.coreProps, Input6 } })}
               placeholder="Input5"
             />
           </View>
@@ -135,7 +143,7 @@ class Tee extends Component {
             <Text style={styles.label}>Input7</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input7 => this.setState({ coreProps: {...this.state.coreProps, Input7 }})}
+              onChangeText={Input7 => this.setState({ coreProps: { ...this.state.coreProps, Input7 } })}
               placeholder="Input7"
             />
           </View>
@@ -143,20 +151,22 @@ class Tee extends Component {
             <Text style={styles.label}>Input8</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input8 => this.setState({ coreProps: {...this.state.coreProps, Input8 }})}
+              onChangeText={Input8 => this.setState({ coreProps: { ...this.state.coreProps, Input8 } })}
               placeholder="Input8"
             />
           </View>
 
-          <View style={styles.picker}>
+          {Logo &&
+            <Image source={{ uri: Logo }} style={{ width: 100, height: 100, margin: 10, alignSelf: 'center' }} />
+          }
+          
             <Button
-              title="Pick a Logo!"
-              onPress={this._pickImage}
-            />
-            {Logo &&
-              <Image source={{ uri: Logo }} style={{ width: 100, height: 100 }} />
-            }
-          </View>
+              // title="Upload Image"
+              style={styles.picButton}
+
+              onPress={() => this._pickImage()}>
+              Upload Image
+        </Button>
         </ScrollView>
 
         <TouchableHighlight onPress={this._onSubmit}>
@@ -170,15 +180,16 @@ class Tee extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  newAsset: state.AssetReducers.newAsset
+  newAsset: state.AssetReducers.newAsset,
+  hercId: state.AssetReducers.hercId
   // newProperties: state.AssetReducers.selectedAsset.newProperties
 
 
 });
 const mapDispatchToProps = (dispatch) => ({
-  addAsset: (newAsset) =>
-    dispatch(addAsset(newAsset)
-    )
+  addAsset: (newAsset) => dispatch(addAsset(newAsset)),
+    getHercId: () => dispatch(getHercId())
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tee);

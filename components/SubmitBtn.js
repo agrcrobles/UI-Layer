@@ -5,7 +5,7 @@ export default class Submit extends Component {
 
   render(){
     return (
-      <TouchableHighlight style={{height:50, width:200}} onPress={this.props.onPress}>
+      <TouchableHighlight style={{height:50, width:200, marginTop: 10}} onPress={this.props.onPress}>
         <Image style={styles.button} source={require('../assets/submitButton.png')} />
       </TouchableHighlight>
     )
@@ -17,7 +17,7 @@ var styles = StyleSheet.create({
     // remove width and height to override fixed static size
     height: 60,
     width: 200,
-     resizeMode: 'cover'
+     resizeMode: 'contain'
 
   }
   // ,

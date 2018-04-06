@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert } from 'react-native';
-import WelcomeHeader from "../components/WelcomeHeader";
-// import Welcome from "../components/Welcome";
 import { StackNavigator } from 'react-navigation';
-import Title from "../components/MenuInputTitle";
 import welcome from "../assets/welcome.png";
 
 export default class Welcome extends Component {
@@ -13,10 +10,7 @@ export default class Welcome extends Component {
       pin: ""
     }
   }
-  static navigationOptions = {
-    header: null,
-  
-  }
+ 
 
   _onPinPress(){
     const { navigate } = this.props.navigation;
@@ -32,7 +26,7 @@ export default class Welcome extends Component {
     const { navigate } = this.props.navigation;
     return(
       <View style={styles.container}>
-        <WelcomeHeader />
+
           <View style={styles.menu}>
         
             <TextInput onChangeText={(pin) => this.setState({pin})} placeholder="PIN" underlineColorAndroid='transparent' style={styles.input}/>
@@ -44,19 +38,7 @@ export default class Welcome extends Component {
                 />
             </TouchableHighlight>
           </View>
-          {/* <TouchableHighlight  onPress={() => navigate('Origin')}>
-            <Image
-              style={styles.button}
-              source={require('../assets/originLabel.png')}
-            />
-          </TouchableHighlight> 
-
-          <TouchableHighlight  onPress={() => navigate('FileUp')}>
-            <Image
-              style={styles.button}
-              source={require('../assets/skipButton.png')}
-            />
-          </TouchableHighlight>  */}
+        
 
         </View>
       

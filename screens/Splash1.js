@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert, Platform } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import { STATUS_BAR_HEIGHT } from '../constants';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
 import create from '../assets/createNewAssetButton.png';
+import supply from '../components/buttons/verifyBtn.png'
 
 import { selectAsset, listAssets } from '../actions/AssetActions';
 import backArrow from '../assets/icon_backarrow.png';
 
 
 class Splash1 extends Component {
+  static navigationOptions = {
+    headerTitle:   <Image source={supply} style={{height: 50, width: 250, marginLeft: 20}} /> 
+}
   constructor(props) {
     super(props);
 
@@ -17,20 +22,13 @@ class Splash1 extends Component {
  
   //  Need to determine the ideal way to get the selected asset, currently am pulling them both down entirely and then just assigning the selected to state...I think...
   componentDidMount() {
-    // this.props.listAssets();
-   
-    
    
   }
-  _onPress = (index) => {
+
+  _onPress = (asset) => {
     const { navigate } = this.props.navigation;
-
-    // let asset = this.props.assets[index]; //cleaner way or better way to do this
-
-    this.props.selectAsset(index);
-    
-
-    navigate('Splash2');
+    this.props.selectAsset(asset.key);
+    navigate('Splash2', {logo: asset.logo, name: asset.name});
   }
 
   render() {
@@ -39,20 +37,20 @@ class Splash1 extends Component {
     let list = this.props.assets.map((asset, index) => {
       return (
         <View key={index} style={styles.assetField}>
-          <TouchableHighlight onPress={() => this._onPress(asset.key)}  >
-            <Image style={styles.assetButton} source={{uri:asset.Logo}} />  
-          </TouchableHighlight>
           <Text style={styles.assetLabel}>{asset.name}</Text>
+          <TouchableHighlight style={{alignSelf: 'flex-start'}} onPress={() => this._onPress(asset)}  >
+            <Image style={styles.assetButton} source={{uri:asset.logo}} />  
+          </TouchableHighlight>
         </View>
       )
     });
-
+    {/* <ScrollView contentContainerStyle={styles.scrollView}> */}
+    
     return (
-
+      
       <View style={styles.container}>
-       <ScrollView contentContainerStyle={{ alignItems: 'center', alignContent: 'center', alignSelf: 'center', width: '90%' }}>
+      {/* <Image source={supply} style={{height: 50, width: 250, margin: 5}} />  */}
           {list}
-        </ScrollView>
         <TouchableHighlight onPress={() => navigate('Create')}>
           <Image
             style={{ resizeMode: 'contain', height: 80, width: 150 }}
@@ -76,8 +74,6 @@ const mapDispatchToProps = (dispatch) => ({
 
   selectAsset: (asset) =>
     dispatch(selectAsset(asset)),
-
-  listAssets: () => dispatch(listAssets())
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Splash1);

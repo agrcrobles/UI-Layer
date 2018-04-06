@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
-import { StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert } from 'react-native';
-import logo from "../assets/logo.png";
+import React, { Component } from 'react';
+import {Platform, StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert } from 'react-native';
+import { STATUS_BAR_HEIGHT } from '../constants';
+import logo from "../assets/hercLogoBreak.png";
 import label from "../assets/digiViewerLabel.png";
 import persWal from "../assets/personalWalletLabel.png";
 import stakeTxt from "../assets/stakeText.png";
 import Submit from "../components/SubmitBtn";
-import hLogo from "../assets/hLogo.png";
-import feeLabel from "../assets/hercFeeLabel.png";
+import hLogo from "../assets/hercLogoPillar.png";
+// import feeLabel from "../assets/hercFeeLabel.png";
 import viewBtn from "../assets/veiwBtn.png";
 // import TouchableHeader from "../components/TouchableHeader";
 
@@ -16,189 +17,190 @@ import viewBtn from "../assets/veiwBtn.png";
 // -  change Stake to Fee
 // -  put a "1" in the HERC field
 // - View should open a native browser in app for the site http://anthembunker.com/(edited)
- 
-export default class DigiViewer extends Component {
-     static navigationOptions = {
-         header: null,
- 
-        }
-    render(){
-      const { navigate } = this.props.navigation;
-      return(
-          
-        <View style={styles.container}>
-          <View style={styles.header}>
-           <TouchableHighlight onPress={() => navigate('MenuOptions')}>
-             <Image source={logo} style={styles.menuLogo}/>
-            </TouchableHighlight>  
-            <Image source={label} style={styles.label} image={persWal} /> 
-          </View>
-        <Image source={stakeTxt} style={{height: 100, width: 320, resizeMode: 'contain'}}/>
 
+export default class DigiViewer extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state;
+   
+    return {
+
+      headerTitle:
+        <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
+         <TouchableHighlight onPress={() => navigation.navigate('MenuOptions')}>
+          <Image style={{
+            height: 80,
+            width: 80,
+            // alignSelf: 'center',
+            borderRadius: 120,
+            resizeMode: 'contain'
+          }}
+            source={{ uri: params.logo }} />
+        </TouchableHighlight>
+          <Text style={styles.assetHeaderLabel}>{params.name}</Text>
+        </View>,
+
+      headerStyle: {
+        height: Platform.OS === 'android' ? 100 + STATUS_BAR_HEIGHT : 100,
+        backgroundColor: '#021227',
+
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        textAlign: 'center',
+        alignSelf: 'center',
+        // textAlignVertical: 'center',
+        backgroundColor: '#021227',
+
+      },
+      headerRight: <View></View>
+    }
+  }
+
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+
+      <View style={styles.container}>
+
+        <Image source={persWal} style={styles.walletLabel} />
+
+        <View style={styles.walletBalance}>
+          <Image source={hLogo} style={styles.icon} />
+          <Text style={styles.text}>10,000</Text>
+        </View>
 
         <View style={styles.wallet}>
-            
-            <Image source={persWal} style={styles.walletLabel}/>
-            
-            <View style={styles.walletBalance}>
-                <Image source={hLogo} style={styles.icon}/> 
-                <Text style={styles.input}>10,000</Text>
-            </View>
 
-     
-        </View>
-          <View style={styles.walletFee}>
-          
-            <Text style={styles.hercLabel}>MY HERC</Text>
-              <View style={styles.feeBalance}>
-                <Text style={styles.input}>1</Text>
-                <Image source={feeLabel} style={styles.feeLabel}/> 
-              </View>
-            <TouchableHighlight style={{marginTop: 15}} onPress={() => navigate('Anthem')}>
-              <Image source={viewBtn} style={styles.button}/>
-              </TouchableHighlight>
+
+          <View style={styles.feeBalance}>
+            <Text style={styles.text}>Fee:</Text>
+            <View style={{ alignSelf: 'flex-end', flexDirection:'row' }}>
+              <Text style={styles.text}>1</Text>
+              <Image source={hLogo} style={styles.feeLabel} />
             </View>
           </View>
-           
-          
-         
+          <TouchableHighlight style={{ marginTop: 5 }} onPress={() => navigate('Anthem')}>
+            <Image source={viewBtn} style={styles.button} />
+          </TouchableHighlight>
+        </View>
+      </View>
 
 
 
-         )};
+
+
+    )
+  };
 }
 
- 
+
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: 30,
-      // width: "100%",
-      backgroundColor: '#02182d',
-      // backgroundColor: '#fff',
-      alignItems: 'center',
-      
-    },
-    header: {
-      height: "27%",
-      width: 360,
-      backgroundColor: '#02182d',
-      alignSelf: 'center',
-      alignItems: 'center',
-      // margin: 5
+  container: {
+    flex: 1,
+    backgroundColor: '#021227',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+
+  },
+  walletLabel: {
+    width: '70%',
+    height: 60,
+    resizeMode: 'contain',
+  },
+  walletBalance: {
+    width: '40%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    height: 60
+  },
+  wallet: {
+    padding: 3,
+    backgroundColor: '#021227',
+    height: 150,
+    width: '80%',
+    justifyContent: 'flex-start',
+    alignItems: "center",
+    margin: 5
+  },
+  feeBalance: {
+    width: '50%',
+    flexDirection: 'row',
+    backgroundColor: '#021227',
+    padding: 2,
+    justifyContent: 'space-between',
+    margin: 5
+
+    // height: 
+
+  },
+  feeLabel: {
+    height: 20,
+    width: 40,
+    resizeMode: 'contain',
+    margin: 5
+  },
+  label: {
+    height: 50,
+    width: '80%',
+    resizeMode: 'contain'
+  },
+  legendInput: {
+    // alignSelf: "center",
+    padding: 5,
+    width: 330,
+    height: 90,
+    // alignItems: 'center',
+    margin: 1,
+    marginBottom: 5,
+    backgroundColor: "#14283f",
+    justifyContent: "space-between",
+
+    borderRadius: 4
+  },
+  text: {
+
+    height: 30,
+    textAlign: "center",
+    color: "white",
+    alignSelf: "center",
+    fontSize: 20.2,
+    fontWeight: "600",
+  },
+
+  icon: {
+    height: 50,
+    width: 60,
+    alignSelf: 'flex-start',
+    resizeMode: 'contain',
+    marginLeft: 10
+
+  },
 
 
-    },
-    menuLogo: {
-        justifyContent: "center",
-        alignItems: "center",
-        height: 120,
-        width: 200,
-        resizeMode: "contain",
-        backgroundColor: '#02182d',
-      },
-      label: {
-        height: 50,
-        width: '80%',
-        resizeMode: 'contain'
-      },
-    legendInput: {
-      // alignSelf: "center",
-      padding: 5,
-      width: 330, 
-      height: 90,
-      // alignItems: 'center',
-      margin: 1,
-      marginBottom: 5,
-      backgroundColor: "#14283f",
-      justifyContent:"space-between", 
-      
-      borderRadius: 4
-      },
-    input:{
-      backgroundColor: '#14283f',
-      width: 100,
-      height: 30,
-      textAlign: "center",
-      color: "white", 
-      alignSelf: "center",
-      fontSize: 20.2,
-      fontWeight: "600",
-      justifyContent: "center",
-      // marginRight: 10,
-      // marginTop: 7
-    },
-    icon: {
-        height: 50,
-        width: 60, 
-        alignSelf: 'flex-start',
-        marginLeft: 10
-        
-    },
-    feeLabel: {
-        height:50,
-        width: 125,
-        resizeMode: 'cover'
-    },
-    wallet: {
-      padding: 3,
-      backgroundColor: "#02182d",
-      height: 150,
-      width: '80%',
-      justifyContent: 'flex-start',
-      alignItems: "center",
-      margin:5
-    },
-    walletBalance: {
-       width: '100%', 
-        flexDirection: 'row',
-        backgroundColor: '#14283f',
-        padding: 2,
-        justifyContent: 'space-between'
-        
-        // height: 
 
-    },
-    walletLabel: {
-        width: '100%',
-        height: 60,
-        resizeMode: 'cover',
-       
-        justifyContent:'center',
-        alignItems: 'center',
-        
-    },
-    walletFee: {
-      width: '80%',
-      height: 200,
-      // justifyContent: 'center',
-      backgroundColor: '#06112e',
-      padding: 3,
-      alignItems: 'center',
-      margin: 7
-    },
-    feeBalance: {
-      width: '100%', 
-       flexDirection: 'row',
-       backgroundColor: '#14283f',
-       padding: 2,
-       justifyContent: 'space-between'
-       
-       // height: 
 
-   },
-    hercLabel: {
-      textAlign: 'left',
-      alignSelf: 'flex-start',
-     
-      alignItems: 'flex-end',
-      color:'white',
-      height: 20,
-      width: 120
-    },
-    button: {
-      width: 250, 
-      height: 50,
-      marginTop: 30
-    },
-    })
+  walletFee: {
+    width: '80%',
+    height: 200,
+    // justifyContent: 'center',
+    backgroundColor: '#06112e',
+    padding: 3,
+    alignItems: 'center',
+    margin: 7
+  },
+
+  hercLabel: {
+    textAlign: 'left',
+    alignSelf: 'flex-start',
+
+    alignItems: 'flex-end',
+    color: 'white',
+    height: 20,
+    width: 120
+  },
+  button: {
+    width: 250,
+    height: 50,
+    marginTop: 30
+  },
+})

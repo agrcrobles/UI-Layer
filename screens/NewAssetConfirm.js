@@ -1,56 +1,42 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight, Alert, Button } from 'react-native';
+import { Platform, StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight, Alert, Button } from 'react-native';
 import Title from "../components/MenuInputTitle";
-import WelcomeHeader from "../components/WelcomeHeader";
 import Submit from "../components/SubmitBtn";
 import logo from "../assets/teeLabel.png";
 import params from "../assets/igvcParamsLabel.png";
 import { StackNavigator } from 'react-navigation';
-import { ImagePicker } from 'expo';
+import { STATUS_BAR_HEIGHT } from '../constants';
 import { connect } from "react-redux";
 import styles from "../assets/styles";
-import fee from "../assets/hercFeeLabel.png";
+import fee from "../assets/hercLogoPillar.png";
 import { incHercId, confirmAsset } from "../actions/AssetActions"
+
 class NewAssetConfirm extends Component {
-    state = {};
     static navigationOptions = {
+        headerStyle: {
+            height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
+            backgroundColor: '#021227',
+
+        },
         headerTitle: <Image style={{
-            height: 100,
-            width: 220,
-            marginLeft: '3%',
+            height: 80,
+            width: 200,
+            marginLeft: 30,
             resizeMode: 'contain'
         }}
-            source={logo} />,
-
+            source={logo} />
     }
 
     constructor(props) {
         super(props);
     }
+    state = {};
 
     componentDidMount() {
-        // console.log(this.props)
-        // price = data.pricePerHercForFCT
-        // let price = this.getPrice();
-        // fetch('https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON').then(data => console.log(data.json()) ); 
-        // console.log(price, 'price')
-    
+
+
     }
 
-    // async getPricesFromApi() {
-    //     try {
-    //         let response = await fetch(
-    //             'https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON'
-    //         );
-    //         let responseJson = await response.json();
-    //         let fctPrice = responseJson.list["0"].pricePerHercForFCT; // this is what I'm going with for now  
-    //         console.log(fctPrice, 'newthing');
-    //         this.setState({ fctPrice });
-
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
 
     _onPressSubmit(CoreProps) {
         const { navigate } = this.props.navigation;
@@ -59,12 +45,15 @@ class NewAssetConfirm extends Component {
 
         Name = {
             Name,
-            hercId: this.props.hercId,
+            // hercId: this.props.hercId,
             Logo: this.props.Logo,
             CoreProps
         }
         console.log(Name)
         this.props.confirmAsset(Name);
+        // this.props.incHercId(); 
+        // console.log(this.props.hercId, 'hercid Increase?')
+        
         navigate('MenuOptions');
         // console.log(this.state.AssetReducers.assets, 'assets after')
     }
@@ -103,17 +92,17 @@ class NewAssetConfirm extends Component {
         return (
 
             <View style={styles.containerCenter}>
-                <View style={styles.assetField}>
+                <ScrollView contentContainerStyle={styles.scrollView}>
+                    <View style={styles.assetFieldHeader}>
 
-                    <Image style={styles.assetButton} source={{ uri: Logo }} />
-                    <Text style={styles.label}>{Name}</Text>
-                </View>
-
-                <ScrollView contentContainerStyle={{ alignSelf: 'center', width: '90%' }}>
-
-                    <View style={styles.inputMenu}>
-                        {list}
+                        <Image style={styles.assetHeaderImage} source={{ uri: Logo }} />
+                        <Text style={styles.assetHeaderLabel}>{Name}</Text>
                     </View>
+
+
+
+                    {list}
+
 
                 </ScrollView>
 
@@ -147,7 +136,7 @@ const mapDispatchToProps = (dispatch) => ({
     confirmAsset: (asset) =>
         dispatch(confirmAsset(asset)),
     incHercId: () =>
-        dispatch(incHercId)
+        dispatch(incHercId())
 })
 export default connect(mapStateToProps, mapDispatchToProps)(NewAssetConfirm);
 
