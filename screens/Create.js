@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert } from 'react-native';
-import logo from "../assets/logo.png";
+import logo from "../assets/hercLogoBreak.png";
 
 import personal from "../assets/personalLegend.png";
 

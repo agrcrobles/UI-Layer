@@ -69,9 +69,9 @@ import {setSet } from '../actions/AssetActions';
 console.log(edits)
         let arrayOfSets = edits.map((item, idx) => {
             return (
-                <TouchableHighlight key={idx} onPress={() => this._setEdit(item)}>
-                    <View style={styles.revPropField}>
-                        <Text style={styles.transRevName}>{item.name.trim()}</Text>
+                <TouchableHighlight style={styles.editTouch} key={idx} onPress={() => this._setEdit(item)}>
+                    <View style={styles.editField}>
+                        <Text style={styles.editName}>{item.name.trim()}</Text>
                         
 
                     </View>

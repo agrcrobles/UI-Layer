@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import styles from "../assets/styles";
 import Button from 'react-native-button';
 import BackButton from "../components/BackButton";
-import { addAsset } from "../actions/AssetActions";
+import { addAsset, getHercId } from "../actions/AssetActions";
 import { ImagePicker } from 'expo';
 import next from "../assets/nextLabel.png";
 import { STATUS_BAR_HEIGHT } from '../constants';
@@ -31,11 +31,17 @@ class Tee extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      Name: "",
       Logo: null,
+      coreProps:{}
 
     };
   }
 
+  componentDidMount(){
+    // this.props.getHercId();
+    // console.log('gettingid hopefully');
+  }
   _pickImage = async () => {
 
     let logo = await ImagePicker.launchImageLibraryAsync({ allowsEditing: false, quality: .8, base64: true });
@@ -61,10 +67,10 @@ class Tee extends Component {
     console.log(this.state, "thisstate confimrmtee");
     let newAsset =  Object.assign({},this.state,{
       ...this.state,
-      hercId: this.props.getHercId
+      // hercId: this.props.getHercId
     })
     console.log(newAsset, "newasset");
-debugger
+
     this.props.addAsset(newAsset);
     navigate('NewAssetConfirm');
   }

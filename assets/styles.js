@@ -97,7 +97,7 @@ module.exports = StyleSheet.create({
     transPropLabel: {
         color: 'white',
         alignSelf: 'center',
-   
+
         fontWeight: "400",
         fontFamily: 'dinPro',
         fontSize: 14,
@@ -129,19 +129,53 @@ module.exports = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        padding:2,
+        padding: 3,
         margin: 5,
         // textAlign:'center',
         // textAlignVertical: 'center',
         backgroundColor: '#021227'
     },
-    
+
     revPropVal: {
         fontFamily: 'dinPro',
         fontSize: 20,
         color: '#f3c736',
         margin: 2,
         // textAlign: 'right'
+    },
+    editLabel: {
+        fontFamily: 'dinPro',
+        fontSize: 21,
+        color: 'white',
+        margin: 5,
+        alignSelf: 'center',
+        height: 30,
+
+    },
+    editTouch: {
+        height: 75,
+        margin: 5,
+        width: '75%'
+    },
+    editField: {
+        height: 75,
+        width: '75%',
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        padding: 3,
+        // margin: 5,
+        // textAlign:'center',
+        // textAlignVertical: 'center',
+        backgroundColor: '#021227'
+    },
+    editName: {
+        fontFamily: 'dinPro',
+        fontSize: 21,
+        color: 'white',
+        margin: 2,
+        alignSelf: 'flex-start',
+        height: 75,
+        justifyContent: 'center'
     },
     input: {
         width: 150,
@@ -174,10 +208,10 @@ module.exports = StyleSheet.create({
         paddingLeft: 5,
         marginBottom: 5
     },
-   
+
     picker: {
-       height: 175,
-       backgroundColor: '#021227',
+        height: 175,
+        backgroundColor: '#021227',
         width: '80%',
         marginTop: 50,
         alignSelf: 'center',
@@ -277,9 +311,9 @@ module.exports = StyleSheet.create({
         // marginTop: 15,
         // width: "40%"
     },
-    
 
-   
+
+
     assetMenuLabel: {
         textAlign: 'center',
         color: "white",
@@ -293,7 +327,7 @@ module.exports = StyleSheet.create({
         margin: 10
 
     },
-   
+
     assetLocation: {
         height: 30,
         width: 150,
@@ -314,7 +348,7 @@ module.exports = StyleSheet.create({
     },
     assetFee: {
         height: 50,
-        width: 285,
+        width: 150,
         // resizeMode: 'cover',
         flexDirection: 'row',
         // justifyContent: 'space-between',
@@ -324,11 +358,11 @@ module.exports = StyleSheet.create({
 
     },
     assetFeeLabel: {
-        height: 50,
-        width: 80,
+        height: 40,
+        width: 30,
         backgroundColor: '#021227',
         resizeMode: 'contain',
-        marginRight: 7
+        marginRight: 5
 
     },
     teePrice: {

@@ -41,6 +41,7 @@ class TransRev extends Component {
         let dTime = new Date().toString();
         let image = transDat.images[0] || null;
         let editName = transDat.editName || null;
+        let editNum = transDat.editNum || null;
 
         console.log((transDat.hasOwnProperty('properties')));
 
@@ -72,7 +73,8 @@ class TransRev extends Component {
                 <Text style={styles.transRevName}>HercID: {transDat.hercID}</Text>
                 <Image style={styles.assetLocationNoTopMargin} source={locationImage} />
                 <Text style={styles.transRevTime}>{dTime}</Text>
-                <Text style={[styles.transRevName,{height: 65}]}>EDI-T-SET:</Text><Text style={styles.transRevTime}>{editName}</Text>
+                <Text style={styles.editLabel}>EDI-T-SET:</Text><Text style={styles.transRevTime}>{editName}</Text>
+                <Text style={styles.transRevTime}>{editNum}</Text>
                 <Image style={styles.thumb} source={{ uri: image }} />
                 <View style={{ flex: 1 }}>
                     {list}

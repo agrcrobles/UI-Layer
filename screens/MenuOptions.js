@@ -77,7 +77,7 @@ import BackButton from '../components/BackButton';
             />
           </TouchableHighlight> 
           
-          <TouchableHighlight  onPress={() => navigate('Digi')}>
+          <TouchableHighlight  onPress={() => navigate('PreDigi')}>
             <Image
               style={styles.button}
               source={digiView}
@@ -99,7 +99,9 @@ import BackButton from '../components/BackButton';
           </TouchableHighlight> 
 
           </View>
-
+<Text style={{ color: '#f3c736', alignSelf: 'baseline', fontSize: 8}}>
+V.0.20
+</Text>
         </View>
       
            

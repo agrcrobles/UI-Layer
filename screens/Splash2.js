@@ -19,6 +19,7 @@ class Splash2 extends Component {
 
       headerTitle:
         <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
+         <TouchableHighlight onPress={() => navigation.navigate('MenuOptions')}>
           <Image style={{
             height: 80,
             width: 80,
@@ -27,6 +28,7 @@ class Splash2 extends Component {
             resizeMode: 'contain'
           }}
             source={{ uri: params.logo }} />
+        </TouchableHighlight>
           <Text style={styles.assetHeaderLabel}>{params.name}</Text>
         </View>,
 

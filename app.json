@@ -16,7 +16,7 @@
     "orientation": "portrait",
     "icon": "./assets/hLogo.png",
     "splash": {
-      "image": "./assets/logo.png",
+      "image": "./assets/hercLogoBreak.png",
       "resizeMode": "contain",
       "backgroundColor": "#021227",
       "justifyContent": "center"

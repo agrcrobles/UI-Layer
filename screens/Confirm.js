@@ -7,7 +7,7 @@ import recipient from "../assets/recipient.png";
 import { StackNavigator } from 'react-navigation';
 import { connect } from "react-redux";
 import styles from "../assets/styles";
-import fee from "../assets/hercFeeLabel.png";
+import fee from "../assets/hercLogoPillar.png";
 {/* <Image style={styles.assetFee} source={fee} /> */ }
 
 

@@ -3,8 +3,8 @@ import { StackNavigator } from 'react-navigation';
 import { View, Platform, Image, TouchableHighlight } from 'react-native';
 import { STATUS_BAR_HEIGHT } from '../constants';
 import styles from '../assets/styles';
-import icon from '../assets/hLogo.png';
-import logo from '../assets/logo.png';
+import icon from '../assets/hercLogoPillar.png';
+import logo from '../assets/hercLogoBreak.png';
 import backArrow from '../assets/icon_backarrow.png';
 import { Font } from 'expo';
 import BackButton from '../components/BackButton';
@@ -29,6 +29,7 @@ import Splash3 from '../screens/Splash3';
 import NewAssetConfirm from '../screens/NewAssetConfirm';
 import PreHipr from '../screens/PreHIPR';
 import EdiT from '../screens/Edi-T';
+import PreDigi from '../screens/PreDigiView';
 
 const MainNavigator = StackNavigator({
     Welcome: { screen: Welcome },
@@ -48,7 +49,8 @@ const MainNavigator = StackNavigator({
     Confirm: { screen: Confirm },
     NewAssetConfirm: { screen: NewAssetConfirm },
     PreHipr: { screen: PreHipr },
-    EdiT: { screen : EdiT}
+    EdiT: { screen : EdiT},
+    PreDigi: { screen: PreDigi }
 
 
 },

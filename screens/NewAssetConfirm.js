@@ -8,7 +8,7 @@ import { StackNavigator } from 'react-navigation';
 import { STATUS_BAR_HEIGHT } from '../constants';
 import { connect } from "react-redux";
 import styles from "../assets/styles";
-import fee from "../assets/hercFeeLabel.png";
+import fee from "../assets/hercLogoPillar.png";
 import { incHercId, confirmAsset } from "../actions/AssetActions"
 
 class NewAssetConfirm extends Component {
@@ -45,7 +45,7 @@ class NewAssetConfirm extends Component {
 
         Name = {
             Name,
-            hercId: this.props.hercId,
+            // hercId: this.props.hercId,
             Logo: this.props.Logo,
             CoreProps
         }

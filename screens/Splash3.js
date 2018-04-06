@@ -20,19 +20,21 @@ import BackButton from "../components/BackButton";
 class Splash3 extends Component {
     static navigationOptions = ({ navigation }) => {
         const { params } = navigation.state;
-        
+
         return {
 
             headerTitle:
                 <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
-                    <Image style={{
-                        height: 80,
-                        width: 80,
-                        alignSelf: 'center',
-                        borderRadius: 40,
-                        resizeMode: 'contain'
-                    }}
-                        source={{ uri: params.logo }} />
+                    <TouchableHighlight onPress={() => navigation.navigate('MenuOptions')}>
+                        <Image style={{
+                            height: 80,
+                            width: 80,
+                            alignSelf: 'center',
+                            borderRadius: 40,
+                            resizeMode: 'contain'
+                        }}
+                            source={{ uri: params.logo }} />
+                    </TouchableHighlight>
                     <Text style={styles.assetHeaderLabel}>{params.name}</Text>
                 </View>,
 
@@ -100,7 +102,7 @@ class Splash3 extends Component {
                             />
                         </TouchableHighlight>
 
-                        <TouchableHighlight  onPress={() => navigate('EdiT', { logo: logo, name: asset.name })}>
+                        <TouchableHighlight onPress={() => navigate('EdiT', { logo: logo, name: asset.name })}>
                             <Image
                                 style={styles.menuInputTitle}
                                 source={EDIT}
@@ -108,7 +110,7 @@ class Splash3 extends Component {
                         </TouchableHighlight>
                     </View>
 
-                    <TransRev navigate={navigate}/>
+                    <TransRev navigate={navigate} />
                 </ScrollView>
             </View>
 
