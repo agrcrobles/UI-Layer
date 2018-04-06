@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Platform, StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert } from 'react-native';
+import { Platform, StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert } from 'react-native';
 import Button from 'react-native-button';
 import { StackNavigator } from 'react-navigation';
 import { STATUS_BAR_HEIGHT } from '../constants';
@@ -52,28 +52,28 @@ class DocUp extends Component {
     }
   }
   state = {
-    document: {
-      name: null,
-      uri: null,
-      size: null
-    }
-  };
+
+    name: null,
+    uri: null,
+    size: null
+  }
+
 
   _onSubmit = () => {
-    let uri = this.state.document.uri;
-    let docName = this.state.document.name;
-    let docSize = this.state.document.size;
     const { navigate } = this.props.navigation;
-    pickedDoc = Object.assign({}, this.state, {
-      uri,
+    let uri = this.state.uri;
+    let docName = this.state.name;
+    let docSize = this.state.size;
+    let doc = Object.assign({}, this.state, {
+      uri: uri,
       size: docSize,
       name: docName
     }
-  ) 
-    console.log(pickedDoc, "onsubmitcsv")
-    this.props.addDoc(pickedDoc);
-    
-    navigate('Splash3', {logo: this.props.logo, name: this.props.name});
+    )
+    console.log(doc, "onsubmitcsv")
+    this.props.addDoc(doc);
+
+    navigate('Splash3', { logo: this.props.logo, name: this.props.name });
   };
 
 
@@ -90,13 +90,14 @@ class DocUp extends Component {
 
     if (!docResult.cancelled) {
       this.setState({
-        document: {
-          name: docResult.name,
-          uri: docResult.uri,
-          size: docResult.size
-        }
+
+        name: docResult.name,
+        uri: docResult.uri,
+        size: docResult.size
+
       });
-    }
+
+    };
   };
 
   render() {
@@ -110,8 +111,8 @@ class DocUp extends Component {
 
     return (
       <View style={styles.container}>
-      
-          <Image style={styles.assetLocation} source={locationImage} />
+
+        <Image style={styles.assetLocation} source={locationImage} />
 
         <Button
 
@@ -121,7 +122,7 @@ class DocUp extends Component {
           Upload Document
       </Button>
         <Text style={styles.label}>
-          {this.state.document.name}
+          {this.state.name}
         </Text>
 
 
@@ -139,8 +140,8 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
 
-  addDoc: (uri, docName) =>
-    dispatch(addDoc(uri, docName)),
+  addDoc: (doc) =>
+    dispatch(addDoc(doc)),
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(DocUp);

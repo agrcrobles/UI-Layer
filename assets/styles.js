@@ -111,10 +111,10 @@ module.exports = StyleSheet.create({
     },
     transRevName: {
         fontFamily: 'dinPro',
-        fontSize: 21,
+        fontSize: 16,
         color: 'white',
         margin: 2,
-        alignSelf: 'center'
+        textAlign: 'left'
 
     },
     transRevTime: {
@@ -124,24 +124,25 @@ module.exports = StyleSheet.create({
         textAlign: 'center'
     },
     revPropField: {
-        height: 65,
-        width: '75%',
+        height: 20,
+        width: 225,
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
-        padding: 3,
-        margin: 5,
+        padding: 2,
+        margin: 2,
         // textAlign:'center',
         // textAlignVertical: 'center',
-        backgroundColor: '#021227'
+        backgroundColor: '#021227',
+        alignSelf: 'center'
     },
 
     revPropVal: {
         fontFamily: 'dinPro',
-        fontSize: 20,
+        fontSize: 15,
         color: '#f3c736',
         margin: 2,
-        // textAlign: 'right'
+        textAlign: 'right'
     },
     editLabel: {
         fontFamily: 'dinPro',
