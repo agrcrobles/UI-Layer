@@ -28,7 +28,7 @@ class DocUp extends Component {
             height: 80,
             width: 80,
             alignSelf: 'center',
-            borderRadius: 120,
+            borderRadius: 40,
             resizeMode: 'contain'
           }}
             source={{ uri: params.logo }} />
