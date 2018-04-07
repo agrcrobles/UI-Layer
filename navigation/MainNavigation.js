@@ -101,9 +101,10 @@ const MainNavigator = StackNavigator({
     }
 }
 
-const mapDispatchToProps = (dispatch) => ({
+export default MainNavigation;
+// const mapDispatchToProps = (dispatch) => ({
 
-    listAssets: () => dispatch(listAssets())
+//     listAssets: () => dispatch(listAssets())
   
-  })
-  export default connect(null, mapDispatchToProps)(MainNavigation);
+//   })
+//   export default connect(null, mapDispatchToProps)(MainNavigation);

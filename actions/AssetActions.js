@@ -15,12 +15,12 @@ export function getHercId() {
     })
 }
 
-export function listAssets() {
-    return {
-        type: LIST_ASSETS,
+// export function listAssets() {
+//     return {
+//         type: LIST_ASSETS,
 
-    }
-}
+//     }
+// }
 
 export function selectAsset(assetKey) {
 

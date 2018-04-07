@@ -12,6 +12,7 @@ import {
     CONFIRM_ASSET,
     SET_SET
 } from '../actions/types';
+
 import ApiKeys from '../constants/apiKeys';
 import * as firebase from 'firebase';
 
@@ -19,37 +20,61 @@ firebase.initializeApp(ApiKeys.FirebaseConfig);
 
 const rootRef = firebase.database().ref();
 
+let assets = [];
+rootRef.child('assets').on('value', (snapshot) => {
+    snapshot.forEach((obj) => {
+        console.log(obj.toJSON(), 'object in listassets');
+        assets.push({
+            name: obj.toJSON().Name,
+            key: obj.key,
+            logo: obj.toJSON().Logo,
+            // url: obj.toJSON().url
+        });
+
+    })
+
+})
+
+
+let hercId;
+rootRef.child('hercID').on('value', (snapshot) => {
+       console.log(snapshot.val(), 'snaps')
+        hercId = snapshot.val();
+    }
+);
+
+
 
 const INITIAL_STATE = {
-    assets: [],
-    hercId: ""
+    assets: assets,
+    hercId: hercId
 };
 
 
 const AssetReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case LIST_ASSETS:
-            let assets = [];
-            rootRef.child('assets').on('value', (snapshot) => {
-                //    let asset = snapshot.toJSON();
-                // var size = Object.keys(asset).length;
-                //    let keys = Object.keys(obj.coreProps);//this might not work
-                snapshot.forEach((obj) => {
-                    console.log(obj.toJSON(), 'object in listassets');
-                    assets.push({
-                        name: obj.toJSON().Name,
-                        key: obj.key,
-                        logo: obj.toJSON().Logo
-                    });
+        // case LIST_ASSETS:
+        //     let assets = [];
+        //     rootRef.child('assets').on('value', (snapshot) => {
+        //         //    let asset = snapshot.toJSON();
+        //         // var size = Object.keys(asset).length;
+        //         //    let keys = Object.keys(obj.coreProps);//this might not work
+        //         snapshot.forEach((obj) => {
+        //             console.log(obj.toJSON(), 'object in listassets');
+        //             assets.push({
+        //                 name: obj.toJSON().Name,
+        //                 key: obj.key,
+        //                 logo: obj.toJSON().Logo
+        //             });
 
-                })
+        //         })
 
-            })
-            return Object.assign({}, state, {
-                ...state,
+        //     })
+        //     return Object.assign({}, state, {
+        //         ...state,
 
-                assets
-            })
+        //         assets
+        //     })
 
         case SELECT_ASSET:
             let assetKey = action.data;
@@ -127,19 +152,19 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
             )
 
-        case GET_HERC_ID:
-            let hercNum;
-            rootRef.child('hercID').once('value').then(
-                (snap) => {
-                    console.log(snap.val(), 'snaps')
-                    hercNum = snap.val();
+        // case GET_HERC_ID:
+        //     let hercNum;
+        //     rootRef.child('hercID').once('value').then(
+        //         (snap) => {
+        //             console.log(snap.val(), 'snaps')
+        //             hercNum = snap.val();
 
-                });
-            return Object.assign({}, state, {
-                ...state,
+        //         });
+        //     return Object.assign({}, state, {
+        //         ...state,
 
-                hercId: hercNum
-            })
+        //         hercId: hercNum
+        //     })
 
         case INC_HERC_ID:
 
@@ -178,66 +203,66 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             )
 
         case ADD_PROPS:
-const newProps = action.data;
-console.log(newProps, "updating attributes in reducers");
-return Object.assign({}, state, {
+            const newProps = action.data;
+            console.log(newProps, "updating attributes in reducers");
+            return Object.assign({}, state, {
 
-    ...state,
+                ...state,
 
-    transDat: {
-        ...state.transDat,
-        properties: newProps
-    }
-}
+                transDat: {
+                    ...state.transDat,
+                    properties: newProps
+                }
+            }
 
-)
+            )
 
 
         case ADD_ASSET:
-const newAsset = action.newAsset;
-console.log('adding asset', newAsset.name)
-return Object.assign({}, state, {
-    ...state,
+            const newAsset = action.newAsset;
+            console.log('adding asset', newAsset.name)
+            return Object.assign({}, state, {
+                ...state,
 
-    newAsset
+                newAsset
 
-}
-)
+            }
+            )
 
         case CONFIRM_ASSET:
-const asset = action.asset;
-console.log(asset.name, 'asset in reducerconfirm', state, 'state')
-rootRef.child('assets').push(asset);
+            const asset = action.asset;
+            console.log(asset.name, 'asset in reducerconfirm', state, 'state')
+            rootRef.child('assets').push(asset);
 
-return Object.assign({}, state, {
-    ...state,
-    assets: [...assets, asset]
-
-
-}
-)
-
-            case SET_SET:
-const setName = action.item.name;
-const setNum = action.item.value;
-console.log(setName, setNum, 'setset');
-rootRef.child('assets').push(asset);
-
-return Object.assign({}, state, {
-    ...state,
-    transDat: {
-        ...state.transDat,
-        editName: setName,
-        editNum: setNum
-    }
+            return Object.assign({}, state, {
+                ...state,
+                assets: [...assets, asset]
 
 
-}
-)
+            }
+            )
+
+        case SET_SET:
+            const setName = action.item.name;
+            const setNum = action.item.value;
+            console.log(setName, setNum, 'setset');
+            rootRef.child('assets').push(asset);
+
+            return Object.assign({}, state, {
+                ...state,
+                transDat: {
+                    ...state.transDat,
+                    editName: setName,
+                    editNum: setNum
+                }
+
+
+            }
+            )
 
 
         default:
-return state;
+            return state;
     }
 }
 
