@@ -18,8 +18,8 @@ class Splash2 extends Component {
     return {
 
       headerTitle:
-        <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
-         <TouchableHighlight onPress={() => navigation.navigate('MenuOptions')}>
+        <View style={{ height: 100, alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
+         <TouchableHighlight style={{alignSelf: 'center', height: 100, }} onPress={() => navigation.navigate('MenuOptions')}>
           <Image style={{
             height: 80,
             width: 80,
