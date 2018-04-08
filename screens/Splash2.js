@@ -19,7 +19,7 @@ class Splash2 extends Component {
 
       headerTitle:
         <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
-          <TouchableHighlight onPress={() => navigation.navigate('MenuOptions')}>
+          <TouchableHighlight style={{flex: 1, height: 80, width: 80, borderRadius: 40}} onPress={() => navigation.navigate('MenuOptions')}>
             <Image style={{
               height: 80,
               width: 80,
@@ -57,7 +57,7 @@ class Splash2 extends Component {
 
 //rebuilding the transaction base
     let asset = Object.assign({},this.props.asset,{
-    let trans = {
+     trans: {
       header:  {
         name: asset.Name,
         key: asset.key,

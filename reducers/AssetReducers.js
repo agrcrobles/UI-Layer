@@ -1,5 +1,6 @@
 import {
     LIST_ASSETS,
+    GOT_LIST_ASSETS,
     ADD_ASSET,
     SELECT_ASSET,
     START_TRANS,
@@ -51,7 +52,7 @@ const INITIAL_STATE = {
 
 const AssetReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case LIST_ASSETS:
+        case GOT_LIST_ASSETS:
             console.log(action, 'listAssetsData');
             let assets = action.assets
 
@@ -120,11 +121,11 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
         case GET_HERC_ID:
             let hercId = action.hercId;
-           
+            console.log(hercId, action, "hercidstuff")
             return Object.assign({}, state, {
                 ...state,
 
-                hercId
+                hercId: hercId
             })
 
         case INC_HERC_ID:

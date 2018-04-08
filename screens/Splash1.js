@@ -22,6 +22,7 @@ class Splash1 extends Component {
  
   //  Need to determine the ideal way to get the selected asset, currently am pulling them both down entirely and then just assigning the selected to state...I think...
   componentDidMount() {
+    console.log(this.state, this.props, 'state and props');
    
   }
 

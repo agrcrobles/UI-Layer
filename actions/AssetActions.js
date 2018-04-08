@@ -1,4 +1,4 @@
-import { ADD_ASSET, LIST_ASSETS, SELECT_ASSET, START_TRANS, SEND_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET, SET_SET } from './types';
+import { ADD_ASSET, LIST_ASSETS, GOT_LIST_ASSETS, SELECT_ASSET, START_TRANS, SEND_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET, SET_SET } from './types';
 import firebase from '../constants/Firebase';
 const rootRef = firebase.database().ref();
 
@@ -18,7 +18,7 @@ export function getHercId() {
         hercId = snapshot.toJSON();
     }
     );
-    console.log('getting ID')
+    console.log(hercId, ' hercID getting ID')
     return ({
         type: GET_HERC_ID,
         hercId
@@ -27,25 +27,64 @@ export function getHercId() {
 }
 
 export function listAssets() {
-    let assets = [];
-    rootRef.child('assets').on('value', (snapshot) => {
-        snapshot.forEach((obj) => {
-            console.log(obj.toJSON(), 'object in listassets');
-            assets.push({
-                name: obj.toJSON().Name,
-                key: obj.key,
-                logo: obj.toJSON().Logo,
-                // url: obj.toJSON().url
-            });
+    return (dispatch) => {
+        dispatch({
+            type: "LIST_ASSETS"
+        });
+        let assets = [];
+        rootRef.child('assets').once('value').
+            then((snapshot) => {
+                snapshot.forEach((obj) => {
+                    console.log(obj.toJSON(), 'object in listassets');
+                    assets.push({
+                        name: obj.toJSON().Name,
+                        key: obj.key,
+                        logo: obj.toJSON().Logo,
+                        // url: obj.toJSON().url
+                    });
 
-        })
+                })
 
-    })
-    return {
-        type: LIST_ASSETS,
-        assets
+            }).then(() => dispatch(gotListAssets(assets)))
+
     }
 }
+export function gotListAssets(assetList) {
+    let assets = assetList;
+    console.log('got the list');
+    return {
+        type: GOT_LIST_ASSETS,
+        assets
+
+    }
+}
+// export function listAssets() {
+//     let assets = [];
+//     rootRef.child('assets').on('value', 
+//         then((snapshot) => {
+//             snapshot.forEach((obj) => {
+//                 console.log(obj.toJSON(), 'object in listassets');
+//                 assets.push({
+//                     name: obj.toJSON().Name,
+//                     key: obj.key,
+//                     logo: obj.toJSON().Logo,
+//                     // url: obj.toJSON().url
+//                 });
+
+//             })
+
+//         })
+// return {
+//     type: LIST_ASSETS,
+//     assets
+// }
+
+// export function getAssets(){
+//     return function (dispatch) {
+//         dispatch(listAssets())
+//     }
+// }
+
 
 export function selectAsset(asset) {
     let assetRef = rootRef.child('assets/' + asset.key);
