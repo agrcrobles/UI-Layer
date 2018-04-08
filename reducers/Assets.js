@@ -1,7 +1,7 @@
-import ApiKeys from '../constants/apiKeys';
-import * as firebase from 'firebase';
+import React, { Component } from 'react';
+import firebase from '../constants/Firebase';
 
-firebase.initializeApp(ApiKeys.FirebaseConfig);
+// firebase.initializeApp(ApiKeys.FirebaseConfig);
 
 const rootRef = firebase.database().ref();
 
@@ -15,9 +15,9 @@ rootRef.child('assets').on('value', (snapshot) => {
             logo: obj.toJSON().Logo,
             // url: obj.toJSON().url
         });
-
+        
     })
-
+    
 })
 
 export default assets;

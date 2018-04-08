@@ -52,17 +52,23 @@ class Splash2 extends Component {
   }
   _onPress = (place) => {
     const { navigate } = this.props.navigation;
+    console.log(place, 'pressing place');
     let time = new Date();
 
-    console.log(place, 'pressing place');
-    let asset = this.props.asset;
-    let transBase = {
-      name: asset.Name,
-      location: place,
-      dTime: time
-    }
-    console.log(transBase.time, 'txbase')
-    this.props.startTrans(transBase);
+//rebuilding the transaction base
+    let asset = Object.assign({},this.props.asset,{
+    let trans = {
+      header:  {
+        name: asset.Name,
+        key: asset.key,
+        location: place,
+        dTime: time,
+        hercId: asset.hercId
+      }
+  }
+});
+    console.log(trans[header].dtime, 'txbase')
+    this.props.startTrans(trans);
 
     navigate('Splash3', { logo: this.props.asset.Logo, name: this.props.asset.Name });
   }

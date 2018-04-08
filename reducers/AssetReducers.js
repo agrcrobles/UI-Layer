@@ -13,108 +13,74 @@ import {
     SET_SET
 } from '../actions/types';
 
-import ApiKeys from '../constants/apiKeys';
-import * as firebase from 'firebase';
+import firebase from '../constants/Firebase';
+// import assets from './Assets';
+// import ApiKeys from '../constants/apiKeys';
+// import * as firebase from 'firebase';
 
-firebase.initializeApp(ApiKeys.FirebaseConfig);
+// firebase.initializeApp(ApiKeys.FirebaseConfig);
 
 const rootRef = firebase.database().ref();
 
-let assets = [];
-rootRef.child('assets').on('value', (snapshot) => {
-    snapshot.forEach((obj) => {
-        console.log(obj.toJSON(), 'object in listassets');
-        assets.push({
-            name: obj.toJSON().Name,
-            key: obj.key,
-            logo: obj.toJSON().Logo,
-            // url: obj.toJSON().url
-        });
+// let assets = [];
+// rootRef.child('assets').on('value', (snapshot) => {
+//     snapshot.forEach((obj) => {
+//         console.log(obj.toJSON(), 'object in listassets');
+//         assets.push({
+//             name: obj.toJSON().Name,
+//             key: obj.key,
+//             logo: obj.toJSON().Logo,
+//             // url: obj.toJSON().url
+//         });
 
-    })
+//     })
 
-})
+// })
 
 
-let hercId;
-rootRef.child('hercID').on('value', (snapshot) => {
-       console.log(snapshot.val(), 'snaps')
-        hercId = snapshot.val();
-    }
-);
 
 
 
 const INITIAL_STATE = {
-    assets: assets,
-    hercId: hercId
+
+    assets: [],
+    hercId: ""
+
 };
 
 
 const AssetReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        // case LIST_ASSETS:
-        //     let assets = [];
-        //     rootRef.child('assets').on('value', (snapshot) => {
-        //         //    let asset = snapshot.toJSON();
-        //         // var size = Object.keys(asset).length;
-        //         //    let keys = Object.keys(obj.coreProps);//this might not work
-        //         snapshot.forEach((obj) => {
-        //             console.log(obj.toJSON(), 'object in listassets');
-        //             assets.push({
-        //                 name: obj.toJSON().Name,
-        //                 key: obj.key,
-        //                 logo: obj.toJSON().Logo
-        //             });
-
-        //         })
-
-        //     })
-        //     return Object.assign({}, state, {
-        //         ...state,
-
-        //         assets
-        //     })
-
-        case SELECT_ASSET:
-            let assetKey = action.data;
-            let assetRef = rootRef.child('assets/' + assetKey);
-            let jsonRef = rootRef.child('assets/' + assetKey).toJSON();
-
-            console.log(jsonRef, 'asset ref in Reducer');
-            let selectedAsset = {};
-            assetRef.on('value', (snapshot) => {
-                selectedAsset = snapshot.val();
-
-            })
+        case LIST_ASSETS:
+            console.log(action, 'listAssetsData');
+            let assets = action.assets
 
             return Object.assign({}, state, {
                 ...state,
+                assets
+            })
 
-                selectedAsset: {
-                    ...selectedAsset,
-                    assetKey
-                }
+
+        case SELECT_ASSET:
+            console.log(action,'action in select reducer');
+            let selectedAsset = action.selectedAsset;
+            return Object.assign({}, state, {
+                ...state,
+            
+                    selectedAsset,
+            
             })
 
         // this used to be  SET_PLACE
         case START_TRANS:
-            let transInfo = action.data;
+            let trans = action.data;
             console.log(state.selectedAsset.name, "selectedAssetName in startTrans reducer")
 
             return Object.assign({}, state, {
 
                 ...state,
 
-                transInfo,
-                transDat: {
-
-                    assetKey: state.selectedAsset.assetKey,
-                    images: [],
-                    documents: [],
-                    properties: {}
-                }
-
+              
             }
 
             )
@@ -152,19 +118,14 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
             )
 
-        // case GET_HERC_ID:
-        //     let hercNum;
-        //     rootRef.child('hercID').once('value').then(
-        //         (snap) => {
-        //             console.log(snap.val(), 'snaps')
-        //             hercNum = snap.val();
+        case GET_HERC_ID:
+            let hercId = action.hercId;
+           
+            return Object.assign({}, state, {
+                ...state,
 
-        //         });
-        //     return Object.assign({}, state, {
-        //         ...state,
-
-        //         hercId: hercNum
-        //     })
+                hercId
+            })
 
         case INC_HERC_ID:
 

@@ -1,34 +1,69 @@
 import { ADD_ASSET, LIST_ASSETS, SELECT_ASSET, START_TRANS, SEND_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET, SET_SET } from './types';
-// import assets from '../reducers/assetListReducer';
+import firebase from '../constants/Firebase';
+const rootRef = firebase.database().ref();
 
-export function incHercId() {
-    return {
-        type: INC_HERC_ID,
-    }
-}
+// export function incHercId() {
+
+
+//     return {
+//         type: INC_HERC_ID,
+//         hercId
+//     }
+// }
 
 export function getHercId() {
+    let hercId;
+    rootRef.child('hercID').on('value', (snapshot) => {
+        console.log(snapshot.val(), 'snaps')
+        hercId = snapshot.toJSON();
+    }
+    );
     console.log('getting ID')
     return ({
         type: GET_HERC_ID,
+        hercId
 
     })
 }
 
-// export function listAssets() {
-//     return {
-//         type: LIST_ASSETS,
+export function listAssets() {
+    let assets = [];
+    rootRef.child('assets').on('value', (snapshot) => {
+        snapshot.forEach((obj) => {
+            console.log(obj.toJSON(), 'object in listassets');
+            assets.push({
+                name: obj.toJSON().Name,
+                key: obj.key,
+                logo: obj.toJSON().Logo,
+                // url: obj.toJSON().url
+            });
 
-//     }
-// }
+        })
 
-export function selectAsset(assetKey) {
+    })
+    return {
+        type: LIST_ASSETS,
+        assets
+    }
+}
 
+export function selectAsset(asset) {
+    let assetRef = rootRef.child('assets/' + asset.key);
+    let selectedAsset = {};
+    assetRef.on('value', (snapshot) => {
+        selectedAsset = snapshot.val();
+
+    });
+    selectedAsset = Object.assign({}, selectedAsset, {
+        ...selectedAsset,
+        key: asset.key
+    })
+    console.log(selectedAsset, 'selecteasset in action')
     return (
 
         {
             type: SELECT_ASSET,
-            data: assetKey
+            selectedAsset
         }
     )
 }
@@ -46,12 +81,14 @@ export function confirmAsset(asset) {
 
     }
 }
-export function startTrans(txBase) {
+export function startTrans(trans) {
+    let newtrans = trans;
+
     return (
         console.log(txBase, "inside set Location action"),
         {
             type: START_TRANS,
-            data: txBase
+            data: newtrans
         }
     )
 }
@@ -91,7 +128,7 @@ export function addDoc(uri, docName) {
     }
 }
 
-export function setSet(item){
+export function setSet(item) {
     return {
         type: SET_SET,
         item

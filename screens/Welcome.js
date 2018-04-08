@@ -14,10 +14,10 @@ export default class Welcome extends Component {
 
   _onPinPress(){
     const { navigate } = this.props.navigation;
-    console.log(this.state.pin);
-   if(!this.state.pin === 7362){ 
-     Alert.alert("Wrong Pin!");
-   }
+  //   console.log(this.state.pin);
+  //  if(!this.state.pin === 7362){ 
+  //    Alert.alert("Wrong Pin!");
+  //  }
      navigate('MenuOptions');
  
   }

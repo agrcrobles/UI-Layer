@@ -30,7 +30,9 @@ import BackButton from '../components/BackButton';
   }
   
   componentDidMount() {
-    // this.props.listAssets();
+    this.props.listAssets();
+    this.props.getHercId();
+    console.log(this.state, 'stateprops')
     
     console.log('working it');
     
