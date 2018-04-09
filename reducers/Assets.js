@@ -5,11 +5,11 @@ import firebase from '../constants/Firebase';
 
 const rootRef = firebase.database().ref();
 
-let assets = [];
+let assetList = [];
 rootRef.child('assets').on('value', (snapshot) => {
     snapshot.forEach((obj) => {
         console.log(obj.toJSON(), 'object in listassets');
-        assets.push({
+        assetList.push({
             name: obj.toJSON().Name,
             key: obj.key,
             logo: obj.toJSON().Logo,
@@ -19,5 +19,7 @@ rootRef.child('assets').on('value', (snapshot) => {
     })
     
 })
+
+const assets = assetList;
 
 export default assets;

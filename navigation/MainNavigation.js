@@ -8,7 +8,7 @@ import logo from '../assets/hercLogoBreak.png';
 import backArrow from '../assets/icon_backarrow.png';
 import { Font } from 'expo';
 import BackButton from '../components/BackButton';
-import { listAssets } from '../actions/AssetActions';
+// import { listAssets } from '../actions/AssetActions';
 import { connect } from 'react-redux';
 
 import Welcome from "../screens/Welcome";

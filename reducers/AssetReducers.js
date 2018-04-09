@@ -10,19 +10,19 @@ import {
     ADD_PROPS,
     INC_HERC_ID,
     GET_HERC_ID,
+    GOT_HERC_ID,
     CONFIRM_ASSET,
     SET_SET
 } from '../actions/types';
 
+import assets from "./Assets";
 import firebase from '../constants/Firebase';
-// import assets from './Assets';
-// import ApiKeys from '../constants/apiKeys';
-// import * as firebase from 'firebase';
 
-// firebase.initializeApp(ApiKeys.FirebaseConfig);
 
 const rootRef = firebase.database().ref();
 
+
+//synchronous 
 // let assets = [];
 // rootRef.child('assets').on('value', (snapshot) => {
 //     snapshot.forEach((obj) => {
@@ -40,26 +40,24 @@ const rootRef = firebase.database().ref();
 
 
 
-
-
 const INITIAL_STATE = {
 
-    assets: [],
-    hercId: ""
+    assets: assets,
+    // hercId: ""
 
 };
 
 
 const AssetReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case GOT_LIST_ASSETS:
-            console.log(action, 'listAssetsData');
-            let assets = action.assets
+        // case GOT_LIST_ASSETS:
+        //     console.log(action, 'listAssetsreducer');
+        //     let assets = action.assets
 
-            return Object.assign({}, state, {
-                ...state,
-                assets
-            })
+        //     return Object.assign({}, state, {
+        //         ...state,
+        //         assets
+        //     })
 
 
         case SELECT_ASSET:
@@ -119,7 +117,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
             )
 
-        case GET_HERC_ID:
+        case GOT_HERC_ID:
             let hercId = action.hercId;
             console.log(hercId, action, "hercidstuff")
             return Object.assign({}, state, {

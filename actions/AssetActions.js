@@ -1,4 +1,4 @@
-import { ADD_ASSET, LIST_ASSETS, GOT_LIST_ASSETS, SELECT_ASSET, START_TRANS, SEND_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, CONFIRM_ASSET, SET_SET } from './types';
+import { ADD_ASSET, LIST_ASSETS, GOT_LIST_ASSETS, SELECT_ASSET, START_TRANS, SEND_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, GOT_HERC_ID, CONFIRM_ASSET, SET_SET } from './types';
 import firebase from '../constants/Firebase';
 const rootRef = firebase.database().ref();
 
@@ -12,18 +12,31 @@ const rootRef = firebase.database().ref();
 // }
 
 export function getHercId() {
-    let hercId;
-    rootRef.child('hercID').on('value', (snapshot) => {
-        console.log(snapshot.val(), 'snaps')
-        hercId = snapshot.toJSON();
-    }
-    );
-    console.log(hercId, ' hercID getting ID')
-    return ({
-        type: GET_HERC_ID,
-        hercId
+    return (dispatch) => {
+        dispatch({
 
-    })
+            type: GET_HERC_ID
+
+        })
+        let hercId;
+        rootRef.child('hercID').once('value').
+            then((snapshot) => {
+                console.log(snapshot.val(), 'snaps')
+                hercId = snapshot.toJSON();
+            }).then(() => dispatch(gotHercId(hercId)));
+
+
+    }
+}
+export function gotHercId(hercId) {
+    let id = hercId;
+    console.log(id, 'gotHercId');
+    return {
+        type: GOT_HERC_ID,
+        hercId: id
+
+    }
+
 }
 
 export function listAssets() {
