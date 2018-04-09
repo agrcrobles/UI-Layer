@@ -21,13 +21,14 @@ import InputMan from '../screens/InputMan';
 import Tee from '../screens/Tee';
 import Digi from '../screens/DigiViewer';
 import Anthem from '../screens/Anthem';
+import PreHipr from '../screens/PreHIPR';
+import HiprAssets from '../screens/HiprAssets';
 import Hipr from '../screens/Hipr';
 import BlockScan from '../screens/BlockScan';
 import Splash1 from '../screens/Splash1';
 import Splash2 from '../screens/Splash2';
 import Splash3 from '../screens/Splash3';
 import NewAssetConfirm from '../screens/NewAssetConfirm';
-import PreHipr from '../screens/PreHIPR';
 import EdiT from '../screens/Edi-T';
 import PreDigi from '../screens/PreDigiView';
 
@@ -38,6 +39,8 @@ const MainNavigator = StackNavigator({
     Tee: { screen: Tee },
     Digi: { screen: Digi },
     Anthem: { screen: Anthem },
+    PreHipr: { screen: PreHipr },
+    HiprAssets: { screen: HiprAssets },
     Hipr: { screen: Hipr },
     BlockScan: { screen: BlockScan },
     Splash1: { screen: Splash1 },
@@ -48,7 +51,6 @@ const MainNavigator = StackNavigator({
     DocUp: { screen: DocUp },
     Confirm: { screen: Confirm },
     NewAssetConfirm: { screen: NewAssetConfirm },
-    PreHipr: { screen: PreHipr },
     EdiT: { screen : EdiT},
     PreDigi: { screen: PreDigi }
 

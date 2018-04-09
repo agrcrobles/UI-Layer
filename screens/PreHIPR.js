@@ -33,7 +33,7 @@ export default class PreHIPR extends Component {
 
                 {/* <View style={{ alignContent: 'center', marginTop: 50, marginBottom: 10, width: "50%", height: 200, justifyContent: 'center' }} > */}
               
-                    <TouchableHighlight onPress={() => navigate('Hipr')} style={{marginTop: 50, height: 50, width: 130,}}>
+                    <TouchableHighlight onPress={() => navigate('HiprAssets')} style={{marginTop: 50, height: 50, width: 130,}}>
                         <Image
                             style={{ height: 50, width: 130, resizeMode: 'contain' }}
                             source={begin}
