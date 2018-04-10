@@ -5,7 +5,7 @@ export default class Hipr extends Component {
   render() {
     return (
       <WebView
-        source={{uri: 'http://herc.one/'}}
+        source={{uri: 'http://hipr.one/'}}
         style={{marginTop: 20, flex: 1}}
       />
     );
