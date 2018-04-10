@@ -4,7 +4,8 @@ const rootRef = firebase.database().ref();
 
 export function incHercId(hercid) {
     console.log(hercid, 'hercid')
-    let hercId = "00" + (Number(hercid) + 1).toString()
+    console.log((Number(hercid) + 1).toString(), 'transformed to string')
+    let hercId = "00" +
     console.log(hercId, 'after refact')
     return {
         type: INC_HERC_ID,
@@ -142,7 +143,6 @@ export function startTrans(trans) {
     let newtrans = trans;
 
     return (
-        console.log(txBase, "inside set Location action"),
         {
             type: START_TRANS,
             data: newtrans
@@ -151,8 +151,8 @@ export function startTrans(trans) {
 }
 
 export function sendTrans(trans) {
+    console.log(trans, "inside set Location action")
     return (
-        console.log(trans, "inside set Location action"),
         {
             type: SEND_TRANS,
             data: trans

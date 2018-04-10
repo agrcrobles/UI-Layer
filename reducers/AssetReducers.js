@@ -61,13 +61,13 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
 
         case SELECT_ASSET:
-            console.log(action,'action in select reducer');
+            console.log(action, 'action in select reducer');
             let selectedAsset = action.selectedAsset;
             return Object.assign({}, state, {
                 ...state,
-            
-                    selectedAsset,
-            
+
+                selectedAsset,
+
             })
 
         // this used to be  SET_PLACE
@@ -77,11 +77,13 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
             return Object.assign({}, state, {
 
-                ...state,
 
-              
+                selectedAsset: {
+                    ...state.selectedAsset,
+                    trans
+                }
+
             }
-
             )
 
         case SEND_TRANS:
@@ -130,8 +132,8 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             let hercID = action.hercId;
             console.log(hercID, 'in increase reducer');
 
-        rootRef.child('hercID').set(hercID);
-            
+            rootRef.child('hercID').set(hercID);
+
             return Object.assign({}, state, {
                 ...state,
                 hercId: hercID
@@ -196,7 +198,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             console.log(asset.name, 'asset in reducerconfirm', state, 'state')
             let assetRef = rootRef.child('assets').push();
             rootRef.child('assets').push(asset);
-            
+
             let partAsset = {
                 name: asset.Name,
                 logo: asset.Logo,

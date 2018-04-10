@@ -92,8 +92,8 @@ class TransRev extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    transInfo: state.AssetReducers.transInfo,
-    transDat: state.AssetReducers.transDat
+    transInfo: state.AssetReducers.selectedAsset.trans.header,
+   transDat: state.AssetReducers.selectedAsset.trans.data
 })
 const mapDispatchToProps = (dispatch) => ({
     sendTrans: (trans) => dispatch(sendTrans(trans))

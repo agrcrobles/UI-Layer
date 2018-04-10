@@ -5,7 +5,6 @@ import arrow from "../assets/icon_backarrow.png";
 import styles from "../assets/styles";
 import { connect } from "react-redux";
 import { startTrans } from '../actions/AssetActions';
-import agldLogo from "../assets/AG_logo.png";
 import originator from "../assets/origin.png";
 import recipient from "../assets/recipient.png";
 
@@ -19,7 +18,7 @@ class Splash2 extends Component {
 
       headerTitle:
         <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
-          <TouchableHighlight style={{flex: 1, height: 80, width: 80, borderRadius: 40}} onPress={() => navigation.navigate('MenuOptions')}>
+          <TouchableHighlight style={{ flex: 1, height: 80, width: 80, borderRadius: 40 }} onPress={() => navigation.navigate('MenuOptions')}>
             <Image style={{
               height: 80,
               width: 80,
@@ -54,27 +53,43 @@ class Splash2 extends Component {
     const { navigate } = this.props.navigation;
     console.log(place, 'pressing place');
     let time = new Date();
+    // let asset = this.props.selectedAsset;
+    console.log(this.props.asset, 'thispropsasset');
 
-//rebuilding the transaction base
-    let asset = Object.assign({},this.props.asset,{
-     trans: {
-      header:  {
-        name: asset.Name,
-        key: asset.key,
-        location: place,
+    let trans = {
+      header: {
+        name: this.props.asset.Name,
+        key: this.props.asset.key,
+        tXLocation: this.props.asset.place,
         dTime: time,
-        hercId: asset.hercId
+        hercId: this.props.asset.hercId
+      },
+      data: {
+        images: [],
+
       }
-  }
-});
-    console.log(trans[header].dtime, 'txbase')
+    }
+    console.log(trans, 'trans base');
+    //rebuilding the transaction base
+    // let asset = Object.assign({}, this.props.asset, {
+    //   trans: {
+    //     header: {
+    //       name: asset.Name,
+    //       key: asset.key,
+    //       tXLocation: place,
+    //       dTime: time,
+    //       hercId: asset.hercId
+    //     }
+    //   }
+    // });
+    console.log(trans.header, 'txbase')
     this.props.startTrans(trans);
 
     navigate('Splash3', { logo: this.props.asset.Logo, name: this.props.asset.Name });
   }
   // let values = this.props.navigation.state.params;
   componentDidMount() {
-    console.log(this.props.asset.name, 'this.props.asset');
+    console.log(this.props.asset.Name, 'this.props.asset');
 
 
   }
