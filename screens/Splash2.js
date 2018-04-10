@@ -60,7 +60,7 @@ class Splash2 extends Component {
       header: {
         name: this.props.asset.Name,
         key: this.props.asset.key,
-        tXLocation: this.props.asset.place,
+        tXLocation: place,
         dTime: time,
         hercId: this.props.asset.hercId
       },

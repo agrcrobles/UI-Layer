@@ -214,23 +214,23 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             )
 
         case SET_SET:
-            const setName = action.item.name;
-            const setNum = action.item.value;
-            console.log(setName, setNum, 'setset');
-            rootRef.child('assets').push(asset);
+            const ediT = action.item
+            console.log(ediT, 'setset');
 
             return Object.assign({}, state, {
                 ...state,
-                transDat: {
-                    ...state.transDat,
-                    editName: setName,
-                    editNum: setNum
-                }
+                selectedAsset: {
+                    trans: {
+                        data: {
+                            ...data,
+                            ediT
+                        }
 
 
+                    }
+            
             }
-            )
-
+        })
 
         default:
             return state;

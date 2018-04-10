@@ -13,6 +13,7 @@ class TransRev extends Component {
         super(props);
     }
     componentDidMount() {
+        console.log(this.props.transInfo, this.props.transDat, 'transinfos')
     }
 
     _sendTrans(trans) {
@@ -26,23 +27,24 @@ class TransRev extends Component {
         let transInfo = this.props.transInfo;
         console.log(transInfo, 'pre objass');
         let transDat = this.props.transDat;
-        let finTransDat = Object.assign({}, transInfo,
+        // let finTransDat = Object.assign({}, transInfo,
 
-            {
+        //     {
 
-                ...transDat,
-            }
+        //         ...transDat,
+        //     }
 
 
-        )
-        console.log(finTransDat, 'transinfo in transreviewrender', transDat, 'transdata')
+        // )
+        console.log(transInfo, 'transinfo in transreviewrender', transDat, 'transdata')
         let list;
         let locationImage = this.props.transInfo.location === 'recipient' ? recipient : originator;
         let dTime = new Date().toString();
         let image = transDat.images[0] || null;
-        let editName = transDat.editName || null;
-        let editNum = transDat.editNum || null;
-        // let docName = transDat.documents.docUri.name || null;
+        let ediT = transDat.ediT || null;
+        // let editName = transDat.ediT.name || null;
+        // let editNum = transDat.ediT.num || null;
+        let docName = transDat.documents || null;
 
         console.log((transDat.hasOwnProperty('properties')));
 
@@ -70,13 +72,13 @@ class TransRev extends Component {
                 <Text style={styles.transReview}>Transaction Review</Text>
 
                 {/* <Image style={styles.assetLocation} source={locationImage} /> */}
-                <Text style={styles.transRevName}>{transInfo.name}</Text>
-                <Text style={styles.transRevName}>HercID: {transDat.hercID}</Text>
+                {/* <Text style={styles.transRevName}>{transInfo.name}</Text>
+                <Text style={styles.transRevName}>HercID: {transInfo.hercId}</Text>
                 <Image style={styles.assetLocationNoTopMargin} source={locationImage} />
                 <Text style={styles.transRevTime}>{dTime}</Text>
-                <Text style={styles.editLabel}>EDI-T-SET:</Text><Text style={styles.transRevTime}>{editName}</Text>
-                <Text style={styles.transRevTime}>{editNum}</Text>
-                <Image style={styles.thumb} source={{ uri: image }} />
+                <Text style={styles.editLabel}>EDI-T-SET:</Text><Text style={styles.transRevTime}>{ediT.name || null}</Text>
+                <Text style={styles.transRevTime}>{ediT.num||null}</Text>
+                <Image style={styles.thumb} source={{ uri: image }} /> */}
                 {/* <Text style={styles.editLabel}>Document Name</Text> */}
                 {/* <Text style={styles.transRevTime}>{docName}</Text> */}
                 <View style={{ flex: 1 }}>

@@ -68,7 +68,7 @@ class Splash3 extends Component {
         // let image = this.props.asset.Images ? this.props.asset.Images[0] : null;
         let locationImage = this.props.transHeader.tXLocation === 'recipient' ? recipient : originator;
         let logo = this.props.logo;
-        let asset = this.props.transInfo;
+        let asset = this.props.transHeader;
         let hercId = this.props.hercId;
         console.log(asset, 'splash3 this.props.transinfo');
 

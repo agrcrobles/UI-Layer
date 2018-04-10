@@ -90,7 +90,7 @@ console.log(edits)
 }
 
 const mapStateToProps = (state) => ({
-    name: state.AssetReducers.transInfo.name,
+    name: state.AssetReducers.selectedAsset.Name,
     logo: state.AssetReducers.selectedAsset.Logo
 });
 
