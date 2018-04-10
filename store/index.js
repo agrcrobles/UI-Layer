@@ -12,11 +12,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
   // other store enhancers if any 
 // ));
 const store = createStore(reducers,
-    composeWithDevTools(
-        applyMiddleware(thunkMiddleware)
-    ),
+   
+       composeWithDevTools(applyMiddleware(thunkMiddleware))
+        // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     
-    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    
 );
 
 export default store;
