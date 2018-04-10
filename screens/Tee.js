@@ -92,6 +92,14 @@ class Tee extends Component {
             />
           </View>
           <View style={styles.field}>
+            <Text style={styles.label}>Asset URL</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={Url => this.setState({ Url })}
+              placeholder="URL"
+            />
+          </View>
+          <View style={styles.field}>
             <Text style={styles.label}>Input1</Text>
             <TextInput
               style={styles.input}

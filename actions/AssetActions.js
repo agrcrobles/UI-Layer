@@ -2,14 +2,17 @@ import { ADD_ASSET, LIST_ASSETS, GOT_LIST_ASSETS, SELECT_ASSET, START_TRANS, SEN
 import firebase from '../constants/Firebase';
 const rootRef = firebase.database().ref();
 
-// export function incHercId() {
+export function incHercId(hercid) {
+    console.log(hercid, 'hercid')
+    let hercId = "00" + (Number(hercid) + 1).toString()
+    console.log(hercId, 'after refact')
+    return {
+        type: INC_HERC_ID,
+        hercId
 
+    }
+}
 
-//     return {
-//         type: INC_HERC_ID,
-//         hercId
-//     }
-// }
 
 export function getHercId() {
     return (dispatch) => {
@@ -126,10 +129,12 @@ export function addAsset(newAsset) {
 
     }
 }
-export function confirmAsset(asset) {
+export function confirmAsset(ConfAsset) {
+    let data = ConfAsset;
+    console.log(ConfAsset);
     return {
         type: CONFIRM_ASSET,
-        asset
+        asset: data
 
     }
 }
@@ -186,3 +191,4 @@ export function setSet(item) {
         item
     }
 }
+

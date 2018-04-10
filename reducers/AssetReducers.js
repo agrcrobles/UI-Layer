@@ -15,7 +15,7 @@ import {
     SET_SET
 } from '../actions/types';
 
-import assets from "./Assets";
+// import assets from "./Assets";
 import firebase from '../constants/Firebase';
 
 
@@ -42,7 +42,7 @@ const rootRef = firebase.database().ref();
 
 const INITIAL_STATE = {
 
-    assets: assets,
+    assets: []
     // hercId: ""
 
 };
@@ -50,14 +50,14 @@ const INITIAL_STATE = {
 
 const AssetReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        // case GOT_LIST_ASSETS:
-        //     console.log(action, 'listAssetsreducer');
-        //     let assets = action.assets
+        case GOT_LIST_ASSETS:
+            console.log(action, 'listAssetsreducer');
+            let assets = action.assets
 
-        //     return Object.assign({}, state, {
-        //         ...state,
-        //         assets
-        //     })
+            return Object.assign({}, state, {
+                ...state,
+                assets
+            })
 
 
         case SELECT_ASSET:
@@ -127,12 +127,14 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             })
 
         case INC_HERC_ID:
+            let hercID = action.hercId;
+            console.log(hercID, 'in increase reducer');
 
-            hercId = hercId + 1;
-            // hercId = "00" + (Number(hercId)+1).toString()
+        rootRef.child('hercID').set(hercID);
+            
             return Object.assign({}, state, {
                 ...state,
-                hercId
+                hercId: hercID
             })
 
         case ADD_PHOTO:
@@ -192,11 +194,18 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
         case CONFIRM_ASSET:
             const asset = action.asset;
             console.log(asset.name, 'asset in reducerconfirm', state, 'state')
+            let assetRef = rootRef.child('assets').push();
             rootRef.child('assets').push(asset);
+            
+            let partAsset = {
+                name: asset.Name,
+                logo: asset.Logo,
+                key: assetRef,
 
+            }
             return Object.assign({}, state, {
                 ...state,
-                assets: [...assets, asset]
+                assets: [...state.assets, partAsset]
 
 
             }

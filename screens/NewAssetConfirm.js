@@ -33,6 +33,7 @@ class NewAssetConfirm extends Component {
     state = {};
 
     componentDidMount() {
+        console.log(this.props.hercId, 'hercid')
 
 
     }
@@ -42,15 +43,19 @@ class NewAssetConfirm extends Component {
         const { navigate } = this.props.navigation;
         // let asset = Object.values(this.props.newAsset.coreProps);
         let Name = this.props.Name;
-
-        Name = {
+        let Url = this.props.url;
+        let hercId = this.props.hercId;
+        let newAsset = {
             Name,
-            // hercId: this.props.hercId,
+            Url,
+            hercId,
             Logo: this.props.Logo,
             CoreProps
         }
-        console.log(Name)
-        this.props.confirmAsset(Name);
+        console.log(newAsset, 'newasset on its way to confirm');
+        this.props.incHercId(hercId);
+        console.log(hercId);
+        this.props.confirmAsset(newAsset);
         // this.props.incHercId(); 
         // console.log(this.props.hercId, 'hercid Increase?')
         
@@ -67,10 +72,13 @@ class NewAssetConfirm extends Component {
         const { navigate } = this.props.navigation;
         console.log(this.props.coreProps, "confirmselasset")
         console.log(this.props.Name);
+        console.log(this.props.url)
         let Logo = this.props.Logo;
         let Name = this.props.Name;
-
+        let Url = this.props.url;
+        let hercId = this.props.hercId;
         let newProperties = Object.values(this.props.coreProps);
+       
         console.log(newProperties, 'newprops');
         const CoreProps = {};
 
@@ -97,6 +105,8 @@ class NewAssetConfirm extends Component {
 
                         <Image style={styles.assetHeaderImage} source={{ uri: Logo }} />
                         <Text style={styles.assetHeaderLabel}>{Name}</Text>
+                        <Text style={styles.assetHeaderLabel}>{Url}</Text>
+                        <Text style={styles.assetHeaderLabel}>HercID: {hercId}</Text>
                     </View>
 
 
@@ -125,6 +135,7 @@ class NewAssetConfirm extends Component {
 const mapStateToProps = (state) => ({
     Name: state.AssetReducers.newAsset.Name,
     Logo: state.AssetReducers.newAsset.Logo,
+    url: state.AssetReducers.newAsset.Url,
     coreProps: state.AssetReducers.newAsset.coreProps,
     hercId: state.AssetReducers.hercId
     // selectedAsset: state.AssetReducers.selectedAsset
@@ -135,8 +146,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     confirmAsset: (asset) =>
         dispatch(confirmAsset(asset)),
-    incHercId: () =>
-        dispatch(incHercId())
+    incHercId: (hercid) =>
+        dispatch(incHercId(hercid))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(NewAssetConfirm);
 
