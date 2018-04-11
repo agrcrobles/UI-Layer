@@ -9,6 +9,8 @@ import camera from '../assets/camera.png';
 import { connect } from 'react-redux';
 import originator from "../assets/origin.png";
 import recipient from "../assets/recipient.png";
+import BackButton from "../components/BackButton";
+
 
 import Submit from '../components/SubmitBtn';
 
@@ -47,7 +49,8 @@ class FileUp extends Component {
         backgroundColor: '#021227',
 
       },
-      headerRight: <View></View>
+      headerRight: <View></View>,
+      headerLeft: <BackButton navigation={navigation} />
     }
   }
   state = {

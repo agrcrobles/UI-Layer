@@ -7,27 +7,29 @@ import hiprLogo from "../assets/hiprLogo.png";
 import styles from '../assets/styles';
 import create from '../assets/createNewAssetButton.png';
 import supply from '../components/buttons/verifyBtn.png'
-
+import BackButton from '../components/BackButton';
 import { selectAsset, listAssets } from '../actions/AssetActions';
 import backArrow from '../assets/icon_backarrow.png';
 
 
  class HiprAssets extends Component {
-    static navigationOptions = {
-        headerStyle: {
-            height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
-            backgroundColor: '#021227',
+  static navigationOptions = ({navigation}) => ({
+    headerStyle: {
+        height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
+        backgroundColor: '#021227',
 
-        },
-        headerTitle: <Image style={{
-            height: 200,
-            width: 200,
-            marginLeft: 55,
-            resizeMode: 'contain'
-        }}
-            source={hiprLogo} />,
+    },
+    headerTitle: <Image style={{
+        height: 200,
+        width: 200,
+        marginLeft: 55,
+        resizeMode: 'contain'
+    }}
+        source={hiprLogo} />,
+    
+        headerLeft: < BackButton navigation = { navigation } />
 
-    }
+})
   constructor(props) {
     super(props);
 

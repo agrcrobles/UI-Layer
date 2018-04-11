@@ -1,11 +1,29 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert } from 'react-native';
-import logo from "../assets/hercLogoBreak.png";
+import {Platform, StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert } from 'react-native';
+import logo from "../assets/teeLabel.png";
+import { STATUS_BAR_HEIGHT } from '../constants';
+import BackButton from "../components/BackButton";
 
 import personal from "../assets/personalLegend.png";
 
  export default class Create extends Component {
-          
+  static navigationOptions = ({navigation}) => ({
+    headerStyle: {
+      height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
+      backgroundColor: '#021227',
+
+    },
+    headerTitle: <Image style={{
+      height: 80,
+      width: 200,
+      marginLeft: 30,
+      resizeMode: 'contain'
+    }}
+      source={logo} />,
+
+      headerLeft: <BackButton navigation={navigation} />
+       
+    })     
     render(){
       const { navigate } = this.props.navigation;
       return(

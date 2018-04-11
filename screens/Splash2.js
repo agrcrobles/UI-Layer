@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { startTrans } from '../actions/AssetActions';
 import originator from "../assets/origin.png";
 import recipient from "../assets/recipient.png";
-
+import BackButton from "../components/BackButton";
 
 
 class Splash2 extends Component {
@@ -43,7 +43,9 @@ class Splash2 extends Component {
         backgroundColor: '#021227',
 
       },
-      headerRight: <View></View>
+      headerRight: <View></View>,
+      headerLeft: <BackButton navigation={navigation} />
+
     }
   }
   constructor(props) {

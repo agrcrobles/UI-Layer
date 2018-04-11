@@ -13,7 +13,7 @@ import { STATUS_BAR_HEIGHT } from '../constants';
 
 
 class Tee extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({navigation}) => ({
     headerStyle: {
       height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
       backgroundColor: '#021227',
@@ -25,8 +25,11 @@ class Tee extends Component {
       marginLeft: 30,
       resizeMode: 'contain'
     }}
-      source={logo} />
-  }
+      source={logo} />,
+
+      headerLeft: <BackButton navigation={navigation} />
+       
+    })
 
   constructor(props) {
     super(props);

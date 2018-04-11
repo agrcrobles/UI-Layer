@@ -44,6 +44,7 @@ class InputMan extends Component {
             backgroundColor: '#021227',
     
           },
+          headerLeft: <BackButton navigation={navigation} />,
           headerRight: <View></View>
         }
       }

@@ -14,6 +14,7 @@ import { DocumentPicker } from 'expo';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
 import { addDoc } from '../actions/AssetActions';
+import BackButton from "../components/BackButton";
 
 class DocUp extends Component {
 
@@ -48,7 +49,8 @@ class DocUp extends Component {
         backgroundColor: '#021227',
 
       },
-      headerRight: <View></View>
+      headerRight: <View></View>,
+      headerLeft: <BackButton navigation={navigation} />
     }
   }
   state = {

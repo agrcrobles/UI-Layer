@@ -8,15 +8,17 @@ import Button from 'react-native-button';
 import styles from '../assets/styles';
 import create from '../assets/createNewAssetButton.png';
 import supply from '../components/buttons/verifyBtn.png'
+import BackButton from "../components/BackButton";
 
 import { selectAsset, deleteAsset } from '../actions/AssetActions';
 import backArrow from '../assets/icon_backarrow.png';
 
 
 class Splash1 extends Component {
-  static navigationOptions = {
-    headerTitle:   <Image source={supply} style={{height: 50, width: 250, marginLeft: 20}} /> 
-}
+  static navigationOptions = ({navigation}) => ({
+    headerTitle:   <Image source={supply} style={{height: 50, width: 250, marginLeft: 20}} />, 
+    headerLeft: <BackButton navigation={navigation} />
+  })
   constructor(props) {
     super(props);
 

@@ -6,6 +6,8 @@ import { STATUS_BAR_HEIGHT } from '../constants';
 import styles from '../assets/styles';
 import edits from '../reducers/Edi-T-Sets';
 import {setSet } from '../actions/AssetActions';
+import BackButton from "../components/BackButton";
+
 
  class EditSets extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -38,7 +40,8 @@ import {setSet } from '../actions/AssetActions';
                 backgroundColor: '#021227',
 
             },
-            headerRight: <View></View>
+            headerRight: <View></View>,
+            headerLeft: <BackButton navigation={navigation} />
         }
     }
     constructor(props){

@@ -20,9 +20,11 @@ import BackButton from '../components/BackButton';
 
 
  class MenuOptions extends Component {
-//   static navigationOptions = (navigation) => {
+  // const { navigate } = this.props.navigation;
+//   static navigationOptions = ({navigation}) => ({
+//     headerLeft: <BackButton navigation={navigation} />
    
-// }
+// })
   
   constructor(props) {
     super(props);

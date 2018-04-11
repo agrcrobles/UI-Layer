@@ -51,7 +51,9 @@ class Splash3 extends Component {
                 backgroundColor: '#021227',
 
             },
-            headerRight: <View></View>
+            headerRight: <View></View>,
+            headerLeft: <BackButton navigation={navigation} />
+
         }
     }
     constructor(props) {
