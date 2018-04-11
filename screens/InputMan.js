@@ -58,7 +58,7 @@ class InputMan extends Component {
         console.log(this.state, "stateInputesfilled?");
         this.props.addProps(attributes);
         console.log("justaddedPRoperties");
-        navigate('Confirm');
+        navigate('Confirm',{logo: this.props.logo, name: this.props.name});
     }
     render() {
 
@@ -103,9 +103,9 @@ class InputMan extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    name: state.AssetReducers.transInfo.name,
+    name: state.AssetReducers.trans.header.name,
     logo: state.AssetReducers.selectedAsset.Logo,
-    location: state.AssetReducers.transInfo.location,
+    location: state.AssetReducers.trans.header.location,
     coreProps: state.AssetReducers.selectedAsset.CoreProps,
     // properties: state.AssetReducers.selectedAsset.CoreProperties
 });

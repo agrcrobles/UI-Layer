@@ -7,7 +7,7 @@ export default class BlockScan extends Component {
     return (
       <WebView
         source={{uri: 'https://ethstats.net/'}}
-        style={{marginTop: 20, flex: 1}}
+        style={{flex: 1}}
       />
     );
   }

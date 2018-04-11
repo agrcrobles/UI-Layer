@@ -261,14 +261,14 @@ module.exports = StyleSheet.create({
     },
 
     assetField: {
-        height: 39,
+        height: 47,
         flexDirection: 'row',
         // backgroundColor: 'blue',
         justifyContent: 'space-between',
         alignItems: 'center',
         alignContent: 'center',
         margin: 17,
-        width: "50%"
+        width: "70%"
     },
     assetLabel: {
         color: 'white',
@@ -285,6 +285,16 @@ module.exports = StyleSheet.create({
         margin: 3,
         borderRadius: 20
 
+    },
+    assetDeleteButton: {
+        color: '#f3c736',
+        fontWeight: '200',
+        fontSize: 10,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        height: 14,
+        width: 50,
+        backgroundColor: '#091141' 
     },
     assetHeaderLabel: {
         color: 'white',
