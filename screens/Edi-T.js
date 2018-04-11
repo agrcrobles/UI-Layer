@@ -46,11 +46,9 @@ import {setSet } from '../actions/AssetActions';
         state = {};
     }
     _setEdit = (item) => {
-        // const { params } = navigation.state;
+        
         console.log(item);
-        // let item = item;
         this.props.setSet(item);
-        // this.setState(item);
       
         this.props.navigation.navigate('Splash3',{logo: this.props.logo, name: this.props.name});
 
@@ -90,7 +88,7 @@ console.log(edits)
 }
 
 const mapStateToProps = (state) => ({
-    name: state.AssetReducers.transInfo.name,
+    name: state.AssetReducers.selectedAsset.Name,
     logo: state.AssetReducers.selectedAsset.Logo
 });
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight, Alert } from 'react-native';
-
+import {Platform, StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight, Alert } from 'react-native';
+import { STATUS_BAR_HEIGHT } from '../constants';
 import Submit from "../components/SubmitBtn";
 import originator from "../assets/origin.png";
 import recipient from "../assets/recipient.png";
@@ -14,8 +14,39 @@ import fee from "../assets/hercLogoPillar.png";
 
 class Confirm extends Component {
 
-  static navigationOptions = {
-    header: null
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state;
+
+    return {
+
+      headerTitle:
+        <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
+          <Image style={{
+            height: 80,
+            width: 80,
+            alignSelf: 'center',
+            borderRadius: 40,
+            resizeMode: 'contain'
+          }}
+            source={{ uri: params.logo }} />
+          <Text style={styles.assetHeaderLabel}>{params.name}</Text>
+        </View>,
+
+      headerStyle: {
+        height: Platform.OS === 'android' ? 100 + STATUS_BAR_HEIGHT : 100,
+        backgroundColor: '#021227',
+
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        textAlign: 'center',
+        alignSelf: 'center',
+        // textAlignVertical: 'center',
+        backgroundColor: '#021227',
+
+      },
+      headerRight: <View></View>
+    }
   }
 
   constructor(props) {
@@ -72,18 +103,10 @@ class Confirm extends Component {
 
     return (
       <View style={styles.containerCenter}>
-        <ScrollView contentContainerStyle={styles.scrollView}>
-          <View style={styles.assetFieldHeader}>
-            <Image style={styles.assetButton} source={{ uri: logo }} />
-            <Text style={styles.assetLabel}>{this.props.name}</Text>
             <Image style={styles.assetLocation} source={locationImage} />
-          </View>
-
-
-
+        <ScrollView contentContainerStyle={styles.scrollView}>
 
           {list}
-
 
           <Submit onPress={() => navigate('Splash3',{logo: this.props.logo, name: this.props.name})} />
           <View style={styles.assetFee}>
@@ -102,10 +125,10 @@ class Confirm extends Component {
 
 
 const mapStateToProps = (state) => ({
-  newProps: state.AssetReducers.transDat.properties,
-  location: state.AssetReducers.transInfo.location,
+  newProps: state.AssetReducers.trans.data.properties,
+  location: state.AssetReducers.trans.header.location,
   logo: state.AssetReducers.selectedAsset.Logo,
-  name: state.AssetReducers.transInfo.name
+  name: state.AssetReducers.trans.header.name
   // newProperties: state.AssetReducers.selectedAsset.newProperties
 
 

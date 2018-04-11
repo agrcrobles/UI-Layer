@@ -1,5 +1,6 @@
 import {
     LIST_ASSETS,
+    GOT_LIST_ASSETS,
     ADD_ASSET,
     SELECT_ASSET,
     START_TRANS,
@@ -9,117 +10,101 @@ import {
     ADD_PROPS,
     INC_HERC_ID,
     GET_HERC_ID,
+    GOT_HERC_ID,
     CONFIRM_ASSET,
-    SET_SET
+    SET_SET,
+    DELETE_ASSET
 } from '../actions/types';
-import ApiKeys from '../constants/apiKeys';
-import * as firebase from 'firebase';
 
-firebase.initializeApp(ApiKeys.FirebaseConfig);
+// import assets from "./Assets";
+import firebase from '../constants/Firebase';
+
 
 const rootRef = firebase.database().ref();
 
 
+//synchronous 
+// let assets = [];
+// rootRef.child('assets').on('value', (snapshot) => {
+//     snapshot.forEach((obj) => {
+//         console.log(obj.toJSON(), 'object in listassets');
+//         assets.push({
+//             name: obj.toJSON().Name,
+//             key: obj.key,
+//             logo: obj.toJSON().Logo,
+//             // url: obj.toJSON().url
+//         });
+
+//     })
+
+// })
+
+
+
 const INITIAL_STATE = {
-    assets: [],
-    hercId: ""
+
+    assets: []
+    // hercId: ""
+
 };
 
 
 const AssetReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case LIST_ASSETS:
-            let assets = [];
-            rootRef.child('assets').on('value', (snapshot) => {
-                //    let asset = snapshot.toJSON();
-                // var size = Object.keys(asset).length;
-                //    let keys = Object.keys(obj.coreProps);//this might not work
-                snapshot.forEach((obj) => {
-                    console.log(obj.toJSON(), 'object in listassets');
-                    assets.push({
-                        name: obj.toJSON().Name,
-                        key: obj.key,
-                        logo: obj.toJSON().Logo
-                    });
+        case GOT_LIST_ASSETS:
+            console.log(action, 'listAssetsreducer');
+            let assets = action.assets
 
-                })
-
-            })
             return Object.assign({}, state, {
                 ...state,
-
                 assets
             })
 
+
         case SELECT_ASSET:
-            let assetKey = action.data;
-            let assetRef = rootRef.child('assets/' + assetKey);
-            let jsonRef = rootRef.child('assets/' + assetKey).toJSON();
-
-            console.log(jsonRef, 'asset ref in Reducer');
-            let selectedAsset = {};
-            assetRef.on('value', (snapshot) => {
-                selectedAsset = snapshot.val();
-
-            })
-
+            console.log(action, 'action in select reducer');
+            let selectedAsset = action.selectedAsset;
             return Object.assign({}, state, {
                 ...state,
 
-                selectedAsset: {
-                    ...selectedAsset,
-                    assetKey
-                }
+                selectedAsset,
+
             })
 
         // this used to be  SET_PLACE
         case START_TRANS:
-            let transInfo = action.data;
+            let trans = action.data;
             console.log(state.selectedAsset.name, "selectedAssetName in startTrans reducer")
 
             return Object.assign({}, state, {
-
                 ...state,
-
-                transInfo,
-                transDat: {
-
-                    assetKey: state.selectedAsset.assetKey,
-                    images: [],
-                    documents: [],
-                    properties: {}
-                }
-
+                trans
             }
+
 
             )
 
         case SEND_TRANS:
-            let finTransDat = action.data;
-            let finTransInfo = state.transInfo;
-            let transDat = state.transDat;
+            let header = state.trans.header;
+            let data = state.trans.data;
             //  console.log(rootRef.ref(state.AssetReducers.transInfo.name.val()));
-            console.log(state.transDat, "trans in send_trans reducer");
-            console.log(finTransDat, 'fintrans in sendtrans redux')
+            console.log(state.trans.header, "trans in send_trans reducer");
+            console.log(data, 'fintrans in sendtrans redux')
             //    console.log([name], 'potential new txobject')
-            rootRef.child('assets/' + state.transDat.assetKey).child('transactions').push({
-                // dateTime: state.transInfo.dTime,
-                // transLoc: finTransInfo.location,
-
-                transDat
-
-
+            rootRef.child('assets/' + header.key).child('transactions').push({
+                data
             })
-            rootRef.child('transactions').push(finTransDat);
+            rootRef.child('transactions/' + header.key).push({ header, data });
             // rootRef.ref()
 
             return Object.assign({}, state, {
 
                 ...state,
 
-                transactions: {
-                    ...state.transactions,
-                    finTransDat
+                trans: {
+                    ...state.trans,
+                    header,
+                    data
 
                 }
 
@@ -127,24 +112,21 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
             )
 
-        case GET_HERC_ID:
-            let hercNum;
-            rootRef.child('hercID').once('value').then(
-                (snap) => {
-                    console.log(snap.val(), 'snaps')
-                    hercNum = snap.val();
-
-                });
+        case GOT_HERC_ID:
+            let hercId = action.hercId;
+            console.log(hercId, action, "hercidstuff")
             return Object.assign({}, state, {
                 ...state,
 
-                hercId: hercNum
+                hercId: hercId
             })
 
         case INC_HERC_ID:
+            let hercID = action.hercId;
+            console.log(hercID, 'in increase reducer');
 
-            hercId = hercId + 1;
-            // hercId = "00" + (Number(hercId)+1).toString()
+            rootRef.child('hercID').set(hercID);
+
             return Object.assign({}, state, {
                 ...state,
                 hercId
@@ -153,91 +135,118 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
         case ADD_PHOTO:
             let image = action.data;
             console.log('adding photo');
-
+            let images = [...state.trans.data.images, image];
             return Object.assign({}, state, {
                 ...state,
-                transDat: {
-                    ...state.transDat,
-                    images: [...state.transDat.images, image]
+                trans: {
+                    ...state.trans,
+                    data: {
+                        ...state.trans.data,
+                        images
 
+                    }
                 }
             }
 
             )
         case ADD_DOC:
-            let doc = action.data;
+            let doc = action.document;
             console.log('adding doc', doc);
-            let documents = [...state.transDat.documents, doc]
+            let documents = [...state.trans.data.documents, doc];
             return Object.assign({}, state, {
                 ...state,
-                transDat: {
-                    ...state.transDat,
-                    documents
+                trans: {
+                    ...state.trans,
+                    data: {
+                        ...state.trans.data,
+                        documents
+                    }
                 }
             }
             )
 
         case ADD_PROPS:
-const newProps = action.data;
-console.log(newProps, "updating attributes in reducers");
-return Object.assign({}, state, {
+            const properties = action.data;
+            console.log(properties, "updating attributes in reducers");
+            return Object.assign({}, state, {
 
-    ...state,
+                ...state,
+                trans: {
+                    ...state.trans,
+                    data: {
+                        ...state.trans.data,
+                        properties
+                    }
+                }
 
-    transDat: {
-        ...state.transDat,
-        properties: newProps
-    }
-}
 
-)
+            })
+
+
+
 
 
         case ADD_ASSET:
-const newAsset = action.newAsset;
-console.log('adding asset', newAsset.name)
-return Object.assign({}, state, {
-    ...state,
+            const newAsset = action.newAsset;
+            console.log('adding asset', newAsset.name)
+            return Object.assign({}, state, {
+                ...state,
 
-    newAsset
+                newAsset
 
-}
-)
+            }
+            )
 
         case CONFIRM_ASSET:
-const asset = action.asset;
-console.log(asset.name, 'asset in reducerconfirm', state, 'state')
-rootRef.child('assets').push(asset);
+            const asset = action.asset;
+            console.log(asset.name, 'asset in reducerconfirm', state, 'state')
+            let assetRef = rootRef.child('assets').push();
+            rootRef.child('assets').push(asset);
 
-return Object.assign({}, state, {
-    ...state,
-    assets: [...assets, asset]
+            let partAsset = {
+                name: asset.Name,
+                logo: asset.Logo,
+                key: assetRef,
 
-
-}
-)
-
-            case SET_SET:
-const setName = action.item.name;
-const setNum = action.item.value;
-console.log(setName, setNum, 'setset');
-rootRef.child('assets').push(asset);
-
-return Object.assign({}, state, {
-    ...state,
-    transDat: {
-        ...state.transDat,
-        editName: setName,
-        editNum: setNum
-    }
+            }
+            return Object.assign({}, state, {
+                ...state,
+                assets: [...state.assets, partAsset]
 
 
-}
-)
+            }
+            )
+
+        case SET_SET:
+            const ediT = action.item
+            console.log(ediT, 'setset');
+
+            return Object.assign({}, state, {
+                ...state,
+                trans: {
+                    ...state.trans,
+                    data: {
+                        ...state.trans.data,
+                        ediT
+                    }
+
+
+
+
+
+                }
+            })
+
+            case DELETE_ASSET:
+            const key = action.delKey;
+
+            rootRef.child('assets').child(key).remove();
+            return state;
+
 
 
         default:
-return state;
+            return state;
     }
 }
 

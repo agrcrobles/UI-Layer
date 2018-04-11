@@ -1,13 +1,15 @@
+// const { navigate } = this.props.navigation;
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert, Platform } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { STATUS_BAR_HEIGHT } from '../constants';
 import { connect } from 'react-redux';
+import Button from 'react-native-button';
 import styles from '../assets/styles';
 import create from '../assets/createNewAssetButton.png';
 import supply from '../components/buttons/verifyBtn.png'
 
-import { selectAsset, listAssets } from '../actions/AssetActions';
+import { selectAsset, deleteAsset } from '../actions/AssetActions';
 import backArrow from '../assets/icon_backarrow.png';
 
 
@@ -22,12 +24,23 @@ class Splash1 extends Component {
  
   //  Need to determine the ideal way to get the selected asset, currently am pulling them both down entirely and then just assigning the selected to state...I think...
   componentDidMount() {
+    console.log(this.state, this.props, 'state and props');
    
   }
 
+_onDelete = (key) => {
+  const { navigate } = this.props.navigation;
+
+  this.props.deleteAsset(key);
+  navigate('MenuOptions')
+
+}
+
+
   _onPress = (asset) => {
     const { navigate } = this.props.navigation;
-    this.props.selectAsset(asset.key);
+
+    this.props.selectAsset(asset);
     navigate('Splash2', {logo: asset.logo, name: asset.name});
   }
 
@@ -37,10 +50,15 @@ class Splash1 extends Component {
     let list = this.props.assets.map((asset, index) => {
       return (
         <View key={index} style={styles.assetField}>
+       
+        <Button onPress={() => this._onDelete(asset.key)} style={styles.assetDeleteButton}>Delete</Button>
+       
           <Text style={styles.assetLabel}>{asset.name}</Text>
+       
           <TouchableHighlight style={{alignSelf: 'flex-start'}} onPress={() => this._onPress(asset)}  >
             <Image style={styles.assetButton} source={{uri:asset.logo}} />  
           </TouchableHighlight>
+       
         </View>
       )
     });
@@ -74,6 +92,8 @@ const mapDispatchToProps = (dispatch) => ({
 
   selectAsset: (asset) =>
     dispatch(selectAsset(asset)),
+    deleteAsset: (key) =>
+    dispatch(deleteAsset(key))
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Splash1);
