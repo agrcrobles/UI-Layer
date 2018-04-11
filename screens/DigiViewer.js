@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Platform, StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert } from 'react-native';
+import { Platform, StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert } from 'react-native';
 import { STATUS_BAR_HEIGHT } from '../constants';
 import logo from "../assets/hercLogoBreak.png";
 import label from "../assets/digiViewerLabel.png";
@@ -7,6 +7,7 @@ import persWal from "../assets/personalWalletLabel.png";
 import stakeTxt from "../assets/stakeText.png";
 import Submit from "../components/SubmitBtn";
 import hLogo from "../assets/hercLogoPillar.png";
+import BackButton from "../components/BackButton";
 // import feeLabel from "../assets/hercFeeLabel.png";
 import viewBtn from "../assets/veiwBtn.png";
 // import TouchableHeader from "../components/TouchableHeader";
@@ -21,21 +22,21 @@ import viewBtn from "../assets/veiwBtn.png";
 export default class DigiViewer extends Component {
   static navigationOptions = ({ navigation }) => {
     const { params } = navigation.state;
-   
+
     return {
 
       headerTitle:
         <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center', alignItems: 'center' }}>
-         <TouchableHighlight onPress={() => navigation.navigate('MenuOptions')}>
-          <Image style={{
-            height: 80,
-            width: 80,
-            // alignSelf: 'center',
-            borderRadius: 120,
-            resizeMode: 'contain'
-          }}
-            source={{ uri: params.logo }} />
-        </TouchableHighlight>
+          <TouchableHighlight onPress={() => navigation.navigate('MenuOptions')}>
+            <Image style={{
+              height: 80,
+              width: 80,
+              // alignSelf: 'center',
+              borderRadius: 120,
+              resizeMode: 'contain'
+            }}
+              source={{ uri: params.logo }} />
+          </TouchableHighlight>
           <Text style={styles.assetHeaderLabel}>{params.name}</Text>
         </View>,
 
@@ -52,6 +53,7 @@ export default class DigiViewer extends Component {
         backgroundColor: '#021227',
 
       },
+      headerLeft: < BackButton navigation={navigation} />,
       headerRight: <View></View>
     }
   }
@@ -74,7 +76,7 @@ export default class DigiViewer extends Component {
 
           <View style={styles.feeBalance}>
             <Text style={styles.text}>Fee:</Text>
-            <View style={{ alignSelf: 'flex-end', flexDirection:'row' }}>
+            <View style={{ alignSelf: 'flex-end', flexDirection: 'row' }}>
               <Text style={styles.text}>1</Text>
               <Image source={hLogo} style={styles.feeLabel} />
             </View>

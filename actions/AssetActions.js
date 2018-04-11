@@ -3,9 +3,10 @@ import firebase from '../constants/Firebase';
 const rootRef = firebase.database().ref();
 
 export function incHercId(hercid) {
-    console.log(hercid, 'hercid')
-    console.log((Number(hercid) + 1).toString(), 'transformed to string')
-    let hercId = "00" +
+    console.log(hercid, 'hercid');
+    let hercIdStr = (Number(hercid) + 1).toString()
+    console.log(hercIdStr, 'transformed to string')
+    let hercId = "00" + hercIdStr;  //adding leading 0's for fun
     console.log(hercId, 'after refact')
     return {
         type: INC_HERC_ID,

@@ -6,13 +6,15 @@ import logo from "../assets/teeLabel.png";
 import params from "../assets/igvcParamsLabel.png";
 import { StackNavigator } from 'react-navigation';
 import { STATUS_BAR_HEIGHT } from '../constants';
+import BackButton from "../components/BackButton";
+
 import { connect } from "react-redux";
 import styles from "../assets/styles";
 import fee from "../assets/hercLogoPillar.png";
 import { incHercId, confirmAsset } from "../actions/AssetActions"
 
 class NewAssetConfirm extends Component {
-    static navigationOptions = {
+    static navigationOptions = ({navigation}) => ({
         headerStyle: {
             height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
             backgroundColor: '#021227',
@@ -24,8 +26,9 @@ class NewAssetConfirm extends Component {
             marginLeft: 30,
             resizeMode: 'contain'
         }}
-            source={logo} />
-    }
+            source={logo} />,
+        headerLeft: <BackButton navigation={navigation} />
+    })
 
     constructor(props) {
         super(props);
@@ -58,7 +61,7 @@ class NewAssetConfirm extends Component {
         this.props.confirmAsset(newAsset);
         // this.props.incHercId(); 
         // console.log(this.props.hercId, 'hercid Increase?')
-        
+
         navigate('MenuOptions');
         // console.log(this.state.AssetReducers.assets, 'assets after')
     }
@@ -78,7 +81,7 @@ class NewAssetConfirm extends Component {
         let Url = this.props.url;
         let hercId = this.props.hercId;
         let newProperties = Object.values(this.props.coreProps);
-       
+
         console.log(newProperties, 'newprops');
         const CoreProps = {};
 

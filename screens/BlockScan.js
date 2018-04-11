@@ -1,8 +1,13 @@
 
 import React, { Component } from 'react';
 import { WebView } from 'react-native';
+import BackButton from '../components/BackButton';
 
 export default class BlockScan extends Component {
+  static navigationOptions = ({navigation}) => ({
+    headerLeft: <BackButton navigation={navigation} />
+  })
+  
   render() {
     return (
       <WebView
