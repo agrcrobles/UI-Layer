@@ -105,9 +105,9 @@ class DocUp extends Component {
     const { navigate } = this.props.navigation;
     // let image = this.props.asset.Images ? this.props.asset.Images[0] : null;
     let locationImage = this.props.transInfo.location === 'recipient' ? recipient : originator;
-    let logo = this.props.transInfo.logo;
-    let asset = this.props.transInfo;
-    let hercId = this.props.hercId;
+    // let logo = this.props.transInfo.logo;
+    // let asset = this.props.transInfo;
+    // let hercId = this.props.hercId;
 
     return (
       <View style={styles.container}>
@@ -133,9 +133,9 @@ class DocUp extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  transInfo: state.AssetReducers.transInfo,
+  transInfo: state.AssetReducers.trans.header,
   logo: state.AssetReducers.selectedAsset.Logo,
-  name: state.AssetReducers.transInfo.name
+  name: state.AssetReducers.selectedAsset.Name
 
 });
 const mapDispatchToProps = (dispatch) => ({

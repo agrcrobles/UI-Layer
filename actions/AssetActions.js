@@ -1,4 +1,4 @@
-import { ADD_ASSET, LIST_ASSETS, GOT_LIST_ASSETS, SELECT_ASSET, START_TRANS, SEND_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, GOT_HERC_ID, CONFIRM_ASSET, SET_SET } from './types';
+import { ADD_ASSET, LIST_ASSETS, GOT_LIST_ASSETS, SELECT_ASSET, START_TRANS, SEND_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, GOT_HERC_ID, CONFIRM_ASSET, SET_SET, DELETE_ASSET } from './types';
 import firebase from '../constants/Firebase';
 const rootRef = firebase.database().ref();
 
@@ -75,33 +75,6 @@ export function gotListAssets(assetList) {
 
     }
 }
-// export function listAssets() {
-//     let assets = [];
-//     rootRef.child('assets').on('value', 
-//         then((snapshot) => {
-//             snapshot.forEach((obj) => {
-//                 console.log(obj.toJSON(), 'object in listassets');
-//                 assets.push({
-//                     name: obj.toJSON().Name,
-//                     key: obj.key,
-//                     logo: obj.toJSON().Logo,
-//                     // url: obj.toJSON().url
-//                 });
-
-//             })
-
-//         })
-// return {
-//     type: LIST_ASSETS,
-//     assets
-// }
-
-// export function getAssets(){
-//     return function (dispatch) {
-//         dispatch(listAssets())
-//     }
-// }
-
 
 export function selectAsset(asset) {
     let assetRef = rootRef.child('assets/' + asset.key);
@@ -123,6 +96,7 @@ export function selectAsset(asset) {
         }
     )
 }
+
 export function addAsset(newAsset) {
     return {
         type: ADD_ASSET,
@@ -130,6 +104,7 @@ export function addAsset(newAsset) {
 
     }
 }
+
 export function confirmAsset(ConfAsset) {
     let data = ConfAsset;
     console.log(ConfAsset);
@@ -139,6 +114,18 @@ export function confirmAsset(ConfAsset) {
 
     }
 }
+
+export function deleteAsset(key) {
+    let delKey = key;
+    console.log(delKey, "deletekey");
+    return {
+        type: DELETE_ASSET,
+        delKey
+
+    }
+}
+
+
 export function startTrans(trans) {
     let newtrans = trans;
 
@@ -175,13 +162,11 @@ export function addPhoto(uri) {
     )
 }
 
-export function addDoc(uri, docName) {
+export function addDoc(doc) {
+    let document = doc;
     return {
         type: ADD_DOC,
-        data: {
-            docUri: uri,
-            docName
-        }
+        document
     }
 }
 

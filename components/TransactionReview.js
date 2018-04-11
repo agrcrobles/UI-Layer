@@ -13,12 +13,13 @@ class TransRev extends Component {
         super(props);
     }
     componentDidMount() {
-        console.log(this.props.transInfo, this.props.transDat, 'transinfos')
+        // console.log(this.props.transInfo, this.props.transDat, 'transinfos')
     }
 
-    _sendTrans(trans) {
+    _sendTrans() {
         const { navigate } = this.props.navigate;
-        this.props.sendTrans(trans);
+
+        this.props.sendTrans();
         this.props.navigate('BlockScan');
 
     }
@@ -27,27 +28,28 @@ class TransRev extends Component {
         let transInfo = this.props.transInfo;
         console.log(transInfo, 'pre objass');
         let transDat = this.props.transDat;
-        // let finTransDat = Object.assign({}, transInfo,
-
-        //     {
-
-        //         ...transDat,
-        //     }
-
-
-        // )
+     
         console.log(transInfo, 'transinfo in transreviewrender', transDat, 'transdata')
-        let list;
+
         let locationImage = this.props.transInfo.location === 'recipient' ? recipient : originator;
-        let dTime = new Date().toString();
+        let list;
+        let ediTName, ediTNum, doc, docSize = null;
         let image = transDat.images[0] || null;
-        let ediT = transDat.ediT || null;
-        // let editName = transDat.ediT.name || null;
-        // let editNum = transDat.ediT.num || null;
-        let docName = transDat.documents || null;
+
+        let dTime = transInfo.dTime.toString();
+        
+        if(transDat.documents[0]){
+            doc = transDat.documents[0].name;
+            docSize = transDat.documents[0].size;
+        
+        }
+
+        if(transDat.hasOwnProperty('ediT')){
+            ediTName = transDat.ediT.name;
+            ediTNum = transDat.ediT.value;
+        }
 
         console.log((transDat.hasOwnProperty('properties')));
-
 
         transDat.hasOwnProperty('properties')
             ?
@@ -71,20 +73,25 @@ class TransRev extends Component {
             <View style={styles.container}>
                 <Text style={styles.transReview}>Transaction Review</Text>
 
-                {/* <Image style={styles.assetLocation} source={locationImage} /> */}
-                {/* <Text style={styles.transRevName}>{transInfo.name}</Text>
+                <Image style={styles.assetLocationNoTopMargin} source={locationImage} />
+                {/* {/* <Text style={styles.transRevName}>{transInfo.name}</Text> */}
                 <Text style={styles.transRevName}>HercID: {transInfo.hercId}</Text>
                 <Image style={styles.assetLocationNoTopMargin} source={locationImage} />
                 <Text style={styles.transRevTime}>{dTime}</Text>
-                <Text style={styles.editLabel}>EDI-T-SET:</Text><Text style={styles.transRevTime}>{ediT.name || null}</Text>
-                <Text style={styles.transRevTime}>{ediT.num||null}</Text>
-                <Image style={styles.thumb} source={{ uri: image }} /> */}
-                {/* <Text style={styles.editLabel}>Document Name</Text> */}
-                {/* <Text style={styles.transRevTime}>{docName}</Text> */}
+               
+                <Text style={styles.editLabel}>EDI-T-SET:</Text>
+                <Text style={styles.transRevTime}>{ediTName}</Text>
+                <Text style={styles.transRevTime}>{ediTNum}</Text>
+               
+                <Image style={styles.thumb} source={{ uri: image }} />
+                <Text style={styles.editLabel}>Document Name and Size</Text>
+                <Text style={styles.transRevTime}>{doc}</Text>
+                <Text style={styles.transRevTime}>{docSize} kb</Text>
+                
                 <View style={{ flex: 1 }}>
                     {list}
                 </View>
-                <TouchableHighlight onPress={() => this._sendTrans(finTransDat)}>
+                <TouchableHighlight onPress={() => this._sendTrans()}>
                     <Image source={submit} style={styles.assetLocationNoTopMargin} />
                 </TouchableHighlight>
             </View>
@@ -94,8 +101,8 @@ class TransRev extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    transInfo: state.AssetReducers.selectedAsset.trans.header,
-   transDat: state.AssetReducers.selectedAsset.trans.data
+    transInfo: state.AssetReducers.trans.header,
+    transDat: state.AssetReducers.trans.data
 })
 const mapDispatchToProps = (dispatch) => ({
     sendTrans: (trans) => dispatch(sendTrans(trans))

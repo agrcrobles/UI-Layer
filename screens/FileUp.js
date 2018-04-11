@@ -81,7 +81,7 @@ class FileUp extends Component {
     let result = await ImagePicker.launchCameraAsync({
       base64: true,
       allowsEditing: false,
-      aspect: [4, 3],
+      aspect: [4, 4],
     });
 
     console.log(result);
@@ -155,7 +155,7 @@ class FileUp extends Component {
     }
   
 const mapStateToProps= (state) => ({
-          transInfo: state.AssetReducers.transInfo,
+          transInfo: state.AssetReducers.trans.header,
           logo: state.AssetReducers.selectedAsset.Logo
 
         });

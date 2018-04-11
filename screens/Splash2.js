@@ -66,6 +66,7 @@ class Splash2 extends Component {
       },
       data: {
         images: [],
+        documents: [],
 
       }
     }
