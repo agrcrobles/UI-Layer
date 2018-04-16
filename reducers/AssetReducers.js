@@ -118,7 +118,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             return Object.assign({}, state, {
                 ...state,
 
-                hercId: hercId
+                hercId
             })
 
         case INC_HERC_ID:
@@ -129,7 +129,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
             return Object.assign({}, state, {
                 ...state,
-                hercId
+                hercId: hercID
             })
 
         case ADD_PHOTO:
