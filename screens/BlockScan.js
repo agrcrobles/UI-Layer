@@ -2,18 +2,23 @@
 import React, { Component } from 'react';
 import { WebView } from 'react-native';
 import BackButton from '../components/BackButton';
+import AssetList from '../components/AssetList';
 
 export default class BlockScan extends Component {
-  static navigationOptions = ({navigation}) => ({
+  static navigationOptions = ({ navigation }) => ({
     headerLeft: <BackButton navigation={navigation} />
   })
-  
+
   render() {
     return (
-      <WebView
-        source={{uri: 'https://ethstats.net/'}}
-        style={{flex: 1}}
-      />
+
+
+      <AssetList />
+
+      // <WebView
+      //   source={{uri: 'https://ethstats.net/'}}
+      //   style={{flex: 1}}
+      // />
     );
   }
 }
@@ -28,10 +33,10 @@ export default class BlockScan extends Component {
 // export default class BlockScan extends Component {
 //     static navigationOptions = {
 //         header: null
-      
+
 //       }
 
-              
+
 //     render(){
 //     const { navigate } = this.props.navigation;
 //     console.log(this.props,'in blockscan')
@@ -42,44 +47,44 @@ export default class BlockScan extends Component {
 //     //     <View key={keyIndex} style={styles.view}>
 //     //         <Text style={styles.input}>{keyName}:</Text> 
 //     //         <Text style={styles.value}>{values[keyName]}</Text>
-            
+
 //     //     </View>
-     
+
 //     //     )
 //     //     })}
 
 //     return (
 //         <View style={styles.container}>
-            
+
 //             <View style={styles.header}>
 //             <TouchableHighlight onPress={() => navigate('MenuOptions')}>
 //                 <Image source={logo} style={styles.icon} />
 //             </TouchableHighlight>
 //             </View>
-            
+
 //             <View style={styles.portrait}>
 //                <Text> Portrait </Text> 
 //             </View>
-                
+
 //             <View style={styles.main}>
- 
+
 //                  <View style={styles.section}>
-                
+
 //                   <Text>section1</Text>
-                 
-                                
+
+
 //                 </View>
-                
+
 //                 <View style={styles.section}>
 //                     <Text>section2</Text>
 //                 </View>
 //             </View>
 //             </View>
 
-        
-        
-        
-           
+
+
+
+
 //             )
 //          }   
 
@@ -94,7 +99,7 @@ export default class BlockScan extends Component {
 //             // backgroundColor: '#fff',
 //             alignItems: 'center',
 //             justifyContent: 'flex-start',
-            
+
 //         },
 //         header: {
 //             height: 40,
@@ -139,4 +144,3 @@ export default class BlockScan extends Component {
 //         },
 
 //         })
-        

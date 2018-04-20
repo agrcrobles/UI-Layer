@@ -15,35 +15,35 @@ import backArrow from '../assets/icon_backarrow.png';
 
 
 class Splash1 extends Component {
-  static navigationOptions = ({navigation}) => ({
-    headerTitle:   <Image source={supply} style={{height: 50, width: 250, marginLeft: 20}} />, 
+  static navigationOptions = ({ navigation }) => ({
+    headerTitle: <Image source={supply} style={{ height: 50, width: 250, marginLeft: 20 }} />,
     headerLeft: <BackButton navigation={navigation} />
   })
   constructor(props) {
     super(props);
 
   }
- 
+
   //  Need to determine the ideal way to get the selected asset, currently am pulling them both down entirely and then just assigning the selected to state...I think...
   componentDidMount() {
     console.log(this.state, this.props, 'state and props');
-   
+
   }
 
-_onDelete = (key) => {
-  const { navigate } = this.props.navigation;
+  _onDelete = (key) => {
+    const { navigate } = this.props.navigation;
 
-  this.props.deleteAsset(key);
-  navigate('MenuOptions')
+    this.props.deleteAsset(key);
+    navigate('MenuOptions')
 
-}
+  }
 
 
   _onPress = (asset) => {
     const { navigate } = this.props.navigation;
 
     this.props.selectAsset(asset);
-    navigate('Splash2', {logo: asset.logo, name: asset.name});
+    navigate('Splash2', { logo: asset.logo, name: asset.name });
   }
 
   render() {
@@ -52,25 +52,27 @@ _onDelete = (key) => {
     let list = this.props.assets.map((asset, index) => {
       return (
         <View key={index} style={styles.assetField}>
-       
-        <Button onPress={() => this._onDelete(asset.key)} style={styles.assetDeleteButton}>Delete</Button>
-       
+
+          <Button onPress={() => this._onDelete(asset.key)} style={styles.assetDeleteButton}>Delete</Button>
+
           <Text style={styles.assetLabel}>{asset.name}</Text>
-       
-          <TouchableHighlight style={{alignSelf: 'flex-start'}} onPress={() => this._onPress(asset)}  >
-            <Image style={styles.assetButton} source={{uri:asset.logo}} />  
+
+          <TouchableHighlight style={{ alignSelf: 'flex-start' }} onPress={() => this._onPress(asset)}  >
+            <Image style={styles.assetButton} source={{ uri: asset.logo }} />
           </TouchableHighlight>
-       
+
         </View>
       )
     });
-    {/* <ScrollView contentContainerStyle={styles.scrollView}> */}
-    
+
     return (
-      
+// conditional render or fix scrollview styling...
+
       <View style={styles.container}>
-      {/* <Image source={supply} style={{height: 50, width: 250, margin: 5}} />  */}
+        {/* <Image source={supply} style={{height: 50, width: 250, margin: 5}} />  */}
+        {/* <ScrollView contentContainerStyle={styles.scrollView}> */}
           {list}
+        {/* </ScrollView> */}
         <TouchableHighlight onPress={() => navigate('Create')}>
           <Image
             style={{ resizeMode: 'contain', height: 80, width: 150 }}
@@ -94,7 +96,7 @@ const mapDispatchToProps = (dispatch) => ({
 
   selectAsset: (asset) =>
     dispatch(selectAsset(asset)),
-    deleteAsset: (key) =>
+  deleteAsset: (key) =>
     dispatch(deleteAsset(key))
 
 })

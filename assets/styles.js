@@ -416,6 +416,7 @@ module.exports = StyleSheet.create({
         alignContent: 'center',
         alignSelf: 'center',
         width: '90%',
+        justifyContent: 'center'
         // marginTop: 50
     },
     thumb: {
