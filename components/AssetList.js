@@ -5,12 +5,17 @@ import { STATUS_BAR_HEIGHT } from '../constants';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
 
+// TODO: Get transaction action/reducer
+
 class AssetList extends Component {
   static navigationOptions = {
 
 
   }
+_onPress = () => {
 
+  console.log("going to the trans")
+}
 
   render() {
     const { navigate } = this.props.navigation;
@@ -23,7 +28,7 @@ class AssetList extends Component {
 
           <Text style={styles.assetLabel}>{asset.name}</Text>
 
-          <TouchableHighlight style={{ alignSelf: 'flex-start' }} onPress={() => this._onPress(asset)}  >
+          <TouchableHighlight style={{ alignSelf: 'flex-start' }} onPress={() => this._onPress()}  >
             <Image style={styles.assetButton} source={{ uri: asset.logo }} />
           </TouchableHighlight>
 
@@ -37,12 +42,12 @@ class AssetList extends Component {
         {/* <ScrollView contentContainerStyle={styles.scrollView}> */}
         {list}
         {/* </ScrollView> */}
-        <TouchableHighlight onPress={() => navigate('Create')}>
+        {/* <TouchableHighlight onPress={() => this._onPress()}>
           <Image
             style={{ resizeMode: 'contain', height: 80, width: 150 }}
             source={create}
           />
-        </TouchableHighlight>
+        </TouchableHighlight> */}
 
       </View>
 
@@ -51,6 +56,8 @@ class AssetList extends Component {
     )
   };
 }
+
+//need to write GET_TRANS
 
 const mapStateToProps = (state) => ({
   assets: state.AssetReducers.assets,

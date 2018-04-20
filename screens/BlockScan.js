@@ -3,17 +3,19 @@ import React, { Component } from 'react';
 import { WebView } from 'react-native';
 import BackButton from '../components/BackButton';
 import AssetList from '../components/AssetList';
+import { StackNavigator } from 'react-navigation';
 
-export default class BlockScan extends Component {
+export default class  extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerLeft: <BackButton navigation={navigation} />
   })
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
 
 
-      <AssetList />
+      <AssetList navigation={navigate} />
 
       // <WebView
       //   source={{uri: 'https://ethstats.net/'}}
