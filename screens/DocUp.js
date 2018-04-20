@@ -103,7 +103,7 @@ class DocUp extends Component {
   };
 
   render() {
-
+    console.log('docup')
     const { navigate } = this.props.navigation;
     // let image = this.props.asset.Images ? this.props.asset.Images[0] : null;
     let locationImage = this.props.transInfo.location === 'recipient' ? recipient : originator;
