@@ -5,6 +5,7 @@ import {
     SELECT_ASSET,
     START_TRANS,
     SEND_TRANS,
+    GET_TRANS,
     ADD_PHOTO,
     ADD_DOC,
     ADD_PROPS,
@@ -44,7 +45,6 @@ const rootRef = firebase.database().ref();
 const INITIAL_STATE = {
 
     assets: []
-    // hercId: ""
 
 };
 
@@ -230,20 +230,18 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                         ediT
                     }
 
-
-
-
-
                 }
             })
 
-            case DELETE_ASSET:
+        case DELETE_ASSET:
             const key = action.delKey;
 
             rootRef.child('assets').child(key).remove();
             return state;
 
 
+            case GET_TRANS:
+            console.log("get trans reducers")
 
         default:
             return state;

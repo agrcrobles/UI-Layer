@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { WebView } from 'react-native';
 import BackButton from '../components/BackButton';
-import AssetList from '../components/AssetList';
+import TransAssetList from '../components/TransAssetList';
 import { StackNavigator } from 'react-navigation';
 
 export default class  extends Component {
@@ -15,7 +15,7 @@ export default class  extends Component {
     return (
 
 
-      <AssetList navigation={navigate} />
+      <TransAssetList navigation={navigate} />
 
       // <WebView
       //   source={{uri: 'https://ethstats.net/'}}

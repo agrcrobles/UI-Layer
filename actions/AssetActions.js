@@ -1,4 +1,24 @@
-import { ADD_ASSET, LIST_ASSETS, GOT_LIST_ASSETS, SELECT_ASSET, START_TRANS, SEND_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, GOT_HERC_ID, CONFIRM_ASSET, SET_SET, DELETE_ASSET } from './types';
+import {
+
+    ADD_ASSET,
+    LIST_ASSETS,
+    GOT_LIST_ASSETS,
+    SELECT_ASSET,
+    START_TRANS,
+    SEND_TRANS,
+    ADD_PHOTO,
+    ADD_DOC,
+    ADD_PROPS,
+    INC_HERC_ID,
+    GET_HERC_ID,
+    GOT_HERC_ID,
+    CONFIRM_ASSET,
+    SET_SET,
+    DELETE_ASSET,
+    GET_TRANS
+
+} from './types';
+
 import firebase from '../constants/Firebase';
 const rootRef = firebase.database().ref();
 
@@ -176,5 +196,9 @@ export function setSet(item) {
         type: SET_SET,
         item
     }
+}
+
+export function getTrans(asset) {
+    console.log("getTrans action")
 }
 

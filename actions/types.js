@@ -13,6 +13,7 @@ export const GOT_HERC_ID = 'gotHercId';
 export const CONFIRM_ASSET = 'confirmAsset';
 export const SET_SET = 'setSet';
 export const DELETE_ASSET = 'deleteAsset'
+export const GET_TRANS = 'getTrans';
 
 
 // export const FETCHING_ASSETS_SUCCESS = 'FETCHING_ASSETS_SUCCESS';
