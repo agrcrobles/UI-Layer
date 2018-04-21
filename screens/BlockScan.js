@@ -1,29 +1,79 @@
 
 import React, { Component } from 'react';
-import { WebView } from 'react-native';
+// import { WebView } from 'react-native';
 import BackButton from '../components/BackButton';
 import TransAssetList from '../components/TransAssetList';
 import { StackNavigator } from 'react-navigation';
+import track from '../components/buttons/blockScannerBtn.png';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert, Platform } from 'react-native';
+import { connect } from 'react-redux';
+import styles from '../assets/styles';
 
-export default class  extends Component {
+// TODO: Get a proper 'Track' Label from Grey if styling is an issue
+
+class BlockScan extends Component {
   static navigationOptions = ({ navigation }) => ({
+    headerTitle: <Image source={track} style={{ height: 50, width: 214, marginLeft: 35 }} />,
     headerLeft: <BackButton navigation={navigation} />
   })
 
+  _onPress = (asset) => {
+    
+    const { navigate } = this.props.navigation;
+
+   
+    navigate('TransSwiper', { logo: asset.logo, name: asset.name });
+ 
+  }
+ 
   render() {
     const { navigate } = this.props.navigation;
+    console.log(this.props)
+
+    let list = this.props.assets.map((asset, index) => {
+      return (
+        <View key={index} style={styles.assetField}>
+
+          {/* <Button onPress={() => this._onDelete(asset.key)} style={styles.assetDeleteButton}>Delete</Button> */}
+
+          <Text style={styles.assetLabel}>{asset.name}</Text>
+
+          <TouchableHighlight style={{ alignSelf: 'flex-start' }} onPress={() => this._onPress(asset)} >
+            <Image style={styles.assetButton} source={{ uri: asset.logo }} />
+          </TouchableHighlight>
+
+        </View>
+      )
+    });
+
     return (
+      <View style={styles.container}>
+
+        {list}
+
+      </View>
 
 
-      <TransAssetList navigation={navigate} />
 
-      // <WebView
-      //   source={{uri: 'https://ethstats.net/'}}
-      //   style={{flex: 1}}
-      // />
-    );
-  }
+    )
+  };
 }
+
+//need to write GET_TRANS
+
+const mapStateToProps = (state) => ({
+  assets: state.AssetReducers.assets,
+
+});
+// const mapDispatchToProps = (dispatch) => ({
+
+//   getTrans: (asset) =>
+//     dispatch(getTrans(asset)),
+//   //   deleteAsset: (key) =>
+//   //     dispatch(deleteAsset(key))
+
+// })
+export default connect(mapStateToProps)(BlockScan)
 
 
 

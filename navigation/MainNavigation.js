@@ -25,7 +25,7 @@ import PreHipr from '../screens/PreHIPR';
 import HiprAssets from '../screens/HiprAssets';
 import Hipr from '../screens/Hipr';
 import BlockScan from '../screens/BlockScan';
-import TransAssetList from '../screens/TransAssetList';
+import TransSwiper from '../screens/TransSwiper';
 import Splash1 from '../screens/Splash1';
 import Splash2 from '../screens/Splash2';
 import Splash3 from '../screens/Splash3';
@@ -44,7 +44,7 @@ const MainNavigator = StackNavigator({
     HiprAssets: { screen: HiprAssets },
     Hipr: { screen: Hipr },
     BlockScan: { screen: BlockScan },
-    TransAssetList: { screen: TransAssetList },
+    TransSwiper: { screen: TransSwiper },
     Splash1: { screen: Splash1 },
     Splash2: { screen: Splash2 },
     Splash3: { screen: Splash3 },

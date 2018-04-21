@@ -3,7 +3,7 @@ import Swiper from 'react-native-deck-swiper'
 import {Image, StyleSheet, Text, View} from 'react-native'
 import Button from 'react-native-button';
 
-class Swiper extends Component {
+export default class TxSwiper extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -31,24 +31,24 @@ class Swiper extends Component {
     })
   };
 
-//   swipeBack = () => {
-//     if (!this.state.isSwipingBack) {
-//       this.setIsSwipingBack(true, () => {
-//         this.swiper.swipeBack(() => {
-//           this.setIsSwipingBack(false)
-//         })
-//       })
-//     }
-//   };
+  swipeBack = () => {
+    if (!this.state.isSwipingBack) {
+      this.setIsSwipingBack(true, () => {
+        this.swiper.swipeBack(() => {
+          this.setIsSwipingBack(false)
+        })
+      })
+    }
+  };
 
-//   setIsSwipingBack = (isSwipingBack, cb) => {
-//     this.setState(
-//       {
-//         isSwipingBack: isSwipingBack
-//       },
-//       cb
-//     )
-//   };
+  setIsSwipingBack = (isSwipingBack, cb) => {
+    this.setState(
+      {
+        isSwipingBack: isSwipingBack
+      },
+      cb
+    )
+  };
 
   swipeLeft = () => {
     this.swiper.swipeLeft()

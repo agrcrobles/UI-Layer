@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { StyleSheet, Platform, TextInput, Text, View, Image, ScrollView, TouchableHighlight, Alert, TouchableNativeFeedback } from 'react-native';
 import { STATUS_BAR_HEIGHT } from '../constants';
 import { StackNavigator } from 'react-navigation';
-import Swiper from '../components/Swiper';
+import Swiper from '../components/TxSwiper';
 import { connect } from "react-redux";
-
+import styles from '../assets/styles';
 import TransRev from "../components/TransactionReview";
 import BackButton from "../components/BackButton";
 
@@ -58,15 +58,19 @@ class TransSwiper extends Component {
 
 
     render() {
+        console.log(this.props.assets);
         return (
-            <Swiper cards={this.props.assets} />
+            <View style={styles.container}>
+                <Text> Hello</Text>
+                <Swiper cards={this.props.assets} />
+            </View>
         )
     }
 
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => ({
     assets: state.AssetReducers.assets
-}
+})
 
 export default connect(mapStateToProps)(TransSwiper);
