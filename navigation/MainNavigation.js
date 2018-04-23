@@ -24,7 +24,7 @@ import Anthem from '../screens/Anthem';
 import PreHipr from '../screens/PreHIPR';
 import HiprAssets from '../screens/HiprAssets';
 import Hipr from '../screens/Hipr';
-import BlockScan from '../screens/BlockScan';
+import BlockScanner from '../screens/BlockScanner';
 import TransSwiper from '../screens/TransSwiper';
 import Splash1 from '../screens/Splash1';
 import Splash2 from '../screens/Splash2';
@@ -33,6 +33,7 @@ import NewAssetConfirm from '../screens/NewAssetConfirm';
 import EdiT from '../screens/Edi-T';
 import PreDigi from '../screens/PreDigiView';
 import SpaceScreen from '../screens/SpaceScreen';
+import TransAssetList from '../screens/TransAssetList';
 
 const MainNavigator = StackNavigator({
     Welcome: { screen: Welcome },
@@ -44,8 +45,9 @@ const MainNavigator = StackNavigator({
     PreHipr: { screen: PreHipr },
     HiprAssets: { screen: HiprAssets },
     Hipr: { screen: Hipr },
-    BlockScan: { screen: BlockScan },
+    BlockScanner: { screen: BlockScanner },
     TransSwiper: { screen: TransSwiper },
+    TransAssetList: { screen: TransAssetList },
     Splash1: { screen: Splash1 },
     Splash2: { screen: Splash2 },
     Splash3: { screen: Splash3 },

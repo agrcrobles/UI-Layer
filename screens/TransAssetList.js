@@ -2,22 +2,25 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert, Platform } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { STATUS_BAR_HEIGHT } from '../constants';
+import track from '../components/buttons/blockScannerBtn.png';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
-import { getTrans } from '../actions/AssetActions';
-// TODO: Get transaction action/reducer
+import { selectAsset } from '../actions/AssetActions';
+import BackButton from '../components/BackButton';
 
 
 class TransAssetList extends Component {
-  static navigationOptions = {
-
-
-  }
+  static navigationOptions = ({ navigation }) => ({
+    headerTitle: <Image source={track} style={{ height: 50, width: 214, marginLeft: 35 }} />,
+    headerLeft: <BackButton navigation={navigation} />
+  })
+ 
   _onPress = (asset) => {
     const { navigate } = this.props.navigation;
 
     console.log("going to the trans")
-    this.props.getTrans(asset.key).then(() => navigate('SpaceScreen', { name: asset.name, logo: asset.logo }));
+    this.props.selectAsset(asset);
+    navigate('SpaceScreen', { name: asset.name, logo: asset.logo });
 
   }
 
@@ -60,8 +63,8 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
 
-  getTrans: (asset) =>
-    dispatch(getTrans(asset)),
+  selectAsset: (asset) =>
+    dispatch(selectAsset(asset)),
   //   deleteAsset: (key) =>
   //     dispatch(deleteAsset(key))
 

@@ -88,7 +88,7 @@ import BackButton from '../components/BackButton';
             />
           </TouchableHighlight> 
           
-          <TouchableHighlight  onPress={() => navigate('BlockScan')}>
+          <TouchableHighlight  onPress={() => navigate('TransAssetList')}>
             <Image
               style={styles.button}
               source={blockScan}
