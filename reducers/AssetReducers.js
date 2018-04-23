@@ -73,7 +73,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
             })
 
-        case GET_TRANS:
+        case GOT_ASSET_TRANS:
             let transactions = action.transactions;
             console.log("get trans reducers")
             return Object.assign({}, state, {
@@ -100,8 +100,6 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
             //  console.log(rootRef.ref(state.AssetReducers.transInfo.name.val()));
             console.log(state.trans.header, "trans in send_trans reducer");
-            console.log(data, 'fintrans in sendtrans redux')
-            //    console.log([name], 'potential new txobject')
             rootRef.child('assets/' + header.key).child('transactions').push({
                 data
             })

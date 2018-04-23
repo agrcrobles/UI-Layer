@@ -32,6 +32,7 @@ import Splash3 from '../screens/Splash3';
 import NewAssetConfirm from '../screens/NewAssetConfirm';
 import EdiT from '../screens/Edi-T';
 import PreDigi from '../screens/PreDigiView';
+import SpaceScreen from '../screens/SpaceScreen';
 
 const MainNavigator = StackNavigator({
     Welcome: { screen: Welcome },
@@ -54,8 +55,8 @@ const MainNavigator = StackNavigator({
     Confirm: { screen: Confirm },
     NewAssetConfirm: { screen: NewAssetConfirm },
     EdiT: { screen : EdiT},
-    PreDigi: { screen: PreDigi }
-
+    PreDigi: { screen: PreDigi },
+    SpaceScreen: { screen: SpaceScreen }
 
 },
 

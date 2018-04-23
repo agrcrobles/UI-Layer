@@ -16,7 +16,7 @@ import {
     CONFIRM_ASSET,
     SET_SET,
     DELETE_ASSET,
- 
+
     GOT_ASSET_TRANS
 
 } from './types';
@@ -75,7 +75,7 @@ export function listAssets() {
         rootRef.child('assets').once('value').
             then((snapshot) => {
                 snapshot.forEach((obj) => {
-                    console.log(obj.toJSON(), 'object in listassets');
+                    console.log('objects in listassets');
                     assets.push({
                         name: obj.toJSON().Name,
                         key: obj.key,
@@ -110,7 +110,7 @@ export function selectAsset(asset) {
         ...selectedAsset,
         key: asset.key
     })
-    console.log(selectedAsset, 'selecteasset in action')
+    console.log( 'selecteasset in action')
     return (
 
         {
@@ -130,7 +130,7 @@ export function addAsset(newAsset) {
 
 export function confirmAsset(ConfAsset) {
     let data = ConfAsset;
-    console.log(ConfAsset);
+    console.log('confirming asset');
     return {
         type: CONFIRM_ASSET,
         asset: data
@@ -161,7 +161,7 @@ export function startTrans(trans) {
 }
 
 export function sendTrans(trans) {
-    console.log(trans, "inside set Location action")
+    console.log("inside set Location action")
     return (
         {
             type: SEND_TRANS,
@@ -201,30 +201,33 @@ export function setSet(item) {
 }
 
 export function getTrans(assetKey) {
-    console.log("getTrans action")
-    let assetTrans = [];
-    rootRef.child('assets/' + assetKey + '/transactions').once('value').
-        then((snapshot) => {
-            snapshot.forEach((trans) => {
-                console.log(trans.toJSON(), 'object in listassets');
-                assetTrans.push({
-                    data: trans.toJSON().data
-                });
+    return (dispatch) => {
+        dispatch({
+            type: "GET_TRANS"
+        });
 
-            })
+        console.log("getTrans action")
+        let assetTrans = [];
+        rootRef.child('assets/' + assetKey + '/transactions').once('value').
+           then( (snapshot) => {
+                snapshot.forEach((trans) => {
+                    console.log('object in getTrans!');
+                    assetTrans.push({
+                        data: trans.toJSON().data
+                    });
 
-        })
+                })
 
-    return { 
-        type: "GET_TRANS",
-        transactions: assetTrans
+            }).then(() => dispatch(gotAssetTrans(assetTrans)))
+        
+        }
+
     }
 
-    }
 
 export function gotAssetTrans(assetTrans) {
     let transactions = assetTrans;
-    console.log(transactions, 'got the list');
+    console.log('got the transactions list');
     return {
         type: GOT_ASSET_TRANS,
         transactions

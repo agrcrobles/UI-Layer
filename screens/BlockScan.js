@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 // import { WebView } from 'react-native';
 import BackButton from '../components/BackButton';
-import TransAssetList from '../components/TransAssetList';
+// import TransAssetList from '../components/TransAssetList';
 import { StackNavigator } from 'react-navigation';
 import track from '../components/buttons/blockScannerBtn.png';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert, Platform } from 'react-native';
@@ -22,8 +22,11 @@ class BlockScan extends Component {
     
     const { navigate } = this.props.navigation;
 
+   
    this.props.getTrans(asset.key);
-    navigate('TransSwiper', { logo: asset.logo, name: asset.name });
+   navigate('SpaceScreen', { name: asset.name, logo: asset.logo });
+
+  //  navigate('SpaceScreen', { logo: asset.logo, name: asset.name });
   }
  
   render() {
@@ -67,13 +70,13 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
 
-  getTrans: (assetKey) =>
+  getTrans: (assetKey) => 
     dispatch(getTrans(assetKey)),
   //   deleteAsset: (key) =>
   //     dispatch(deleteAsset(key))
-
+  
 })
-export default connect(mapStateToProps,mapDispatchToProps)(BlockScan)
+export default connect(mapStateToProps, mapDispatchToProps)(BlockScan)
 
 
 

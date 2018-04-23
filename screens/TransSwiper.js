@@ -49,25 +49,30 @@ class TransSwiper extends Component {
     }
     constructor(props) {
         super(props);
+        this.state = {
+            transactions: []
+        }
     }
     componentDidMount() {
         console.log(this.props, 'Swiper Here');
-
+        this.setState({
+            transactions: this.props.transactions
+        })
 
     }
 
 
 
     render() {
-        console.log(this.props.transactions, 'transactions');
-        let trans = this.props.transactions;
-        console.log(trans, 'trans')
-    //    trans = [...trans]
+        console.log(this.state.transactions, 'transactions');
+        // let trans = this.props.transactions.map(x => x.data.length);
+        // console.log(trans, 'trans')
+    //     let transMap = trans.map(x => x.data.length);
+    // console.log(transMap)
         // console.log(trans.map(x => x.data), 'transData');
         return (
             <View style={styles.container}>
                 <Text> Hello</Text>
-                <Swiper cards={trans} />
             </View>
         )
     }

@@ -17,7 +17,7 @@ class TransAssetList extends Component {
     const { navigate } = this.props.navigation;
 
     console.log("going to the trans")
-    this.props.getTrans(asset.key).then(navigate('TransSwiper', { name: asset.name, logo: asset.logo }));
+    this.props.getTrans(asset.key).then(() => navigate('SpaceScreen', { name: asset.name, logo: asset.logo }));
 
   }
 
