@@ -1,13 +1,16 @@
-import React, {Component} from 'react'
-import Swiper from 'react-native-deck-swiper'
-import {Image, StyleSheet, Text, View} from 'react-native'
+import React, {Component} from 'react';
+import Swiper from 'react-native-deck-swiper';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import Button from 'react-native-button';
+import originator from "../assets/origin.png";
+import recipient from "../assets/recipient.png";
 
+// import styles from '../assets/styles';
 export default class TxSwiper extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      cards: this.props.cards,
+      cards: this.props.transactions,
       swipedAllCards: false,
       swipeDirection: '',
       isSwipingBack: false,
@@ -16,10 +19,35 @@ export default class TxSwiper extends Component {
   }
 
   renderCard = card => {
+    let data = card;
+    let locationImage = data.tXLocation === 'recipient' ? recipient : originator;
     return (
       <View key={card.key} style={styles.card}>
-        <Text style={styles.text}>{card.name}</Text>
-        <Image style={styles.image} source={{uri: card.logo}} />
+                <Text style={styles.transRevTime}>{data.dTime}</Text>
+                <Image style={{height: 30, width: 150, resizeMode: 'contain'}} />        
+        {/* <View style={styles.container}>
+                <Text style={styles.transReview}>Transaction Review</Text>
+
+                <Image style={styles.assetLocationNoTopMargin} source={locationImage} />
+                {/* {/* <Text style={styles.transRevName}>{transInfo.name}</Text> */}
+                <Image style={styles.assetLocationNoTopMargin} source={locationImage} />
+               
+                <Text style={styles.editLabel}>EDI-T-SET:</Text>
+                <Text style={styles.transRevTime}>{ediTName}</Text>
+                <Text style={styles.transRevTime}>{ediTNum}</Text>
+               
+                <Image style={styles.thumb} source={{ uri: image }} />
+                <Text style={styles.editLabel}>Document Name and Size</Text>
+                <Text style={styles.transRevTime}>{doc}</Text>
+                <Text style={styles.transRevTime}>{docSize} kb</Text>
+                
+                <View style={{ flex: 1 }}>
+                    {list}
+                </View>
+                <TouchableHighlight onPress={() => this._sendTrans()}>
+                    <Image source={submit} style={styles.assetLocationNoTopMargin} />
+                </TouchableHighlight>
+              */}
       </View>
     )
   };
@@ -55,6 +83,7 @@ export default class TxSwiper extends Component {
   };
 
   render () {
+    console.log(this.state.cards,'cards in swiper')
     return (
       <View style={styles.container}>
         <Swiper
@@ -188,5 +217,26 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'white',
     backgroundColor: 'transparent'
-  }
+  },
+  transReview: {
+    color: '#f3c736',
+    alignSelf: 'center',
+    fontSize: 20.2,
+    fontWeight: "600",
+    fontFamily: 'dinPro',
+},
+transRevName: {
+    fontFamily: 'dinPro',
+    fontSize: 16,
+    color: 'white',
+    margin: 2,
+    textAlign: 'left'
+
+},
+transRevTime: {
+    color: '#f3c736',
+    fontSize: 16,
+    fontFamily: 'dinPro',
+    textAlign: 'center'
+},
 })

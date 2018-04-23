@@ -14,7 +14,7 @@ export const CONFIRM_ASSET = 'confirmAsset';
 export const SET_SET = 'setSet';
 export const DELETE_ASSET = 'deleteAsset'
 export const GET_TRANS = 'getTrans';
-
+export const GOT_ASSET_TRANS = 'gotAssetTrans';
 
 // export const FETCHING_ASSETS_SUCCESS = 'FETCHING_ASSETS_SUCCESS';
 // export const FETCHING_ASSETS_FAILURE = 'FETCHING_ASSETS_FAILURE';

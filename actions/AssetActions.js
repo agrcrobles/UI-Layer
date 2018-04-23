@@ -2,6 +2,7 @@ import {
 
     ADD_ASSET,
     LIST_ASSETS,
+    GET_TRANS,
     GOT_LIST_ASSETS,
     SELECT_ASSET,
     START_TRANS,
@@ -15,7 +16,8 @@ import {
     CONFIRM_ASSET,
     SET_SET,
     DELETE_ASSET,
-    GET_TRANS
+ 
+    GOT_ASSET_TRANS
 
 } from './types';
 
@@ -198,7 +200,36 @@ export function setSet(item) {
     }
 }
 
-export function getTrans(asset) {
+export function getTrans(assetKey) {
     console.log("getTrans action")
+    let assetTrans = [];
+    rootRef.child('assets/' + assetKey + '/transactions').once('value').
+        then((snapshot) => {
+            snapshot.forEach((trans) => {
+                console.log(trans.toJSON(), 'object in listassets');
+                assetTrans.push({
+                    data: trans.toJSON().data
+                });
+
+            })
+
+        })
+
+    return { 
+        type: "GET_TRANS",
+        transactions: assetTrans
+    }
+
+    }
+
+export function gotAssetTrans(assetTrans) {
+    let transactions = assetTrans;
+    console.log(transactions, 'got the list');
+    return {
+        type: GOT_ASSET_TRANS,
+        transactions
+
+    }
 }
+
 

@@ -1,40 +1,26 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert, ScrollView } from 'react-native';
-import { connect } from 'react-redux';
-import { StackNavigator } from 'react-navigation';
 import styles from '../assets/styles';
 import originator from "../assets/origin.png";
 import recipient from "../assets/recipient.png";
-import submit from "../assets/submitButton.png";
-import { sendTrans } from "../actions/AssetActions";
 
-class TransRev extends Component {
+class SwipeCard extends Component {
     constructor(props) {
         super(props);
     }
     componentDidMount() {
-        // console.log(this.props.transInfo, this.props.transDat, 'transinfos')
+        console.log('SwipeCardHere')
     }
-
-    _sendTrans() {
-        const { navigate } = this.props.navigate;
-
-        this.props.sendTrans();
-        this.props.navigate('BlockScan');
-
-    }
+   
 
     render() {
-        let transInfo = this.props.transInfo;
-        console.log(transInfo, 'pre objass');
-        let transDat = this.props.transDat;
-     
-        console.log(transInfo, 'transinfo in transreviewrender', transDat, 'transdata')
+        let data = this.props.data;
+        console.log(data, 'card Data');
 
-        let locationImage = this.props.transInfo.location === 'recipient' ? recipient : originator;
+        let locationImage = this.props.data.tXLocation === 'recipient' ? recipient : originator;
         let list;
         let ediTName, ediTNum, doc, docSize = null;
-        let image = transDat.images[0] || null;
+        let image = data.images[0] || null;
 
         let dTime = transDat.dTime;
         console.log(dTime, 'dtime??');
@@ -100,13 +86,3 @@ class TransRev extends Component {
         )
     }
 }
-
-const mapStateToProps = (state) => ({
-    transInfo: state.AssetReducers.trans.header,
-    transDat: state.AssetReducers.trans.data
-})
-const mapDispatchToProps = (dispatch) => ({
-    sendTrans: (trans) => dispatch(sendTrans(trans))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(TransRev);

@@ -54,7 +54,6 @@ class Splash2 extends Component {
   _onPress = (place) => {
     const { navigate } = this.props.navigation;
     console.log(place, 'pressing place');
-    let time = new Date();
     // let asset = this.props.selectedAsset;
     console.log(this.props.asset, 'thispropsasset');
 
@@ -62,11 +61,11 @@ class Splash2 extends Component {
       header: {
         name: this.props.asset.Name,
         key: this.props.asset.key,
-        tXLocation: place,
-        dTime: time,
         hercId: this.props.asset.hercId
       },
       data: {
+        dTime: new Date().toDateString(),
+        tXLocation: place,
         images: [],
         documents: [],
 

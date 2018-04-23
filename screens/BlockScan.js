@@ -8,6 +8,7 @@ import track from '../components/buttons/blockScannerBtn.png';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
+import { getTrans } from '../actions/AssetActions';
 
 // TODO: Get a proper 'Track' Label from Grey if styling is an issue
 
@@ -21,14 +22,13 @@ class BlockScan extends Component {
     
     const { navigate } = this.props.navigation;
 
-   
+   this.props.getTrans(asset.key);
     navigate('TransSwiper', { logo: asset.logo, name: asset.name });
- 
   }
  
   render() {
     const { navigate } = this.props.navigation;
-    console.log(this.props)
+    console.log(this.props, 'blockscan')
 
     let list = this.props.assets.map((asset, index) => {
       return (
@@ -65,15 +65,15 @@ const mapStateToProps = (state) => ({
   assets: state.AssetReducers.assets,
 
 });
-// const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
 
-//   getTrans: (asset) =>
-//     dispatch(getTrans(asset)),
-//   //   deleteAsset: (key) =>
-//   //     dispatch(deleteAsset(key))
+  getTrans: (assetKey) =>
+    dispatch(getTrans(assetKey)),
+  //   deleteAsset: (key) =>
+  //     dispatch(deleteAsset(key))
 
-// })
-export default connect(mapStateToProps)(BlockScan)
+})
+export default connect(mapStateToProps,mapDispatchToProps)(BlockScan)
 
 
 

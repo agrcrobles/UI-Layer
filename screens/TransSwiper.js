@@ -5,7 +5,7 @@ import { StackNavigator } from 'react-navigation';
 import Swiper from '../components/TxSwiper';
 import { connect } from "react-redux";
 import styles from '../assets/styles';
-import TransRev from "../components/TransactionReview";
+import SwipeCard from "../components/SwipeCard";
 import BackButton from "../components/BackButton";
 
 class TransSwiper extends Component {
@@ -51,18 +51,23 @@ class TransSwiper extends Component {
         super(props);
     }
     componentDidMount() {
-        console.log('Swiper Here');
+        console.log(this.props, 'Swiper Here');
 
 
     }
 
 
+
     render() {
-        console.log(this.props.assets);
+        console.log(this.props.transactions, 'transactions');
+        let trans = this.props.transactions;
+        console.log(trans, 'trans')
+    //    trans = [...trans]
+        // console.log(trans.map(x => x.data), 'transData');
         return (
             <View style={styles.container}>
                 <Text> Hello</Text>
-                <Swiper cards={this.props.assets} />
+                <Swiper cards={trans} />
             </View>
         )
     }
@@ -70,7 +75,7 @@ class TransSwiper extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    assets: state.AssetReducers.assets
+    transactions: state.AssetReducers.transactions
 })
 
 export default connect(mapStateToProps)(TransSwiper);

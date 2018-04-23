@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation';
 import { STATUS_BAR_HEIGHT } from '../constants';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
-
+import { getTrans } from '../actions/AssetActions';
 // TODO: Get transaction action/reducer
 
 
@@ -13,15 +13,15 @@ class TransAssetList extends Component {
 
 
   }
-  _onPress = () => {
+  _onPress = (asset) => {
+    const { navigate } = this.props.navigation;
 
     console.log("going to the trans")
-
+    this.props.getTrans(asset.key).then(navigate('TransSwiper', { name: asset.name, logo: asset.logo }));
 
   }
 
   render() {
-    const { navigate } = this.props.navigation;
     console.log(this.props)
     let list = this.props.assets.map((asset, index) => {
       return (
@@ -31,7 +31,7 @@ class TransAssetList extends Component {
 
           <Text style={styles.assetLabel}>{asset.name}</Text>
 
-          <TouchableHighlight style={{ alignSelf: 'flex-start' }} onPress={() => this._onPress()} >
+          <TouchableHighlight style={{ alignSelf: 'flex-start' }} onPress={() => this._onPress(asset)} >
             <Image style={styles.assetButton} source={{ uri: asset.logo }} />
           </TouchableHighlight>
 
