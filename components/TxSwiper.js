@@ -1,16 +1,16 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Swiper from 'react-native-deck-swiper';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import Button from 'react-native-button';
 import originator from "../assets/origin.png";
 import recipient from "../assets/recipient.png";
 
 // import styles from '../assets/styles';
 export default class TxSwiper extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
-      cards: this.props.transactions,
+      cards: this.props.cards,
       swipedAllCards: false,
       swipeDirection: '',
       isSwipingBack: false,
@@ -19,41 +19,71 @@ export default class TxSwiper extends Component {
   }
 
   renderCard = card => {
-    let data = card;
-    let locationImage = data.tXLocation === 'recipient' ? recipient : originator;
+    let data = card.data;
+    let locationImage;
+    let docNum, docName, docs;
+    let imgNum, imgName, images;
+    let list;
+    data.hasOwnProperty('tXLocation') ?
+      locationImage = data.tXLocation === 'recipient' ? recipient : originator : "";
+
+
+    if (data.hasOwnProperty('documents')) {
+      docNum = data.documents.length
+      docs = data.documents.map((x, i) => {
+        return (
+          <View key={i} style={styles.revPropField}>
+            <Text style={styles.text}>{x.name}</Text>
+            <Text style={styles.text}>{x.size}kb</Text>
+
+          </View>
+        )
+      })
+    }
+
+    if (data.hasOwnProperty('images')) {
+      imgNum = data.images.length
+      images = data.images.map((x, i) => {
+        return (
+          <View key={i} style={styles.imgView}>
+            <Image style={{ height: 100, width: 100, resizeMode: 'contain' }} source={{ uri: x }} />
+
+          </View>
+        )
+      })
+    }
+
+    if (data.hasOwnProperty('properties')) {
+      
+      list = Object.keys(data.properties).map((name, idx) => {
+        console.log(name, 'name in for loop in review')
+        return (
+
+          <View key={idx} style={styles.revPropField}>
+            <Text style={styles.transRevName}>{name}:</Text>
+            <Text style={styles.revPropVal}>{data.properties[name]}</Text>
+
+          </View>
+        )
+      })
+    }
+
+
+
+
     return (
       <View key={card.key} style={styles.card}>
-                <Text style={styles.transRevTime}>{data.dTime}</Text>
-                <Image style={{height: 30, width: 150, resizeMode: 'contain'}} />        
-        {/* <View style={styles.container}>
-                <Text style={styles.transReview}>Transaction Review</Text>
-
-                <Image style={styles.assetLocationNoTopMargin} source={locationImage} />
-                {/* {/* <Text style={styles.transRevName}>{transInfo.name}</Text> */}
-                <Image style={styles.assetLocationNoTopMargin} source={locationImage} />
-               
-                <Text style={styles.editLabel}>EDI-T-SET:</Text>
-                <Text style={styles.transRevTime}>{ediTName}</Text>
-                <Text style={styles.transRevTime}>{ediTNum}</Text>
-               
-                <Image style={styles.thumb} source={{ uri: image }} />
-                <Text style={styles.editLabel}>Document Name and Size</Text>
-                <Text style={styles.transRevTime}>{doc}</Text>
-                <Text style={styles.transRevTime}>{docSize} kb</Text>
-                
-                <View style={{ flex: 1 }}>
-                    {list}
-                </View>
-                <TouchableHighlight onPress={() => this._sendTrans()}>
-                    <Image source={submit} style={styles.assetLocationNoTopMargin} />
-                </TouchableHighlight>
-              */}
+        <Image style={{ height: 50, width: 250, resizeMode: 'contain' }} source={locationImage} />
+        <Text style={styles.text}>Documents: {docNum}</Text>
+        {docs}
+        {images}
+        {list}
       </View>
     )
   };
 
   onSwipedAllCards = () => {
-      console.log('Swiped all cards');
+    console.log('Swiped all cards');
     this.setState({
       swipedAllCards: true
     })
@@ -82,11 +112,12 @@ export default class TxSwiper extends Component {
     this.swiper.swipeLeft()
   };
 
-  render () {
-    console.log(this.state.cards,'cards in swiper')
+  render() {
+    console.log(this.state.cards, 'cards in swiper')
     return (
       <View style={styles.container}>
         <Swiper
+          backgroundColor={'#002740'}
           ref={swiper => {
             this.swiper = swiper
           }}
@@ -94,11 +125,11 @@ export default class TxSwiper extends Component {
           onTapCard={this.swipeLeft}
           cards={this.state.cards}
           cardIndex={this.state.cardIndex}
-          cardVerticalMargin={50}
+          cardVerticalMargin={5}
           renderCard={this.renderCard}
           onSwipedAll={this.onSwipedAllCards}
           stackSize={3}
-          cardHorizontalMargin={0}
+          cardHorizontalMargin={10}
           stackSeparation={15}
           overlayLabels={{
             bottom: {
@@ -175,42 +206,48 @@ export default class TxSwiper extends Component {
         >
           <Button onPress={this.swipeLeft} title='Swipe Left' />
         </Swiper>
-       </View>
+      </View>
     )
   }
 }
-
+// const mapStateToProps = (state) => {
+//   cards: Object.values(state.AssetReducers.selectedAsset.transactions)
+// }
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    backgroundColor: 'red',
-    width: '90%',
-    height: '90%',
+    flex: 1,
+    // backgroundColor: 'red',
+    // width: '90%',
+    // height: '90%',
     // justifyContent:'flex-end',
     // alignItems: 'center'
   },
   card: {
     // flex: 1,
-    height: 400,
+    height: 470,
     width: 350,
     borderRadius: 4,
     borderWidth: 2,
-    borderColor: '#E8E8E8',
+    borderColor: '#F3c736',
     justifyContent: 'center',
-    backgroundColor: 'yellow',
+    backgroundColor: '#091141',
     alignSelf: 'center',
-    left: -20
+    left: -20,
+    alignItems: 'center'
   },
   text: {
+    color: '#F3c736',
     textAlign: 'center',
     fontSize: 20,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    height: 25,
+    width: '90%'
   },
   image: {
-      resizeMode: 'contain',
-      height: 50,
-      width: 50,
-      borderRadius: 25,
+    resizeMode: 'contain',
+    height: 50,
+    width: 50,
+    borderRadius: 25,
   },
   done: {
     textAlign: 'center',
@@ -224,19 +261,49 @@ const styles = StyleSheet.create({
     fontSize: 20.2,
     fontWeight: "600",
     fontFamily: 'dinPro',
-},
-transRevName: {
+  },
+  transRevName: {
     fontFamily: 'dinPro',
     fontSize: 16,
     color: 'white',
     margin: 2,
     textAlign: 'left'
 
-},
-transRevTime: {
+  },
+  transRevTime: {
     color: '#f3c736',
     fontSize: 16,
     fontFamily: 'dinPro',
     textAlign: 'center'
+  },
+  revPropVal: {
+    fontFamily: 'dinPro',
+    fontSize: 15,
+    color: '#f3c736',
+    margin: 2,
+    // textAlign: 'right'
 },
+  revPropField: {
+    height: 50,
+    width: '100%',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 2,
+    margin: 2,
+    // textAlign:'center',
+    // textAlignVertical: 'center',
+    backgroundColor: '#021227',
+    alignSelf: 'center',
+    borderColor: '#F3c736',
+  },
+  imgView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    margin: 5,
+    borderColor: '#F3c736'
+
+  }
 })

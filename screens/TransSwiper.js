@@ -8,6 +8,8 @@ import styles from '../assets/styles';
 import SwipeCard from "../components/SwipeCard";
 import BackButton from "../components/BackButton";
 
+
+
 class TransSwiper extends Component {
     static navigationOptions = ({ navigation }) => {
         const { params } = navigation.state;
@@ -49,22 +51,18 @@ class TransSwiper extends Component {
     }
     constructor(props) {
         super(props);
-        this.state = {
-            transactions: []
-        }
+        
     }
     componentDidMount() {
-        console.log(this.props, 'Swiper Here');
-        this.setState({
-            transactions: this.props.transactions
-        })
-
+        // console.log(this.props.transactions, 'Swiper Here');
+       
     }
 
 
 
     render() {
-        console.log(this.state.transactions, 'transactions');
+        console.log(this.props.transactions, 'transactions');
+        let transactions = this.props.transactions;
         // let trans = this.props.transactions.map(x => x.data.length);
         // console.log(trans, 'trans')
     //     let transMap = trans.map(x => x.data.length);
@@ -73,6 +71,7 @@ class TransSwiper extends Component {
         return (
             <View style={styles.container}>
                 <Text> Hello</Text>
+                <Swiper cards={this.props.transactions} />
             </View>
         )
     }
@@ -80,7 +79,7 @@ class TransSwiper extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    transactions: state.AssetReducers.transactions
+    transactions: Object.values(state.AssetReducers.selectedAsset.transactions) // is array of "data" objects, maybe data is better as array
 })
 
 export default connect(mapStateToProps)(TransSwiper);
