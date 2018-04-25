@@ -15,7 +15,7 @@ export default class Hipr extends Component {
     headerTitle: <Image style={{
         height: 200,
         width: 200,
-        marginLeft: 55,
+        marginLeft: 22,
         resizeMode: 'contain'
     }}
         source={hiprLogo} />,
