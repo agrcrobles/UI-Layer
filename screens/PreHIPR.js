@@ -15,7 +15,7 @@ export default class PreHIPR extends Component {
   
     static navigationOptions = ({navigation}) => ({
         headerStyle: {
-            height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
+            height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 105,
             backgroundColor: '#021227',
 
         },

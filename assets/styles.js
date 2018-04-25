@@ -154,7 +154,7 @@ module.exports = StyleSheet.create({
 
     },
     editTouch: {
-        height: 75,
+        height: 85,
         margin: 5,
         width: '75%'
     },

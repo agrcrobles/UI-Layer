@@ -20,7 +20,7 @@ class TransRev extends Component {
         const { navigate } = this.props.navigate;
 
         this.props.sendTrans();
-        this.props.navigate('BlockScan');
+        this.props.navigate('MenuOptions');
 
     }
 
