@@ -216,23 +216,23 @@ export default class TxSwiper extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: 'red',
-    // width: '90%',
-    // height: '90%',
-    // justifyContent:'flex-end',
-    // alignItems: 'center'
+   
+    width: '90%',
+    height: '90%',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   card: {
     // flex: 1,
-    height: 470,
-    width: 350,
+    height: 420,
+    width: '100%',
     borderRadius: 4,
     borderWidth: 2,
     borderColor: '#F3c736',
     justifyContent: 'center',
     backgroundColor: '#091141',
     alignSelf: 'center',
-    left: -20,
+    left: 6,
     alignItems: 'center'
   },
   text: {

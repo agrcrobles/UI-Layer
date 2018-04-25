@@ -46,19 +46,21 @@ class SpaceScreen extends Component {
     }
     constructor(props) {
         super(props);
-        this.state = {};
-        // this.state = navigator.params;
     }
 
     componentDidMount() {
-        const { navigate } = this.props.navigation;
+       
+    }
+
+    _checkProps() {
         this.props.asset.hasOwnProperty('transactions') ? this.setState({tx: <Button title={'Transaction Viewer'} onPress={() => navigate('TransSwiper', { name: this.props.name, logo: this.props.logo })} />}) : this.setState({tx: false});
+    }
+    render() {
+        const { navigate } = this.props.navigation;
+        this._checkProps();
 
         console.log(this.state.tx)
 
-    }
-
-    render() {
         // this.state.tx ?
         //     <Button title={'Transaction Viewer'} onPress={() => navigate('TransSwiper', { name: this.props.name, logo: this.props.logo })} />
         //     :

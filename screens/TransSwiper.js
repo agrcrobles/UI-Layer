@@ -69,10 +69,9 @@ class TransSwiper extends Component {
     // console.log(transMap)
         // console.log(trans.map(x => x.data), 'transData');
         return (
-            <View style={styles.container}>
-                <Text> Hello</Text>
-                <Swiper cards={this.props.transactions} />
-            </View>
+         
+                <Swiper cards={transactions} />
+         
         )
     }
 
