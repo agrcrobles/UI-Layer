@@ -104,7 +104,7 @@ import BackButton from '../components/BackButton';
 
           </View>
 <Text style={{ color: '#f3c736', alignSelf: 'baseline', fontSize: 8}}>
-V.0.20
+V.0.23
 </Text>
         </View>
       

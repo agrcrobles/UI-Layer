@@ -46,32 +46,29 @@ class SpaceScreen extends Component {
     }
     constructor(props) {
         super(props);
-    }
-
-    componentDidMount() {
-       
+        this.state = this.props.asset 
     }
 
     _checkProps() {
-        this.props.asset.hasOwnProperty('transactions') ? this.setState({tx: <Button title={'Transaction Viewer'} onPress={() => navigate('TransSwiper', { name: this.props.name, logo: this.props.logo })} />}) : this.setState({tx: false});
+        const { navigate } = this.props.navigation;
+        this.state.hasOwnProperty('transactions') ? this.setState({ tx: <Button title={'Transaction Viewer'} onPress={() => navigate('TransSwiper', { name: this.props.name, logo: this.props.logo })} /> }) : this.setState({ tx: false });
     }
+    componentDidMount() {
+        this._checkProps();
+    }
+
     render() {
         const { navigate } = this.props.navigation;
-        this._checkProps();
 
-        console.log(this.state.tx)
 
-        // this.state.tx ?
-        //     <Button title={'Transaction Viewer'} onPress={() => navigate('TransSwiper', { name: this.props.name, logo: this.props.logo })} />
-        //     :
-        //     null;
 
         // const { params } = navigation.state;
-        const { navigate } = this.props.navigation;
+        // const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
 
                 {this.state.tx}
+                {/* <Button title={'Transaction Viewer'} onPress={() => navigate('TransSwiper', { name: this.props.name, logo: this.props.logo })} /> */}
 
                 <Button title={'Block Scanner'} onPress={() => navigate('BlockScanner', { name: this.props.name, logo: this.props.logo })} />
             </View>

@@ -24,6 +24,8 @@ class TransAssetList extends Component {
 
   }
 
+  
+
   render() {
     console.log(this.props)
     let list = this.props.assets.map((asset, index) => {

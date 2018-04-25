@@ -21,18 +21,35 @@ export default class TxSwiper extends Component {
   renderCard = card => {
     let data = card.data;
     let locationImage;
+    let dTime;
+    let ediT;
     let docNum, docName, docs;
     let imgNum, imgName, images;
     let list;
     data.hasOwnProperty('tXLocation') ?
       locationImage = data.tXLocation === 'recipient' ? recipient : originator : "";
 
+    dTime = data.hasOwnProperty('dTime') ? <Text style={styles.transRevTime}>{data.dTime}</Text> : null;
+
+    if (data.hasOwnProperty('ediT')) {
+
+
+      ediT = (
+
+        <View style={{ height: 30, width: '70%' }}>
+          <Text style={styles.text}>{data.ediT.name}:</Text>
+          <Text style={styles.text}>{data.ediT.value}</Text>
+
+        </View>
+      )
+    }
+
 
     if (data.hasOwnProperty('documents')) {
       docNum = data.documents.length
       docs = data.documents.map((x, i) => {
         return (
-          <View key={i} style={styles.revPropField}>
+          <View key={i} style={styles.transDocField}>
             <Text style={styles.text}>{x.name}</Text>
             <Text style={styles.text}>{x.size}kb</Text>
 
@@ -46,7 +63,7 @@ export default class TxSwiper extends Component {
       images = data.images.map((x, i) => {
         return (
           <View key={i} style={styles.imgView}>
-            <Image style={{ height: 100, width: 100, resizeMode: 'contain' }} source={{ uri: x }} />
+            <Image style={{ height: 65, width: 65, resizeMode: 'contain' }} source={{ uri: x }} />
 
           </View>
         )
@@ -54,12 +71,12 @@ export default class TxSwiper extends Component {
     }
 
     if (data.hasOwnProperty('properties')) {
-      
+
       list = Object.keys(data.properties).map((name, idx) => {
         console.log(name, 'name in for loop in review')
         return (
 
-          <View key={idx} style={styles.revPropField}>
+          <View key={idx} style={styles.transPropField}>
             <Text style={styles.transRevName}>{name}:</Text>
             <Text style={styles.revPropVal}>{data.properties[name]}</Text>
 
@@ -73,8 +90,9 @@ export default class TxSwiper extends Component {
 
     return (
       <View key={card.key} style={styles.card}>
-        <Image style={{ height: 50, width: 250, resizeMode: 'contain' }} source={locationImage} />
-        <Text style={styles.text}>Documents: {docNum}</Text>
+        <Image style={{ height: 40, width: 250, resizeMode: 'contain' }} source={locationImage} />
+        {dTime}
+
         {docs}
         {images}
         {list}
@@ -115,98 +133,97 @@ export default class TxSwiper extends Component {
   render() {
     console.log(this.state.cards, 'cards in swiper')
     return (
-      <View style={styles.container}>
-        <Swiper
-          backgroundColor={'#002740'}
-          ref={swiper => {
-            this.swiper = swiper
-          }}
-          onSwiped={this.onSwiped}
-          onTapCard={this.swipeLeft}
-          cards={this.state.cards}
-          cardIndex={this.state.cardIndex}
-          cardVerticalMargin={5}
-          renderCard={this.renderCard}
-          onSwipedAll={this.onSwipedAllCards}
-          stackSize={3}
-          cardHorizontalMargin={10}
-          stackSeparation={15}
-          overlayLabels={{
-            bottom: {
-              title: 'BLEAH',
-              style: {
-                label: {
-                  backgroundColor: 'black',
-                  borderColor: 'black',
-                  color: 'white',
-                  borderWidth: 1
-                },
-                wrapper: {
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }
-              }
-            },
-            left: {
-              title: 'NOPE',
-              style: {
-                label: {
-                  backgroundColor: 'black',
-                  borderColor: 'black',
-                  color: 'white',
-                  borderWidth: 1
-                },
-                wrapper: {
-                  flexDirection: 'column',
-                  alignItems: 'flex-end',
-                  justifyContent: 'flex-start',
-                  marginTop: 30,
-                  marginLeft: -30
-                }
-              }
-            },
-            right: {
-              title: 'LIKE',
-              style: {
-                label: {
-                  backgroundColor: 'black',
-                  borderColor: 'black',
-                  color: 'white',
-                  borderWidth: 1
-                },
-                wrapper: {
-                  flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  justifyContent: 'flex-start',
-                  marginTop: 30,
-                  marginLeft: 30
-                }
-              }
-            },
-            top: {
-              title: 'SUPER LIKE',
-              style: {
-                label: {
-                  backgroundColor: 'black',
-                  borderColor: 'black',
-                  color: 'white',
-                  borderWidth: 1
-                },
-                wrapper: {
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }
+      <Swiper
+        backgroundColor={'#002740'}
+        // marginBottom={}
+        ref={swiper => {
+          this.swiper = swiper
+        }}
+        onSwiped={this.onSwiped}
+        onTapCard={this.swipeLeft}
+        cards={this.state.cards}
+        cardIndex={this.state.cardIndex}
+        cardVerticalMargin={10}
+        renderCard={this.renderCard}
+        onSwipedAll={this.onSwipedAllCards}
+        stackSize={3}
+        cardHorizontalMargin={5}
+        stackSeparation={15}
+        overlayLabels={{
+          bottom: {
+            title: 'SAVE',
+            style: {
+              label: {
+                backgroundColor: 'black',
+                borderColor: 'black',
+                color: 'white',
+                borderWidth: 1
+              },
+              wrapper: {
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center'
               }
             }
-          }}
-          animateOverlayLabelsOpacity
-          animateCardOpacity
-        >
-          <Button onPress={this.swipeLeft} title='Swipe Left' />
-        </Swiper>
-      </View>
+          },
+          left: {
+            title: 'DISCARD',
+            style: {
+              label: {
+                backgroundColor: 'black',
+                borderColor: 'black',
+                color: 'white',
+                borderWidth: 1
+              },
+              wrapper: {
+                flexDirection: 'column',
+                alignItems: 'flex-end',
+                justifyContent: 'flex-start',
+                marginTop: 30,
+                marginLeft: -30
+              }
+            }
+          },
+          right: {
+            title: 'COMPLETE',
+            style: {
+              label: {
+                backgroundColor: 'black',
+                borderColor: 'black',
+                color: 'white',
+                borderWidth: 1
+              },
+              wrapper: {
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                justifyContent: 'flex-start',
+                marginTop: 30,
+                marginLeft: 30
+              }
+            }
+          },
+          top: {
+            title: 'TRANSFER',
+            style: {
+              label: {
+                backgroundColor: 'black',
+                borderColor: 'black',
+                color: 'white',
+                borderWidth: 1
+              },
+              wrapper: {
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }
+            }
+          }
+        }}
+        animateOverlayLabelsOpacity
+        animateCardOpacity
+      >
+        <Button onPress={this.swipeLeft} title='Swipe Left' />
+      </Swiper>
     )
   }
 }
@@ -215,33 +232,35 @@ export default class TxSwiper extends Component {
 // }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-   
-    width: '90%',
-    height: '90%',
+    // flex: 1,
+
+    width: '95%',
+    height: '95%',
     justifyContent: 'center',
     alignItems: 'center'
   },
   card: {
-    // flex: 1,
-    height: 420,
-    width: '100%',
+    //  flex: 1,
+    height: '80%',
+    width: '90%',
     borderRadius: 4,
     borderWidth: 2,
     borderColor: '#F3c736',
-    justifyContent: 'center',
+    justifyContent: "flex-start",
     backgroundColor: '#091141',
     alignSelf: 'center',
-    left: 6,
-    alignItems: 'center'
+    // left: 0,
+    top: -2,
+    alignItems: 'center',
+    marginBottom: 10,
   },
   text: {
     color: '#F3c736',
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 14,
     backgroundColor: 'transparent',
-    height: 25,
-    width: '90%'
+    height: 17,
+    // width: 50
   },
   image: {
     resizeMode: 'contain',
@@ -258,52 +277,71 @@ const styles = StyleSheet.create({
   transReview: {
     color: '#f3c736',
     alignSelf: 'center',
-    fontSize: 20.2,
-    fontWeight: "600",
+    fontSize: 14,
+    fontWeight: "200",
     fontFamily: 'dinPro',
+  },
+  transDocField: {
+    
+      height: 45,
+    width: '60%',
+    // flexDirection: "row",
+    justifyContent: "space-around",
+    textAlign: "left",
+    padding: 2,
+    margin: 2,
+    // textAlign:'center',
+    // textAlignVertical: 'center',
+    // backgroundColor: '#021227',
+    alignSelf: 'center',
+    borderColor: '#F3c736',
+
+
   },
   transRevName: {
     fontFamily: 'dinPro',
-    fontSize: 16,
+    fontSize: 14,
     color: 'white',
     margin: 2,
+    marginBottom: 5,
     textAlign: 'left'
 
   },
   transRevTime: {
     color: '#f3c736',
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: 'dinPro',
     textAlign: 'center'
   },
   revPropVal: {
     fontFamily: 'dinPro',
-    fontSize: 15,
+    fontSize: 14,
     color: '#f3c736',
     margin: 2,
     // textAlign: 'right'
-},
-  revPropField: {
-    height: 50,
-    width: '100%',
-    flexDirection: "row",
+  },
+  transPropField: {
+    height: 20,
+    width: '60%',
+    // flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    // textAlign: "left",
     padding: 2,
     margin: 2,
     // textAlign:'center',
     // textAlignVertical: 'center',
-    backgroundColor: '#021227',
+    // backgroundColor: '#021227',
     alignSelf: 'center',
     borderColor: '#F3c736',
   },
-  imgView: {
+  textView: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    margin: 5,
-    borderColor: '#F3c736'
+    margin: 3,
+    borderColor: '#F3c736',
+    height: 17,
 
   }
 })
