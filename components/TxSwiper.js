@@ -284,10 +284,10 @@ const styles = StyleSheet.create({
   transDocField: {
     
       height: 45,
-    width: '60%',
+    width: '100%',
     // flexDirection: "row",
     justifyContent: "space-around",
-    textAlign: "left",
+    
     padding: 2,
     margin: 2,
     // textAlign:'center',
@@ -321,9 +321,9 @@ const styles = StyleSheet.create({
     // textAlign: 'right'
   },
   transPropField: {
-    height: 20,
-    width: '60%',
-    // flexDirection: "row",
+    height: 30,
+    width: '70%',
+    flexDirection: "row",
     justifyContent: "space-between",
     // textAlign: "left",
     padding: 2,
