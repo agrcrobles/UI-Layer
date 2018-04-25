@@ -61,7 +61,7 @@ class TransRev extends Component {
 
         if (transDat.documents[0]) {
             doc = transDat.documents[0].name;
-            docSize = transDat.documents[0].size;
+            docSize = transDat.documents[0].size/1024;
 
         }
 

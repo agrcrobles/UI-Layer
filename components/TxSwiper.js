@@ -19,6 +19,7 @@ export default class TxSwiper extends Component {
   }
 
   renderCard = card => {
+
     let data = card.data;
     let locationImage;
     let dTime;
@@ -51,7 +52,7 @@ export default class TxSwiper extends Component {
         return (
           <View key={i} style={styles.transDocField}>
             <Text style={styles.text}>{x.name}</Text>
-            <Text style={styles.text}>{x.size}kb</Text>
+            <Text style={styles.text}>{x.size/1024}kb</Text>
 
           </View>
         )

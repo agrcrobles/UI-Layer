@@ -51,26 +51,32 @@ class TransSwiper extends Component {
     }
     constructor(props) {
         super(props);
-        
+        this.state = {
+            transactions: Object.values(this.props.asset.transactions) || ["Data Loading","Please Be Patient"]
+        }
     }
     componentDidMount() {
         // console.log(this.props.transactions, 'Swiper Here');
        
     }
-
+    // _renderCards() {
+    //     if(this.props.asset.hasOwnProperty('transactions')){
+    //         this.setState({
+    //             transactions: Object.values(this.props.assets.transactions)
+    //         })
+    //     }
+    //     this.setState({
+    //         transactions: ["Data Loading","Please Be Patient"]
+    //     })
+    // }
 
 
     render() {
-        console.log(this.props.transactions, 'transactions');
-        let transactions = this.props.transactions;
-        // let trans = this.props.transactions.map(x => x.data.length);
-        // console.log(trans, 'trans')
-    //     let transMap = trans.map(x => x.data.length);
-    // console.log(transMap)
-        // console.log(trans.map(x => x.data), 'transData');
+    
+
         return (
          
-                <Swiper cards={transactions} />
+                <Swiper cards={this.state.transactions} />
          
         )
     }
@@ -78,7 +84,7 @@ class TransSwiper extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    transactions: Object.values(state.AssetReducers.selectedAsset.transactions) // is array of "data" objects, maybe data is better as array
+    asset: state.AssetReducers.selectedAsset
 })
 
 export default connect(mapStateToProps)(TransSwiper);
