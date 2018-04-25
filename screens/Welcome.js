@@ -10,27 +10,27 @@ export default class Welcome extends Component {
       pin: ""
     }
   }
- 
+
 
   _onPinPress(){
     const { navigate } = this.props.navigation;
   //   console.log(this.state.pin);
-  //  if(!this.state.pin === 7362){ 
+  //  if(!this.state.pin === 7362){
   //    Alert.alert("Wrong Pin!");
   //  }
      navigate('MenuOptions');
- 
+
   }
   render(){
-    
+
     const { navigate } = this.props.navigation;
     return(
       <View style={styles.container}>
 
           <View style={styles.menu}>
-        
+
             <TextInput onChangeText={(pin) => this.setState({pin})} placeholder="PIN" underlineColorAndroid='transparent' style={styles.input}/>
-        
+
             <TouchableHighlight style={styles.welcomeBtn} onPress={() => this._onPinPress()}>
               <Image
                   style={styles.button}
@@ -38,12 +38,12 @@ export default class Welcome extends Component {
                 />
             </TouchableHighlight>
           </View>
-        
+
 
         </View>
-      
-           
-    ) 
+
+
+    )
   };
 }
 
@@ -64,17 +64,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#021227'
     // paddingTop: 50
     // margin: .5,
-  
+
     },
     button: {
-      width: 250, 
+      borderWidth: 1,
+      borderColor: '#eda513',
+      width: 250,
       height: 50
     },
     input: {
-      width: 150, 
+      width: 150,
       height: 40,
       textAlign: "center",
-      backgroundColor: "#132c4a", 
+      backgroundColor: "#132c4a",
       // margin: .5,
       fontSize: 20.2,
       fontWeight: "600",

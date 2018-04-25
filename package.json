@@ -6,6 +6,7 @@
     "@firebase/database-types": "^0.2.0",
     "expo": "^25.0.0",
     "firebase": "^4.12.0",
+    "npm": "^6.0.0",
     "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
     "react-native-button": "^2.3.0",
