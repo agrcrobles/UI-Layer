@@ -34,7 +34,7 @@ module.exports = StyleSheet.create({
     menu: {
         height: 450,
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "flex-start",
         backgroundColor: '#021227'
         // paddingTop: 50
         // margin: .5,

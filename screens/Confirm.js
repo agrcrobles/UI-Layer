@@ -62,20 +62,20 @@ class Confirm extends Component {
     this.getPricesFromApi();
 
   }
-  async getPricesFromApi() {
-    try {
-      let response = await fetch(
-        'https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON'
-      );
-      let responseJson = await response.json();
-      let fctPrice = responseJson.list["0"].pricePerHercForFCT; // this is what I'm going with for now  
-      console.log(fctPrice, 'newthing');
-      this.setState({ fctPrice });
+  // async getPricesFromApi() {
+  //   try {
+  //     let response = await fetch(
+  //       'https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON'
+  //     );
+  //     let responseJson = await response.json();
+  //     let fctPrice = responseJson.list["0"].pricePerHercForFCT; // this is what I'm going with for now  
+  //     console.log(fctPrice, 'newthing');
+  //     this.setState({ fctPrice });
 
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
 
 
@@ -109,10 +109,10 @@ class Confirm extends Component {
           {list}
 
           <Submit onPress={() => navigate('Splash3',{logo: this.props.logo, name: this.props.name})} />
-          <View style={styles.assetFee}>
+          {/* <View style={styles.assetFee}>
             <Image style={styles.assetFeeLabel} source={fee} />
             <Text style={styles.teePrice}>{price}</Text>
-          </View>
+          </View> */}
         </ScrollView>
       </View>
 

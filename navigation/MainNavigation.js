@@ -71,7 +71,8 @@ const MainNavigator = StackNavigator({
                 height: 100,
                 width: 240,
                 alignSelf: 'center',
-                resizeMode: 'contain'
+                resizeMode: 'contain',
+                marginLeft: 20,
             }}
                 source={logo} />,
 
@@ -87,7 +88,7 @@ const MainNavigator = StackNavigator({
                 backgroundColor: '#021227',
 
             },
-
+            headerRight: <View></View>,
             headerLeft: <View></View>
 
         })

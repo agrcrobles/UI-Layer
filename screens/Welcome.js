@@ -22,15 +22,15 @@ export default class Welcome extends Component {
  
   }
   render(){
-    
+    Alert.alert("Welcome!", "Please Be Patient")
     const { navigate } = this.props.navigation;
     return(
       <View style={styles.container}>
 
           <View style={styles.menu}>
         
-            <TextInput onChangeText={(pin) => this.setState({pin})} placeholder="PIN" underlineColorAndroid='transparent' style={styles.input}/>
-        
+            {/* <TextInput onChangeText={(pin) => this.setState({pin})} placeholder="PIN" underlineColorAndroid='transparent' style={styles.input}/>
+         */}
             <TouchableHighlight style={styles.welcomeBtn} onPress={() => this._onPinPress()}>
               <Image
                   style={styles.button}

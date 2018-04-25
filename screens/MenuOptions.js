@@ -53,12 +53,12 @@ import BackButton from '../components/BackButton';
           <View style={styles.menu}>
         
 
-            <TouchableHighlight onPress={() => Alert.alert('Uninstalled Component')}>
+            {/* <TouchableHighlight onPress={() => Alert.alert('Uninstalled Component')}>
             <Image
               style={styles.button}
               source={wallet}
             />
-          </TouchableHighlight> 
+          </TouchableHighlight>  */}
      
           <TouchableHighlight  onPress={() => navigate('PreHipr')}>
             <Image
@@ -95,12 +95,12 @@ import BackButton from '../components/BackButton';
             />
           </TouchableHighlight> 
                   
-          <TouchableHighlight>
+          {/* <TouchableHighlight>
             <Image
               style={styles.button}
               source={settings}
             />
-          </TouchableHighlight> 
+          </TouchableHighlight>  */}
 
           </View>
 <Text style={{ color: '#f3c736', alignSelf: 'baseline', fontSize: 8}}>

@@ -103,7 +103,7 @@ class Tee extends Component {
             />
           </View>
           <View style={styles.field}>
-            <Text style={styles.label}>Input1</Text>
+            <Text style={styles.label}>Metric 1</Text>
             <TextInput
               style={styles.input}
               onChangeText={Input1 => this.setState({ coreProps: { Input1 } })}
@@ -111,7 +111,7 @@ class Tee extends Component {
             />
           </View>
           <View style={styles.field}>
-            <Text style={styles.label}>Input2</Text>
+            <Text style={styles.label}>Metric 2</Text>
             <TextInput
               style={styles.input}
               onChangeText={Input2 => this.setState({ coreProps: { ...this.state.coreProps, Input2 } })}
@@ -119,7 +119,7 @@ class Tee extends Component {
             />
           </View>
           <View style={styles.field}>
-            <Text style={styles.label}>Input3</Text>
+            <Text style={styles.label}>Metric 3</Text>
             <TextInput
               style={styles.input}
               onChangeText={Input3 => this.setState({ coreProps: { ...this.state.coreProps, Input3 } })}
@@ -127,7 +127,7 @@ class Tee extends Component {
             />
           </View>
           <View style={styles.field}>
-            <Text style={styles.label}>Input4</Text>
+            <Text style={styles.label}>Metric 4</Text>
             <TextInput
               style={styles.input}
               onChangeText={Input4 => this.setState({ coreProps: { ...this.state.coreProps, Input4 } })}
@@ -135,7 +135,7 @@ class Tee extends Component {
             />
           </View>
           <View style={styles.field}>
-            <Text style={styles.label}>Input5</Text>
+            <Text style={styles.label}>Metric 5</Text>
             <TextInput
               style={styles.input}
               onChangeText={Input5 => this.setState({ coreProps: { ...this.state.coreProps, Input5 } })}
@@ -143,7 +143,7 @@ class Tee extends Component {
             />
           </View>
           <View style={styles.field}>
-            <Text style={styles.label}>Input6</Text>
+            <Text style={styles.label}>Metric 6</Text>
             <TextInput
               style={styles.input}
               onChangeText={Input6 => this.setState({ coreProps: { ...this.state.coreProps, Input6 } })}
@@ -151,7 +151,7 @@ class Tee extends Component {
             />
           </View>
           <View style={styles.field}>
-            <Text style={styles.label}>Input7</Text>
+            <Text style={styles.label}>Metric 7</Text>
             <TextInput
               style={styles.input}
               onChangeText={Input7 => this.setState({ coreProps: { ...this.state.coreProps, Input7 } })}
@@ -159,7 +159,7 @@ class Tee extends Component {
             />
           </View>
           <View style={styles.field}>
-            <Text style={styles.label}>Input8</Text>
+            <Text style={styles.label}>Metric 8</Text>
             <TextInput
               style={styles.input}
               onChangeText={Input8 => this.setState({ coreProps: { ...this.state.coreProps, Input8 } })}
