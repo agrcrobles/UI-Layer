@@ -51,9 +51,7 @@ render() {
                 />
             </TouchableHighlight>
 
-            <Text style={styles.label}>
-            HIPR Info here
-            </Text>
+          
             {/* <TouchableHighlight>
                 <Image
                     style={{ resizeMode: 'contain', height: 50, width: 220 }}

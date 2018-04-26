@@ -15,7 +15,7 @@ import settings from "../components/buttons/settingsBtn.png";
 import wallet from "../components/buttons/walletBtn.png";
 import styles from "../assets/styles";
 import { connect } from 'react-redux';
-import { listAssets, getHercId } from '../actions/AssetActions';
+import { listAssets, getHercId, fetchAssets } from '../actions/AssetActions';
 import BackButton from '../components/BackButton';
 
 
@@ -32,7 +32,7 @@ import BackButton from '../components/BackButton';
   }
   
   componentDidMount() {
-    this.props.listAssets();
+    this.props.fetchAssets();
     this.props.getHercId();
     // console.log(this.state, 'stateprops')
     
@@ -104,7 +104,7 @@ import BackButton from '../components/BackButton';
 
           </View>
 <Text style={{ color: '#f3c736', alignSelf: 'baseline', fontSize: 8}}>
-V.0.23
+V.0.2.3
 </Text>
         </View>
       
@@ -115,8 +115,9 @@ V.0.23
 
 const mapDispatchToProps = (dispatch) => ({
 
-   listAssets: () => dispatch(listAssets()),
-   getHercId: () => dispatch(getHercId())
+   fetchAssets: () => dispatch(fetchAssets()),
+   getHercId: () => dispatch(getHercId()),
+
 
 })
 export default connect(null, mapDispatchToProps)(MenuOptions);

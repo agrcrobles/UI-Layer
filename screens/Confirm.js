@@ -59,7 +59,7 @@ class Confirm extends Component {
   componentDidMount() {
     console.log(this.props.newProps, 'thisnewtransinfo')
     console.log(this.props, 'props')
-    this.getPricesFromApi();
+   
 
   }
   // async getPricesFromApi() {
@@ -81,7 +81,7 @@ class Confirm extends Component {
 
 
   render() {
-    let price = this.state.fctPrice;
+    // let price = this.state.fctPrice;
     const { navigate } = this.props.navigation;
     console.log(this.props.newProps, "txNewProps")
 

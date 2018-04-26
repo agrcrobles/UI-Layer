@@ -16,13 +16,37 @@ import {
     CONFIRM_ASSET,
     SET_SET,
     DELETE_ASSET,
-
-    GOT_ASSET_TRANS
+    GOT_ASSET_TRANS,
+    // FETCHING_DATA,
+    // FETCHING_DATA_SUCCESS,
+    // FETCHING_DATA_FAILURE
 
 } from './types';
 
 import firebase from '../constants/Firebase';
 const rootRef = firebase.database().ref();
+import getAssets from '../reducers/Assets'
+
+// export function getData() {
+//     return {
+//       type: FETCHING_DATA
+//     }
+//   }
+  
+//   export function getDataSuccess(data) {
+//     return {
+//       type: FETCHING_DATA_SUCCESS,
+//       data,
+//     }
+//   }
+  
+//   export function getDataFailure() {
+//     return {
+//       type: FETCHING_DATA_FAILURE
+//     }
+//   }
+  
+  
 
 export function incHercId(hercid) {
     console.log(hercid, 'hercid');
@@ -66,29 +90,41 @@ export function gotHercId(hercId) {
 
 }
 
-export function listAssets() {
-    return (dispatch) => {
-        dispatch({
-            type: "LIST_ASSETS"
-        });
-        let assets = [];
-        rootRef.child('assets').once('value').
-            then((snapshot) => {
-                snapshot.forEach((obj) => {
-                    console.log('objects in listassets');
-                    assets.push({
-                        name: obj.toJSON().Name,
-                        key: obj.key,
-                        logo: obj.toJSON().Logo,
-                        // url: obj.toJSON().url
-                    });
-
-                })
-
-            }).then(() => dispatch(gotListAssets(assets)))
-
+export function fetchAssets(){
+    return async dispatch => {
+     try {
+         const assets = await getAssets();
+         dispatch(gotListAssets(assets))
+     }
+      
+        
+        catch(err) { console.log('err:', err)}
     }
-}
+  }
+
+// export function listAssets() {
+//     return (dispatch) => {
+//         dispatch({
+//             type: "LIST_ASSETS"
+//         });
+        // let assets = [];
+        // rootRef.child('assets').once('value').
+        //     then((snapshot) => {
+        //         snapshot.forEach((obj) => {
+        //             console.log('objects in listassets');
+        //             assets.push({
+        //                 name: obj.toJSON().Name,
+        //                 key: obj.key,
+        //                 logo: obj.toJSON().Logo,
+        //                 // url: obj.toJSON().url
+        //             });
+
+        //         })
+
+        //     }).then(() => dispatch(gotListAssets(assets)))
+
+//     }
+// }
 export function gotListAssets(assetList) {
     let assets = assetList;
     console.log('got the list');

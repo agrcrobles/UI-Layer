@@ -106,64 +106,64 @@ class Tee extends Component {
             <Text style={styles.label}>Metric 1</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input1 => this.setState({ coreProps: { Input1 } })}
-              placeholder="Input1"
+              onChangeText={metric1 => this.setState({ coreProps: { metric1 } })}
+              placeholder="metric1"
             />
           </View>
           <View style={styles.field}>
             <Text style={styles.label}>Metric 2</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input2 => this.setState({ coreProps: { ...this.state.coreProps, Input2 } })}
-              placeholder="Input2"
+              onChangeText={metric2 => this.setState({ coreProps: { ...this.state.coreProps, metric2 } })}
+              placeholder="metric2"
             />
           </View>
           <View style={styles.field}>
             <Text style={styles.label}>Metric 3</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input3 => this.setState({ coreProps: { ...this.state.coreProps, Input3 } })}
-              placeholder="Input3"
+              onChangeText={metric3 => this.setState({ coreProps: { ...this.state.coreProps, metric3 } })}
+              placeholder="metric3"
             />
           </View>
           <View style={styles.field}>
             <Text style={styles.label}>Metric 4</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input4 => this.setState({ coreProps: { ...this.state.coreProps, Input4 } })}
-              placeholder="Input4"
+              onChangeText={metric4 => this.setState({ coreProps: { ...this.state.coreProps, metric4 } })}
+              placeholder="metric4"
             />
           </View>
           <View style={styles.field}>
             <Text style={styles.label}>Metric 5</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input5 => this.setState({ coreProps: { ...this.state.coreProps, Input5 } })}
-              placeholder="Input5"
+              onChangeText={metric5 => this.setState({ coreProps: { ...this.state.coreProps, metric5 } })}
+              placeholder="metric5"
             />
           </View>
           <View style={styles.field}>
             <Text style={styles.label}>Metric 6</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input6 => this.setState({ coreProps: { ...this.state.coreProps, Input6 } })}
-              placeholder="Input5"
+              onChangeText={metric6 => this.setState({ coreProps: { ...this.state.coreProps, metric6 } })}
+              placeholder="metric5"
             />
           </View>
           <View style={styles.field}>
             <Text style={styles.label}>Metric 7</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input7 => this.setState({ coreProps: { ...this.state.coreProps, Input7 } })}
-              placeholder="Input7"
+              onChangeText={metric7 => this.setState({ coreProps: { ...this.state.coreProps, metric7 } })}
+              placeholder="metric7"
             />
           </View>
           <View style={styles.field}>
             <Text style={styles.label}>Metric 8</Text>
             <TextInput
               style={styles.input}
-              onChangeText={Input8 => this.setState({ coreProps: { ...this.state.coreProps, Input8 } })}
-              placeholder="Input8"
+              onChangeText={metric8 => this.setState({ coreProps: { ...this.state.coreProps, metric8 } })}
+              placeholder="metric8"
             />
           </View>
 

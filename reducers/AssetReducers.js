@@ -24,7 +24,7 @@ import firebase from '../constants/Firebase';
 
 
 const rootRef = firebase.database().ref();
-
+// import Assets from './Assets';
 
 //synchronous 
 // let assets = [];
@@ -45,21 +45,31 @@ const rootRef = firebase.database().ref();
 
 
 const INITIAL_STATE = {
-
-    assets: []
+    dataFetched: false,
+    isFetching: false,
+    error: false,
+   
 
 };
 
 
 const AssetReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case LIST_ASSETS:
+            return {
+                ...state,
+                assets: [],
+                isFetching: true
+            }
+
         case GOT_LIST_ASSETS:
-            console.log(action, 'listAssetsreducer');
+            console.log(action.assets.length, 'listAssetsreducer');
             let assets = action.assets
 
             return Object.assign({}, state, {
                 ...state,
-                assets
+                assets,
+                isFetching: false
             })
 
 

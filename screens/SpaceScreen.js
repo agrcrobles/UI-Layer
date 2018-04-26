@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, Platform, StyleSheet, Text, View, TouchableHighlight, Image, Picker, ScrollView } from 'react-native';
+import { Button, Platform, StyleSheet, Text, View, TouchableHighlight, Image, Picker, ScrollView } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { STATUS_BAR_HEIGHT } from '../constants';
 import styles from '../assets/styles';
@@ -46,29 +46,37 @@ class SpaceScreen extends Component {
     }
     constructor(props) {
         super(props);
-        this.state = this.props.asset 
+        this.state = this.props.asset
     }
 
-    // _checkProps() {
-    //     const { navigate } = this.props.navigation;
-    //     this.state.hasOwnProperty('transactions') ? this.setState({ tx: <Button  style={styles.picButton} title={'Transaction Viewer'} onPress={() => navigate('TransSwiper', { name: this.props.name, logo: this.props.logo })} /> }) : this.setState({ tx: false });
-    // }
+    _checkProps() {
+        const { navigate } = this.props.navigation;
+        this.state.hasOwnProperty('transactions')
+        ?
+        this.setState({
+            tx: <Button style={styles.picButton}
+                title={'Transaction Viewer'}
+                onPress={() => navigate('TransSwiper', { name: this.props.name, logo: this.props.logo })} />
+        })
+        :
+        this.setState({ tx: <Text style={styles.label}>No Transactions</Text> });
+    }
     componentDidMount() {
-        // this._checkProps();
+        this._checkProps();
     }
 
     render() {
         const { navigate } = this.props.navigation;
 
-
+       
 
         // const { params } = navigation.state;
         // const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
-                {/* {this.state.tx} */}
+                {this.state.tx}
 
-                <Button title={'Transaction Viewer'} onPress={() => navigate('TransSwiper', { name: this.props.name, logo: this.props.logo })} />
+                {/* <Button title={'Transaction Viewer'} onPress={() => navigate('TransSwiper', { name: this.props.name, logo: this.props.logo })} /> */}
 
                 <Button title={'Block Scanner'} onPress={() => navigate('BlockScanner', { name: this.props.name, logo: this.props.logo })} />
             </View>
