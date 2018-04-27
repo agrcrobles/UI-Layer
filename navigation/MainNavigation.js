@@ -24,13 +24,16 @@ import Anthem from '../screens/Anthem';
 import PreHipr from '../screens/PreHIPR';
 import HiprAssets from '../screens/HiprAssets';
 import Hipr from '../screens/Hipr';
-import BlockScan from '../screens/BlockScan';
+import BlockScanner from '../screens/BlockScanner';
+import TransSwiper from '../screens/TransSwiper';
 import Splash1 from '../screens/Splash1';
 import Splash2 from '../screens/Splash2';
 import Splash3 from '../screens/Splash3';
 import NewAssetConfirm from '../screens/NewAssetConfirm';
 import EdiT from '../screens/Edi-T';
 import PreDigi from '../screens/PreDigiView';
+import SpaceScreen from '../screens/SpaceScreen';
+import TransAssetList from '../screens/TransAssetList';
 
 const MainNavigator = StackNavigator({
     Welcome: { screen: Welcome },
@@ -42,7 +45,9 @@ const MainNavigator = StackNavigator({
     PreHipr: { screen: PreHipr },
     HiprAssets: { screen: HiprAssets },
     Hipr: { screen: Hipr },
-    BlockScan: { screen: BlockScan },
+    BlockScanner: { screen: BlockScanner },
+    TransSwiper: { screen: TransSwiper },
+    TransAssetList: { screen: TransAssetList },
     Splash1: { screen: Splash1 },
     Splash2: { screen: Splash2 },
     Splash3: { screen: Splash3 },
@@ -52,8 +57,8 @@ const MainNavigator = StackNavigator({
     Confirm: { screen: Confirm },
     NewAssetConfirm: { screen: NewAssetConfirm },
     EdiT: { screen : EdiT},
-    PreDigi: { screen: PreDigi }
-
+    PreDigi: { screen: PreDigi },
+    SpaceScreen: { screen: SpaceScreen }
 
 },
 
@@ -66,7 +71,8 @@ const MainNavigator = StackNavigator({
                 height: 100,
                 width: 240,
                 alignSelf: 'center',
-                resizeMode: 'contain'
+                resizeMode: 'contain',
+                marginLeft: 0,
             }}
                 source={logo} />,
 
@@ -82,7 +88,7 @@ const MainNavigator = StackNavigator({
                 backgroundColor: '#021227',
 
             },
-
+            headerRight: <View></View>,
             headerLeft: <View></View>
 
         })

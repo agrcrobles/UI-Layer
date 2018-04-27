@@ -1,6 +1,52 @@
-import { ADD_ASSET, LIST_ASSETS, GOT_LIST_ASSETS, SELECT_ASSET, START_TRANS, SEND_TRANS, ADD_PHOTO, ADD_DOC, ADD_PROPS, INC_HERC_ID, GET_HERC_ID, GOT_HERC_ID, CONFIRM_ASSET, SET_SET, DELETE_ASSET } from './types';
+import {
+
+    ADD_ASSET,
+    LIST_ASSETS,
+    GET_TRANS,
+    GOT_LIST_ASSETS,
+    SELECT_ASSET,
+    START_TRANS,
+    SEND_TRANS,
+    ADD_PHOTO,
+    ADD_DOC,
+    ADD_PROPS,
+    INC_HERC_ID,
+    GET_HERC_ID,
+    GOT_HERC_ID,
+    CONFIRM_ASSET,
+    SET_SET,
+    DELETE_ASSET,
+    GOT_ASSET_TRANS,
+    // FETCHING_DATA,
+    // FETCHING_DATA_SUCCESS,
+    // FETCHING_DATA_FAILURE
+
+} from './types';
+
 import firebase from '../constants/Firebase';
 const rootRef = firebase.database().ref();
+import getAssets from '../reducers/Assets'
+
+// export function getData() {
+//     return {
+//       type: FETCHING_DATA
+//     }
+//   }
+  
+//   export function getDataSuccess(data) {
+//     return {
+//       type: FETCHING_DATA_SUCCESS,
+//       data,
+//     }
+//   }
+  
+//   export function getDataFailure() {
+//     return {
+//       type: FETCHING_DATA_FAILURE
+//     }
+//   }
+  
+  
 
 export function incHercId(hercid) {
     console.log(hercid, 'hercid');
@@ -44,29 +90,41 @@ export function gotHercId(hercId) {
 
 }
 
-export function listAssets() {
-    return (dispatch) => {
-        dispatch({
-            type: "LIST_ASSETS"
-        });
-        let assets = [];
-        rootRef.child('assets').once('value').
-            then((snapshot) => {
-                snapshot.forEach((obj) => {
-                    console.log(obj.toJSON(), 'object in listassets');
-                    assets.push({
-                        name: obj.toJSON().Name,
-                        key: obj.key,
-                        logo: obj.toJSON().Logo,
-                        // url: obj.toJSON().url
-                    });
-
-                })
-
-            }).then(() => dispatch(gotListAssets(assets)))
-
+export function fetchAssets(){
+    return async dispatch => {
+     try {
+         const assets = await getAssets();
+         dispatch(gotListAssets(assets))
+     }
+      
+        
+        catch(err) { console.log('err:', err)}
     }
-}
+  }
+
+// export function listAssets() {
+//     return (dispatch) => {
+//         dispatch({
+//             type: "LIST_ASSETS"
+//         });
+        // let assets = [];
+        // rootRef.child('assets').once('value').
+        //     then((snapshot) => {
+        //         snapshot.forEach((obj) => {
+        //             console.log('objects in listassets');
+        //             assets.push({
+        //                 name: obj.toJSON().Name,
+        //                 key: obj.key,
+        //                 logo: obj.toJSON().Logo,
+        //                 // url: obj.toJSON().url
+        //             });
+
+        //         })
+
+        //     }).then(() => dispatch(gotListAssets(assets)))
+
+//     }
+// }
 export function gotListAssets(assetList) {
     let assets = assetList;
     console.log('got the list');
@@ -88,7 +146,7 @@ export function selectAsset(asset) {
         ...selectedAsset,
         key: asset.key
     })
-    console.log(selectedAsset, 'selecteasset in action')
+    console.log( 'selecteasset in action')
     return (
 
         {
@@ -108,7 +166,7 @@ export function addAsset(newAsset) {
 
 export function confirmAsset(ConfAsset) {
     let data = ConfAsset;
-    console.log(ConfAsset);
+    console.log('confirming asset');
     return {
         type: CONFIRM_ASSET,
         asset: data
@@ -139,7 +197,7 @@ export function startTrans(trans) {
 }
 
 export function sendTrans(trans) {
-    console.log(trans, "inside set Location action")
+    console.log("inside set Location action")
     return (
         {
             type: SEND_TRANS,
@@ -177,4 +235,40 @@ export function setSet(item) {
         item
     }
 }
+
+export function getTrans(assetKey) {
+    return (dispatch) => {
+        dispatch({
+            type: "GET_TRANS"
+        });
+
+        console.log("getTrans action")
+        let assetTrans = [];
+        rootRef.child('assets/' + assetKey + '/transactions').once('value').
+           then( (snapshot) => {
+                snapshot.forEach((trans) => {
+                    console.log('object in getTrans!');
+                    assetTrans.push({
+                        data: trans.toJSON().data
+                    });
+
+                })
+
+            }).then(() => dispatch(gotAssetTrans(assetTrans)))
+        
+        }
+
+    }
+
+
+export function gotAssetTrans(assetTrans) {
+    let transactions = assetTrans;
+    console.log('got the transactions list');
+    return {
+        type: GOT_ASSET_TRANS,
+        transactions
+
+    }
+}
+
 

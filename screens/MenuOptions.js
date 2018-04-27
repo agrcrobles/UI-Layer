@@ -15,7 +15,7 @@ import settings from "../components/buttons/settingsBtn.png";
 import wallet from "../components/buttons/walletBtn.png";
 import styles from "../assets/styles";
 import { connect } from 'react-redux';
-import { listAssets, getHercId } from '../actions/AssetActions';
+import { listAssets, getHercId, fetchAssets } from '../actions/AssetActions';
 import BackButton from '../components/BackButton';
 
 
@@ -32,7 +32,7 @@ import BackButton from '../components/BackButton';
   }
   
   componentDidMount() {
-    this.props.listAssets();
+    this.props.fetchAssets();
     this.props.getHercId();
     // console.log(this.state, 'stateprops')
     
@@ -53,12 +53,12 @@ import BackButton from '../components/BackButton';
           <View style={styles.menu}>
         
 
-            <TouchableHighlight onPress={() => Alert.alert('Uninstalled Component')}>
+            {/* <TouchableHighlight onPress={() => Alert.alert('Uninstalled Component')}>
             <Image
               style={styles.button}
               source={wallet}
             />
-          </TouchableHighlight> 
+          </TouchableHighlight>  */}
      
           <TouchableHighlight  onPress={() => navigate('PreHipr')}>
             <Image
@@ -88,23 +88,23 @@ import BackButton from '../components/BackButton';
             />
           </TouchableHighlight> 
           
-          <TouchableHighlight  onPress={() => navigate('BlockScan')}>
+          <TouchableHighlight  onPress={() => navigate('TransAssetList')}>
             <Image
               style={styles.button}
               source={blockScan}
             />
           </TouchableHighlight> 
                   
-          <TouchableHighlight>
+          {/* <TouchableHighlight>
             <Image
               style={styles.button}
               source={settings}
             />
-          </TouchableHighlight> 
+          </TouchableHighlight>  */}
 
           </View>
 <Text style={{ color: '#f3c736', alignSelf: 'baseline', fontSize: 8}}>
-V.0.20
+V.0.2.5
 </Text>
         </View>
       
@@ -115,8 +115,9 @@ V.0.20
 
 const mapDispatchToProps = (dispatch) => ({
 
-   listAssets: () => dispatch(listAssets()),
-   getHercId: () => dispatch(getHercId())
+   fetchAssets: () => dispatch(fetchAssets()),
+   getHercId: () => dispatch(getHercId()),
+
 
 })
 export default connect(null, mapDispatchToProps)(MenuOptions);

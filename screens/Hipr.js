@@ -8,14 +8,14 @@ export default class Hipr extends Component {
  
   static navigationOptions = ({navigation}) => ({
     headerStyle: {
-        height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
+        height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 105,
         backgroundColor: '#021227',
 
     },
     headerTitle: <Image style={{
         height: 200,
         width: 200,
-        marginLeft: 55,
+        marginLeft: 22,
         resizeMode: 'contain'
     }}
         source={hiprLogo} />,

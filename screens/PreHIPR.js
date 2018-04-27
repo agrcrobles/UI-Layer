@@ -15,14 +15,14 @@ export default class PreHIPR extends Component {
   
     static navigationOptions = ({navigation}) => ({
         headerStyle: {
-            height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
+            height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 105,
             backgroundColor: '#021227',
 
         },
         headerTitle: <Image style={{
             height: 200,
             width: 200,
-            marginLeft: 55,
+            marginLeft: 22,
             resizeMode: 'contain'
         }}
             source={hiprLogo} />,
@@ -50,12 +50,14 @@ render() {
                     source={info}
                 />
             </TouchableHighlight>
-            <TouchableHighlight>
+
+          
+            {/* <TouchableHighlight>
                 <Image
                     style={{ resizeMode: 'contain', height: 50, width: 220 }}
                     source={leaderBrd}
                 />
-            </TouchableHighlight>
+            </TouchableHighlight> */}
 
         </View>
 

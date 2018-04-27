@@ -13,7 +13,9 @@ export const GOT_HERC_ID = 'gotHercId';
 export const CONFIRM_ASSET = 'confirmAsset';
 export const SET_SET = 'setSet';
 export const DELETE_ASSET = 'deleteAsset'
+export const GET_TRANS = 'getTrans';
+export const GOT_ASSET_TRANS = 'gotAssetTrans';
 
-
-// export const FETCHING_ASSETS_SUCCESS = 'FETCHING_ASSETS_SUCCESS';
-// export const FETCHING_ASSETS_FAILURE = 'FETCHING_ASSETS_FAILURE';
+export const FETCHING_DATA = 'FETCHING_DATA'
+export const FETCHING_DATA_SUCCESS = 'FETCHING_DATA_SUCCESS'
+export const FETCHING_DATA_FAILURE = 'FETCHING_DATA_FAILURE'

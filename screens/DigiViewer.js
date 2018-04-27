@@ -60,6 +60,7 @@ export default class DigiViewer extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
+    // const { params } = navigation.state;
     return (
 
       <View style={styles.container}>

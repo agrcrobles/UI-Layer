@@ -27,7 +27,7 @@ import backArrow from '../assets/icon_backarrow.png';
     }}
         source={hiprLogo} />,
     
-        headerLeft: < BackButton navigation = { navigation } />
+        headerLeft: <BackButton navigation = { navigation } />
 
 })
   constructor(props) {

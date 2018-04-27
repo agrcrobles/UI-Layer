@@ -34,7 +34,7 @@ module.exports = StyleSheet.create({
     menu: {
         height: 450,
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "flex-start",
         backgroundColor: '#021227'
         // paddingTop: 50
         // margin: .5,
@@ -154,7 +154,7 @@ module.exports = StyleSheet.create({
 
     },
     editTouch: {
-        height: 75,
+        height: 85,
         margin: 5,
         width: '75%'
     },
@@ -416,6 +416,7 @@ module.exports = StyleSheet.create({
         alignContent: 'center',
         alignSelf: 'center',
         width: '90%',
+        justifyContent: 'center'
         // marginTop: 50
     },
     thumb: {

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Alert } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import welcome from "../assets/welcome.png";
+import Button from 'react-native-button';
 
 export default class Welcome extends Component {
   constructor(props) {
@@ -22,26 +23,28 @@ export default class Welcome extends Component {
  
   }
   render(){
+    // Alert.alert('Welcome to the Hercules Distributed Application" \n"+ "Demo Please be patient with load times as we \n continue to scale our network. Only press buttons once\nas your actions are being recgonized the first time. \n Enjoy.')
     
+   
     const { navigate } = this.props.navigation;
     return(
       <View style={styles.container}>
 
           <View style={styles.menu}>
         
-            <TextInput onChangeText={(pin) => this.setState({pin})} placeholder="PIN" underlineColorAndroid='transparent' style={styles.input}/>
-        
-            <TouchableHighlight style={styles.welcomeBtn} onPress={() => this._onPinPress()}>
+            {/* <TextInput onChangeText={(pin) => this.setState({pin})} placeholder="PIN" underlineColorAndroid='transparent' style={styles.input}/>
+         */}
+            {/* <TouchableHighlight style={styles.welcomeBtn} onPress={() => this._onPinPress()}>
               <Image
                   style={styles.button}
                   source={welcome}
                 />
             </TouchableHighlight>
-          </View>
+          </View> */}
         
-
+            <Button onPress={() => navigate('MenuOptions')} style={{color: 'white', fontSize: 40, height: 50, width: 205, marginTop: 100}}>ENTER</Button>
         </View>
-      
+      </View>
            
     ) 
   };

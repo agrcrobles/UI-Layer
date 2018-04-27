@@ -5,6 +5,8 @@ import {
     SELECT_ASSET,
     START_TRANS,
     SEND_TRANS,
+    GET_TRANS,
+    GOT_ASSET_TRANS,
     ADD_PHOTO,
     ADD_DOC,
     ADD_PROPS,
@@ -14,6 +16,7 @@ import {
     CONFIRM_ASSET,
     SET_SET,
     DELETE_ASSET
+
 } from '../actions/types';
 
 // import assets from "./Assets";
@@ -21,7 +24,7 @@ import firebase from '../constants/Firebase';
 
 
 const rootRef = firebase.database().ref();
-
+// import Assets from './Assets';
 
 //synchronous 
 // let assets = [];
@@ -42,22 +45,31 @@ const rootRef = firebase.database().ref();
 
 
 const INITIAL_STATE = {
-
-    assets: []
-    // hercId: ""
+    dataFetched: false,
+    isFetching: false,
+    error: false,
+   
 
 };
 
 
 const AssetReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case LIST_ASSETS:
+            return {
+                ...state,
+                assets: [],
+                isFetching: true
+            }
+
         case GOT_LIST_ASSETS:
-            console.log(action, 'listAssetsreducer');
+            console.log(action.assets.length, 'listAssetsreducer');
             let assets = action.assets
 
             return Object.assign({}, state, {
                 ...state,
-                assets
+                assets,
+                isFetching: false
             })
 
 
@@ -71,7 +83,14 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
             })
 
-        // this used to be  SET_PLACE
+        case GOT_ASSET_TRANS:
+            let transactions = action.transactions;
+            console.log("get trans reducers")
+            return Object.assign({}, state, {
+                ...state,
+                transactions
+            })
+
         case START_TRANS:
             let trans = action.data;
             console.log(state.selectedAsset.name, "selectedAssetName in startTrans reducer")
@@ -85,18 +104,18 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             )
 
         case SEND_TRANS:
+            let dTime = new Date().toDateString();
             let header = state.trans.header;
             let data = state.trans.data;
+
             //  console.log(rootRef.ref(state.AssetReducers.transInfo.name.val()));
             console.log(state.trans.header, "trans in send_trans reducer");
-            console.log(data, 'fintrans in sendtrans redux')
-            //    console.log([name], 'potential new txobject')
             rootRef.child('assets/' + header.key).child('transactions').push({
                 data
             })
             rootRef.child('transactions/' + header.key).push({ header, data });
             // rootRef.ref()
-
+            console.log(dTime, "timecheck")
             return Object.assign({}, state, {
 
                 ...state,
@@ -104,7 +123,10 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                 trans: {
                     ...state.trans,
                     header,
-                    data
+                    data: {
+                        ...state.trans.data,
+                        dTime
+                    }
 
                 }
 
@@ -183,9 +205,6 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             })
 
 
-
-
-
         case ADD_ASSET:
             const newAsset = action.newAsset;
             console.log('adding asset', newAsset.name)
@@ -230,19 +249,14 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                         ediT
                     }
 
-
-
-
-
                 }
             })
 
-            case DELETE_ASSET:
+        case DELETE_ASSET:
             const key = action.delKey;
 
             rootRef.child('assets').child(key).remove();
             return state;
-
 
 
         default:

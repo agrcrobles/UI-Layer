@@ -1,22 +1,82 @@
 
 import React, { Component } from 'react';
-import { WebView } from 'react-native';
+// import { WebView } from 'react-native';
 import BackButton from '../components/BackButton';
+// import TransAssetList from '../components/TransAssetList';
+import { StackNavigator } from 'react-navigation';
+import track from '../components/buttons/blockScannerBtn.png';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert, Platform } from 'react-native';
+import { connect } from 'react-redux';
+import styles from '../assets/styles';
+import { getTrans } from '../actions/AssetActions';
 
-export default class BlockScan extends Component {
-  static navigationOptions = ({navigation}) => ({
+// TODO: Get a proper 'Track' Label from Grey if styling is an issue
+
+class BlockScan extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    headerTitle: <Image source={track} style={{ height: 50, width: 214, marginLeft: 35 }} />,
     headerLeft: <BackButton navigation={navigation} />
   })
-  
-  render() {
-    return (
-      <WebView
-        source={{uri: 'https://ethstats.net/'}}
-        style={{flex: 1}}
-      />
-    );
+
+  _onPress = (asset) => {
+    
+    const { navigate } = this.props.navigation;
+
+   
+   this.props.getTrans(asset.key);
+   navigate('SpaceScreen', { name: asset.name, logo: asset.logo });
+
+  //  navigate('SpaceScreen', { logo: asset.logo, name: asset.name });
   }
+ 
+  render() {
+    const { navigate } = this.props.navigation;
+    console.log(this.props, 'blockscan')
+
+    let list = this.props.assets.map((asset, index) => {
+      return (
+        <View key={index} style={styles.assetField}>
+
+          {/* <Button onPress={() => this._onDelete(asset.key)} style={styles.assetDeleteButton}>Delete</Button> */}
+
+          <Text style={styles.assetLabel}>{asset.name}</Text>
+
+          <TouchableHighlight style={{ alignSelf: 'flex-start' }} onPress={() => this._onPress(asset)} >
+            <Image style={styles.assetButton} source={{ uri: asset.logo }} />
+          </TouchableHighlight>
+
+        </View>
+      )
+    });
+
+    return (
+      <View style={styles.container}>
+
+        {list}
+
+      </View>
+
+
+
+    )
+  };
 }
+
+//need to write GET_TRANS
+
+const mapStateToProps = (state) => ({
+  assets: state.AssetReducers.assets,
+
+});
+const mapDispatchToProps = (dispatch) => ({
+
+  getTrans: (assetKey) => 
+    dispatch(getTrans(assetKey)),
+  //   deleteAsset: (key) =>
+  //     dispatch(deleteAsset(key))
+  
+})
+export default connect(mapStateToProps, mapDispatchToProps)(BlockScan)
 
 
 
@@ -28,10 +88,10 @@ export default class BlockScan extends Component {
 // export default class BlockScan extends Component {
 //     static navigationOptions = {
 //         header: null
-      
+
 //       }
 
-              
+
 //     render(){
 //     const { navigate } = this.props.navigation;
 //     console.log(this.props,'in blockscan')
@@ -42,44 +102,44 @@ export default class BlockScan extends Component {
 //     //     <View key={keyIndex} style={styles.view}>
 //     //         <Text style={styles.input}>{keyName}:</Text> 
 //     //         <Text style={styles.value}>{values[keyName]}</Text>
-            
+
 //     //     </View>
-     
+
 //     //     )
 //     //     })}
 
 //     return (
 //         <View style={styles.container}>
-            
+
 //             <View style={styles.header}>
 //             <TouchableHighlight onPress={() => navigate('MenuOptions')}>
 //                 <Image source={logo} style={styles.icon} />
 //             </TouchableHighlight>
 //             </View>
-            
+
 //             <View style={styles.portrait}>
 //                <Text> Portrait </Text> 
 //             </View>
-                
+
 //             <View style={styles.main}>
- 
+
 //                  <View style={styles.section}>
-                
+
 //                   <Text>section1</Text>
-                 
-                                
+
+
 //                 </View>
-                
+
 //                 <View style={styles.section}>
 //                     <Text>section2</Text>
 //                 </View>
 //             </View>
 //             </View>
 
-        
-        
-        
-           
+
+
+
+
 //             )
 //          }   
 
@@ -94,7 +154,7 @@ export default class BlockScan extends Component {
 //             // backgroundColor: '#fff',
 //             alignItems: 'center',
 //             justifyContent: 'flex-start',
-            
+
 //         },
 //         header: {
 //             height: 40,
@@ -139,4 +199,3 @@ export default class BlockScan extends Component {
 //         },
 
 //         })
-        
