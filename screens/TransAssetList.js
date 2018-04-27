@@ -60,7 +60,7 @@ class TransAssetList extends Component {
 //need to write GET_TRANS
 
 const mapStateToProps = (state) => ({
-  assets: state.AssetReducers.assets,
+  assets: state.Assets,
 
 });
 const mapDispatchToProps = (dispatch) => ({

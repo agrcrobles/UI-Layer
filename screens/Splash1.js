@@ -91,7 +91,7 @@ class Splash1 extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  assets: state.AssetReducers.assets,
+  assets: state.Assets,
 
 });
 const mapDispatchToProps = (dispatch) => ({

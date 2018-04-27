@@ -83,7 +83,7 @@ import backArrow from '../assets/icon_backarrow.png';
 }
 
 const mapStateToProps = (state) => ({
-  assets: state.AssetReducers.assets,
+  assets: state.Assets,
 
 });
 // const mapDispatchToProps = (dispatch) => ({

@@ -229,8 +229,9 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
 
             }
             return Object.assign({}, state, {
-                ...state,
-                assets: [...state.assets, partAsset]
+                state
+
+                // assets: [...state.Assets, partAsset]
 
 
             }
