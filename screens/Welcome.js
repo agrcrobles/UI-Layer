@@ -23,7 +23,7 @@ export default class Welcome extends Component {
  
   }
   render(){
-    // Alert.alert('Welcome to the Hercules Distributed Application" \n"+ "Demo Please be patient with load times as we \n continue to scale our network. Only press buttons once\nas your actions are being recgonized the first time. \n Enjoy.')
+    Alert.alert('Welcome to the HERC Demo!');
     
    
     const { navigate } = this.props.navigation;

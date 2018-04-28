@@ -76,7 +76,7 @@ class TransSwiper extends Component {
 
         return (
          
-                <Swiper cards={this.state.transactions} />
+                <Swiper hercId={this.props.asset.hercId} cards={this.state.transactions} />
          
         )
     }

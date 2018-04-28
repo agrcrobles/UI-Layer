@@ -80,7 +80,6 @@ export default class TxSwiper extends Component {
           <View key={idx} style={styles.transPropField}>
             <Text style={styles.transRevName}>{name}:</Text>
             <Text style={styles.revPropVal}>{data.properties[name]}</Text>
-
           </View>
         )
       })
@@ -93,6 +92,10 @@ export default class TxSwiper extends Component {
       <View key={card.key} style={styles.card}>
         <Image style={{ height: 40, width: 250, resizeMode: 'contain' }} source={locationImage} />
         {dTime}
+        <View style={styles.transPropField}>
+          <Text style={styles.transRevName}>Herc ID:</Text>
+          <Text style={styles.revPropVal}>{this.props.hercId}</Text>
+        </View>
 
         {docs}
         {images}

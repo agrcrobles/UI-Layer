@@ -14,7 +14,7 @@ class TransAssetList extends Component {
     headerTitle: <Image source={track} style={{ height: 50, width: 214, marginLeft: 35 }} />,
     headerLeft: <BackButton navigation={navigation} />
   })
- 
+
   _onPress = (asset) => {
     const { navigate } = this.props.navigation;
 
@@ -24,23 +24,20 @@ class TransAssetList extends Component {
 
   }
 
-  
+
 
   render() {
     console.log(this.props)
     let list = this.props.assets.map((asset, index) => {
       return (
-        <View key={index} style={styles.assetField}>
 
-          {/* <Button onPress={() => this._onDelete(asset.key)} style={styles.assetDeleteButton}>Delete</Button> */}
-
-          <Text style={styles.assetLabel}>{asset.name}</Text>
-
-          <TouchableHighlight style={{ alignSelf: 'flex-start' }} onPress={() => this._onPress(asset)} >
+        < TouchableHighlight style={{ alignSelf: 'flex-start' }} onPress={() => this._onPress(asset)}>
+          <View key={index} style={styles.assetField}>
+            <Text style={styles.assetLabel}>{asset.name}</Text>
             <Image style={styles.assetButton} source={{ uri: asset.logo }} />
-          </TouchableHighlight>
+          </View>
+        </TouchableHighlight >
 
-        </View>
       )
     });
 

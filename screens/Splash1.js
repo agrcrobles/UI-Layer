@@ -51,29 +51,30 @@ class Splash1 extends Component {
     console.log(this.props)
     let list = this.props.assets.map((asset, index) => {
       return (
-        <View key={index} style={styles.assetField}>
-
-          {/* <Button onPress={() => this._onDelete(asset.key)} style={styles.assetDeleteButton}>Delete</Button> */}
-
-          <Text style={styles.assetLabel}>{asset.name}</Text>
-
-          <TouchableHighlight style={{ alignSelf: 'flex-start' }} 
+        <TouchableHighlight key={index} style={{ alignSelf: 'flex-start' }}
           onPress={() => this._onPress(asset)}
-           onLongPress={() => this._onDelete(asset.key)}  >
-            <Image style={styles.assetButton} source={{ uri: asset.logo }} />
-          </TouchableHighlight>
+          onLongPress={() => this._onDelete(asset.key)}  >
 
-        </View>
+          <View  style={styles.assetField}>
+
+            {/* <Button onPress={() => this._onDelete(asset.key)} style={styles.assetDeleteButton}>Delete</Button> */}
+
+            <Text style={styles.assetLabel}>{asset.name}</Text>
+
+            <Image style={styles.assetButton} source={{ uri: asset.logo }} />
+
+          </View>
+        </TouchableHighlight>
       )
     });
 
     return (
-// conditional render or fix scrollview styling...
+      // conditional render or fix scrollview styling...
 
       <View style={styles.container}>
         {/* <Image source={supply} style={{height: 50, width: 250, margin: 5}} />  */}
         {/* <ScrollView contentContainerStyle={styles.scrollView}> */}
-          {list}
+        {list}
         {/* </ScrollView> */}
         <TouchableHighlight onPress={() => navigate('Create')}>
           <Image

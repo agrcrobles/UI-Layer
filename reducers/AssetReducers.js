@@ -222,14 +222,14 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             let assetRef = rootRef.child('assets').push();
             rootRef.child('assets').push(asset);
 
-            let partAsset = {
-                name: asset.Name,
-                logo: asset.Logo,
-                key: assetRef,
+            // let partAsset = {
+            //     name: asset.Name,
+            //     logo: asset.Logo,
+            //     key: assetRef,
 
-            }
+            // }
             return Object.assign({}, state, {
-                state
+                ...state,
 
                 // assets: [...state.Assets, partAsset]
 

@@ -38,7 +38,7 @@ class PreDigi extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  assets: state.AssetReducers.assets,
+  assets: state.Assets,
 
 });
 
