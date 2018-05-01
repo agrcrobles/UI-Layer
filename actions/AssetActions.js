@@ -164,12 +164,12 @@ export function addAsset(newAsset) {
     }
 }
 
-export function confirmAsset(ConfAsset) {
-    let data = ConfAsset;
+export function confirmAsset(confirmedAsset) {
+    let newAsset = confirmedAsset;
     console.log('confirming asset');
     return {
         type: CONFIRM_ASSET,
-        asset: data
+        newAsset
 
     }
 }
@@ -213,10 +213,11 @@ export function addProps(newProps) {
     }
 }
 
-export function addPhoto(uri) {
+export function addPhoto(imgObj) {
     return ({
         type: ADD_PHOTO,
-        data: uri
+        data: imgObj.image,
+        size: imgObj.size
     }
     )
 }

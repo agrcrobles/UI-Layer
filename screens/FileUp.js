@@ -14,7 +14,7 @@ import BackButton from "../components/BackButton";
 
 import Submit from '../components/SubmitBtn';
 
-import { ImagePicker, DocumentPicker } from 'expo';
+import {FileSystem, ImagePicker, DocumentPicker } from 'expo';
 import { addPhoto } from '../actions/AssetActions';
 
 class FileUp extends Component {
@@ -61,7 +61,7 @@ class FileUp extends Component {
     let result = await ImagePicker.launchImageLibraryAsync({
       base64: true,
       allowsEditing: false,
-      aspect: [4, 3],
+      aspect: [4, 4],
 
     });
 
@@ -70,9 +70,8 @@ class FileUp extends Component {
     if (!result.cancelled) {
       console.log(result);
       this.setState({
-
+        uri: result.uri,
         image: "data:image/png;base64," + result.base64,
-        size: result.size
 
       });
     }
@@ -92,17 +91,23 @@ class FileUp extends Component {
     if (!result.cancelled) {
       console.log(result.size, 'this is how big');
       this.setState({
-
+        uri: result.uri,
         image: "data:image/png;base64," + result.base64,
-        size: result.size
       });
     }
   };
-  _onSubmit = (imgString) => {
+  _onSubmit = () => {
     const { navigate } = this.props.navigation;
-
-    this.props.addPhoto(imgString)
+    FileSystem.getInfoAsync(this.state.uri, {size: true}).then((result) => {
+      this.setState({
+        size: result.size /1024
+      })
+    }).then(() => {
+    
+    this.props.addPhoto(this.state);
     navigate('Splash3',{logo: this.props.logo, name: this.props.transInfo.name})
+    }  
+  )
   };
 
 
@@ -150,7 +155,7 @@ class FileUp extends Component {
 
          
 
-          <Submit onPress={() => this._onSubmit(image)} />
+          <Submit onPress={() => this._onSubmit()} />
         </View >
         </View>
         )}
@@ -164,8 +169,8 @@ const mapStateToProps= (state) => ({
         });
         const mapDispatchToProps= (dispatch) => ({
 
-          addPhoto: (uri) =>
-            dispatch(addPhoto(uri)),
+          addPhoto: (image) =>
+            dispatch(addPhoto(image)),
 
         })
       

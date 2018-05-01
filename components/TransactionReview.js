@@ -53,11 +53,15 @@ class TransRev extends Component {
 
         let locationImage = this.props.transInfo.location === 'recipient' ? recipient : originator;
         let list;
-        let ediTName, ediTNum, doc, docSize = null;
-        let image = transDat.images[0] || null;
-
+        let ediTName, ediTNum, doc, docSize, image, imageSize = null;
         let dTime = transDat.dTime;
         console.log(dTime, 'dtime??');
+        
+        if (transDat.images[0]) {
+            image = transDat.images[0].image;
+            imageSize = transDat.images[0].size/1024;
+
+        }
 
         if (transDat.documents[0]) {
             doc = transDat.documents[0].name;
@@ -105,6 +109,7 @@ class TransRev extends Component {
                 <Text style={styles.transRevTime}>{ediTNum}</Text>
 
                 <Image style={styles.thumb} source={{ uri: image }} />
+                <Text style={styles.transRevTime}>{imageSize}</Text>
                 <Text style={styles.editLabel}>Document Name and Size</Text>
                 <Text style={styles.transRevTime}>{doc}</Text>
                 <Text style={styles.transRevTime}>{docSize} kb</Text>

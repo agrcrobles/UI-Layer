@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, Platform, View, Image, TouchableHighlight, Alert} from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, Platform, View, Image, TouchableHighlight, Alert } from 'react-native';
 import logo from "../assets/teeLabel.png";
 import params from "../assets/igvcParamsLabel.png";
 import { connect } from "react-redux";
@@ -13,7 +13,7 @@ import { STATUS_BAR_HEIGHT } from '../constants';
 
 
 class Tee extends Component {
-  static navigationOptions = ({navigation}) => ({
+  static navigationOptions = ({ navigation }) => ({
     headerStyle: {
       height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
       backgroundColor: '#021227',
@@ -27,24 +27,24 @@ class Tee extends Component {
     }}
       source={logo} />,
 
-      headerLeft: <BackButton navigation={navigation} />
-       
-    })
+    headerLeft: <BackButton navigation={navigation} />
+
+  })
 
   constructor(props) {
     super(props);
     this.state = {
-      // Name: "",
-      // Logo: null,
-      // coreProps:{}
+      // Name: "The Nameless Asset",
+      Logo: null,
+      // coreProps: {}
 
     };
   }
 
-  componentDidMount(){
-    // this.props.getHercId();
-    // console.log('gettingid hopefully');
+  componentDidMount() {
+
   }
+
   _pickImage = async () => {
 
     let logo = await ImagePicker.launchImageLibraryAsync({ allowsEditing: false, quality: .8, base64: true });
@@ -67,19 +67,22 @@ class Tee extends Component {
 
   _onSubmit = () => {
     const { navigate } = this.props.navigation;
-    console.log(this.state, "thisstate confimrmtee");
-    let newAsset =  Object.assign({},this.state,{
+
+    let newAsset = Object.assign({}, this.state, {
       ...this.state,
-      // hercId: this.props.getHercId
     })
     console.log(newAsset, "newasset");
-
-    this.props.addAsset(newAsset);
-    navigate('NewAssetConfirm');
+    
+    newAsset.hasOwnProperty('Name')
+      ?
+      this.props.addAsset(newAsset)
+      &&
+      navigate('NewAssetConfirm')
+      :
+      Alert.alert('Please Add A Name');
   }
   render() {
-    let { Logo } = this.state;
-
+   let Logo = this.state.Logo || null;
 
     return (
 
@@ -170,13 +173,13 @@ class Tee extends Component {
           {Logo &&
             <Image source={{ uri: Logo }} style={{ width: 100, height: 100, margin: 10, alignSelf: 'center' }} />
           }
-          
-            <Button
-              // title="Upload Image"
-              style={styles.picButton}
 
-              onPress={() => this._pickImage()}>
-              Upload Image
+          <Button
+            // title="Upload Image"
+            style={styles.picButton}
+
+            onPress={() => this._pickImage()}>
+            Upload Image
         </Button>
         </ScrollView>
 
@@ -191,7 +194,7 @@ class Tee extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  newAsset: state.AssetReducers.newAsset,
+  // newAsset: state.AssetReducers.newAsset,
   hercId: state.AssetReducers.hercId
   // newProperties: state.AssetReducers.selectedAsset.newProperties
 
@@ -199,7 +202,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   addAsset: (newAsset) => dispatch(addAsset(newAsset)),
-    getHercId: () => dispatch(getHercId())
+  getHercId: () => dispatch(getHercId())
 
 })
 
