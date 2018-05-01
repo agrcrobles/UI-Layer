@@ -34,9 +34,9 @@ class Tee extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Name: "",
-      Logo: null,
-      coreProps:{}
+      // Name: "",
+      // Logo: null,
+      // coreProps:{}
 
     };
   }
@@ -147,7 +147,7 @@ class Tee extends Component {
             <TextInput
               style={styles.input}
               onChangeText={metric6 => this.setState({ coreProps: { ...this.state.coreProps, metric6 } })}
-              placeholder="metric5"
+              placeholder="metric6"
             />
           </View>
           <View style={styles.field}>
