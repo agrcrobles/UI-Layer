@@ -109,7 +109,7 @@ class Tee extends Component {
             <Text style={styles.label}>Metric 1</Text>
             <TextInput
               style={styles.input}
-              onChangeText={metric1 => this.setState({ coreProps: { metric1 } })}
+              onChangeText={metric1 => this.setState({ CoreProps: { metric1 } })}
               placeholder="metric1"
             />
           </View>
@@ -117,7 +117,7 @@ class Tee extends Component {
             <Text style={styles.label}>Metric 2</Text>
             <TextInput
               style={styles.input}
-              onChangeText={metric2 => this.setState({ coreProps: { ...this.state.coreProps, metric2 } })}
+              onChangeText={metric2 => this.setState({ CoreProps: { ...this.state.CoreProps, metric2 } })}
               placeholder="metric2"
             />
           </View>
@@ -125,7 +125,7 @@ class Tee extends Component {
             <Text style={styles.label}>Metric 3</Text>
             <TextInput
               style={styles.input}
-              onChangeText={metric3 => this.setState({ coreProps: { ...this.state.coreProps, metric3 } })}
+              onChangeText={metric3 => this.setState({ CoreProps: { ...this.state.CoreProps, metric3 } })}
               placeholder="metric3"
             />
           </View>
@@ -133,7 +133,7 @@ class Tee extends Component {
             <Text style={styles.label}>Metric 4</Text>
             <TextInput
               style={styles.input}
-              onChangeText={metric4 => this.setState({ coreProps: { ...this.state.coreProps, metric4 } })}
+              onChangeText={metric4 => this.setState({ CoreProps: { ...this.state.CoreProps, metric4 } })}
               placeholder="metric4"
             />
           </View>
@@ -141,7 +141,7 @@ class Tee extends Component {
             <Text style={styles.label}>Metric 5</Text>
             <TextInput
               style={styles.input}
-              onChangeText={metric5 => this.setState({ coreProps: { ...this.state.coreProps, metric5 } })}
+              onChangeText={metric5 => this.setState({ CoreProps: { ...this.state.CoreProps, metric5 } })}
               placeholder="metric5"
             />
           </View>
@@ -149,7 +149,7 @@ class Tee extends Component {
             <Text style={styles.label}>Metric 6</Text>
             <TextInput
               style={styles.input}
-              onChangeText={metric6 => this.setState({ coreProps: { ...this.state.coreProps, metric6 } })}
+              onChangeText={metric6 => this.setState({ CoreProps: { ...this.state.CoreProps, metric6 } })}
               placeholder="metric6"
             />
           </View>
@@ -157,7 +157,7 @@ class Tee extends Component {
             <Text style={styles.label}>Metric 7</Text>
             <TextInput
               style={styles.input}
-              onChangeText={metric7 => this.setState({ coreProps: { ...this.state.coreProps, metric7 } })}
+              onChangeText={metric7 => this.setState({ CoreProps: { ...this.state.CoreProps, metric7 } })}
               placeholder="metric7"
             />
           </View>
@@ -165,7 +165,7 @@ class Tee extends Component {
             <Text style={styles.label}>Metric 8</Text>
             <TextInput
               style={styles.input}
-              onChangeText={metric8 => this.setState({ coreProps: { ...this.state.coreProps, metric8 } })}
+              onChangeText={metric8 => this.setState({ CoreProps: { ...this.state.CoreProps, metric8 } })}
               placeholder="metric8"
             />
           </View>

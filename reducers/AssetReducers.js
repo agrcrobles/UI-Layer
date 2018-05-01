@@ -155,10 +155,10 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             })
 
         case ADD_PHOTO:
-            let image = Object.assign({}, action, {
+            let image = {
                 image: action.data,
-                imageSize: action.size
-            });
+                size: action.size
+            };
             console.log('adding photo');
             let images = [...state.trans.data.images, image];
             return Object.assign({}, state, {

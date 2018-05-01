@@ -59,13 +59,13 @@ class TransRev extends Component {
         
         if (transDat.images[0]) {
             image = transDat.images[0].image;
-            imageSize = transDat.images[0].size/1024;
+            imageSize = (transDat.images[0].size);
 
         }
 
         if (transDat.documents[0]) {
             doc = transDat.documents[0].name;
-            docSize = transDat.documents[0].size/1024;
+            docSize = (transDat.documents[0].size/1024).toFixed(3);
 
         }
 
@@ -109,7 +109,7 @@ class TransRev extends Component {
                 <Text style={styles.transRevTime}>{ediTNum}</Text>
 
                 <Image style={styles.thumb} source={{ uri: image }} />
-                <Text style={styles.transRevTime}>{imageSize}</Text>
+                <Text style={styles.transRevTime}>{imageSize} kb</Text>
                 <Text style={styles.editLabel}>Document Name and Size</Text>
                 <Text style={styles.transRevTime}>{doc}</Text>
                 <Text style={styles.transRevTime}>{docSize} kb</Text>

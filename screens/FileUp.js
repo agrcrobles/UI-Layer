@@ -68,12 +68,18 @@ class FileUp extends Component {
     console.log(result);
 
     if (!result.cancelled) {
-      console.log(result);
+      let uri = result.uri;
+      console.log(result.uri, 'result uri');
+      FileSystem.getInfoAsync(uri, {size: true}).then((result) => {
+        let size = (result.size/1024).toFixed(3)
+      }).then((size) => {
       this.setState({
         uri: result.uri,
         image: "data:image/png;base64," + result.base64,
-
-      });
+        size
+      },
+    console.log("setting size image"));
+    })
     }
   };
 
@@ -89,25 +95,29 @@ class FileUp extends Component {
     console.log(result);
 
     if (!result.cancelled) {
-      console.log(result.size, 'this is how big');
+      let uri = result.uri;
+      console.log(result.uri, 'result uri');
+      FileSystem.getInfoAsync(uri, {size: true}).then((result) => {
+        let size = (result.size/1024).toFixed(3)
+      }).then((size) => {
       this.setState({
         uri: result.uri,
         image: "data:image/png;base64," + result.base64,
-      });
+        size
+      },
+    console.log("setting taken size image"));
+    })
     }
   };
+
+
   _onSubmit = () => {
     const { navigate } = this.props.navigation;
-    FileSystem.getInfoAsync(this.state.uri, {size: true}).then((result) => {
-      this.setState({
-        size: result.size /1024
-      })
-    }).then(() => {
-    
-    this.props.addPhoto(this.state);
+    let image = this.state;
+    this.props.addPhoto(image);
     navigate('Splash3',{logo: this.props.logo, name: this.props.transInfo.name})
-    }  
-  )
+    
+  
   };
 
 
