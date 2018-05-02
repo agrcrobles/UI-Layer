@@ -51,9 +51,9 @@ class Splash1 extends Component {
     console.log(this.props)
     let list = this.props.assets.map((asset, index) => {
       return (
-        <TouchableHighlight key={index} style={{ alignSelf: 'flex-start' }}
+        <TouchableHighlight key={index} style={styles.assetField}
           onPress={() => this._onPress(asset)}
-          onLongPress={() => this._onDelete(asset.key)}  >
+           >
 
           <View  style={styles.assetField}>
 

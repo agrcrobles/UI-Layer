@@ -85,6 +85,15 @@ module.exports = StyleSheet.create({
         // marginBottom: 10,
         // marginTop: 10
     },
+    noTransLabel: {
+        color: "white",
+        width: 130,
+        fontSize: 20.2,
+        fontWeight: "600",
+        paddingLeft: 5,
+        fontFamily: 'dinPro'
+    },
+    
     label: {
         color: "white",
         width: 120,

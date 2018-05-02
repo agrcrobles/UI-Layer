@@ -50,7 +50,7 @@ export default class AnthemWeb extends Component {
   render() {
     return (
       <WebView
-        source={{ uri: 'http://tulips.com/' }}
+        source={{ uri: 'https://www.anthemvault.com/' }}
         style={{ marginTop: 20, flex: 1 }}
       />
     );
