@@ -59,7 +59,7 @@ class SpaceScreen extends Component {
                 onPress={() => navigate('TransSwiper', { name: this.props.name, logo: this.props.logo })} />
         })
         :
-        this.setState({ tx: <Text style={styles.label}>No Transactions</Text> });
+        this.setState({ tx: <Text style={styles.noTransLabel}>No Transactions</Text> });
     }
     componentDidMount() {
         this._checkProps();
@@ -67,6 +67,7 @@ class SpaceScreen extends Component {
 
     render() {
         const { navigate } = this.props.navigation;
+console.log('spacescreen');
 
        
 
