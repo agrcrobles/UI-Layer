@@ -131,7 +131,7 @@ class FileUp extends Component {
 
         {
           image &&
-          <Image source={{ uri: image.image }} style={{ width: 200, height: 200, margin: 10 }} />
+          <Image source={{ uri: image }} style={{ width: 200, height: 200, margin: 10 }} />
         }
 {/* <Text style={styles.label}>Image Size: {this.state.size} kb </Text> */}
         <View style={[styles.picker, { marginTop: 0 }]}>
