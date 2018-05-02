@@ -85,11 +85,9 @@ class NewAssetConfirm extends Component {
             Url = (<Text style={styles.label}>No Url</Text>)
         }
 
-        if (newAsset.hasOwnProperty('coreProps')) {
-            let vals = Object.values(newAsset.coreProps).map((x, i) => x)
-
-            list = vals.map((x, i) => {
-                return (
+        if (newAsset.hasOwnProperty('CoreProps')) {
+             list = Object.getOwnPropertyNames(newAsset.CoreProps).map((x, i) => {
+               return (
                     <View key={i} style={styles.field}>
                         <Text style={styles.label}>{x}</Text>
                         <Text style={styles.input}>""</Text>

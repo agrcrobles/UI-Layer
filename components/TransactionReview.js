@@ -19,8 +19,8 @@ class TransRev extends Component {
         this.getPricesFromApi();
         // console.log(this.props.transInfo, this.props.transDat, 'transinfos')
     }
-    
-     async getPricesFromApi() {
+
+    async getPricesFromApi() {
         try {
             let response = await fetch(
                 'https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON'
@@ -56,16 +56,16 @@ class TransRev extends Component {
         let ediTName, ediTNum, doc, docSize, image, imageSize = null;
         let dTime = transDat.dTime;
         console.log(dTime, 'dtime??');
-        
+
         if (transDat.images[0]) {
-            image = transDat.images[0].image;
-            imageSize = (transDat.images[0].size);
+            image = (<Image style={styles.thumb} source={{ uri: transDat.images[0].image }} />);
+            imageSize = (<Text style={styles.revPropVal}>{transDat.images[0].size} kb</Text>);
 
         }
 
         if (transDat.documents[0]) {
-            doc = transDat.documents[0].name;
-            docSize = (transDat.documents[0].size/1024).toFixed(3);
+            doc = (<Text style={styles.transRevTime}>{transDat.documents[0].name}</Text>);
+            docSize = (<Text style={styles.transRevTime}>{(transDat.documents[0].size / 1024).toFixed(3)} kb</Text>);
 
         }
 
@@ -101,18 +101,17 @@ class TransRev extends Component {
                 <Image style={styles.assetLocationNoTopMargin} source={locationImage} />
                 {/* {/* <Text style={styles.transRevName}>{transInfo.name}</Text> */}
                 <Text style={styles.transRevName}>HercID: {transInfo.hercId}</Text>
-                <Image style={styles.assetLocationNoTopMargin} source={locationImage} />
                 <Text style={styles.transRevTime}>{dTime}</Text>
 
                 <Text style={styles.editLabel}>EDI-T-SET:</Text>
                 <Text style={styles.transRevTime}>{ediTName}</Text>
                 <Text style={styles.transRevTime}>{ediTNum}</Text>
-
-                <Image style={styles.thumb} source={{ uri: image }} />
-                <Text style={styles.transRevTime}>{imageSize} kb</Text>
+                <Text style={styles.editLabel}>Images and Size</Text>
+                {image}
+                {imageSize}
                 <Text style={styles.editLabel}>Document Name and Size</Text>
-                <Text style={styles.transRevTime}>{doc}</Text>
-                <Text style={styles.transRevTime}>{docSize} kb</Text>
+                {doc}
+                {docSize}
 
                 <View style={{ flex: 1 }}>
                     {list}

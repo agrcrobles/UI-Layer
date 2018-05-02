@@ -67,12 +67,16 @@ class Tee extends Component {
 
   _onSubmit = () => {
     const { navigate } = this.props.navigation;
-
+    let CoreProps = {};
+    Object.values(this.state.CoreProps).map(x => {
+      CoreProps[x] = "";
+    })
     let newAsset = Object.assign({}, this.state, {
       ...this.state,
+      CoreProps
     })
     console.log(newAsset, "newasset");
-    
+
     newAsset.hasOwnProperty('Name')
       ?
       this.props.addAsset(newAsset)
@@ -82,7 +86,7 @@ class Tee extends Component {
       Alert.alert('Please Add A Name');
   }
   render() {
-   let Logo = this.state.Logo || null;
+    let Logo = this.state.Logo || null;
 
     return (
 
@@ -109,7 +113,7 @@ class Tee extends Component {
             <Text style={styles.label}>Metric 1</Text>
             <TextInput
               style={styles.input}
-              onChangeText={metric1 => this.setState({ CoreProps: { metric1 } })}
+              onChangeText={metric1 => this.setState({ CoreProps: { ...this.state.CoreProps, metric1 } })}
               placeholder="metric1"
             />
           </View>
