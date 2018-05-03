@@ -1,22 +1,22 @@
 {
   "expo": {
-    "name": "hercone",
-    "description": "Asset tracking and verification",
-    "slug": "hercone",
+    "name": "testhercone",
+    "description": "Testing Asset tracking and verification",
+    "slug": "testhercone",
     "version": "0.0.2",
     "privacy": "public",
     "sdkVersion": "25.0.0",
     "ios": {
-      "bundleIdentifier": "com.hercone.hercmobile"
+      "bundleIdentifier": "com.testhercone.hercmobile"
     },
     "android":{
-      "package": "com.hercone.hercmobile"
+      "package": "com.testhercone.hercmobile"
     },
     
     "orientation": "portrait",
-    "icon": "./assets/hLogo.png",
+    "icon": "./assets/toast.png",
     "splash": {
-      "image": "./assets/hercLogoBreak.png",
+      "image": "./assets/toast.png",
       "resizeMode": "contain",
       "backgroundColor": "#021227",
       "justifyContent": "center"

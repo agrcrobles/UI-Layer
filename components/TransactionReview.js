@@ -46,7 +46,7 @@ class TransRev extends Component {
     render() {
         // this.getPricesFromApi();
         let transInfo = this.props.transInfo;
-        let price = this.state.fctPrice ? this.state.fctPrice : "";
+        let price = this.state ? this.state.fctPrice : "";
         console.log(this.state, 'price');
         let transDat = this.props.transDat;
 
