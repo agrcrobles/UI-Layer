@@ -13,8 +13,8 @@ import fee from "../assets/hercLogoPillar.png";
 class TransRev extends Component {
     constructor(props) {
         super(props);
+        state = {};
     }
-    state = {};
     componentDidMount() {
         this.getPricesFromApi();
         // console.log(this.props.transInfo, this.props.transDat, 'transinfos')
@@ -26,7 +26,7 @@ class TransRev extends Component {
                 'https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON'
             );
             let responseJson = await response.json();
-            let fctPrice = responseJson.list["0"].pricePerHercForFCT; // this is what I'm going with for now  
+            let fctPrice = responseJson.list["0"].pricePerHercForFCT; 
             console.log(fctPrice, 'newthing');
             this.setState({ fctPrice });
 
@@ -44,6 +44,7 @@ class TransRev extends Component {
     }
 
     render() {
+        // this.getPricesFromApi();
         let transInfo = this.props.transInfo;
         let price = this.state.fctPrice ? this.state.fctPrice : "";
         console.log(this.state, 'price');
@@ -51,7 +52,7 @@ class TransRev extends Component {
 
         console.log(transInfo, 'transinfo in transreviewrender', transDat, 'transdata')
 
-        let locationImage = this.props.transInfo.location === 'recipient' ? recipient : originator;
+        let locationImage = this.props.transDat.tXLocation === 'recipient' ? recipient : originator;
         let list;
         let ediTName, ediTNum, doc, docSize, image, imageSize = null;
         let dTime = transDat.dTime;
@@ -82,11 +83,9 @@ class TransRev extends Component {
             list = Object.keys(transDat.properties).map((name, idx) => {
                 console.log(name, 'name in for loop in review')
                 return (
-
                     <View key={idx} style={styles.revPropField}>
                         <Text style={styles.transRevName}>{name}:</Text>
                         <Text style={styles.revPropVal}>{transDat.properties[name]}</Text>
-
                     </View>
                 )
             }) :
@@ -102,14 +101,15 @@ class TransRev extends Component {
                 {/* {/* <Text style={styles.transRevName}>{transInfo.name}</Text> */}
                 <Text style={styles.transRevName}>HercID: {transInfo.hercId}</Text>
                 <Text style={styles.transRevTime}>{dTime}</Text>
-
                 <Text style={styles.editLabel}>EDI-T-SET:</Text>
                 <Text style={styles.transRevTime}>{ediTName}</Text>
                 <Text style={styles.transRevTime}>{ediTNum}</Text>
                 <Text style={styles.editLabel}>Images and Size</Text>
                 {image}
                 {imageSize}
+                
                 <Text style={styles.editLabel}>Document Name and Size</Text>
+                
                 {doc}
                 {docSize}
 

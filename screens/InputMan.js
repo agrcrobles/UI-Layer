@@ -106,7 +106,7 @@ class InputMan extends Component {
 const mapStateToProps = (state) => ({
     name: state.AssetReducers.trans.header.name,
     logo: state.AssetReducers.selectedAsset.Logo,
-    location: state.AssetReducers.trans.header.location,
+    location: state.AssetReducers.trans.data.tXLocation,
     coreProps: state.AssetReducers.selectedAsset.CoreProps,
     // properties: state.AssetReducers.selectedAsset.CoreProperties
 });

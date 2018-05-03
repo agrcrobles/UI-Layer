@@ -68,7 +68,7 @@ class Splash3 extends Component {
     render() {
         const { navigate } = this.props.navigation;
         // let image = this.props.asset.Images ? this.props.asset.Images[0] : null;
-        let locationImage = this.props.transHeader.tXLocation === 'recipient' ? recipient : originator;
+        let locationImage = this.props.data.tXLocation === 'recipient' ? recipient : originator;
         let logo = this.props.logo;
         let asset = this.props.transHeader;
         let hercId = this.props.hercId;
@@ -124,7 +124,8 @@ class Splash3 extends Component {
 const mapStateToProps = (state) => ({
     logo: state.AssetReducers.selectedAsset.Logo,
     transHeader: state.AssetReducers.trans.header,
-    hercId: state.AssetReducers.trans.header.hercId
+    hercId: state.AssetReducers.trans.header.hercId,
+    data: state.AssetReducers.trans.data
 
 });
 export default connect(mapStateToProps)(Splash3);

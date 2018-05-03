@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Platform, StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight, Alert } from 'react-native';
+import { Platform, StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableHighlight, Alert } from 'react-native';
 import { STATUS_BAR_HEIGHT } from '../constants';
 import Submit from "../components/SubmitBtn";
 import originator from "../assets/origin.png";
@@ -59,26 +59,9 @@ class Confirm extends Component {
   componentDidMount() {
     console.log(this.props.newProps, 'thisnewtransinfo')
     console.log(this.props, 'props')
-   
+
 
   }
-  // async getPricesFromApi() {
-  //   try {
-  //     let response = await fetch(
-  //       'https://jsondata.herc.one/service-1.0-SNAPSHOT/JSON'
-  //     );
-  //     let responseJson = await response.json();
-  //     let fctPrice = responseJson.list["0"].pricePerHercForFCT; // this is what I'm going with for now  
-  //     console.log(fctPrice, 'newthing');
-  //     this.setState({ fctPrice });
-
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
-
-
 
   render() {
     // let price = this.state.fctPrice;
@@ -89,26 +72,28 @@ class Confirm extends Component {
     let logo = this.props.logo;
     // console.log(this.props.Assets);
 
-    let list = Object.keys(this.props.newProps).map((propName, idx) => {
-      let name = propName;
-      return (
+    let list = this.props.newProps
+      ?
+      Object.keys(this.props.newProps).map((propName, idx) => {
+        let name = propName;
+        return (
 
-        <View key={idx} style={styles.field}>
-          <Text style={styles.label}>{name}</Text>
-          <Text style={styles.input}>{this.props.newProps[name]}</Text>
-
-        </View>
-      )
-    });
+          <View key={idx} style={styles.field}>
+            <Text style={styles.label}>{name}</Text>
+            <Text style={styles.input}>{this.props.newProps[name]}</Text>
+          </View>
+        )
+      })
+      :
+      "No Props"
+      ;
 
     return (
       <View style={styles.containerCenter}>
-            <Image style={styles.assetLocation} source={locationImage} />
+        <Image style={styles.assetLocation} source={locationImage} />
         <ScrollView contentContainerStyle={styles.scrollView}>
-
           {list}
-
-          <Submit onPress={() => navigate('Splash3',{logo: this.props.logo, name: this.props.name})} />
+          <Submit onPress={() => navigate('Splash3', { logo: this.props.logo, name: this.props.name })} />
           {/* <View style={styles.assetFee}>
             <Image style={styles.assetFeeLabel} source={fee} />
             <Text style={styles.teePrice}>{price}</Text>
@@ -126,7 +111,7 @@ class Confirm extends Component {
 
 const mapStateToProps = (state) => ({
   newProps: state.AssetReducers.trans.data.properties,
-  location: state.AssetReducers.trans.header.location,
+  location: state.AssetReducers.trans.data.tXLocation,
   logo: state.AssetReducers.selectedAsset.Logo,
   name: state.AssetReducers.trans.header.name
   // newProperties: state.AssetReducers.selectedAsset.newProperties

@@ -72,18 +72,7 @@ class Splash2 extends Component {
       }
     }
     console.log(trans, 'trans base');
-    //rebuilding the transaction base
-    // let asset = Object.assign({}, this.props.asset, {
-    //   trans: {
-    //     header: {
-    //       name: asset.Name,
-    //       key: asset.key,
-    //       tXLocation: place,
-    //       dTime: time,
-    //       hercId: asset.hercId
-    //     }
-    //   }
-    // });
+   
     console.log(trans.header, 'txbase')
     this.props.startTrans(trans);
 
@@ -91,9 +80,9 @@ class Splash2 extends Component {
   }
   // let values = this.props.navigation.state.params;
   componentDidMount() {
-    console.log(this.props.asset.Name, 'this.props.asset');
+    // console.log(this.props.asset.Name, 'this.props.asset');
 
-
+    console.log("splash2", this.props)
   }
   render() {
 
