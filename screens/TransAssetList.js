@@ -31,8 +31,8 @@ class TransAssetList extends Component {
     let list = this.props.assets.map((asset, index) => {
       return (
 
-        < TouchableHighlight style={{ alignSelf: 'flex-start' }} onPress={() => this._onPress(asset)}>
-          <View key={index} style={styles.assetField}>
+        <TouchableHighlight key={index} style={ styles.assetField } onPress={() => this._onPress(asset)}>
+          <View  style={styles.assetField}>
             <Text style={styles.assetLabel}>{asset.name}</Text>
             <Image style={styles.assetButton} source={{ uri: asset.logo }} />
           </View>

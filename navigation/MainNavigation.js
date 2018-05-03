@@ -72,7 +72,7 @@ const MainNavigator = StackNavigator({
                 width: 240,
                 alignSelf: 'center',
                 resizeMode: 'contain',
-                marginLeft: 20,
+                marginLeft: 0,
             }}
                 source={logo} />,
 

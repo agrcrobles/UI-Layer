@@ -14,7 +14,7 @@ import fee from "../assets/hercLogoPillar.png";
 import { incHercId, confirmAsset } from "../actions/AssetActions"
 
 class NewAssetConfirm extends Component {
-    static navigationOptions = ({navigation}) => ({
+    static navigationOptions = ({ navigation }) => ({
         headerStyle: {
             height: Platform.OS === 'android' ? 80 + STATUS_BAR_HEIGHT : 80,
             backgroundColor: '#021227',
@@ -42,22 +42,17 @@ class NewAssetConfirm extends Component {
     }
 
 
-    _onPressSubmit(CoreProps) {
-        const { navigate } = this.props.navigation;
-        // let asset = Object.values(this.props.newAsset.coreProps);
-        let Name = this.props.Name;
-        let Url = this.props.url;
+    _onPressSubmit() {
         let hercId = this.props.hercId;
-        let newAsset = {
-            Name,
-            Url,
-            hercId,
-            Logo: this.props.Logo,
-            CoreProps
-        }
+        const { navigate } = this.props.navigation;
+        let newAsset = Object.assign({}, this.props.newAsset, {
+            ...this.props.newAsset,
+            hercId
+        })
+
         console.log(newAsset, 'newasset on its way to confirm');
         this.props.incHercId(hercId);
-        console.log(hercId);
+        console.log(hercId, 'hercID');
         this.props.confirmAsset(newAsset);
         // this.props.incHercId(); 
         // console.log(this.props.hercId, 'hercid Increase?')
@@ -68,37 +63,42 @@ class NewAssetConfirm extends Component {
 
 
     render() {
-
-        // console.log(price, 'pricey?')
-        let price = this.state.fctPrice;
-
         const { navigate } = this.props.navigation;
-        console.log(this.props.coreProps, "confirmselasset")
-        console.log(this.props.Name);
-        console.log(this.props.url)
-        let Logo = this.props.Logo;
-        let Name = this.props.Name;
-        let Url = this.props.url;
+        let price = this.state.fctPrice;
         let hercId = this.props.hercId;
-        let newProperties = Object.values(this.props.coreProps);
+        let newAsset = this.props.newAsset;
+        let Logo, Url, newProperties, list;
+        let Name = newAsset.Name;
 
-        console.log(newProperties, 'newprops');
-        const CoreProps = {};
-
-        for (const key of newProperties) {
-            CoreProps[key] = "";
+        // let Name = this.props.newAsset.Name;
+        if (newAsset.Logo) {
+            Logo = (<Image style={styles.assetHeaderImage} source={{ uri: newAsset.Logo }} />);
+        } else {
+            Logo = (<Text style={styles.label}>No Image</Text>)
         }
 
-        console.log(CoreProps, 'corprops');
-        let list = newProperties.map((x, i) => {
-            return (
 
-                <View key={i} style={styles.field}>
-                    <Text style={styles.label}>{x}</Text>
-                    <Text style={styles.input}>""</Text>
-                </View>
-            )
-        })
+        if (newAsset.hasOwnProperty('Url')) {
+            Url = (<Text style={styles.label}>{newAsset.Url}</Text>);
+        } else {
+
+            Url = (<Text style={styles.label}>No Url</Text>)
+        }
+
+        if (newAsset.hasOwnProperty('CoreProps')) {
+             list = Object.getOwnPropertyNames(newAsset.CoreProps).map((x, i) => {
+               return (
+                    <View key={i} style={styles.field}>
+                        <Text style={styles.label}>{x}</Text>
+                        <Text style={styles.input}>""</Text>
+                    </View>
+                )
+            })
+        } else {
+            list = (<Text style={styles.label}>No Properties</Text>)
+        }
+
+
 
         return (
 
@@ -106,9 +106,10 @@ class NewAssetConfirm extends Component {
                 <ScrollView contentContainerStyle={styles.scrollView}>
                     <View style={styles.assetFieldHeader}>
 
-                        <Image style={styles.assetHeaderImage} source={{ uri: Logo }} />
+
                         <Text style={styles.assetHeaderLabel}>{Name}</Text>
-                        <Text style={styles.assetHeaderLabel}>{Url}</Text>
+                        {Logo}
+                        {Url}
                         <Text style={styles.assetHeaderLabel}>HercID: {hercId}</Text>
                     </View>
 
@@ -119,7 +120,7 @@ class NewAssetConfirm extends Component {
 
                 </ScrollView>
 
-                <Submit onPress={() => this._onPressSubmit(CoreProps)} />
+                <Submit onPress={() => this._onPressSubmit()} />
 
                 <View style={styles.assetFee}>
                     <Image style={styles.assetFeeLabel} source={fee} />
@@ -136,19 +137,14 @@ class NewAssetConfirm extends Component {
 
 
 const mapStateToProps = (state) => ({
-    Name: state.AssetReducers.newAsset.Name,
-    Logo: state.AssetReducers.newAsset.Logo,
-    url: state.AssetReducers.newAsset.Url,
-    coreProps: state.AssetReducers.newAsset.coreProps,
+    newAsset: state.AssetReducers.newAsset,
     hercId: state.AssetReducers.hercId
-    // selectedAsset: state.AssetReducers.selectedAsset
-    // newProperties: state.AssetReducers.selectedAsset.newProperties
-
-
 });
+
 const mapDispatchToProps = (dispatch) => ({
     confirmAsset: (asset) =>
         dispatch(confirmAsset(asset)),
+
     incHercId: (hercid) =>
         dispatch(incHercId(hercid))
 })

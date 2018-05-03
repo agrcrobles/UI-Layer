@@ -52,7 +52,7 @@ export default class TxSwiper extends Component {
         return (
           <View key={i} style={styles.transDocField}>
             <Text style={styles.text}>{x.name}</Text>
-            <Text style={styles.text}>{x.size/1024}kb</Text>
+            <Text style={styles.text}>{x.size} kb</Text>
 
           </View>
         )
@@ -64,8 +64,8 @@ export default class TxSwiper extends Component {
       images = data.images.map((x, i) => {
         return (
           <View key={i} style={styles.imgView}>
-            <Image style={{ height: 65, width: 65, resizeMode: 'contain' }} source={{ uri: x }} />
-
+            <Image style={{ height: 65, width: 65, resizeMode: 'contain' }} source={{ uri: x.image }} />
+            <Text style={styles.text}>{x.size} kb</Text> 
           </View>
         )
       })

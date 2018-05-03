@@ -53,7 +53,7 @@ class Splash1 extends Component {
       return (
         <TouchableHighlight key={index} style={styles.assetField}>
           onPress={() => this._onPress(asset)}
-          onLongPress={() => this._onDelete(asset.key)}  >
+           >
 
           <View  style={styles.assetField}>
 

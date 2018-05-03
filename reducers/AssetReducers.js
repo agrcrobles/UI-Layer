@@ -48,7 +48,7 @@ const INITIAL_STATE = {
     dataFetched: false,
     isFetching: false,
     error: false,
-   
+
 
 };
 
@@ -155,7 +155,10 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             })
 
         case ADD_PHOTO:
-            let image = action.data;
+            let image = {
+                image: action.data,
+                size: action.size
+            };
             console.log('adding photo');
             let images = [...state.trans.data.images, image];
             return Object.assign({}, state, {
@@ -165,6 +168,7 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
                     data: {
                         ...state.trans.data,
                         images
+                           
 
                     }
                 }
@@ -217,21 +221,13 @@ const AssetReducers = (state = INITIAL_STATE, action) => {
             )
 
         case CONFIRM_ASSET:
-            const asset = action.asset;
-            console.log(asset.name, 'asset in reducerconfirm', state, 'state')
+            const asset = action.newAsset;
+            console.log(asset.Name, 'asset in reducerconfirm', state, 'state')
             let assetRef = rootRef.child('assets').push();
             rootRef.child('assets').push(asset);
 
-            // let partAsset = {
-            //     name: asset.Name,
-            //     logo: asset.Logo,
-            //     key: assetRef,
-
-            // }
             return Object.assign({}, state, {
-                ...state,
-
-                // assets: [...state.Assets, partAsset]
+                state: INITIAL_STATE,
 
 
             }

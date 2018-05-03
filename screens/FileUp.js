@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Platform, StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert } from 'react-native';
+import { Platform, StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Alert } from 'react-native';
 import Button from 'react-native-button';
 import menuOptions from '../components/buttons/menuOptions.png';
 import { STATUS_BAR_HEIGHT } from '../constants';
@@ -14,7 +14,7 @@ import BackButton from "../components/BackButton";
 
 import Submit from '../components/SubmitBtn';
 
-import { ImagePicker, DocumentPicker } from 'expo';
+import { FileSystem, ImagePicker, DocumentPicker } from 'expo';
 import { addPhoto } from '../actions/AssetActions';
 
 class FileUp extends Component {
@@ -61,23 +61,25 @@ class FileUp extends Component {
     let result = await ImagePicker.launchImageLibraryAsync({
       base64: true,
       allowsEditing: false,
-      aspect: [4, 3],
+      aspect: [4, 4],
 
     });
 
     console.log(result);
 
     if (!result.cancelled) {
-      console.log(result);
-      this.setState({
-
-        image: "data:image/png;base64," + result.base64,
-        size: result.size
-
-      });
+     let uri = result.uri;
+      console.log(uri, 'result uri');
+      FileSystem.getInfoAsync(uri, { size: true }).then((info) => {
+        this.setState({
+          size: (info.size / 1024).toFixed(3),
+          uri: uri,
+          image: "data:image/png;base64," + result.base64,
+        
+        })
+      })
     }
-  };
-
+  }
 
   _takeImage = async () => {
     console.log("picking Image")
@@ -90,19 +92,28 @@ class FileUp extends Component {
     console.log(result);
 
     if (!result.cancelled) {
-      console.log(result.size, 'this is how big');
-      this.setState({
-
-        image: "data:image/png;base64," + result.base64,
-        size: result.size
-      });
+      let uri = result.uri;
+       console.log(uri, 'result uri');
+       FileSystem.getInfoAsync(uri, { size: true }).then((info) => {
+         this.setState({
+           size: (info.size / 1024).toFixed(3),
+           uri: uri,
+           image: "data:image/png;base64," + result.base64,
+         
+         })
+       })
+     }
     }
-  };
-  _onSubmit = (imgString) => {
-    const { navigate } = this.props.navigation;
+  
 
-    this.props.addPhoto(imgString)
-    navigate('Splash3',{logo: this.props.logo, name: this.props.transInfo.name})
+
+  _onSubmit = () => {
+    const { navigate } = this.props.navigation;
+    let image = this.state;
+    this.props.addPhoto(image);
+    navigate('Splash3', { logo: this.props.logo, name: this.props.transInfo.name })
+
+
   };
 
 
@@ -116,20 +127,20 @@ class FileUp extends Component {
     return (
       <View style={styles.container} >
 
-        <Image source={locationImage} style={[styles.assetLocation,{marginTop: 5, marginBottom: 50}]} />
+        <Image source={locationImage} style={[styles.assetLocation, { marginTop: 5, marginBottom: 50 }]} />
 
-         {
-            image &&
-            <Image source={{ uri: image }} style={{ width: 200, height: 200, margin: 10 }} />
-          }
-        
-        <View style={[styles.picker,{marginTop: 0}]}>
+        {
+          image &&
+          <Image source={{ uri: image }} style={{ width: 200, height: 200, margin: 10 }} />
+        }
+{/* <Text style={styles.label}>Image Size: {this.state.size} kb </Text> */}
+        <View style={[styles.picker, { marginTop: 0 }]}>
           {/* <Button style={styles.picButton}
             title="Upload a Photo"
             onPress={this._pickImage}
           />  
           { fontSize: 20, color: 'white', borderColor:"red", backgroundColor:"#021227" } */}
-        
+
           <Button
 
             style={styles.picButton}
@@ -148,25 +159,26 @@ class FileUp extends Component {
 
 
 
-         
 
-          <Submit onPress={() => this._onSubmit(image)} />
+
+          <Submit onPress={() => this._onSubmit()} />
         </View >
-        </View>
-        )}
-      
-    }
-  
-const mapStateToProps= (state) => ({
-          transInfo: state.AssetReducers.trans.header,
-          logo: state.AssetReducers.selectedAsset.Logo
+      </View>
+    )
+  }
 
-        });
-        const mapDispatchToProps= (dispatch) => ({
+}
 
-          addPhoto: (uri) =>
-            dispatch(addPhoto(uri)),
+const mapStateToProps = (state) => ({
+  transInfo: state.AssetReducers.trans.header,
+  logo: state.AssetReducers.selectedAsset.Logo
 
-        })
-      
+});
+const mapDispatchToProps = (dispatch) => ({
+
+  addPhoto: (image) =>
+    dispatch(addPhoto(image)),
+
+})
+
 export default connect(mapStateToProps, mapDispatchToProps)(FileUp);
