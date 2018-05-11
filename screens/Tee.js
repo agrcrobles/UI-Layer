@@ -66,18 +66,22 @@ class Tee extends Component {
 
 
   _onSubmit = () => {
-    const { navigate } = this.props.navigation;
-    let CoreProps = {};
-    Object.values(this.state.CoreProps).map(x => {
-      CoreProps[x] = "";
-    })
-    let newAsset = Object.assign({}, this.state, {
-      ...this.state,
-      CoreProps
-    })
-    console.log(newAsset, "newasset");
 
-    newAsset.hasOwnProperty('Name')
+    const { navigate } = this.props.navigation;
+    let CoreProps, newAsset = {};
+    if (this.state.CoreProps) {
+      
+      Object.values(this.state.CoreProps).map(x => {
+        CoreProps[x] = "";
+      })
+      newAsset = Object.assign({}, this.state, {
+        ...this.state,
+        CoreProps
+      })
+    }
+    console.log(newAsset, "newasset");
+    
+    this.state.hasOwnProperty('Name')
       ?
       this.props.addAsset(newAsset)
       &&
@@ -85,7 +89,10 @@ class Tee extends Component {
       :
       Alert.alert('Please Add A Name');
   }
+
+
   render() {
+    console.log(this.props)
     let Logo = this.state.Logo || null;
 
     return (

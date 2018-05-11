@@ -63,6 +63,8 @@ class NewAssetConfirm extends Component {
 
 
     render() {
+
+        console.log("confirming");
         const { navigate } = this.props.navigation;
         let price = this.state.fctPrice;
         let hercId = this.props.hercId;

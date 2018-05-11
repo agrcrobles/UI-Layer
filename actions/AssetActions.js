@@ -72,7 +72,7 @@ export function getHercId() {
         let hercId;
         rootRef.child('hercID').once('value').
             then((snapshot) => {
-                console.log(snapshot.val(), 'snaps')
+                console.log(snapshot.toJSON(), 'snaps')
                 hercId = snapshot.toJSON();
             }).then(() => dispatch(gotHercId(hercId)));
 
