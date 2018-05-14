@@ -11,7 +11,12 @@ export default class Welcome extends Component {
       pin: ""
     }
   }
- 
+  componentDidMount() {
+    const { web3 } = this.props.screenProps;
+    web3.eth.getBlock('latest', (err, block) => {
+      console.log(block);
+    });
+  }
 
   _onPinPress(){
     const { navigate } = this.props.navigation;

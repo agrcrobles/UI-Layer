@@ -104,9 +104,10 @@ const MainNavigator = StackNavigator({
         // this.props.listAssets();
     }
     render() {
+
         return (
-            <MainNavigator />
-        )
+            <MainNavigator screenProps={{ web3: this.props.web3 }} />
+        );
     }
 }
 
